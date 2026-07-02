@@ -8,12 +8,18 @@ const nameInput = document.querySelector('#nameInput');
 const addProposalButton = document.querySelector('#addProposalButton');
 const proposalDialog = document.querySelector('#proposalDialog');
 const proposalForm = document.querySelector('#proposalForm');
+const proposalDialogTitle = document.querySelector('#proposalDialogTitle');
+const yearFilters = document.querySelector('#yearFilters');
+const sortButtons = document.querySelectorAll('[data-sort-direction]');
 
 const USER_ID_KEY = 'familyPlanner.userId';
 const USER_NAME_KEY = 'familyPlanner.userName';
 
 let proposals = [];
 let user = loadUser();
+let editingProposalId = null;
+let selectedYear = 'all';
+let sortDirection = 'asc';
 
 function loadUser() {
   let id = localStorage.getItem(USER_ID_KEY);
@@ -57,9 +63,28 @@ function renderIdentity() {
 }
 
 function formatDateRange(startDate, endDate) {
+  if (!startDate || !endDate) return 'TBD';
   const start = new Date(`${startDate}T12:00:00`);
   const end = new Date(`${endDate}T12:00:00`);
   return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
+}
+
+function sortDateValue(proposal) {
+  return proposal.startDate || '9999-12-31';
+}
+
+function proposalYear(proposal) {
+  return String(proposal.year || 'TBD');
+}
+
+function compareProposalDates(a, b) {
+  const aHasDate = Boolean(a.startDate);
+  const bHasDate = Boolean(b.startDate);
+
+  if (aHasDate !== bHasDate) return aHasDate ? -1 : 1;
+
+  const order = sortDateValue(a).localeCompare(sortDateValue(b));
+  return sortDirection === 'asc' ? order : -order;
 }
 
 async function api(path, options = {}) {
@@ -89,6 +114,11 @@ function renderComments(container, comments) {
 }
 
 function renderMiniCalendar(container, startDate, endDate) {
+  if (!startDate || !endDate) {
+    container.remove();
+    return;
+  }
+
   const start = new Date(`${startDate}T12:00:00`);
   const end = new Date(`${endDate}T12:00:00`);
   const monthStart = new Date(start.getFullYear(), start.getMonth(), 1);
@@ -137,12 +167,39 @@ function renderMiniMap(container, location) {
   `;
 }
 
+function openProposalDialog(proposal = null) {
+  editingProposalId = proposal?.id || null;
+  proposalForm.reset();
+  proposalDialogTitle.textContent = proposal ? 'Edit proposal' : 'Add proposal';
+
+  if (proposal) {
+    proposalForm.elements.title.value = proposal.title || '';
+    proposalForm.elements.location.value = proposal.location || '';
+    proposalForm.elements.year.value = proposal.year || '';
+    proposalForm.elements.startDate.value = proposal.startDate || '';
+    proposalForm.elements.endDate.value = proposal.endDate || '';
+    proposalForm.elements.summary.value = proposal.summary || '';
+  }
+
+  if (typeof proposalDialog.showModal === 'function') {
+    proposalDialog.showModal();
+  }
+}
+
 function renderProposals() {
   proposalList.innerHTML = '';
 
-  proposals
+  const visibleProposals = proposals
     .slice()
-    .sort((a, b) => String(a.startDate).localeCompare(String(b.startDate)))
+    .filter((proposal) => selectedYear === 'all' || proposalYear(proposal) === selectedYear)
+    .sort(compareProposalDates);
+
+  if (!visibleProposals.length) {
+    proposalList.innerHTML = '<p class="panel empty-state">No proposals match those filters.</p>';
+    return;
+  }
+
+  visibleProposals
     .forEach((proposal) => {
       const node = template.content.cloneNode(true);
       const card = node.querySelector('.proposal-card');
@@ -158,6 +215,10 @@ function renderProposals() {
       node.querySelector('.yes-count').textContent = proposal.voteSummary?.yes || 0;
       node.querySelector('.maybe-count').textContent = proposal.voteSummary?.maybe || 0;
       node.querySelector('.no-count').textContent = proposal.voteSummary?.no || 0;
+
+      node.querySelector('[data-edit-proposal]').addEventListener('click', () => {
+        openProposalDialog(proposal);
+      });
 
       node.querySelectorAll('[data-vote]').forEach((button) => {
         button.addEventListener('click', async () => {
@@ -206,6 +267,34 @@ function renderProposals() {
     });
 }
 
+function renderYearFilters() {
+  const years = [...new Set(proposals.map(proposalYear))].sort((a, b) => a.localeCompare(b));
+
+  if (selectedYear !== 'all' && !years.includes(selectedYear)) {
+    selectedYear = 'all';
+  }
+
+  yearFilters.innerHTML = [
+    `<button type="button" data-year-filter="all">All</button>`,
+    ...years.map((year) => `<button type="button" data-year-filter="${escapeHtml(year)}">${escapeHtml(year)}</button>`)
+  ].join('');
+
+  yearFilters.querySelectorAll('[data-year-filter]').forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.yearFilter === selectedYear);
+    button.addEventListener('click', () => {
+      selectedYear = button.dataset.yearFilter;
+      renderYearFilters();
+      renderProposals();
+    });
+  });
+}
+
+function renderSortButtons() {
+  sortButtons.forEach((button) => {
+    button.classList.toggle('is-active', button.dataset.sortDirection === sortDirection);
+  });
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -218,6 +307,8 @@ function escapeHtml(value) {
 async function load() {
   const data = await api('/api/family/bootstrap');
   proposals = data.proposals || [];
+  renderYearFilters();
+  renderSortButtons();
   renderProposals();
 }
 
@@ -230,11 +321,16 @@ nameForm.addEventListener('submit', (event) => {
 
 changeNameButton.addEventListener('click', openNameDialog);
 
+sortButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    sortDirection = button.dataset.sortDirection;
+    renderSortButtons();
+    renderProposals();
+  });
+});
+
 addProposalButton.addEventListener('click', () => {
-  proposalForm.reset();
-  if (typeof proposalDialog.showModal === 'function') {
-    proposalDialog.showModal();
-  }
+  openProposalDialog();
 });
 
 proposalDialog.querySelector('[data-close-proposal]').addEventListener('click', () => {
@@ -247,17 +343,19 @@ proposalForm.addEventListener('submit', async (event) => {
   const startDate = data.get('startDate');
   const endDate = data.get('endDate');
 
-  if (endDate < startDate) {
+  if (startDate && endDate && endDate < startDate) {
     alert('End date should be on or after the start date.');
     return;
   }
 
   try {
-    await api('/api/family/proposals', {
-      method: 'POST',
+    const path = editingProposalId ? `/api/family/proposals/${editingProposalId}` : '/api/family/proposals';
+    await api(path, {
+      method: editingProposalId ? 'PUT' : 'POST',
       body: JSON.stringify({
         title: data.get('title'),
         location: data.get('location'),
+        year: data.get('year'),
         startDate,
         endDate,
         summary: data.get('summary')
@@ -265,6 +363,7 @@ proposalForm.addEventListener('submit', async (event) => {
     });
     proposalDialog.close();
     proposalForm.reset();
+    editingProposalId = null;
     await load();
   } catch (err) {
     alert(err.message);

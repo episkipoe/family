@@ -20,6 +20,29 @@ function summarizeVotes(votesByProposal, proposalId) {
   }, { yes: 0, maybe: 0, no: 0 });
 }
 
+function proposalFromBody(body, existing = {}) {
+  const title = cleanString(body.title, 120);
+  const location = cleanString(body.location, 120);
+  const startDate = cleanString(body.startDate, 20);
+  const endDate = cleanString(body.endDate, 20);
+  const fallbackYear = startDate ? new Date(startDate).getFullYear() : new Date().getFullYear();
+  const year = Number(body.year || fallbackYear);
+
+  if (!title || !location) {
+    return { error: 'title and location are required.' };
+  }
+
+  return {
+    year,
+    title,
+    location,
+    startDate,
+    endDate,
+    status: cleanString(body.status || existing.status || 'active', 40),
+    summary: cleanString(body.summary, 1000)
+  };
+}
+
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, storage: storageMode() });
 });
@@ -54,26 +77,16 @@ app.get('/api/family/proposals', async (req, res, next) => {
 
 app.post('/api/family/proposals', async (req, res, next) => {
   try {
-    const title = cleanString(req.body.title, 120);
-    const location = cleanString(req.body.location, 120);
-    const startDate = cleanString(req.body.startDate, 20);
-    const endDate = cleanString(req.body.endDate, 20);
-    const year = Number(req.body.year || new Date(startDate).getFullYear() || new Date().getFullYear());
+    const proposalFields = proposalFromBody(req.body);
 
-    if (!title || !location || !startDate || !endDate) {
-      return res.status(400).json({ error: 'title, location, startDate, and endDate are required.' });
+    if (proposalFields.error) {
+      return res.status(400).json({ error: proposalFields.error });
     }
 
     const now = new Date().toISOString();
     const proposal = {
       id: req.body.id ? cleanString(req.body.id, 100) : nanoid(12),
-      year,
-      title,
-      location,
-      startDate,
-      endDate,
-      status: cleanString(req.body.status || 'active', 40),
-      summary: cleanString(req.body.summary, 1000),
+      ...proposalFields,
       createdAt: now,
       updatedAt: now
     };
@@ -82,6 +95,66 @@ app.post('/api/family/proposals', async (req, res, next) => {
     proposals.push(proposal);
     await setData('proposals', proposals);
     res.status(201).json(proposal);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.put('/api/family/proposals/:id', async (req, res, next) => {
+  try {
+    const proposalId = req.params.id;
+    const proposals = await getData('proposals');
+    const index = proposals.findIndex((proposal) => proposal.id === proposalId);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'Proposal not found.' });
+    }
+
+    const proposalFields = proposalFromBody(req.body, proposals[index]);
+
+    if (proposalFields.error) {
+      return res.status(400).json({ error: proposalFields.error });
+    }
+
+    const updated = {
+      ...proposals[index],
+      ...proposalFields,
+      updatedAt: new Date().toISOString()
+    };
+
+    proposals[index] = updated;
+    await setData('proposals', proposals);
+    res.json(updated);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/family/proposals/:id', async (req, res, next) => {
+  try {
+    const proposalId = req.params.id;
+    const proposals = await getData('proposals');
+    const nextProposals = proposals.filter((proposal) => proposal.id !== proposalId);
+
+    if (nextProposals.length === proposals.length) {
+      return res.status(404).json({ error: 'Proposal not found.' });
+    }
+
+    const [votes, comments] = await Promise.all([
+      getData('votes'),
+      getData('comments')
+    ]);
+
+    delete votes[proposalId];
+    delete comments[proposalId];
+
+    await Promise.all([
+      setData('proposals', nextProposals),
+      setData('votes', votes),
+      setData('comments', comments)
+    ]);
+
+    res.json({ deleted: true, proposalId });
   } catch (err) {
     next(err);
   }

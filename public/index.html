@@ -22,7 +22,24 @@
         <strong id="currentUserName">Not set</strong>
         <button id="changeNameButton" type="button">Change name</button>
       </div>
-      <button id="addProposalButton" class="primary-action" type="button">Add proposal</button>
+      <div class="control-actions">
+        <a class="button-link" href="/admin.html">Admin</a>
+        <button id="addProposalButton" class="primary-action" type="button">Add proposal</button>
+      </div>
+    </section>
+
+    <section class="panel list-tools" aria-label="Proposal filters">
+      <div>
+        <span class="label-text">Filter by year</span>
+        <div id="yearFilters" class="segmented-controls"></div>
+      </div>
+      <div>
+        <span class="label-text">Sort by date</span>
+        <div class="segmented-controls">
+          <button type="button" data-sort-direction="asc">Earliest</button>
+          <button type="button" data-sort-direction="desc">Latest</button>
+        </div>
+      </div>
     </section>
 
     <section id="proposalList" class="proposal-list" aria-live="polite"></section>
@@ -42,7 +59,7 @@
   <dialog id="proposalDialog" class="proposal-dialog">
     <form id="proposalForm" method="dialog">
       <div class="dialog-topline">
-        <h2>Add proposal</h2>
+        <h2 id="proposalDialogTitle">Add proposal</h2>
         <button class="ghost-button" type="button" data-close-proposal aria-label="Close">X</button>
       </div>
       <label>
@@ -53,14 +70,18 @@
         Location
         <input name="location" required maxlength="120" placeholder="City, state, park, resort..." />
       </label>
+      <label>
+        Year
+        <input name="year" type="number" min="2026" max="2100" step="1" placeholder="e.g. 2027" />
+      </label>
       <div class="form-grid">
         <label>
           Start date
-          <input name="startDate" type="date" required />
+          <input name="startDate" type="date" />
         </label>
         <label>
           End date
-          <input name="endDate" type="date" required />
+          <input name="endDate" type="date" />
         </label>
       </div>
       <label>
@@ -79,6 +100,9 @@
           <h2></h2>
         </div>
         <span class="status"></span>
+      </div>
+      <div class="proposal-actions">
+        <button type="button" data-edit-proposal>Edit</button>
       </div>
       <p class="meta"></p>
       <p class="summary"></p>
