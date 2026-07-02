@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: family-planner
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: USE_REDIS
+        value: true
+      - key: REDIS_URL
+        sync: false
+      - key: REDIS_TOKEN
+        sync: false

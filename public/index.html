@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Family Gathering Planner</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">Family Gathering Planner</p>
+      <h1>Where should we meet next?</h1>
+      <p class="lede">Drop in trip ideas, compare dates, and help the family find the next sunny place to gather.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <div class="identity-card">
+        <span class="label-text">Posting as</span>
+        <strong id="currentUserName">Not set</strong>
+        <button id="changeNameButton" type="button">Change name</button>
+      </div>
+      <button id="addProposalButton" class="primary-action" type="button">Add proposal</button>
+    </section>
+
+    <section id="proposalList" class="proposal-list" aria-live="polite"></section>
+  </main>
+
+  <dialog id="nameDialog" class="name-dialog">
+    <form id="nameForm" method="dialog">
+      <h2>Who are you?</h2>
+      <label>
+        Your name
+        <input id="nameInput" name="name" autocomplete="name" required maxlength="80" placeholder="e.g. Dave" />
+      </label>
+      <button type="submit">Save name</button>
+    </form>
+  </dialog>
+
+  <dialog id="proposalDialog" class="proposal-dialog">
+    <form id="proposalForm" method="dialog">
+      <div class="dialog-topline">
+        <h2>Add proposal</h2>
+        <button class="ghost-button" type="button" data-close-proposal aria-label="Close">X</button>
+      </div>
+      <label>
+        Trip name
+        <input name="title" required maxlength="120" placeholder="e.g. Galveston Beach Weekend" />
+      </label>
+      <label>
+        Location
+        <input name="location" required maxlength="120" placeholder="City, state, park, resort..." />
+      </label>
+      <div class="form-grid">
+        <label>
+          Start date
+          <input name="startDate" type="date" required />
+        </label>
+        <label>
+          End date
+          <input name="endDate" type="date" required />
+        </label>
+      </div>
+      <label>
+        Notes
+        <textarea name="summary" maxlength="1000" rows="4" placeholder="Why this spot? Lodging ideas, travel notes, rough plan..."></textarea>
+      </label>
+      <button class="primary-action" type="submit">Save proposal</button>
+    </form>
+  </dialog>
+
+  <template id="proposalTemplate">
+    <article class="proposal-card">
+      <div class="proposal-topline">
+        <div>
+          <p class="year"></p>
+          <h2></h2>
+        </div>
+        <span class="status"></span>
+      </div>
+      <p class="meta"></p>
+      <p class="summary"></p>
+
+      <div class="proposal-details">
+        <section class="mini-calendar" aria-label="Proposal dates"></section>
+        <section class="mini-map" aria-label="Proposal location"></section>
+      </div>
+
+      <div class="vote-row">
+        <button data-vote="yes">Yes <span class="yes-count">0</span></button>
+        <button data-vote="maybe">Maybe <span class="maybe-count">0</span></button>
+        <button data-vote="no">No <span class="no-count">0</span></button>
+      </div>
+
+      <section class="comments">
+        <h3>Comments</h3>
+        <div class="comment-list"></div>
+        <form class="comment-form">
+          <input name="text" placeholder="Add a thought, concern, or idea" required />
+          <button type="submit">Comment</button>
+        </form>
+      </section>
+    </article>
+  </template>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>

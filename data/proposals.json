@@ -1,0 +1,14 @@
+[
+  {
+    "id": "texas-thanksgiving-2026",
+    "year": 2026,
+    "title": Thanksgiving 2026",
+    "location": "Texas",
+    "startDate": "2026-11-25",
+    "endDate": "2026-11-29",
+    "status": "active",
+    "summary": "Thanksgiving at Ryan's House",
+    "createdAt": "2026-07-02T00:00:00.000Z",
+    "updatedAt": "2026-07-02T00:00:00.000Z"
+  }
+]
