@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meal Planning</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header class="hero meals-hero">
+    <div>
+      <a class="back-link" href="/">Back to gatherings</a>
+      <p class="eyebrow">Meal Planning</p>
+      <h1>What are we eating?</h1>
+      <p class="lede">Schedule breakfasts, lunches, dinners, and the occasional glorious snack-adjacent other.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <div>
+        <span class="label-text">Meal calendar</span>
+        <strong>Pick a recipe, date, and meal</strong>
+      </div>
+      <div class="control-actions">
+        <a class="button-link" href="/recipes.html">Recipes</a>
+        <button id="addMealPlanButton" class="primary-action" type="button">Add meal</button>
+      </div>
+    </section>
+
+    <section id="mealPlanList" class="meal-plan-list" aria-live="polite"></section>
+  </main>
+
+  <dialog id="mealPlanDialog" class="proposal-dialog">
+    <form id="mealPlanForm" method="dialog">
+      <div class="dialog-topline">
+        <h2 id="mealPlanDialogTitle">Add meal</h2>
+        <button class="ghost-button" type="button" data-close-meal-plan aria-label="Close">X</button>
+      </div>
+      <div class="form-grid">
+        <label>
+          Date
+          <input name="date" type="date" required />
+        </label>
+        <label>
+          Meal
+          <select name="mealType" required>
+            <option value="breakfast">Breakfast</option>
+            <option value="lunch">Lunch</option>
+            <option value="dinner">Dinner</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+      </div>
+      <label>
+        Recipe
+        <select name="recipeId" id="recipeSelect" required></select>
+      </label>
+      <section id="newRecipeFields" class="inline-editor" hidden>
+        <label>
+          New meal title
+          <input name="title" maxlength="120" placeholder="e.g. Taco night" />
+        </label>
+        <label>
+          Recipe link
+          <input name="link" type="url" maxlength="500" placeholder="https://..." />
+        </label>
+      </section>
+      <label>
+        Notes
+        <textarea name="notes" maxlength="500" rows="3" placeholder="Prep notes, who's cooking, dietary tweaks..."></textarea>
+      </label>
+      <button class="primary-action" type="submit">Save meal</button>
+    </form>
+  </dialog>
+
+  <script src="meal-planning.js" type="module"></script>
+</body>
+</html>

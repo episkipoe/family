@@ -20,7 +20,9 @@ if (useRedis) {
 const seedFiles = {
   proposals: 'proposals.json',
   votes: 'votes.json',
-  comments: 'comments.json'
+  comments: 'comments.json',
+  recipes: 'recipes.json',
+  mealPlans: 'mealPlans.json'
 };
 
 const redisKey = (name) => `family-planner:${name}`;

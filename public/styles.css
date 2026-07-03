@@ -685,6 +685,18 @@ h3 {
     url("https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?auto=format&fit=crop&w=1600&q=80") center 54% / cover;
 }
 
+.meals-hero {
+  background:
+    linear-gradient(115deg, rgba(44, 143, 107, 0.82), rgba(246, 183, 60, 0.72)),
+    url("https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?auto=format&fit=crop&w=1600&q=80") center 50% / cover;
+}
+
+.recipes-hero {
+  background:
+    linear-gradient(115deg, rgba(239, 116, 95, 0.78), rgba(119, 211, 214, 0.72)),
+    url("https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=1600&q=80") center 50% / cover;
+}
+
 .back-link {
   display: inline-flex;
   width: fit-content;
@@ -701,6 +713,124 @@ h3 {
 
 .back-link:hover {
   border-color: currentColor;
+}
+
+.meal-plan-list,
+.recipe-list {
+  display: grid;
+  gap: 16px;
+}
+
+.meal-day {
+  display: grid;
+  gap: 12px;
+  padding: 18px;
+}
+
+.meal-day h2 {
+  font-size: 1.35rem;
+}
+
+.meal-items {
+  display: grid;
+  gap: 10px;
+}
+
+.meal-item,
+.recipe-row,
+.event-meal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.meal-item,
+.event-meal {
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.64);
+}
+
+.recipe-row {
+  padding: 16px;
+}
+
+.meal-item h3,
+.recipe-row h2,
+.event-meal h3 {
+  margin: 3px 0 0;
+}
+
+.meal-item a,
+.recipe-row a,
+.event-meal a {
+  color: var(--ocean-dark);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 3px;
+}
+
+.row-actions {
+  display: flex;
+  flex: 0 0 auto;
+  gap: 8px;
+}
+
+.inline-editor {
+  display: grid;
+  gap: 12px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.54);
+}
+
+.event-meals {
+  margin: 16px 0;
+}
+
+.event-meals-panel {
+  border: 1px solid #abd6d2;
+  border-radius: 8px;
+  background: #f7fffc;
+}
+
+.event-meals-panel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.event-meals-panel summary strong {
+  display: inline-grid;
+  min-width: 28px;
+  min-height: 28px;
+  place-items: center;
+  border-radius: 999px;
+  background: #e5f5f1;
+  color: var(--ocean-dark);
+}
+
+.event-meal-list {
+  display: grid;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
+
+.event-meal time {
+  flex: 0 0 auto;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.event-meal-link {
+  margin: 0 12px 12px;
 }
 
 .games-grid {
@@ -843,7 +973,11 @@ h3 {
   }
 
   .comment-topline,
-  .comment-actions {
+  .comment-actions,
+  .meal-item,
+  .recipe-row,
+  .event-meal,
+  .row-actions {
     align-items: stretch;
     flex-direction: column;
   }
@@ -864,6 +998,7 @@ h3 {
   .segmented-controls button,
   .subevent-row button,
   .link-row button,
+  .row-actions button,
   .primary-action {
     width: 100%;
   }

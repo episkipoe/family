@@ -345,6 +345,46 @@ function renderLinks(container, links = []) {
   `;
 }
 
+function mealTypeLabel(value) {
+  return String(value || '').replace(/^\w/, (letter) => letter.toUpperCase());
+}
+
+function renderEventMeals(container, mealPlans = []) {
+  const meals = mealPlans
+    .filter((plan) => plan?.date)
+    .sort((a, b) => `${a.date}-${a.mealType}`.localeCompare(`${b.date}-${b.mealType}`));
+
+  container.innerHTML = `
+    <details class="event-meals-panel">
+      <summary>
+        <span>Meals during this gathering</span>
+        <strong>${meals.length}</strong>
+      </summary>
+      <div class="event-meal-list">
+        ${meals.length ? meals.map((plan) => {
+          const recipe = plan.recipe || {};
+          const title = recipe.title || 'Untitled meal';
+          const titleHtml = recipe.link
+            ? `<a href="${escapeHtml(normalizeUrl(recipe.link))}" target="_blank" rel="noreferrer">${escapeHtml(title)}</a>`
+            : escapeHtml(title);
+
+          return `
+            <article class="event-meal">
+              <div>
+                <p class="year">${escapeHtml(mealTypeLabel(plan.mealType))}</p>
+                <h3>${titleHtml}</h3>
+                ${plan.notes ? `<p class="meta">${escapeHtml(plan.notes)}</p>` : ''}
+              </div>
+              <time>${escapeHtml(formatSingleDate(plan.date))}</time>
+            </article>
+          `;
+        }).join('') : '<p class="meta inline-empty">No meals scheduled during these dates.</p>'}
+      </div>
+      <a class="calendar-action event-meal-link" href="/meal-planning.html">Plan meals</a>
+    </details>
+  `;
+}
+
 function collectLinks() {
   return [...linkRows.querySelectorAll('.link-row')]
     .map((row) => ({
@@ -502,6 +542,7 @@ function renderProposals() {
       node.querySelector('.meta').textContent = `${proposal.location} | ${formatDateRange(proposal.startDate, proposal.endDate)}`;
       node.querySelector('.summary').textContent = proposal.summary || '';
       renderSubEvents(node.querySelector('.subevents'), proposal.subEvents || [], proposal);
+      renderEventMeals(node.querySelector('.event-meals'), proposal.mealPlans || []);
       renderLinks(node.querySelector('.proposal-links'), proposal.links || []);
       renderMiniCalendar(node.querySelector('.mini-calendar'), proposal.startDate, proposal.endDate);
       renderMiniMap(node.querySelector('.mini-map'), proposal.location);

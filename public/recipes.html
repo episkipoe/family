@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recipes</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <header class="hero recipes-hero">
+    <div>
+      <a class="back-link" href="/meal-planning.html">Back to meal planning</a>
+      <p class="eyebrow">Recipe Library</p>
+      <h1>Family recipes</h1>
+      <p class="lede">Keep the meal titles and recipe links handy for future trips and ordinary Tuesdays.</p>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel controls">
+      <div>
+        <span class="label-text">Recipes</span>
+        <strong id="recipeCount">0 saved</strong>
+      </div>
+      <button id="addRecipeButton" class="primary-action" type="button">Add recipe</button>
+    </section>
+
+    <section id="recipeList" class="recipe-list" aria-live="polite"></section>
+  </main>
+
+  <dialog id="recipeDialog" class="proposal-dialog">
+    <form id="recipeForm" method="dialog">
+      <div class="dialog-topline">
+        <h2 id="recipeDialogTitle">Add recipe</h2>
+        <button class="ghost-button" type="button" data-close-recipe aria-label="Close">X</button>
+      </div>
+      <label>
+        Title
+        <input name="title" required maxlength="120" placeholder="e.g. Shakshuka" />
+      </label>
+      <label>
+        Link
+        <input name="link" type="url" maxlength="500" placeholder="https://..." />
+      </label>
+      <button class="primary-action" type="submit">Save recipe</button>
+    </form>
+  </dialog>
+
+  <script src="recipes.js" type="module"></script>
+</body>
+</html>

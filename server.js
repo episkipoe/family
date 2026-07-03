@@ -82,6 +82,42 @@ function cleanLinks(value) {
     .filter((link) => link.text && link.url);
 }
 
+function cleanUrl(value) {
+  const url = cleanString(value, 500);
+  if (!url) return '';
+  return /^https?:\/\//i.test(url) ? url : `https://${url}`;
+}
+
+function recipeFromBody(body) {
+  const title = cleanString(body.title, 120);
+  const link = cleanUrl(body.link);
+
+  if (!title) {
+    return { error: 'title is required.' };
+  }
+
+  return { title, link };
+}
+
+function mealPlanFromBody(body) {
+  const date = cleanString(body.date, 20);
+  const mealType = cleanString(body.mealType, 20).toLowerCase();
+  const recipeId = cleanString(body.recipeId, 100);
+  const title = cleanString(body.title, 120);
+  const link = cleanUrl(body.link);
+  const notes = cleanString(body.notes, 500);
+
+  if (!date || !['breakfast', 'lunch', 'dinner', 'other'].includes(mealType)) {
+    return { error: 'date and mealType of breakfast/lunch/dinner/other are required.' };
+  }
+
+  if (!recipeId && !title) {
+    return { error: 'Choose a meal or add a new meal title.' };
+  }
+
+  return { date, mealType, recipeId, title, link, notes };
+}
+
 function proposalFromBody(body, existing = {}) {
   const title = cleanString(body.title, 120);
   const location = cleanString(body.location, 120);
@@ -113,19 +149,210 @@ app.get('/api/health', (req, res) => {
 
 app.get('/api/family/bootstrap', async (req, res, next) => {
   try {
-    const [proposals, votes, comments] = await Promise.all([
+    const [proposals, votes, comments, recipes, mealPlans] = await Promise.all([
       getData('proposals'),
       getData('votes'),
-      getData('comments')
+      getData('comments'),
+      getData('recipes'),
+      getData('mealPlans')
     ]);
+
+    const recipeById = Object.fromEntries(recipes.map((recipe) => [recipe.id, recipe]));
+    const hydratedMealPlans = mealPlans.map((plan) => ({
+      ...plan,
+      recipe: recipeById[plan.recipeId] || null
+    }));
 
     const proposalCards = proposals.map((proposal) => ({
       ...proposal,
       voteSummary: summarizeVotes(votes, proposal.id),
-      comments: comments[proposal.id] || []
+      comments: comments[proposal.id] || [],
+      mealPlans: hydratedMealPlans.filter((plan) => {
+        if (!proposal.startDate || !proposal.endDate || !plan.date) return false;
+        return plan.date >= proposal.startDate && plan.date <= proposal.endDate;
+      })
     }));
 
-    res.json({ proposals: proposalCards });
+    res.json({ proposals: proposalCards, recipes, mealPlans: hydratedMealPlans });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/family/recipes', async (req, res, next) => {
+  try {
+    res.json(await getData('recipes'));
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/family/recipes', async (req, res, next) => {
+  try {
+    const recipeFields = recipeFromBody(req.body);
+    if (recipeFields.error) return res.status(400).json({ error: recipeFields.error });
+
+    const now = new Date().toISOString();
+    const recipe = {
+      id: req.body.id ? cleanString(req.body.id, 100) : nanoid(12),
+      ...recipeFields,
+      createdAt: now,
+      updatedAt: now
+    };
+
+    const recipes = await getData('recipes');
+    recipes.push(recipe);
+    await setData('recipes', recipes);
+    res.status(201).json(recipe);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.put('/api/family/recipes/:id', async (req, res, next) => {
+  try {
+    const recipes = await getData('recipes');
+    const index = recipes.findIndex((recipe) => recipe.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Recipe not found.' });
+
+    const recipeFields = recipeFromBody(req.body);
+    if (recipeFields.error) return res.status(400).json({ error: recipeFields.error });
+
+    recipes[index] = {
+      ...recipes[index],
+      ...recipeFields,
+      updatedAt: new Date().toISOString()
+    };
+    await setData('recipes', recipes);
+    res.json(recipes[index]);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/family/recipes/:id', async (req, res, next) => {
+  try {
+    const recipes = await getData('recipes');
+    const nextRecipes = recipes.filter((recipe) => recipe.id !== req.params.id);
+    if (nextRecipes.length === recipes.length) return res.status(404).json({ error: 'Recipe not found.' });
+
+    const mealPlans = await getData('mealPlans');
+    await Promise.all([
+      setData('recipes', nextRecipes),
+      setData('mealPlans', mealPlans.map((plan) => (
+        plan.recipeId === req.params.id ? { ...plan, recipeId: '', updatedAt: new Date().toISOString() } : plan
+      )))
+    ]);
+    res.json({ deleted: true, recipeId: req.params.id });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.get('/api/family/meal-plans', async (req, res, next) => {
+  try {
+    const [mealPlans, recipes] = await Promise.all([
+      getData('mealPlans'),
+      getData('recipes')
+    ]);
+    const recipeById = Object.fromEntries(recipes.map((recipe) => [recipe.id, recipe]));
+    res.json(mealPlans.map((plan) => ({ ...plan, recipe: recipeById[plan.recipeId] || null })));
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/family/meal-plans', async (req, res, next) => {
+  try {
+    const mealFields = mealPlanFromBody(req.body);
+    if (mealFields.error) return res.status(400).json({ error: mealFields.error });
+
+    const now = new Date().toISOString();
+    const mealPlans = await getData('mealPlans');
+    let recipeId = mealFields.recipeId;
+
+    if (!recipeId && mealFields.title) {
+      const recipes = await getData('recipes');
+      const recipe = {
+        id: nanoid(12),
+        title: mealFields.title,
+        link: mealFields.link,
+        createdAt: now,
+        updatedAt: now
+      };
+      recipes.push(recipe);
+      await setData('recipes', recipes);
+      recipeId = recipe.id;
+    }
+
+    const mealPlan = {
+      id: req.body.id ? cleanString(req.body.id, 100) : nanoid(12),
+      date: mealFields.date,
+      mealType: mealFields.mealType,
+      recipeId,
+      notes: mealFields.notes,
+      createdAt: now,
+      updatedAt: now
+    };
+
+    mealPlans.push(mealPlan);
+    await setData('mealPlans', mealPlans);
+    res.status(201).json(mealPlan);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.put('/api/family/meal-plans/:id', async (req, res, next) => {
+  try {
+    const mealPlans = await getData('mealPlans');
+    const index = mealPlans.findIndex((plan) => plan.id === req.params.id);
+    if (index === -1) return res.status(404).json({ error: 'Meal plan not found.' });
+
+    const mealFields = mealPlanFromBody(req.body);
+    if (mealFields.error) return res.status(400).json({ error: mealFields.error });
+
+    let recipeId = mealFields.recipeId;
+
+    if (!recipeId && mealFields.title) {
+      const now = new Date().toISOString();
+      const recipes = await getData('recipes');
+      const recipe = {
+        id: nanoid(12),
+        title: mealFields.title,
+        link: mealFields.link,
+        createdAt: now,
+        updatedAt: now
+      };
+      recipes.push(recipe);
+      await setData('recipes', recipes);
+      recipeId = recipe.id;
+    }
+
+    mealPlans[index] = {
+      ...mealPlans[index],
+      date: mealFields.date,
+      mealType: mealFields.mealType,
+      recipeId,
+      notes: mealFields.notes,
+      updatedAt: new Date().toISOString()
+    };
+
+    await setData('mealPlans', mealPlans);
+    res.json(mealPlans[index]);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/family/meal-plans/:id', async (req, res, next) => {
+  try {
+    const mealPlans = await getData('mealPlans');
+    const nextMealPlans = mealPlans.filter((plan) => plan.id !== req.params.id);
+    if (nextMealPlans.length === mealPlans.length) return res.status(404).json({ error: 'Meal plan not found.' });
+
+    await setData('mealPlans', nextMealPlans);
+    res.json({ deleted: true, mealPlanId: req.params.id });
   } catch (err) {
     next(err);
   }
