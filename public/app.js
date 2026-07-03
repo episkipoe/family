@@ -496,7 +496,7 @@ function openProposalDialog(proposal = null, options = {}) {
   proposalForm.reset();
   subEventRows.innerHTML = '';
   linkRows.innerHTML = '';
-  proposalDialogTitle.textContent = proposal ? 'Edit proposal' : 'Add proposal';
+  proposalDialogTitle.textContent = proposal ? 'Edit event' : 'Add event';
 
   if (proposal) {
     proposalForm.elements.title.value = proposal.title || '';
