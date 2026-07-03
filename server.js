@@ -20,6 +20,17 @@ function summarizeVotes(votesByProposal, proposalId) {
   }, { yes: 0, maybe: 0, no: 0 });
 }
 
+function cleanSubEvents(value) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((event) => ({
+      title: cleanString(event?.title, 120),
+      date: cleanString(event?.date, 20)
+    }))
+    .filter((event) => event.title);
+}
+
 function proposalFromBody(body, existing = {}) {
   const title = cleanString(body.title, 120);
   const location = cleanString(body.location, 120);
@@ -38,6 +49,7 @@ function proposalFromBody(body, existing = {}) {
     location,
     startDate,
     endDate,
+    subEvents: cleanSubEvents(body.subEvents),
     status: cleanString(body.status || existing.status || 'active', 40),
     summary: cleanString(body.summary, 1000)
   };

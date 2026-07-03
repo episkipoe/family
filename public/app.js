@@ -11,6 +11,8 @@ const proposalForm = document.querySelector('#proposalForm');
 const proposalDialogTitle = document.querySelector('#proposalDialogTitle');
 const yearFilters = document.querySelector('#yearFilters');
 const sortButtons = document.querySelectorAll('[data-sort-direction]');
+const subEventRows = document.querySelector('#subEventRows');
+const addSubEventButton = document.querySelector('[data-add-subevent]');
 
 const USER_ID_KEY = 'familyPlanner.userId';
 const USER_NAME_KEY = 'familyPlanner.userName';
@@ -69,6 +71,15 @@ function formatDateRange(startDate, endDate) {
   return `${start.toLocaleDateString(undefined, { month: 'short', day: 'numeric' })} - ${end.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' })}`;
 }
 
+function formatSingleDate(date) {
+  if (!date) return 'TBD';
+  return new Date(`${date}T12:00:00`).toLocaleDateString(undefined, {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric'
+  });
+}
+
 function sortDateValue(proposal) {
   return proposal.startDate || '9999-12-31';
 }
@@ -111,6 +122,58 @@ function renderComments(container, comments) {
       <p>${escapeHtml(comment.text)}</p>
     </div>
   `).join('');
+}
+
+function addSubEventRow(event = {}) {
+  const row = document.createElement('div');
+  row.className = 'subevent-row';
+  row.innerHTML = `
+    <label>
+      Event
+      <input name="subEventTitle" maxlength="120" placeholder="e.g. Beach day" value="${escapeHtml(event.title || '')}" />
+    </label>
+    <label>
+      Date
+      <input name="subEventDate" type="date" value="${escapeHtml(event.date || '')}" />
+    </label>
+    <button type="button" data-remove-subevent>Remove</button>
+  `;
+
+  row.querySelector('[data-remove-subevent]').addEventListener('click', () => {
+    row.remove();
+  });
+
+  subEventRows.appendChild(row);
+}
+
+function renderSubEvents(container, subEvents = []) {
+  const events = subEvents.filter((event) => event?.title);
+
+  if (!events.length) {
+    container.remove();
+    return;
+  }
+
+  container.innerHTML = `
+    <h3>Sub-events</h3>
+    <div class="subevent-list">
+      ${events.map((event) => `
+        <div class="subevent-pill">
+          <strong>${escapeHtml(event.title)}</strong>
+          <span>${escapeHtml(formatSingleDate(event.date))}</span>
+        </div>
+      `).join('')}
+    </div>
+  `;
+}
+
+function collectSubEvents() {
+  return [...subEventRows.querySelectorAll('.subevent-row')]
+    .map((row) => ({
+      title: row.querySelector('[name="subEventTitle"]').value.trim(),
+      date: row.querySelector('[name="subEventDate"]').value
+    }))
+    .filter((event) => event.title);
 }
 
 function renderMiniCalendar(container, startDate, endDate) {
@@ -170,6 +233,7 @@ function renderMiniMap(container, location) {
 function openProposalDialog(proposal = null) {
   editingProposalId = proposal?.id || null;
   proposalForm.reset();
+  subEventRows.innerHTML = '';
   proposalDialogTitle.textContent = proposal ? 'Edit proposal' : 'Add proposal';
 
   if (proposal) {
@@ -179,6 +243,7 @@ function openProposalDialog(proposal = null) {
     proposalForm.elements.startDate.value = proposal.startDate || '';
     proposalForm.elements.endDate.value = proposal.endDate || '';
     proposalForm.elements.summary.value = proposal.summary || '';
+    (proposal.subEvents || []).forEach(addSubEventRow);
   }
 
   if (typeof proposalDialog.showModal === 'function') {
@@ -210,6 +275,7 @@ function renderProposals() {
       node.querySelector('.status').textContent = proposal.status || 'active';
       node.querySelector('.meta').textContent = `${proposal.location} | ${formatDateRange(proposal.startDate, proposal.endDate)}`;
       node.querySelector('.summary').textContent = proposal.summary || '';
+      renderSubEvents(node.querySelector('.subevents'), proposal.subEvents || []);
       renderMiniCalendar(node.querySelector('.mini-calendar'), proposal.startDate, proposal.endDate);
       renderMiniMap(node.querySelector('.mini-map'), proposal.location);
       node.querySelector('.yes-count').textContent = proposal.voteSummary?.yes || 0;
@@ -329,6 +395,10 @@ sortButtons.forEach((button) => {
   });
 });
 
+addSubEventButton.addEventListener('click', () => {
+  addSubEventRow();
+});
+
 addProposalButton.addEventListener('click', () => {
   openProposalDialog();
 });
@@ -358,7 +428,8 @@ proposalForm.addEventListener('submit', async (event) => {
         year: data.get('year'),
         startDate,
         endDate,
-        summary: data.get('summary')
+        summary: data.get('summary'),
+        subEvents: collectSubEvents()
       })
     });
     proposalDialog.close();

@@ -88,6 +88,13 @@
         Notes
         <textarea name="summary" maxlength="1000" rows="4" placeholder="Why this spot? Lodging ideas, travel notes, rough plan..."></textarea>
       </label>
+      <section class="subevent-editor">
+        <div class="dialog-topline">
+          <h3>Sub-events</h3>
+          <button type="button" data-add-subevent>Add sub-event</button>
+        </div>
+        <div id="subEventRows" class="subevent-rows"></div>
+      </section>
       <button class="primary-action" type="submit">Save proposal</button>
     </form>
   </dialog>
@@ -106,6 +113,7 @@
       </div>
       <p class="meta"></p>
       <p class="summary"></p>
+      <section class="subevents"></section>
 
       <div class="proposal-details">
         <section class="mini-calendar" aria-label="Proposal dates"></section>
