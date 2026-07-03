@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ship Captain Crew</title>
+	<link rel="stylesheet" href="/styles.css">
+	<style>
+		:root {
+			color-scheme: dark;
+			--sea: #0b5260;
+			--deep: #07161b;
+			--ink: #fff3d8;
+			--muted: #c6b894;
+			--gold: #efb647;
+			--red: #b64d35;
+			--green: #59b477;
+			--wood: #4b2918;
+			--panel: rgba(29, 18, 13, 0.94);
+			--panel-light: rgba(72, 42, 24, 0.82);
+			--line: rgba(239, 182, 71, 0.32);
+		}
+
+		body {
+			min-height: 100vh;
+			background:
+				radial-gradient(circle at 76% 8%, rgba(239, 182, 71, 0.22), transparent 24%),
+				linear-gradient(180deg, rgba(11, 82, 96, 0.38), transparent 36%),
+				repeating-linear-gradient(
+					90deg,
+					rgba(255, 243, 216, 0.035) 0,
+					rgba(255, 243, 216, 0.035) 1px,
+					transparent 1px,
+					transparent 76px
+				),
+				linear-gradient(135deg, var(--deep), #1a2a24 52%, var(--wood));
+		}
+
+		.voyage-shell {
+			width: min(100%, 760px);
+			margin: 0 auto;
+			padding: 16px;
+			display: grid;
+			gap: 14px;
+		}
+
+		.voyage-top {
+			display: flex;
+			align-items: flex-start;
+			justify-content: space-between;
+			gap: 12px;
+		}
+
+		.voyage-title {
+			margin: 0;
+			color: var(--ink);
+			font-size: clamp(28px, 8vw, 48px);
+			line-height: 0.95;
+			text-shadow: 0 3px 0 rgba(0, 0, 0, 0.38);
+		}
+
+		.voyage-place {
+			margin-top: 5px;
+			color: var(--muted);
+			font-size: 12px;
+			text-transform: uppercase;
+			letter-spacing: 0;
+		}
+
+		.voyage-sea {
+			position: relative;
+			min-height: 168px;
+			overflow: hidden;
+			border: 1px solid var(--line);
+			border-radius: 8px;
+			background:
+				linear-gradient(180deg, rgba(255, 243, 216, 0.1), transparent 42%),
+				repeating-linear-gradient(
+					-8deg,
+					rgba(255, 243, 216, 0.08) 0 2px,
+					transparent 2px 28px
+				),
+				linear-gradient(135deg, #0b5260, #092a34 62%, #3b2419);
+			box-shadow:
+				inset 0 0 0 1px rgba(255, 243, 216, 0.06),
+				0 16px 38px rgba(0, 0, 0, 0.32);
+		}
+
+		.voyage-figure {
+			position: absolute;
+			left: 7%;
+			bottom: -18px;
+			width: clamp(128px, 32vw, 230px);
+			aspect-ratio: 1;
+			object-fit: contain;
+			filter: drop-shadow(0 13px 14px rgba(0, 0, 0, 0.5));
+			animation: sailDrift 5s ease-in-out infinite;
+		}
+
+		.voyage-treasure {
+			position: absolute;
+			right: 8%;
+			bottom: -12px;
+			width: clamp(92px, 22vw, 160px);
+			aspect-ratio: 1;
+			object-fit: contain;
+			filter: drop-shadow(0 11px 12px rgba(0, 0, 0, 0.46));
+		}
+
+		.voyage-moon {
+			position: absolute;
+			right: 24px;
+			top: 18px;
+			width: 42px;
+			aspect-ratio: 1;
+			border-radius: 50%;
+			background: var(--gold);
+			box-shadow: 0 0 28px rgba(242, 201, 76, 0.42);
+		}
+
+		.voyage-grid {
+			display: grid;
+			grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+			gap: 14px;
+		}
+
+		.voyage-panel {
+			display: grid;
+			gap: 12px;
+			padding: 14px;
+			border: 1px solid var(--line);
+			background: var(--panel);
+			box-shadow: inset 0 0 0 1px rgba(255, 243, 216, 0.04);
+		}
+
+		.voyage-panel h2 {
+			margin: 0;
+			color: var(--gold);
+			font-size: 14px;
+			text-transform: uppercase;
+		}
+
+		.voyage-status {
+			min-height: 20px;
+			color: var(--muted);
+			font-size: 13px;
+		}
+
+		.score-strip {
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			gap: 8px;
+		}
+
+		.score-box {
+			padding: 10px;
+			border: 1px solid var(--line);
+			background: var(--panel-light);
+		}
+
+		.score-box span {
+			display: block;
+			color: var(--muted);
+			font-size: 11px;
+			text-transform: uppercase;
+		}
+
+		.score-box strong {
+			display: block;
+			margin-top: 3px;
+			color: var(--ink);
+			font-size: 26px;
+			line-height: 1;
+		}
+
+		.dice-row {
+			display: grid;
+			grid-template-columns: repeat(5, minmax(0, 1fr));
+			gap: 8px;
+		}
+
+		.die-button {
+			min-height: 112px;
+			margin: 0;
+			padding: 8px;
+			border-radius: 8px;
+			border-color: var(--line);
+			background:
+				linear-gradient(180deg, rgba(255, 243, 216, 0.08), transparent),
+				#1a120e;
+		}
+
+		.die-button.locked {
+			color: #1d120d;
+			background:
+				linear-gradient(180deg, rgba(255, 243, 216, 0.42), transparent),
+				var(--gold);
+			border-color: var(--gold);
+			box-shadow: 0 0 0 2px rgba(239, 182, 71, 0.22);
+		}
+
+		.die-value {
+			display: grid;
+			place-items: center;
+			min-height: 66px;
+		}
+
+		.die-label {
+			display: block;
+			margin-top: 7px;
+			font-size: 10px;
+			line-height: 1.1;
+			text-transform: uppercase;
+			overflow-wrap: anywhere;
+		}
+
+		.die-art {
+			display: block;
+			width: 100%;
+			max-width: 74px;
+			aspect-ratio: 1;
+			object-fit: contain;
+			filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.45));
+		}
+
+		.die-placeholder {
+			display: grid;
+			place-items: center;
+			width: 64px;
+			height: 64px;
+			margin: 0 auto;
+			border: 1px dashed rgba(239, 182, 71, 0.45);
+			border-radius: 50%;
+			color: var(--muted);
+			font-size: 24px;
+		}
+
+		.action-row {
+			display: grid;
+			grid-template-columns: 1fr 1fr;
+			gap: 8px;
+		}
+
+		.action-row button {
+			margin: 0;
+			border-radius: 8px;
+		}
+
+		.primary-voyage {
+			color: #160d08;
+			background: var(--green);
+			border-color: var(--green);
+			font-weight: 900;
+		}
+
+		.standing-list,
+		.voyage-log {
+			display: grid;
+			gap: 8px;
+		}
+
+		.standing-row {
+			display: grid;
+			grid-template-columns: 1fr auto;
+			gap: 10px;
+			padding: 8px 0;
+			border-bottom: 1px solid rgba(239, 182, 71, 0.18);
+		}
+
+		.standing-name {
+			color: var(--ink);
+			overflow-wrap: anywhere;
+		}
+
+		.standing-meta,
+		.log-line {
+			color: var(--muted);
+			font-size: 12px;
+			line-height: 1.35;
+		}
+
+		.booty-value {
+			color: var(--gold);
+			font-weight: 900;
+		}
+
+		.round-summary {
+			display: grid;
+			gap: 6px;
+			color: var(--muted);
+			font-size: 12px;
+			line-height: 1.35;
+		}
+
+		@keyframes sailDrift {
+			0%, 100% { transform: translateY(0) rotate(-2deg); }
+			50% { transform: translateY(-8px) rotate(2deg); }
+		}
+
+		@media (max-width: 680px) {
+			.voyage-shell {
+				padding: 10px;
+			}
+
+			.voyage-grid,
+			.score-strip,
+			.action-row {
+				grid-template-columns: 1fr;
+			}
+
+			.dice-row {
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+			}
+
+			.die-button:last-child {
+				grid-column: 1 / -1;
+			}
+		}
+	</style>
+</head>
+<body>
+	<main class="voyage-shell">
+		<div class="voyage-top">
+			<div>
+				<h1 class="voyage-title">Ship Captain Crew</h1>
+				<div id="placeLabel" class="voyage-place">Charting waters...</div>
+			</div>
+			<a id="backLink" href="/games.html" class="back-link">< Back to games</a>
+		</div>
+
+		<section class="voyage-sea" aria-label="Treasure voyage scene">
+			<div class="voyage-moon" aria-hidden="true"></div>
+			<img class="voyage-figure" src="./ship.png" alt="" aria-hidden="true">
+			<img class="voyage-treasure" src="./treasure.png" alt="" aria-hidden="true">
+		</section>
+
+		<section class="score-strip" aria-label="Voyage score">
+			<div class="score-box">
+				<span>Rolls Left</span>
+				<strong id="roundValue">-</strong>
+			</div>
+			<div class="score-box">
+				<span>Your Score</span>
+				<strong id="bootyValue">0</strong>
+			</div>
+			<div class="score-box">
+				<span>Players</span>
+				<strong id="crewValue">0</strong>
+			</div>
+		</section>
+
+		<div id="status" class="voyage-status" role="status"></div>
+
+		<div class="voyage-grid">
+			<section class="voyage-panel">
+				<h2>Roll Dice</h2>
+				<div id="diceRow" class="dice-row"></div>
+				<div id="roundSummary" class="round-summary"></div>
+				<div class="action-row">
+					<button id="rollButton" class="primary-voyage" type="button">Roll</button>
+					<button id="submitButton" type="button">Score Cargo</button>
+				</div>
+			</section>
+
+			<section class="voyage-panel">
+				<h2>Sequence</h2>
+				<div class="round-summary">
+					<div>Ship, Captain, and Crew lock automatically.</div>
+					<div>The first player sets the roll limit.</div>
+					<div>High score starts the next round.</div>
+					<div>Score the two remaining cargo dice.</div>
+				</div>
+			</section>
+		</div>
+
+		<section class="voyage-panel">
+			<h2>Players</h2>
+			<div id="standingList" class="standing-list"></div>
+		</section>
+
+		<section class="voyage-panel">
+			<h2>Ship Log</h2>
+			<div id="voyageLog" class="voyage-log"></div>
+		</section>
+	</main>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/games/socket-fallback.js"></script>
+	<script type="module">
+		import { getUserId, getUserName } from "../utils/id.js";
+
+		const userId = getUserId();
+		const params = new URLSearchParams(window.location.search);
+		const placeId = params.get("placeId");
+		const mode = params.get("mode") || "join";
+		const socket = io({ auth: { userId, userName: getUserName() } });
+
+		const backLink = document.getElementById("backLink");
+		const placeLabel = document.getElementById("placeLabel");
+		const roundValue = document.getElementById("roundValue");
+		const bootyValue = document.getElementById("bootyValue");
+		const crewValue = document.getElementById("crewValue");
+		const statusEl = document.getElementById("status");
+		const diceRow = document.getElementById("diceRow");
+		const roundSummary = document.getElementById("roundSummary");
+		const rollButton = document.getElementById("rollButton");
+		const submitButton = document.getElementById("submitButton");
+		const standingList = document.getElementById("standingList");
+		const voyageLog = document.getElementById("voyageLog");
+
+		const dieLabels = {
+			1: "Cargo 1",
+			2: "Cargo 2",
+			3: "Cargo 3",
+			4: "Crew",
+			5: "Captain",
+			6: "Ship"
+		};
+
+		const dieImages = {
+			1: "./treasure.png",
+			2: "./treasure.png",
+			3: "./treasure.png",
+			4: "./crew.png",
+			5: "./captain.png",
+			6: "./ship.png"
+		};
+
+		let voyage = null;
+		let renderedRoundKey = "";
+
+		backLink.href = "/games.html";
+
+		function setStatus(message) {
+			statusEl.textContent = message || "";
+		}
+
+		function emitWithState(event, args = []) {
+			return new Promise((resolve) => {
+				socket.emit(event, userId, placeId, ...args, (result) => resolve(result));
+			});
+		}
+
+		function escapeHtml(value) {
+			return String(value ?? "")
+				.replaceAll("&", "&amp;")
+				.replaceAll("<", "&lt;")
+				.replaceAll(">", "&gt;")
+				.replaceAll('"', "&quot;")
+				.replaceAll("'", "&#039;");
+		}
+
+		function updateFromResult(result) {
+			if (!result?.ok) {
+				setStatus(result?.error || "Voyage unavailable.");
+				return false;
+			}
+			voyage = result.voyage;
+			render();
+			return true;
+		}
+
+		async function loadVoyageState() {
+			const result = await emitWithState("pirateVoyageState");
+			updateFromResult(result);
+		}
+
+		async function enterVoyage() {
+			if (!placeId) {
+				setStatus("No node selected.");
+				return;
+			}
+
+			const event = mode === "launch" ? "launchPirateVoyage" : "joinPirateVoyage";
+			const result = await emitWithState(event);
+			if (updateFromResult(result)) {
+				return;
+			}
+
+			if (mode !== "launch") {
+				renderNoVoyage();
+			}
+		}
+
+		function renderNoVoyage() {
+			placeLabel.textContent = "No active voyage";
+			roundValue.textContent = "-";
+			bootyValue.textContent = "0";
+			crewValue.textContent = "0";
+			diceRow.innerHTML = "";
+			standingList.innerHTML = "";
+			voyageLog.innerHTML = "";
+			roundSummary.innerHTML = "";
+			rollButton.textContent = "Launch Voyage";
+			rollButton.disabled = false;
+			submitButton.disabled = true;
+			rollButton.onclick = async () => updateFromResult(await emitWithState("launchPirateVoyage"));
+		}
+
+		function renderDice(you) {
+			const turn = you?.turn;
+			const dice = turn?.dice ?? [];
+			const submitted = !!turn?.submitted;
+			const serverLocked = new Set(turn?.lockedIndexes ?? []);
+
+			if (dice.length === 0) {
+				diceRow.innerHTML = Array.from({ length: 5 }, (_, index) => `
+					<button class="die-button" type="button" disabled>
+						<span class="die-value"><span class="die-placeholder">?</span></span>
+						<span class="die-label">Die ${index + 1}</span>
+					</button>
+				`).join("");
+				return;
+			}
+
+			diceRow.innerHTML = dice.map((die, index) => {
+				const face = getDieFace(die);
+				const valueText = dieLabels[face];
+				const locked = serverLocked.has(index);
+				return `
+				<button class="die-button ${locked ? "locked" : ""}" type="button" data-die-index="${index}" ${submitted ? "disabled" : ""}>
+					<span class="die-value"><img class="die-art" src="${dieImages[face]}" alt="${dieLabels[face]}"></span>
+					<span class="die-label">${valueText}</span>
+				</button>
+			`;
+			}).join("");
+		}
+
+		function getDieFace(die) {
+			return typeof die === "object" && die !== null ? die.face : die;
+		}
+
+		function renderRoundSummary(you) {
+			const turn = you?.turn;
+			const last = you?.history?.[0];
+			if (!turn) {
+				roundSummary.innerHTML = "";
+				return;
+			}
+
+			const locked = turn.locked ?? {};
+			const pieces = [
+				`Ship ${Number.isInteger(locked.ship) ? "secured" : "needed"}`,
+				`Captain ${Number.isInteger(locked.captain) ? "secured" : "needed"}`,
+				`Crew ${Number.isInteger(locked.crew) ? "secured" : "needed"}`,
+				`Cargo ${turn.complete ? turn.cargoScore : 0}`
+			];
+			roundSummary.innerHTML = `
+				<div>${pieces.join(" / ")}</div>
+				<div>${turn.complete ? "Cargo is ready to score or reroll." : "Roll for ship, captain, then crew."}</div>
+				${last ? `<div>Last cargo: ${last.score} from ${last.complete ? last.cargoDice.join(" + ") : "an incomplete crew"}.</div>` : ""}
+			`;
+		}
+
+		function renderStandings() {
+			const players = voyage?.players ?? [];
+			standingList.innerHTML = players.map(player => `
+				<div class="standing-row">
+					<div>
+						<div class="standing-name">${escapeHtml(player.name)}${player.userId === userId ? " (you)" : ""}</div>
+						<div class="standing-meta">${player.isCurrentTurn ? "current turn" : player.turnComplete ? "cargo ready" : player.isRoundStarter ? "round starter" : "waiting"}</div>
+					</div>
+					<div class="booty-value">${player.booty}</div>
+				</div>
+			`).join("");
+		}
+
+		function renderLog() {
+			const lines = voyage?.log ?? [];
+			voyageLog.innerHTML = lines.length
+				? lines.map(line => `<div class="log-line">${escapeHtml(line)}</div>`).join("")
+				: `<div class="log-line">The logbook is blank.</div>`;
+		}
+
+		function render() {
+			if (!voyage?.exists) {
+				renderNoVoyage();
+				return;
+			}
+
+			const you = voyage.you;
+			const turn = you?.turn;
+			const roundKey = `${voyage.id}:${turn?.rollsTaken ?? 0}:${turn?.dice?.join(",") ?? ""}:${turn?.lockedIndexes?.join(",") ?? ""}`;
+			if (renderedRoundKey !== roundKey) {
+				renderedRoundKey = roundKey;
+			}
+
+			placeLabel.textContent = voyage.placeName || "Treasure waters";
+			roundValue.textContent = String(you?.turn?.rollsRemaining ?? 3);
+			bootyValue.textContent = String(you?.booty ?? 0);
+			crewValue.textContent = String(voyage.players?.length ?? 0);
+			renderDice(you);
+			renderRoundSummary(you);
+			renderStandings();
+			renderLog();
+
+			if (!you) {
+				setStatus("Join the crew to sail.");
+				rollButton.textContent = "Join Crew";
+				rollButton.disabled = false;
+				submitButton.disabled = true;
+				rollButton.onclick = async () => updateFromResult(await emitWithState("joinPirateVoyage"));
+				return;
+			}
+
+			const dice = you.turn?.dice ?? [];
+			const submitted = !!you.turn?.submitted;
+			const rerollsRemaining = Number(you.turn?.rollsRemaining ?? 0);
+			const isYourTurn = voyage.currentPlayerId === userId;
+			rollButton.textContent = dice.length === 0 ? "Roll Dice" : `Reroll (${rerollsRemaining})`;
+			rollButton.disabled = !isYourTurn || submitted || (dice.length > 0 && rerollsRemaining <= 0);
+			submitButton.disabled = !isYourTurn || submitted || dice.length === 0;
+			if (!isYourTurn) {
+				setStatus(`Waiting for ${voyage.currentPlayerName || "the current player"}.`);
+			} else if (submitted) {
+				setStatus("Scored.");
+			} else {
+				setStatus("Ship, Captain, and Crew lock automatically. Score when you want to stand pat.");
+			}
+			rollButton.onclick = rollDice;
+		}
+
+		async function rollDice() {
+			const result = await emitWithState("pirateRollDice");
+			updateFromResult(result);
+		}
+
+		submitButton.addEventListener("click", async () => {
+			const result = await emitWithState("pirateSubmitRound");
+			updateFromResult(result);
+		});
+
+		socket.on("pirateVoyageUpdated", (update) => {
+			if (update?.placeId === placeId) {
+				loadVoyageState();
+			}
+		});
+
+		enterVoyage();
+	</script>
+</body>
+</html>

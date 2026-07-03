@@ -9,7 +9,14 @@
     "status": "active",
     "summary": "Thanksgiving at Ryan's House",
     "createdAt": "2026-07-02T00:00:00.000Z",
-    "updatedAt": "2026-07-02T00:00:00.000Z"
+    "updatedAt": "2026-07-03T08:09:43.256Z",
+    "subEvents": [],
+    "links": [
+      {
+        "text": "Planning doc",
+        "url": "https://docs.google.com/document/d/1rFq2lftdiFDVoJMBTEOAdgUVH4dKy8piVOr66gVfyrM/edit?usp=drive_web&ouid=114663026876202386801"
+      }
+    ]
   },
   {
     "id": "59IHD69D_aRU",

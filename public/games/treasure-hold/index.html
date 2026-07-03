@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="theme-color" content="#071c24">
+	<title>Treasure Hold</title>
+	<link rel="stylesheet" href="/styles.css">
+	<link rel="stylesheet" href="./treasure-hold.css">
+</head>
+<body>
+	<main class="hold-shell">
+		<header class="hold-header">
+			<a id="backLink" class="hold-back" href="/games.html">← Back to games</a>
+			<div class="voyage-badge">Voyage <strong id="roundValue">1</strong> / 5</div>
+		</header>
+
+		<section class="hero" aria-labelledby="gameTitle">
+			<div class="hero-copy">
+				<div class="eyebrow">A push-your-luck voyage</div>
+				<h1 id="gameTitle">Treasure<br><span>Hold</span></h1>
+				<p id="placeLabel">Charting the waters…</p>
+			</div>
+			<div class="hero-mark" aria-hidden="true">
+				<span class="hero-wheel">☠</span>
+				<span class="hero-wave">≈ ≈ ≈</span>
+			</div>
+		</section>
+
+		<div id="notice" class="notice" role="status" aria-live="polite">Gathering the crew…</div>
+		<div id="krakenBanner" class="kraken-banner" hidden>🐙 Kraken defeated! <strong>+10 loot</strong></div>
+
+		<section class="captain-board" aria-label="Your voyage">
+			<div class="stat-card booty-card">
+				<span>Booty</span>
+				<strong id="scoreValue">0</strong>
+			</div>
+			<div class="stat-card loot-card">
+				<span>Current loot</span>
+				<strong id="lootValue">0</strong>
+			</div>
+			<div class="stat-card">
+				<span>Maps</span>
+				<strong id="mapsValue">0 / 3</strong>
+			</div>
+			<div class="stat-card danger-card">
+				<span>Danger</span>
+				<strong id="dangerValue" aria-label="Danger zero of six">○ ○ ○ ○ ○ ○</strong>
+			</div>
+		</section>
+
+		<div class="hold-grid">
+			<section class="hold-panel dice-panel">
+				<div class="panel-heading">
+					<div>
+						<span class="panel-kicker">The cast</span>
+						<h2>Six Fates</h2>
+					</div>
+					<span id="rollSummary" class="roll-summary">Ready to roll</span>
+				</div>
+				<div id="diceRow" class="dice-row" aria-label="Treasure Hold dice"></div>
+				<div id="actionRow" class="action-row">
+					<button id="rollButton" class="hold-button sail-button" type="button">Cast the Dice</button>
+					<button id="sailButton" class="hold-button sail-button" type="button" hidden>Sail On</button>
+					<button id="portButton" class="hold-button port-button" type="button" hidden>Return to Port</button>
+				</div>
+			</section>
+
+			<aside class="hold-panel legend-panel">
+				<div class="panel-heading">
+					<div>
+						<span class="panel-kicker">Know the waters</span>
+						<h2>Captain’s Key</h2>
+					</div>
+				</div>
+				<div class="legend-list">
+					<div><span>💰</span><strong>Treasure</strong><small>+1 loot</small></div>
+					<div><span>🗺️</span><strong>Map</strong><small>3 maps = +5</small></div>
+					<div><span>👥</span><strong>Crew</strong><small>Cancels danger</small></div>
+					<div><span>⛈️</span><strong>Storm</strong><small>+1 danger</small></div>
+					<div><span>💀</span><strong>Skull</strong><small>+1 danger</small></div>
+				</div>
+				<p class="kraken-rule">Six treasure-or-crew faces defeat the Kraken for <strong>+10 loot</strong>.</p>
+			</aside>
+		</div>
+
+		<section class="hold-panel leaderboard-panel">
+			<div class="panel-heading">
+				<div>
+					<span class="panel-kicker">The fleet</span>
+					<h2>Leaderboard</h2>
+				</div>
+				<span id="crewCount" class="crew-count">0 / 8 sailors</span>
+			</div>
+			<div id="leaderboard" class="leaderboard"></div>
+		</section>
+	</main>
+
+	<script src="/socket.io/socket.io.js"></script>
+	<script src="/games/socket-fallback.js"></script>
+	<script type="module" src="./treasure-hold.js"></script>
+</body>
+</html>

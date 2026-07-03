@@ -1,15 +1,54 @@
 import express from 'express';
+import http from 'http';
 import { nanoid } from 'nanoid';
+import { Server } from 'socket.io';
 import { getData, initStorage, setData, storageMode } from './storage.js';
+import * as pirateVoyage from './utils/pirates/pirateVoyage.js';
+import * as resolveSignal from './utils/resolveSignal.js';
+import * as treasureHold from './utils/treasure-hold/treasureHold.js';
 
 const app = express();
+const httpServer = http.createServer(app);
+const io = new Server(httpServer);
 const PORT = process.env.PORT || 3000;
+const FAMILY_PLACE_ID = 'family';
+const FAMILY_PLACE = {
+  id: FAMILY_PLACE_ID,
+  name: 'Family Game Table',
+  lat: 0,
+  lng: 0
+};
+const gameUsers = {};
+const gamePlaces = {
+  [FAMILY_PLACE_ID]: FAMILY_PLACE
+};
 
 app.use(express.json({ limit: '200kb' }));
 app.use(express.static('public'));
 
 function cleanString(value, max = 500) {
   return String(value || '').trim().slice(0, max);
+}
+
+function gameUserFromSocket(socket) {
+  const userId = cleanString(socket.handshake.auth?.userId || socket.id, 100);
+  const name = cleanString(socket.handshake.auth?.userName || 'Player', 80) || 'Player';
+
+  gameUsers[userId] = {
+    ...(gameUsers[userId] || {}),
+    userId,
+    name,
+    lat: 0,
+    lng: 0,
+    visible: true,
+    lastActiveAt: Date.now()
+  };
+
+  return gameUsers[userId];
+}
+
+function logGameEvent(message) {
+  console.log(`[games] ${message}`);
 }
 
 function summarizeVotes(votesByProposal, proposalId) {
@@ -31,6 +70,17 @@ function cleanSubEvents(value) {
     .filter((event) => event.title);
 }
 
+function cleanLinks(value) {
+  if (!Array.isArray(value)) return [];
+
+  return value
+    .map((link) => ({
+      text: cleanString(link?.text, 120),
+      url: cleanString(link?.url, 500)
+    }))
+    .filter((link) => link.text && link.url);
+}
+
 function proposalFromBody(body, existing = {}) {
   const title = cleanString(body.title, 120);
   const location = cleanString(body.location, 120);
@@ -50,6 +100,7 @@ function proposalFromBody(body, existing = {}) {
     startDate,
     endDate,
     subEvents: cleanSubEvents(body.subEvents),
+    links: cleanLinks(body.links),
     status: cleanString(body.status || existing.status || 'active', 40),
     summary: cleanString(body.summary, 1000)
   };
@@ -224,6 +275,87 @@ app.post('/api/family/proposals/:id/comments', async (req, res, next) => {
   }
 });
 
+app.put('/api/family/proposals/:id/comments/:commentId', async (req, res, next) => {
+  try {
+    const proposalId = req.params.id;
+    const commentId = req.params.commentId;
+    const userId = cleanString(req.body.userId, 100);
+    const text = cleanString(req.body.text, 1000);
+
+    if (!userId || !text) {
+      return res.status(400).json({ error: 'userId and text are required.' });
+    }
+
+    const comments = await getData('comments');
+    const proposalComments = comments[proposalId] || [];
+    const index = proposalComments.findIndex((comment) => comment.id === commentId);
+
+    if (index === -1) {
+      return res.status(404).json({ error: 'Comment not found.' });
+    }
+
+    if (proposalComments[index].userId !== userId) {
+      return res.status(403).json({ error: 'You can only edit your own comments.' });
+    }
+
+    proposalComments[index] = {
+      ...proposalComments[index],
+      text,
+      updatedAt: new Date().toISOString()
+    };
+
+    await setData('comments', comments);
+    res.json(proposalComments[index]);
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.delete('/api/family/proposals/:id/comments/:commentId', async (req, res, next) => {
+  try {
+    const proposalId = req.params.id;
+    const commentId = req.params.commentId;
+    const userId = cleanString(req.body.userId, 100);
+
+    if (!userId) {
+      return res.status(400).json({ error: 'userId is required.' });
+    }
+
+    const comments = await getData('comments');
+    const proposalComments = comments[proposalId] || [];
+    const comment = proposalComments.find((item) => item.id === commentId);
+
+    if (!comment) {
+      return res.status(404).json({ error: 'Comment not found.' });
+    }
+
+    if (comment.userId !== userId) {
+      return res.status(403).json({ error: 'You can only delete your own comments.' });
+    }
+
+    comments[proposalId] = proposalComments.filter((item) => item.id !== commentId);
+    await setData('comments', comments);
+    res.json({ deleted: true, proposalId, commentId });
+  } catch (err) {
+    next(err);
+  }
+});
+
+io.on('connection', (socket) => {
+  const user = gameUserFromSocket(socket);
+  socket.userId = user.userId;
+
+  socket.on('setGameName', (name, callback = () => {}) => {
+    user.name = cleanString(name, 80) || user.name;
+    user.lastActiveAt = Date.now();
+    callback({ ok: true, user });
+  });
+
+  pirateVoyage.registerHandlers(socket, gameUsers, gamePlaces, io, logGameEvent);
+  treasureHold.registerHandlers(socket, gameUsers, gamePlaces, io, logGameEvent);
+  resolveSignal.registerHandlers(socket, gameUsers, gamePlaces, io, logGameEvent);
+});
+
 
 app.use((err, req, res, next) => {
   console.error(err);
@@ -231,6 +363,6 @@ app.use((err, req, res, next) => {
 });
 
 await initStorage();
-app.listen(PORT, () => {
+httpServer.listen(PORT, () => {
   console.log(`Family planner running on port ${PORT} using ${storageMode()} storage`);
 });

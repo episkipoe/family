@@ -13,6 +13,8 @@ const yearFilters = document.querySelector('#yearFilters');
 const sortButtons = document.querySelectorAll('[data-sort-direction]');
 const subEventRows = document.querySelector('#subEventRows');
 const addSubEventButton = document.querySelector('[data-add-subevent]');
+const linkRows = document.querySelector('#linkRows');
+const addLinkButton = document.querySelector('[data-add-link]');
 
 const USER_ID_KEY = 'familyPlanner.userId';
 const USER_NAME_KEY = 'familyPlanner.userName';
@@ -80,6 +82,12 @@ function formatSingleDate(date) {
   });
 }
 
+function normalizeUrl(url) {
+  const cleaned = String(url || '').trim();
+  if (!cleaned) return '';
+  return /^https?:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
+}
+
 function sortDateValue(proposal) {
   return proposal.startDate || '9999-12-31';
 }
@@ -109,19 +117,90 @@ async function api(path, options = {}) {
   return payload;
 }
 
-function renderComments(container, comments) {
+function renderComments(container, comments, proposalId) {
   if (!comments.length) {
     container.innerHTML = '<p class="meta">No comments yet.</p>';
     return;
   }
 
   container.innerHTML = comments.map((comment) => `
-    <div class="comment">
-      <strong>${escapeHtml(comment.author)}</strong>
-      <time>${new Date(comment.createdAt).toLocaleString()}</time>
-      <p>${escapeHtml(comment.text)}</p>
+    <div class="comment" data-comment-id="${escapeHtml(comment.id)}">
+      <div class="comment-topline">
+        <div>
+          <strong>${escapeHtml(comment.author)}</strong>
+          <time>${new Date(comment.createdAt).toLocaleString()}${comment.updatedAt ? ' · edited' : ''}</time>
+        </div>
+        ${comment.userId === user.id ? `
+          <div class="comment-actions">
+            <button type="button" data-edit-comment>Edit</button>
+            <button type="button" data-delete-comment>Delete</button>
+          </div>
+        ` : ''}
+      </div>
+      <p data-comment-text>${escapeHtml(comment.text)}</p>
+      <form class="comment-edit-form" hidden>
+        <input name="text" value="${escapeHtml(comment.text)}" required />
+        <button type="submit">Save</button>
+        <button type="button" data-cancel-comment-edit>Cancel</button>
+      </form>
     </div>
   `).join('');
+
+  container.querySelectorAll('[data-edit-comment]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const commentNode = button.closest('.comment');
+      commentNode.querySelector('[data-comment-text]').hidden = true;
+      commentNode.querySelector('.comment-edit-form').hidden = false;
+    });
+  });
+
+  container.querySelectorAll('[data-cancel-comment-edit]').forEach((button) => {
+    button.addEventListener('click', () => {
+      const commentNode = button.closest('.comment');
+      commentNode.querySelector('.comment-edit-form').reset();
+      commentNode.querySelector('[data-comment-text]').hidden = false;
+      commentNode.querySelector('.comment-edit-form').hidden = true;
+    });
+  });
+
+  container.querySelectorAll('.comment-edit-form').forEach((form) => {
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const commentNode = form.closest('.comment');
+      const data = new FormData(form);
+
+      try {
+        await api(`/api/family/proposals/${proposalId}/comments/${commentNode.dataset.commentId}`, {
+          method: 'PUT',
+          body: JSON.stringify({
+            userId: user.id,
+            text: data.get('text')
+          })
+        });
+        await load();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  });
+
+  container.querySelectorAll('[data-delete-comment]').forEach((button) => {
+    button.addEventListener('click', async () => {
+      const commentNode = button.closest('.comment');
+
+      if (!confirm('Delete this comment?')) return;
+
+      try {
+        await api(`/api/family/proposals/${proposalId}/comments/${commentNode.dataset.commentId}`, {
+          method: 'DELETE',
+          body: JSON.stringify({ userId: user.id })
+        });
+        await load();
+      } catch (err) {
+        alert(err.message);
+      }
+    });
+  });
 }
 
 function addSubEventRow(event = {}) {
@@ -174,6 +253,55 @@ function collectSubEvents() {
       date: row.querySelector('[name="subEventDate"]').value
     }))
     .filter((event) => event.title);
+}
+
+function addLinkRow(link = {}) {
+  const row = document.createElement('div');
+  row.className = 'link-row';
+  row.innerHTML = `
+    <label>
+      Display text
+      <input name="linkText" maxlength="120" placeholder="e.g. Rental house" value="${escapeHtml(link.text || '')}" />
+    </label>
+    <label>
+      Destination URL
+      <input name="linkUrl" type="url" maxlength="500" placeholder="https://..." value="${escapeHtml(link.url || '')}" />
+    </label>
+    <button type="button" data-remove-link>Remove</button>
+  `;
+
+  row.querySelector('[data-remove-link]').addEventListener('click', () => {
+    row.remove();
+  });
+
+  linkRows.appendChild(row);
+}
+
+function renderLinks(container, links = []) {
+  const proposalLinks = links.filter((link) => link?.text && link?.url);
+
+  if (!proposalLinks.length) {
+    container.remove();
+    return;
+  }
+
+  container.innerHTML = `
+    <h3>Links</h3>
+    <div class="proposal-link-list">
+      ${proposalLinks.map((link) => `
+        <a href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">${escapeHtml(link.text)}</a>
+      `).join('')}
+    </div>
+  `;
+}
+
+function collectLinks() {
+  return [...linkRows.querySelectorAll('.link-row')]
+    .map((row) => ({
+      text: row.querySelector('[name="linkText"]').value.trim(),
+      url: normalizeUrl(row.querySelector('[name="linkUrl"]').value)
+    }))
+    .filter((link) => link.text && link.url);
 }
 
 function renderMiniCalendar(container, startDate, endDate) {
@@ -234,6 +362,7 @@ function openProposalDialog(proposal = null) {
   editingProposalId = proposal?.id || null;
   proposalForm.reset();
   subEventRows.innerHTML = '';
+  linkRows.innerHTML = '';
   proposalDialogTitle.textContent = proposal ? 'Edit proposal' : 'Add proposal';
 
   if (proposal) {
@@ -244,6 +373,7 @@ function openProposalDialog(proposal = null) {
     proposalForm.elements.endDate.value = proposal.endDate || '';
     proposalForm.elements.summary.value = proposal.summary || '';
     (proposal.subEvents || []).forEach(addSubEventRow);
+    (proposal.links || []).forEach(addLinkRow);
   }
 
   if (typeof proposalDialog.showModal === 'function') {
@@ -276,6 +406,7 @@ function renderProposals() {
       node.querySelector('.meta').textContent = `${proposal.location} | ${formatDateRange(proposal.startDate, proposal.endDate)}`;
       node.querySelector('.summary').textContent = proposal.summary || '';
       renderSubEvents(node.querySelector('.subevents'), proposal.subEvents || []);
+      renderLinks(node.querySelector('.proposal-links'), proposal.links || []);
       renderMiniCalendar(node.querySelector('.mini-calendar'), proposal.startDate, proposal.endDate);
       renderMiniMap(node.querySelector('.mini-map'), proposal.location);
       node.querySelector('.yes-count').textContent = proposal.voteSummary?.yes || 0;
@@ -306,7 +437,7 @@ function renderProposals() {
       });
 
       const commentList = node.querySelector('.comment-list');
-      renderComments(commentList, proposal.comments || []);
+      renderComments(commentList, proposal.comments || [], proposal.id);
 
       const form = node.querySelector('.comment-form');
       form.addEventListener('submit', async (event) => {
@@ -399,6 +530,10 @@ addSubEventButton.addEventListener('click', () => {
   addSubEventRow();
 });
 
+addLinkButton.addEventListener('click', () => {
+  addLinkRow();
+});
+
 addProposalButton.addEventListener('click', () => {
   openProposalDialog();
 });
@@ -429,7 +564,8 @@ proposalForm.addEventListener('submit', async (event) => {
         startDate,
         endDate,
         summary: data.get('summary'),
-        subEvents: collectSubEvents()
+        subEvents: collectSubEvents(),
+        links: collectLinks()
       })
     });
     proposalDialog.close();

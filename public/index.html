@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Family Gathering Planner</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
 <body>
   <header class="hero">
@@ -23,6 +24,7 @@
         <button id="changeNameButton" type="button">Change name</button>
       </div>
       <div class="control-actions">
+        <a class="button-link" href="/games.html">Games</a>
         <a class="button-link" href="/admin.html">Admin</a>
         <button id="addProposalButton" class="primary-action" type="button">Add proposal</button>
       </div>
@@ -95,6 +97,13 @@
         </div>
         <div id="subEventRows" class="subevent-rows"></div>
       </section>
+      <section class="link-editor">
+        <div class="dialog-topline">
+          <h3>Links</h3>
+          <button type="button" data-add-link>Add link</button>
+        </div>
+        <div id="linkRows" class="link-rows"></div>
+      </section>
       <button class="primary-action" type="submit">Save proposal</button>
     </form>
   </dialog>
@@ -114,6 +123,7 @@
       <p class="meta"></p>
       <p class="summary"></p>
       <section class="subevents"></section>
+      <section class="proposal-links"></section>
 
       <div class="proposal-details">
         <section class="mini-calendar" aria-label="Proposal dates"></section>
