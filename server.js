@@ -51,10 +51,43 @@ function logGameEvent(message) {
   console.log(`[games] ${message}`);
 }
 
-function summarizeVotes(votesByProposal, proposalId) {
+function normalizeUserName(value) {
+  return cleanString(value, 80).replace(/\s+/g, ' ');
+}
+
+function voteIdentityKey(userId, voteEntry) {
+  const userName = typeof voteEntry === 'string' ? '' : normalizeUserName(voteEntry?.userName);
+  return userName ? `name:${userName.toLowerCase()}` : `id:${userId}`;
+}
+
+function voteValue(voteEntry) {
+  return typeof voteEntry === 'string' ? voteEntry : voteEntry?.vote;
+}
+
+function canonicalVotes(votesByProposal, proposalId) {
   const votes = votesByProposal[proposalId] || {};
-  return Object.values(votes).reduce((acc, voteEntry) => {
-    const vote = typeof voteEntry === 'string' ? voteEntry : voteEntry?.vote;
+  const votesByIdentity = new Map();
+
+  Object.entries(votes).forEach(([userId, voteEntry]) => {
+    const vote = voteValue(voteEntry);
+    if (!['yes', 'maybe', 'no'].includes(vote)) return;
+    const userName = typeof voteEntry === 'string'
+      ? 'Unknown voter'
+      : normalizeUserName(voteEntry?.userName || 'Unknown voter');
+
+    votesByIdentity.set(voteIdentityKey(userId, voteEntry), {
+      userId,
+      userName,
+      vote
+    });
+  });
+
+  return [...votesByIdentity.values()];
+}
+
+function summarizeVotes(votesByProposal, proposalId) {
+  return canonicalVotes(votesByProposal, proposalId).reduce((acc, voteEntry) => {
+    const vote = voteEntry.vote;
     if (!['yes', 'maybe', 'no'].includes(vote)) return acc;
     acc[vote] = (acc[vote] || 0) + 1;
     return acc;
@@ -62,19 +95,7 @@ function summarizeVotes(votesByProposal, proposalId) {
 }
 
 function voteDetails(votesByProposal, proposalId) {
-  const votes = votesByProposal[proposalId] || {};
-  return Object.entries(votes)
-    .map(([userId, voteEntry]) => {
-      const vote = typeof voteEntry === 'string' ? voteEntry : voteEntry?.vote;
-      if (!['yes', 'maybe', 'no'].includes(vote)) return null;
-
-      return {
-        userId,
-        userName: cleanString(voteEntry?.userName || 'Unknown voter', 80),
-        vote
-      };
-    })
-    .filter(Boolean)
+  return canonicalVotes(votesByProposal, proposalId)
     .sort((a, b) => a.userName.localeCompare(b.userName));
 }
 
@@ -475,7 +496,7 @@ app.post('/api/family/proposals/:id/vote', async (req, res, next) => {
   try {
     const proposalId = req.params.id;
     const userId = cleanString(req.body.userId, 100);
-    const userName = cleanString(req.body.userName, 80);
+    const userName = normalizeUserName(req.body.userName);
     const vote = cleanString(req.body.vote, 20).toLowerCase();
 
     if (!userId || !userName || !['yes', 'maybe', 'no'].includes(vote)) {
@@ -484,6 +505,14 @@ app.post('/api/family/proposals/:id/vote', async (req, res, next) => {
 
     const votes = await getData('votes');
     votes[proposalId] ||= {};
+
+    const incomingIdentity = voteIdentityKey(userId, { userName, vote });
+    Object.entries(votes[proposalId]).forEach(([existingUserId, existingVote]) => {
+      if (existingUserId !== userId && voteIdentityKey(existingUserId, existingVote) === incomingIdentity) {
+        delete votes[proposalId][existingUserId];
+      }
+    });
+
     votes[proposalId][userId] = { userName, vote };
     await setData('votes', votes);
 
