@@ -335,7 +335,7 @@ function addLinkRow(link = {}) {
   row.innerHTML = `
     <label>
       Display text
-      <input name="linkText" maxlength="120" placeholder="e.g. Rental house" value="${escapeHtml(link.text || '')}" />
+      <input name="linkText" maxlength="120" placeholder="" value="${escapeHtml(link.text || '')}" />
     </label>
     <label>
       Destination URL

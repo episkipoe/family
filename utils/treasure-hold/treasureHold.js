@@ -355,8 +355,8 @@ export function registerHandlers(socket, daves, savedPlaces, io, logEvent = () =
 			const result = action(context.game, sourceId, random);
 			if (!result.ok) return callback(result);
 			markActive(context.dave);
-			io.emit("diceRolled", result.roll);
-			if (result.roll.busted) io.emit("playerBusted", sourceId);
+			socket.emit("diceRolled", result.roll);
+			if (result.roll.busted) socket.emit("playerBusted", sourceId);
 			emitTransition(io, context.game, result.transition);
 			emitUpdate(io, context.game);
 			callback({ ok: true, roll: result.roll, game: cloneGame(context.game) });
