@@ -119,7 +119,7 @@ main {
   gap: 16px;
   align-items: center;
   padding: 14px 16px;
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .list-tools > div {
@@ -533,6 +533,60 @@ h3 {
   color: var(--ocean-dark);
 }
 
+.vote-details {
+  margin: -4px 0 18px;
+  border: 1px solid #abd6d2;
+  border-radius: 8px;
+  background: #f7fffc;
+}
+
+.vote-details summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px;
+  cursor: pointer;
+  font-weight: 900;
+}
+
+.vote-details summary strong {
+  display: inline-grid;
+  min-width: 28px;
+  min-height: 28px;
+  place-items: center;
+  border-radius: 999px;
+  background: #e5f5f1;
+  color: var(--ocean-dark);
+}
+
+.vote-detail-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 0 12px 12px;
+}
+
+.vote-detail-group {
+  min-width: 0;
+  padding: 10px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.vote-detail-group h4 {
+  margin: 0 0 8px;
+  color: var(--ocean-dark);
+}
+
+.vote-detail-group ul {
+  display: grid;
+  gap: 6px;
+  margin: 0;
+  padding-left: 18px;
+}
+
 .comments {
   border-top: 1px solid var(--border);
   padding-top: 16px;
@@ -677,6 +731,18 @@ h3 {
 
 .admin-hero {
   padding-bottom: 42px;
+}
+
+.archive-hero {
+  background:
+    linear-gradient(115deg, rgba(23, 49, 59, 0.74), rgba(246, 183, 60, 0.62)),
+    url("https://images.unsplash.com/photo-1478131143081-80f7f84ca84d?auto=format&fit=crop&w=1600&q=80") center 48% / cover;
+  color: #fffdf4;
+}
+
+.archive-hero .eyebrow,
+.archive-hero .lede {
+  color: #fff8dc;
 }
 
 .games-hero {
@@ -965,6 +1031,7 @@ h3 {
   .proposal-details,
   .games-grid,
   .form-grid,
+  .vote-detail-list,
   .comment-form,
   .comment-edit-form,
   .subevent-row,

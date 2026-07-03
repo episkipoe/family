@@ -44,5 +44,5 @@ GET  /api/family/households
 ## Notes
 
 - Redis keys are namespaced under `family-planner:*`.
-- On first Redis startup, the app seeds Redis from the JSON files if those keys do not already exist.
+- On Redis startup, the app merges Redis data with the local JSON files, then stores the combined content in Redis.
 - Browser JavaScript never sees Redis credentials.

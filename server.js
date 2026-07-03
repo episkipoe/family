@@ -53,10 +53,29 @@ function logGameEvent(message) {
 
 function summarizeVotes(votesByProposal, proposalId) {
   const votes = votesByProposal[proposalId] || {};
-  return Object.values(votes).reduce((acc, vote) => {
+  return Object.values(votes).reduce((acc, voteEntry) => {
+    const vote = typeof voteEntry === 'string' ? voteEntry : voteEntry?.vote;
+    if (!['yes', 'maybe', 'no'].includes(vote)) return acc;
     acc[vote] = (acc[vote] || 0) + 1;
     return acc;
   }, { yes: 0, maybe: 0, no: 0 });
+}
+
+function voteDetails(votesByProposal, proposalId) {
+  const votes = votesByProposal[proposalId] || {};
+  return Object.entries(votes)
+    .map(([userId, voteEntry]) => {
+      const vote = typeof voteEntry === 'string' ? voteEntry : voteEntry?.vote;
+      if (!['yes', 'maybe', 'no'].includes(vote)) return null;
+
+      return {
+        userId,
+        userName: cleanString(voteEntry?.userName || 'Unknown voter', 80),
+        vote
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.userName.localeCompare(b.userName));
 }
 
 function cleanSubEvents(value) {
@@ -166,6 +185,7 @@ app.get('/api/family/bootstrap', async (req, res, next) => {
     const proposalCards = proposals.map((proposal) => ({
       ...proposal,
       voteSummary: summarizeVotes(votes, proposal.id),
+      votes: voteDetails(votes, proposal.id),
       comments: comments[proposal.id] || [],
       mealPlans: hydratedMealPlans.filter((plan) => {
         if (!proposal.startDate || !proposal.endDate || !plan.date) return false;
@@ -464,10 +484,10 @@ app.post('/api/family/proposals/:id/vote', async (req, res, next) => {
 
     const votes = await getData('votes');
     votes[proposalId] ||= {};
-    votes[proposalId][userId] = vote;
+    votes[proposalId][userId] = { userName, vote };
     await setData('votes', votes);
 
-    res.json({ proposalId, userId, userName, vote, voteSummary: summarizeVotes(votes, proposalId) });
+    res.json({ proposalId, userId, userName, vote, voteSummary: summarizeVotes(votes, proposalId), votes: voteDetails(votes, proposalId) });
   } catch (err) {
     next(err);
   }

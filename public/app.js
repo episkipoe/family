@@ -26,12 +26,22 @@ const DEFAULT_LOCATIONS = [
   "Parent's House (37436 Granada Blvd, Lake Villa, IL)",
   "Outdoor Resorts (65821 Overseas Hwy, Layton, FL)"
 ];
+const eventView = document.body.dataset.eventView || 'upcoming';
 
 let proposals = [];
 let user = loadUser();
 let editingProposalId = null;
 let selectedYear = 'all';
 let sortDirection = 'asc';
+
+function todayDateValue() {
+  const today = new Date();
+  return [
+    today.getFullYear(),
+    String(today.getMonth() + 1).padStart(2, '0'),
+    String(today.getDate()).padStart(2, '0')
+  ].join('-');
+}
 
 function loadUser() {
   let id = localStorage.getItem(USER_ID_KEY);
@@ -148,6 +158,18 @@ function compareProposalDates(a, b) {
 
   const order = sortDateValue(a).localeCompare(sortDateValue(b));
   return sortDirection === 'asc' ? order : -order;
+}
+
+function isPastProposal(proposal) {
+  const eventEndDate = proposal.endDate || proposal.startDate;
+  return Boolean(eventEndDate && eventEndDate < todayDateValue());
+}
+
+function proposalsForCurrentView() {
+  return proposals.filter((proposal) => {
+    const isPast = isPastProposal(proposal);
+    return eventView === 'archive' ? isPast : !isPast;
+  });
 }
 
 async function api(path, options = {}) {
@@ -385,6 +407,41 @@ function renderEventMeals(container, mealPlans = []) {
   `;
 }
 
+function voteLabel(value) {
+  return {
+    yes: 'Yes',
+    maybe: 'Maybe',
+    no: 'No'
+  }[value] || value;
+}
+
+function renderVoteDetails(container, votes = []) {
+  const details = container.closest('.vote-details');
+  const total = details.querySelector('.vote-total');
+  const validVotes = votes.filter((vote) => ['yes', 'maybe', 'no'].includes(vote?.vote));
+
+  total.textContent = validVotes.length;
+
+  if (!validVotes.length) {
+    container.innerHTML = '<p class="meta inline-empty">No votes yet.</p>';
+    return;
+  }
+
+  container.innerHTML = ['yes', 'maybe', 'no'].map((voteValue) => {
+    const voters = validVotes.filter((vote) => vote.vote === voteValue);
+    return `
+      <section class="vote-detail-group">
+        <h4>${voteLabel(voteValue)}</h4>
+        ${voters.length ? `
+          <ul>
+            ${voters.map((vote) => `<li>${escapeHtml(vote.userName || 'Unknown voter')}</li>`).join('')}
+          </ul>
+        ` : '<p class="meta inline-empty">No one yet.</p>'}
+      </section>
+    `;
+  }).join('');
+}
+
 function collectLinks() {
   return [...linkRows.querySelectorAll('.link-row')]
     .map((row) => ({
@@ -520,13 +577,16 @@ function openProposalDialog(proposal = null, options = {}) {
 function renderProposals() {
   proposalList.innerHTML = '';
 
-  const visibleProposals = proposals
+  const visibleProposals = proposalsForCurrentView()
     .slice()
     .filter((proposal) => selectedYear === 'all' || proposalYear(proposal) === selectedYear)
     .sort(compareProposalDates);
 
   if (!visibleProposals.length) {
-    proposalList.innerHTML = '<p class="panel empty-state">No proposals match those filters.</p>';
+    const emptyText = eventView === 'archive'
+      ? 'No archived events match those filters.'
+      : 'No upcoming events match those filters.';
+    proposalList.innerHTML = `<p class="panel empty-state">${emptyText}</p>`;
     return;
   }
 
@@ -556,6 +616,7 @@ function renderProposals() {
       node.querySelector('.yes-count').textContent = proposal.voteSummary?.yes || 0;
       node.querySelector('.maybe-count').textContent = proposal.voteSummary?.maybe || 0;
       node.querySelector('.no-count').textContent = proposal.voteSummary?.no || 0;
+      renderVoteDetails(node.querySelector('.vote-detail-list'), proposal.votes || []);
 
       node.querySelector('[data-edit-proposal]').addEventListener('click', () => {
         openProposalDialog(proposal);
@@ -617,7 +678,7 @@ function renderProposals() {
 }
 
 function renderYearFilters() {
-  const years = [...new Set(proposals.map(proposalYear))].sort((a, b) => a.localeCompare(b));
+  const years = [...new Set(proposalsForCurrentView().map(proposalYear))].sort((a, b) => a.localeCompare(b));
 
   if (selectedYear !== 'all' && !years.includes(selectedYear)) {
     selectedYear = 'all';

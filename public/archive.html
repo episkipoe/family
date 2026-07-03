@@ -3,14 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Family Gathering Planner</title>
+  <title>Family Gathering Archive</title>
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
-<body data-event-view="upcoming">
-  <header class="hero">
+<body data-event-view="archive">
+  <header class="hero archive-hero">
     <div>
       <p class="eyebrow">Family Gathering Planner</p>
+      <h1>Past gatherings</h1>
+      <p class="lede">Look back through family events that have already wrapped up.</p>
     </div>
   </header>
 
@@ -22,9 +24,9 @@
         <button id="changeNameButton" type="button">Change name</button>
       </div>
       <div class="control-actions">
+        <a class="button-link" href="/index.html">Planner</a>
         <a class="button-link" href="/meal-planning.html">Meals</a>
         <a class="button-link" href="/games.html">Games</a>
-        <a class="button-link" href="/archive.html">Archive</a>
         <a class="button-link" href="/admin.html">Admin</a>
         <button id="addProposalButton" class="primary-action" type="button">Add event</button>
       </div>
@@ -32,7 +34,7 @@
 
     <section id="proposalList" class="proposal-list" aria-live="polite"></section>
 
-    <section class="panel list-tools" aria-label="Event filters">
+    <section class="panel list-tools" aria-label="Archived event filters">
       <div>
         <span class="label-text">Filter by year</span>
         <div id="yearFilters" class="segmented-controls"></div>
