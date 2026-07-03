@@ -9,6 +9,7 @@ const addProposalButton = document.querySelector('#addProposalButton');
 const proposalDialog = document.querySelector('#proposalDialog');
 const proposalForm = document.querySelector('#proposalForm');
 const proposalDialogTitle = document.querySelector('#proposalDialogTitle');
+const locationOptions = document.querySelector('#locationOptions');
 const yearFilters = document.querySelector('#yearFilters');
 const sortButtons = document.querySelectorAll('[data-sort-direction]');
 const subEventRows = document.querySelector('#subEventRows');
@@ -18,6 +19,13 @@ const addLinkButton = document.querySelector('[data-add-link]');
 
 const USER_ID_KEY = 'familyPlanner.userId';
 const USER_NAME_KEY = 'familyPlanner.userName';
+const DEFAULT_LOCATIONS = [
+  "Dave's House (1003 Trianon Ln, Ballwin, MO)",
+  "Mnke's House (605 Taylor St, Energy, IL)",
+  "Ryan's House (4912 Westhaven Rd, Arlington, TX)",
+  "Parent's House (37436 Granada Blvd, Lake Villa, IL)",
+  "Outdoor Resorts (65821 Overseas Hwy, Layton, FL)"
+];
 
 let proposals = [];
 let user = loadUser();
@@ -82,10 +90,46 @@ function formatSingleDate(date) {
   });
 }
 
+function formatEventDateTime(date, time) {
+  const formattedDate = formatSingleDate(date);
+  if (!date || !time) return formattedDate;
+
+  return `${formattedDate}, ${new Date(`${date}T${time}`).toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit'
+  })}`;
+}
+
 function normalizeUrl(url) {
   const cleaned = String(url || '').trim();
   if (!cleaned) return '';
   return /^https?:\/\//i.test(cleaned) ? cleaned : `https://${cleaned}`;
+}
+
+function addDays(dateValue, days) {
+  const date = new Date(`${dateValue}T12:00:00`);
+  date.setDate(date.getDate() + days);
+  return date.toISOString().slice(0, 10);
+}
+
+function calendarDate(dateValue) {
+  return String(dateValue || '').replaceAll('-', '');
+}
+
+function calendarDateFromDate(date) {
+  return [
+    date.getFullYear(),
+    String(date.getMonth() + 1).padStart(2, '0'),
+    String(date.getDate()).padStart(2, '0')
+  ].join('');
+}
+
+function calendarDateTime(dateValue, timeValue) {
+  return `${calendarDate(dateValue)}T${String(timeValue || '00:00').replace(':', '')}00`;
+}
+
+function locationAddress(location) {
+  return String(location || '').match(/\(([^()]+)\)\s*$/)?.[1] || String(location || '');
 }
 
 function sortDateValue(proposal) {
@@ -215,6 +259,10 @@ function addSubEventRow(event = {}) {
       Date
       <input name="subEventDate" type="date" value="${escapeHtml(event.date || '')}" />
     </label>
+    <label>
+      Time
+      <input name="subEventTime" type="time" value="${escapeHtml(event.time || '')}" />
+    </label>
     <button type="button" data-remove-subevent>Remove</button>
   `;
 
@@ -225,23 +273,26 @@ function addSubEventRow(event = {}) {
   subEventRows.appendChild(row);
 }
 
-function renderSubEvents(container, subEvents = []) {
+function renderSubEvents(container, subEvents = [], proposal = {}) {
   const events = subEvents.filter((event) => event?.title);
 
-  if (!events.length) {
-    container.remove();
-    return;
-  }
-
   container.innerHTML = `
-    <h3>Sub-events</h3>
+    <div class="section-heading">
+      <h3>Sub-events</h3>
+      <button class="inline-add-button" type="button" data-add-card-subevent aria-label="Add sub-event">+</button>
+    </div>
     <div class="subevent-list">
-      ${events.map((event) => `
-        <div class="subevent-pill">
+      ${events.length ? events.map((event) => {
+        const calendarUrl = googleCalendarUrl(proposal, event);
+        const content = `
           <strong>${escapeHtml(event.title)}</strong>
-          <span>${escapeHtml(formatSingleDate(event.date))}</span>
-        </div>
-      `).join('')}
+          <span>${escapeHtml(formatEventDateTime(event.date, event.time))}</span>
+        `;
+
+        return calendarUrl
+          ? `<a class="subevent-pill" href="${escapeHtml(calendarUrl)}" target="_blank" rel="noreferrer">${content}</a>`
+          : `<div class="subevent-pill">${content}</div>`;
+      }).join('') : '<p class="meta inline-empty">No sub-events yet.</p>'}
     </div>
   `;
 }
@@ -250,7 +301,8 @@ function collectSubEvents() {
   return [...subEventRows.querySelectorAll('.subevent-row')]
     .map((row) => ({
       title: row.querySelector('[name="subEventTitle"]').value.trim(),
-      date: row.querySelector('[name="subEventDate"]').value
+      date: row.querySelector('[name="subEventDate"]').value,
+      time: row.querySelector('[name="subEventTime"]').value
     }))
     .filter((event) => event.title);
 }
@@ -280,17 +332,15 @@ function addLinkRow(link = {}) {
 function renderLinks(container, links = []) {
   const proposalLinks = links.filter((link) => link?.text && link?.url);
 
-  if (!proposalLinks.length) {
-    container.remove();
-    return;
-  }
-
   container.innerHTML = `
-    <h3>Links</h3>
+    <div class="section-heading">
+      <h3>Links</h3>
+      <button class="inline-add-button" type="button" data-add-card-link aria-label="Add link">+</button>
+    </div>
     <div class="proposal-link-list">
-      ${proposalLinks.map((link) => `
+      ${proposalLinks.length ? proposalLinks.map((link) => `
         <a href="${escapeHtml(normalizeUrl(link.url))}" target="_blank" rel="noreferrer">${escapeHtml(link.text)}</a>
-      `).join('')}
+      `).join('') : '<p class="meta inline-empty">No links yet.</p>'}
     </div>
   `;
 }
@@ -346,7 +396,8 @@ function renderMiniCalendar(container, startDate, endDate) {
 }
 
 function renderMiniMap(container, location) {
-  const query = encodeURIComponent(location);
+  const address = locationAddress(location);
+  const query = encodeURIComponent(address);
   container.innerHTML = `
     <iframe
       title="Map of ${escapeHtml(location)}"
@@ -358,7 +409,49 @@ function renderMiniMap(container, location) {
   `;
 }
 
-function openProposalDialog(proposal = null) {
+function googleCalendarDates(startDate, endDate, time = '') {
+  if (!startDate || !endDate) return '';
+  if (!time) return `${calendarDate(startDate)}/${calendarDate(addDays(endDate, 1))}`;
+
+  const endTime = new Date(`${startDate}T${time}`);
+  endTime.setHours(endTime.getHours() + 1);
+  return [
+    calendarDateTime(startDate, time),
+    `${calendarDateFromDate(endTime)}T${String(endTime.getHours()).padStart(2, '0')}${String(endTime.getMinutes()).padStart(2, '0')}00`
+  ].join('/');
+}
+
+function googleCalendarUrl(proposal, subEvent = null) {
+  const startDate = subEvent?.date || proposal.startDate;
+  const endDate = subEvent?.date || proposal.endDate;
+  const time = subEvent?.time || '';
+  if (!startDate || !endDate) return '';
+
+  const linkText = (proposal.links || [])
+    .filter((link) => link?.text && link?.url)
+    .map((link) => `${link.text}: ${normalizeUrl(link.url)}`);
+  const subEventText = (proposal.subEvents || [])
+    .filter((event) => event?.title)
+    .map((event) => `${event.title}${event.date ? ` (${formatEventDateTime(event.date, event.time)})` : ''}`);
+  const details = [
+    subEvent ? `Part of ${proposal.title || 'Family gathering'}.` : '',
+    proposal.summary || '',
+    !subEvent && subEventText.length ? `Sub-events:\n${subEventText.join('\n')}` : '',
+    linkText.length ? `Links:\n${linkText.join('\n')}` : ''
+  ].filter(Boolean).join('\n\n');
+
+  const params = new URLSearchParams({
+    action: 'TEMPLATE',
+    text: subEvent?.title || proposal.title || 'Family gathering',
+    dates: googleCalendarDates(startDate, endDate, time),
+    location: locationAddress(proposal.location),
+    details
+  });
+
+  return `https://calendar.google.com/calendar/render?${params.toString()}`;
+}
+
+function openProposalDialog(proposal = null, options = {}) {
   editingProposalId = proposal?.id || null;
   proposalForm.reset();
   subEventRows.innerHTML = '';
@@ -375,6 +468,9 @@ function openProposalDialog(proposal = null) {
     (proposal.subEvents || []).forEach(addSubEventRow);
     (proposal.links || []).forEach(addLinkRow);
   }
+
+  if (options.addSubEvent) addSubEventRow();
+  if (options.addLink) addLinkRow();
 
   if (typeof proposalDialog.showModal === 'function') {
     proposalDialog.showModal();
@@ -405,16 +501,31 @@ function renderProposals() {
       node.querySelector('.status').textContent = proposal.status || 'active';
       node.querySelector('.meta').textContent = `${proposal.location} | ${formatDateRange(proposal.startDate, proposal.endDate)}`;
       node.querySelector('.summary').textContent = proposal.summary || '';
-      renderSubEvents(node.querySelector('.subevents'), proposal.subEvents || []);
+      renderSubEvents(node.querySelector('.subevents'), proposal.subEvents || [], proposal);
       renderLinks(node.querySelector('.proposal-links'), proposal.links || []);
       renderMiniCalendar(node.querySelector('.mini-calendar'), proposal.startDate, proposal.endDate);
       renderMiniMap(node.querySelector('.mini-map'), proposal.location);
+      const calendarLink = node.querySelector('[data-calendar-link]');
+      const calendarUrl = googleCalendarUrl(proposal);
+      if (calendarUrl) {
+        calendarLink.href = calendarUrl;
+      } else {
+        calendarLink.remove();
+      }
       node.querySelector('.yes-count').textContent = proposal.voteSummary?.yes || 0;
       node.querySelector('.maybe-count').textContent = proposal.voteSummary?.maybe || 0;
       node.querySelector('.no-count').textContent = proposal.voteSummary?.no || 0;
 
       node.querySelector('[data-edit-proposal]').addEventListener('click', () => {
         openProposalDialog(proposal);
+      });
+
+      node.querySelector('[data-add-card-subevent]').addEventListener('click', () => {
+        openProposalDialog(proposal, { addSubEvent: true });
+      });
+
+      node.querySelector('[data-add-card-link]').addEventListener('click', () => {
+        openProposalDialog(proposal, { addLink: true });
       });
 
       node.querySelectorAll('[data-vote]').forEach((button) => {
@@ -492,6 +603,17 @@ function renderSortButtons() {
   });
 }
 
+function renderLocationOptions() {
+  const savedLocations = proposals
+    .map((proposal) => String(proposal.location || '').trim())
+    .filter(Boolean);
+  const locations = [...new Set([...DEFAULT_LOCATIONS, ...savedLocations])];
+
+  locationOptions.innerHTML = locations
+    .map((location) => `<option value="${escapeHtml(location)}"></option>`)
+    .join('');
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -504,6 +626,7 @@ function escapeHtml(value) {
 async function load() {
   const data = await api('/api/family/bootstrap');
   proposals = data.proposals || [];
+  renderLocationOptions();
   renderYearFilters();
   renderSortButtons();
   renderProposals();

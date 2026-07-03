@@ -70,7 +70,8 @@
       </label>
       <label>
         Location
-        <input name="location" required maxlength="120" placeholder="City, state, park, resort..." />
+        <input name="location" list="locationOptions" required maxlength="120" placeholder="Choose a saved place or type a new one" />
+        <datalist id="locationOptions"></datalist>
       </label>
       <label>
         Year
@@ -118,6 +119,7 @@
         <span class="status"></span>
       </div>
       <div class="proposal-actions">
+        <a class="calendar-action" data-calendar-link target="_blank" rel="noreferrer">Add to Google Calendar</a>
         <button type="button" data-edit-proposal>Edit</button>
       </div>
       <p class="meta"></p>

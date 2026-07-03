@@ -207,6 +207,24 @@ button:hover {
   color: var(--ocean-dark);
 }
 
+.calendar-action {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--ocean-dark);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: #f7fffc;
+  color: var(--ocean-dark);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.calendar-action:hover {
+  background: #e9faf5;
+}
+
 .primary-action {
   border-color: var(--ocean-dark);
   background: var(--ocean);
@@ -265,6 +283,8 @@ button:hover {
 
 .proposal-actions {
   display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
   justify-content: flex-end;
   margin: 12px 0 0;
 }
@@ -310,9 +330,25 @@ h3 {
   margin: 16px 0;
 }
 
-.subevents h3,
-.proposal-links h3 {
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
   margin-bottom: 10px;
+}
+
+.inline-add-button {
+  display: inline-grid;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  place-items: center;
+  border-color: #abd6d2;
+  background: #f7fffc;
+  color: var(--ocean-dark);
+  font-size: 1.2rem;
+  line-height: 1;
 }
 
 .subevent-list {
@@ -329,6 +365,13 @@ h3 {
   border: 1px solid #abd6d2;
   border-radius: 8px;
   background: #f7fffc;
+  color: inherit;
+  text-decoration: none;
+}
+
+.subevent-pill:hover {
+  border-color: var(--ocean);
+  background: #e9faf5;
 }
 
 .subevent-pill span {
@@ -344,6 +387,10 @@ h3 {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
+}
+
+.inline-empty {
+  margin: 0;
 }
 
 .proposal-link-list a {
@@ -619,7 +666,7 @@ h3 {
 .subevent-row,
 .link-row {
   display: grid;
-  grid-template-columns: minmax(180px, 1fr) 160px auto;
+  grid-template-columns: minmax(180px, 1fr) 160px 130px auto;
   gap: 8px;
   align-items: end;
 }
@@ -809,6 +856,7 @@ h3 {
 
   .vote-row button,
   .proposal-actions button,
+  .proposal-actions .calendar-action,
   .admin-row button,
   .comment-actions button,
   .comment-edit-form button,

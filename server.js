@@ -65,7 +65,8 @@ function cleanSubEvents(value) {
   return value
     .map((event) => ({
       title: cleanString(event?.title, 120),
-      date: cleanString(event?.date, 20)
+      date: cleanString(event?.date, 20),
+      time: cleanString(event?.time, 10)
     }))
     .filter((event) => event.title);
 }

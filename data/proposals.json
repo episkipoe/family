@@ -3,14 +3,19 @@
     "id": "texas-thanksgiving-2026",
     "year": 2026,
     "title": "Thanksgiving 2026",
-    "location": "Texas",
-    "startDate": "2026-11-25",
+    "location": "Ryan's House (4912 Westhaven Rd, Arlington, TX)",
+    "startDate": "2026-11-23",
     "endDate": "2026-11-29",
     "status": "active",
     "summary": "Thanksgiving at Ryan's House",
     "createdAt": "2026-07-02T00:00:00.000Z",
-    "updatedAt": "2026-07-03T08:09:43.256Z",
-    "subEvents": [],
+    "updatedAt": "2026-07-03T08:30:26.749Z",
+    "subEvents": [
+      {
+        "title": "Thanksgiving",
+        "date": "2026-11-25"
+      }
+    ],
     "links": [
       {
         "text": "Planning doc",
