@@ -282,6 +282,71 @@ app.post('/api/family/tree', async (req, res, next) => {
   }
 });
 
+app.delete('/api/family/tree/:id', async (req, res, next) => {
+  try {
+    const personId = Number(req.params.id);
+    if (!Number.isInteger(personId) || personId < 0) {
+      return res.status(400).json({ error: 'Person id must be a positive number.' });
+    }
+
+    const familyTree = await getData('familyTree');
+    const person = familyTree.find((entry) => entry.id === personId);
+    if (!person) return res.status(404).json({ error: 'Person not found.' });
+
+    const nextFamilyTree = familyTree
+      .filter((entry) => entry.id !== personId)
+      .map((entry) => ({
+        ...entry,
+        ...(entry.partnerId === personId ? { partnerId: null } : {}),
+        ...(entry.parent1Id === personId ? { parent1Id: null } : {}),
+        ...(entry.parent2Id === personId ? { parent2Id: null } : {})
+      }));
+
+    await setData('familyTree', nextFamilyTree);
+    res.json({ deleted: true, person, familyTree: nextFamilyTree });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/family/tree/:id/links', async (req, res, next) => {
+  try {
+    const personId = Number(req.params.id);
+    if (!Number.isInteger(personId) || personId < 0) {
+      return res.status(400).json({ error: 'Person id must be a positive number.' });
+    }
+
+    const title = cleanString(req.body.title, 120);
+    const url = cleanUrl(req.body.url);
+    if (!title || !url) return res.status(400).json({ error: 'Link title and url are required.' });
+
+    const familyTree = await getData('familyTree');
+    const personIndex = familyTree.findIndex((entry) => entry.id === personId);
+    if (personIndex === -1) return res.status(404).json({ error: 'Person not found.' });
+
+    const person = familyTree[personIndex];
+    const nextLinks = [
+      ...(Array.isArray(person.links) ? person.links : []),
+      {
+        id: nanoid(12),
+        title,
+        url,
+        createdAt: new Date().toISOString()
+      }
+    ];
+
+    familyTree[personIndex] = {
+      ...person,
+      links: nextLinks
+    };
+
+    await setData('familyTree', familyTree);
+    res.status(201).json({ person: familyTree[personIndex], familyTree });
+  } catch (err) {
+    next(err);
+  }
+});
+
 app.get('/api/family/bootstrap', async (req, res, next) => {
   try {
     const [proposals, votes, comments, recipes, mealPlans] = await Promise.all([

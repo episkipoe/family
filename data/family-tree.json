@@ -29,7 +29,15 @@
     "marriageDate": "1951-04-06",
     "partnerId": 4,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "links": [
+      {
+        "id": "pjZ3scOBu1pS",
+        "title": "JRR",
+        "url": "https://docs.google.com/document/d/1lB5l_7XJH0kAUJT876ScIrmPa51ZzHmtVvo9MVvEXC0/edit?tab=t.0",
+        "createdAt": "2026-07-04T13:37:33.691Z"
+      }
+    ]
   },
   {
     "id": 4,
@@ -181,7 +189,15 @@
     "birthDate": "1980-12-12",
     "parent1Id": 13,
     "parent2Id": 8,
-    "featured": true
+    "featured": true,
+    "links": [
+      {
+        "id": "8ofWiWDgn5XB",
+        "title": "Homepage",
+        "url": "https://episkipoe.github.io/",
+        "createdAt": "2026-07-04T13:42:40.066Z"
+      }
+    ]
   },
   {
     "id": 17,

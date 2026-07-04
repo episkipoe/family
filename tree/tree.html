@@ -61,6 +61,36 @@
       text-decoration: none;
     }
 
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .nav-actions a,
+    .tree-action {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 34px;
+      padding: 8px 11px;
+      border: 1px solid rgba(31, 122, 140, 0.26);
+      border-radius: 8px;
+      background: rgba(31, 122, 140, 0.08);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .nav-actions a:hover,
+    .nav-actions a:focus-visible,
+    .tree-action:hover,
+    .tree-action:focus-visible {
+      background: rgba(31, 122, 140, 0.14);
+    }
+
     h1 {
       margin: 0;
       font-family: Georgia, "Times New Roman", serif;
@@ -213,6 +243,88 @@
     .related-link:hover,
     .related-link:focus-visible {
       background: #185f6e;
+    }
+
+    .inline-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 8px;
+    }
+
+    .link-list {
+      display: grid;
+      gap: 7px;
+      margin-bottom: 8px;
+    }
+
+    .managed-link {
+      color: var(--accent);
+      font-weight: 750;
+      text-decoration: none;
+    }
+
+    .managed-link:hover,
+    .managed-link:focus-visible {
+      text-decoration: underline;
+    }
+
+    .link-dialog {
+      width: min(420px, calc(100% - 28px));
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      color: var(--ink);
+      box-shadow: var(--shadow);
+      padding: 0;
+    }
+
+    .link-dialog::backdrop {
+      background: rgba(24, 33, 47, 0.34);
+    }
+
+    .link-form {
+      display: grid;
+      gap: 14px;
+      padding: 20px;
+    }
+
+    .link-form input {
+      width: 100%;
+    }
+
+    .dialog-topline {
+      display: flex;
+      align-items: start;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .dialog-topline h2 {
+      margin: 0;
+      font-size: 1.25rem;
+      line-height: 1.15;
+    }
+
+    .link-form button {
+      min-height: 38px;
+    }
+
+    .dialog-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .form-status {
+      min-height: 18px;
+      color: var(--muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .form-status.error {
+      color: var(--accent-2);
     }
 
     .stats {
@@ -443,6 +555,10 @@
       <header>
         <h1>Family Tree</h1>
         <p class="intro"></p>
+        <nav class="nav-actions" aria-label="Tree links">
+          <a href="add-person.html">Add person</a>
+          <a href="tree-admin.html">Tree admin</a>
+        </nav>
       </header>
 
       <section class="controls" aria-label="Tree filters">
@@ -479,6 +595,29 @@
       </div>
     </section>
   </main>
+
+  <dialog id="link-dialog" class="link-dialog">
+    <form id="link-form" class="link-form" method="dialog">
+      <div class="dialog-topline">
+        <h2>Add link</h2>
+        <button class="tree-action" type="button" data-close-link-dialog aria-label="Close">X</button>
+      </div>
+      <input type="hidden" name="personId" id="link-person-id">
+      <label>
+        Link title
+        <input id="link-title" name="title" required maxlength="120" autocomplete="off">
+      </label>
+      <label>
+        URL
+        <input id="link-url" name="url" required maxlength="500" placeholder="https://example.com" inputmode="url">
+      </label>
+      <div class="dialog-actions">
+        <button class="tree-action" type="button" data-close-link-dialog>Cancel</button>
+        <button class="tree-action" type="submit">Save link</button>
+      </div>
+      <span class="form-status" data-link-status></span>
+    </form>
+  </dialog>
 
   <script src="tree-app.js"></script>
 </body>

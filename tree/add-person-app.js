@@ -19,8 +19,10 @@
     deathDate: document.querySelector("#death-date"),
     marriageDate: document.querySelector("#marriage-date")
   };
+  const params = new URLSearchParams(window.location.search);
 
   hydrateOptions();
+  hydrateQueryDefaults();
   output.value = buildEntry();
 
   async function loadFamilyMembers() {
@@ -92,6 +94,24 @@
     [parent1, parent2, partner, child].forEach((select) => {
       select.innerHTML = `<option value="">None</option>${personOptions}`;
     });
+  }
+
+  function hydrateQueryDefaults() {
+    const childId = params.get("childId");
+    const parentId = params.get("parentId");
+    const requestedParentField = params.get("childParentField");
+
+    if (childId && personById(Number(childId))) {
+      child.value = childId;
+    }
+
+    if (parentId && personById(Number(parentId))) {
+      parent1.value = parentId;
+    }
+
+    if (["parent1Id", "parent2Id"].includes(requestedParentField)) {
+      childParentField.value = requestedParentField;
+    }
   }
 
   function buildEntry() {

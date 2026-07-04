@@ -11,12 +11,26 @@
   const fitButton = document.querySelector("#fit-view");
   const details = document.querySelector("#member-details");
   const stats = document.querySelector("#tree-stats");
+  const linkDialog = document.querySelector("#link-dialog");
+  const linkForm = document.querySelector("#link-form");
+  const linkPersonId = document.querySelector("#link-person-id");
+  const linkTitle = document.querySelector("#link-title");
+  const linkStatus = linkForm.querySelector("[data-link-status]");
 
   const width = () => chart.clientWidth;
   const height = () => chart.clientHeight;
   const memberById = new Map(members.map((member) => [member.id, member]));
   const childrenByParent = new Map();
   const partnerPairs = new Map();
+  let selectedId = null;
+  let comparisonId = null;
+  let touchRelationSourceId = null;
+  let touchRelationTargetId = null;
+  let touchTapCandidate = null;
+  let suppressClickUntil = 0;
+  let searchTerm = "";
+  let activeGeneration = "all";
+  let searchTimer = null;
 
   members.forEach((member) => {
     [member.parent1Id, member.parent2Id].forEach((parentId) => {
@@ -66,19 +80,6 @@
     viewport.attr("transform", event.transform);
   });
 
-  const requestedSelectedId = Number(new URLSearchParams(window.location.search).get("id"));
-  let selectedId = nodeById.has(requestedSelectedId)
-    ? requestedSelectedId
-    : null;
-  let comparisonId = null;
-  let touchRelationSourceId = null;
-  let touchRelationTargetId = null;
-  let touchTapCandidate = null;
-  let suppressClickUntil = 0;
-  let searchTerm = "";
-  let activeGeneration = "all";
-  let searchTimer = null;
-
   const simulation = d3
     .forceSimulation(nodes)
     .force(
@@ -86,12 +87,14 @@
       d3
         .forceLink(links)
         .id((d) => d.id)
-        .distance((d) => (d.type === "partner" ? 80 : 170))
+        .distance(linkDistance)
         .strength((d) => (d.type === "partner" ? 1 : 0.68))
     )
-    .force("charge", d3.forceManyBody().strength(-290))
-    .force("collision", d3.forceCollide().radius((d) => d.radius + 34).iterations(4))
-    .force("x", d3.forceX((d) => d.targetX).strength(0.42))
+    .force("charge", d3.forceManyBody().strength(chargeStrength))
+    .force("collision", d3.forceCollide().radius(collisionRadius).iterations(3))
+    .force("x", d3.forceX((d) => d.targetX).strength(xStrength))
+    .alphaDecay(0.08)
+    .velocityDecay(0.62)
     .on("tick", ticked);
 
   svg.call(zoom);
@@ -99,11 +102,7 @@
   hydrateControls();
   resize();
   render();
-  if (selectedId === null) {
-    clearSelection();
-  } else {
-    updateSelection(selectedId, { center: true, scale: 1.34 });
-  }
+  clearSelection();
   window.addEventListener("resize", resize);
 
   async function loadFamilyMembers() {
@@ -152,9 +151,22 @@
     fitButton.addEventListener("click", fitToView);
 
     details.addEventListener("click", (event) => {
+      const addLinkButton = event.target.closest("[data-add-link]");
+      if (addLinkButton) {
+        openLinkDialog(Number(addLinkButton.dataset.personId));
+        return;
+      }
+
       const button = event.target.closest("[data-person-id]");
       if (!button) return;
       selectPerson(event, Number(button.dataset.personId));
+    });
+
+    linkForm.addEventListener("submit", savePersonLink);
+    linkDialog.addEventListener("click", (event) => {
+      if (event.target === linkDialog || event.target.closest("[data-close-link-dialog]")) {
+        closeLinkDialog();
+      }
     });
   }
 
@@ -219,7 +231,7 @@
 
     node.append("title").text((d) => d.name);
     applyState();
-    if (!nodeById.has(requestedSelectedId)) setTimeout(fitToView, 250);
+    setTimeout(fitToView, 250);
   }
 
   function ticked() {
@@ -249,8 +261,9 @@
 
       const pair = [first, second].sort(comparePartnerPair);
       const centerX = (first.x + second.x) / 2;
-      pair[0].x = centerX - 40;
-      pair[1].x = centerX + 40;
+      const halfGap = selectedId !== null && (first.id === selectedId || second.id === selectedId) ? 62 : 40;
+      pair[0].x = centerX - halfGap;
+      pair[1].x = centerX + halfGap;
       pair[0].vx = 0;
       pair[1].vx = 0;
     });
@@ -319,6 +332,15 @@
     const marriedDuration = marriageDuration(member, partners);
     const diedRow = diedDate ? `<div><dt>Died</dt><dd>${diedDate}</dd></div>` : "";
     const marriedRow = marriedDate ? `<div><dt>Married</dt><dd>${marriedDate}${marriedDuration ? ` (${marriedDuration})` : ""}</dd></div>` : "";
+    const parentContent = [
+      personLinks(parents, "Not listed"),
+      addParentActions(member)
+    ].filter(Boolean).join("");
+    const childContent = [
+      personLinks(children, "None listed"),
+      `<div class="inline-actions"><a class="tree-action" href="add-person.html?parentId=${member.id}">Add child</a></div>`
+    ].join("");
+    const managedLinks = Array.isArray(member.links) ? member.links : [];
 
     details.innerHTML = `
       <p class="eyebrow">Selected Person</p>
@@ -329,16 +351,63 @@
         <div><dt>Born</dt><dd>${bornText}</dd></div>
         ${diedRow}
         ${marriedRow}
-        <div><dt>Parents</dt><dd>${personLinks(parents, "Not listed")}</dd></div>
+        <div><dt>Parents</dt><dd>${parentContent}</dd></div>
         <div><dt>Siblings</dt><dd>${personLinks(siblings, "None listed")}</dd></div>
         <div><dt>Partner link</dt><dd>${personLinks(partners, "Not listed")}</dd></div>
-        <div><dt>Children</dt><dd>${personLinks(children, "None listed")}</dd></div>
+        <div><dt>Children</dt><dd>${childContent}</dd></div>
+        <div><dt>Links</dt><dd>${personManagedLinks(member, managedLinks)}</dd></div>
       </dl>
       <a class="related-link" href="related.html?id=${member.id}">View all relationships</a>
     `;
 
     applyState();
+    updateLayeredTargets();
+    snapSelectedChildrenToTargets();
+    updateForces(0.08);
     if (options.center) centerNode(member, options.scale);
+  }
+
+  async function savePersonLink(event) {
+    event.preventDefault();
+
+    const formData = new FormData(linkForm);
+    const personId = Number(formData.get("personId"));
+    linkStatus.textContent = "Saving...";
+    linkStatus.classList.remove("error");
+
+    try {
+      const response = await fetch(`/api/family/tree/${personId}/links`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          title: formData.get("title"),
+          url: formData.get("url")
+        })
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to save link.");
+      syncPerson(result.person);
+      closeLinkDialog();
+      updateSelection(personId, { center: false });
+    } catch (error) {
+      linkStatus.textContent = error.message || "Unable to save link.";
+      linkStatus.classList.add("error");
+    }
+  }
+
+  function openLinkDialog(personId) {
+    linkForm.reset();
+    linkPersonId.value = String(personId);
+    linkStatus.textContent = "";
+    linkStatus.classList.remove("error");
+    linkDialog.showModal();
+    window.setTimeout(() => linkTitle.focus(), 0);
+  }
+
+  function closeLinkDialog() {
+    linkDialog.close();
   }
 
   function selectPerson(event, id) {
@@ -380,6 +449,8 @@
       </dl>
     `;
     applyState();
+    updateLayeredTargets();
+    updateForces(0.2);
   }
 
   function updateStats(visibleIds) {
@@ -596,6 +667,55 @@
     return ids;
   }
 
+  function immediateFamilyIds(id) {
+    if (id === null || id === undefined) return new Set();
+    const member = memberById.get(id);
+    if (!member) return new Set();
+
+    const ids = new Set([id]);
+    parentIds(member).forEach((parentId) => ids.add(parentId));
+    siblingIds(member).forEach((siblingId) => ids.add(siblingId));
+    (childrenByParent.get(id) || []).forEach((childId) => ids.add(childId));
+    partnerIds(id).forEach((partnerId) => ids.add(partnerId));
+    return ids;
+  }
+
+  function linkDistance(link) {
+    const sourceId = link.source?.id ?? link.source;
+    const targetId = link.target?.id ?? link.target;
+    const touchesSelection = selectedId !== null && (sourceId === selectedId || targetId === selectedId);
+
+    if (link.type === "partner") return touchesSelection ? 124 : 80;
+    return touchesSelection ? 132 : 170;
+  }
+
+  function chargeStrength(node) {
+    if (selectedId === null) return -290;
+    return immediateFamilyIds(selectedId).has(node.id) ? -180 : -360;
+  }
+
+  function collisionRadius(node) {
+    if (selectedId === null) return node.radius + 34;
+    return immediateFamilyIds(selectedId).has(node.id) ? node.radius + 26 : node.radius + 46;
+  }
+
+  function xStrength(node) {
+    if (selectedId === null) return 0.42;
+    return immediateFamilyIds(selectedId).has(node.id) ? 0.78 : 0.58;
+  }
+
+  function updateForces(alpha = 0.32) {
+    simulation
+      .force("link").distance(linkDistance);
+    simulation
+      .force("charge").strength(chargeStrength);
+    simulation
+      .force("collision").radius(collisionRadius);
+    simulation
+      .force("x").strength(xStrength);
+    simulation.alpha(alpha).restart();
+  }
+
   function centerNode(member, scaleOverride) {
     const node = nodes.find((item) => item.id === member.id);
     if (!node || Number.isNaN(node.x) || Number.isNaN(node.y)) return;
@@ -628,9 +748,10 @@
     svg.attr("viewBox", `0 0 ${width()} ${height()}`);
     updateLayeredTargets();
     simulation
-      .force("x", d3.forceX((d) => d.targetX).strength(0.42))
+      .force("x", d3.forceX((d) => d.targetX).strength(xStrength))
       .alpha(0.32)
       .restart();
+    updateForces(0.32);
   }
 
   function updateLayeredTargets() {
@@ -701,24 +822,26 @@
     const units = displayUnitsForGeneration(generationNodes);
     const grouped = d3.group(units, parentKeyForUnit);
     const groups = [...grouped.entries()].map(([parentKey, parentUnits]) => {
-      const parentCenter = parentCenterForKey(parentKey);
-      const sortedUnits = parentUnits.sort(compareSiblingUnits);
+      const parentCenter = parentCenterForKey(parentKey) + branchLaneOffset(parentKey);
+      const sortedUnits = sortSiblingUnits(parentUnits);
       const siblingSpacing = Math.max(102, Math.min(138, 520 / Math.max(1, sortedUnits.length)));
       const totalWidth = siblingSpacing * (sortedUnits.length - 1);
 
       sortedUnits.forEach((unit, index) => {
         unit.targetX = parentCenter + index * siblingSpacing - totalWidth / 2;
       });
+      alignSingleChildWithBranchParent(sortedUnits, parentKey);
+      const groupBounds = unitGroupBounds(sortedUnits, Math.max(132, totalWidth + 112));
 
       return {
         key: parentKey,
-        targetX: parentCenter,
-        width: Math.max(132, totalWidth + 112),
+        targetX: groupBounds.targetX,
+        width: groupBounds.width,
         units: sortedUnits
       };
     });
 
-    groups.sort((a, b) => a.targetX - b.targetX);
+    groups.sort(compareSiblingGroups);
 
     let rightEdge = -Infinity;
     groups.forEach((group) => {
@@ -733,13 +856,15 @@
       rightEdge = group.targetX + group.width / 2;
     });
 
+    reserveSelectedChildLane(groups);
+
     const minX = d3.min(groups, (group) => group.targetX - group.width / 2) ?? 0;
     const maxX = d3.max(groups, (group) => group.targetX + group.width / 2) ?? width();
     const overflowLeft = Math.max(0, 80 - minX);
     const overflowRight = Math.max(0, maxX - (width() - 80));
     const finalShift = overflowLeft || -overflowRight;
 
-    if (finalShift) {
+    if (finalShift && !selectedChildIds().size) {
       groups.forEach((group) => {
         group.units.forEach((unit) => {
           unit.targetX += finalShift;
@@ -748,6 +873,108 @@
     }
 
     return groups.flatMap((group) => group.units);
+  }
+
+  function unitGroupBounds(units, minimumWidth) {
+    const targets = units.map((unit) => unit.targetX).filter((x) => Number.isFinite(x));
+    if (!targets.length) return { targetX: width() / 2, width: minimumWidth };
+
+    const minTarget = d3.min(targets);
+    const maxTarget = d3.max(targets);
+    return {
+      targetX: d3.mean(targets),
+      width: Math.max(minimumWidth, maxTarget - minTarget + 112)
+    };
+  }
+
+  function branchLaneOffset(parentKey) {
+    const branchRootId = branchRootForParentKey(parentKey);
+    if (branchRootId === 11) return -560;
+    if (branchRootId === 12) return -170;
+    if (branchRootId === 13) return 80;
+    return 0;
+  }
+
+  function branchRootForParentKey(parentKey) {
+    const parentIds = parentIdsFromKey(parentKey);
+    const anchor = branchAnchorForParents(parentIds);
+    if (!anchor) return null;
+
+    const parents = parentIdsFromKey(parentKey).map((id) => nodeById.get(id));
+    if (parents.some((parent) => parent?.id === 11)) return 11;
+    if (parents.some((parent) => parent?.id === 12)) return 12;
+    if (parents.some((parent) => parent?.id === 13)) return 13;
+
+    const ancestorIds = ancestorDistances(anchor.id);
+    for (const id of [11, 12, 13]) {
+      if (ancestorIds.has(id)) return id;
+    }
+    return null;
+  }
+
+  function alignSingleChildWithBranchParent(units, parentKey) {
+    if (units.length !== 1 || units[0].length !== 1) return;
+
+    const child = units[0][0];
+    if (child.family !== "Bennett" || child.generation < 4) return;
+
+    const parents = parentIdsFromKey(parentKey).map((id) => nodeById.get(id));
+    const branchParent = parents.find((parent) => parent?.family === child.family && Number.isFinite(parent.targetX));
+    const nonBranchParent = parents.find((parent) => parent && parent.family !== child.family);
+
+    if (!branchParent || !nonBranchParent) return;
+    units[0].targetX = branchParent.targetX - 46;
+  }
+
+  function reserveSelectedChildLane(groups) {
+    const selectedChildren = selectedChildIds();
+    if (!selectedChildren.size) return;
+
+    const selectedGroup = groups.find((group) => groupHasSelectedChild(group, selectedChildren));
+    if (!selectedGroup) return;
+
+    const center = selectedFamilyCenter();
+    const sortedUnits = selectedGroup.units.sort(compareSiblingUnits);
+    const siblingSpacing = Math.max(112, Math.min(146, 620 / Math.max(1, sortedUnits.length)));
+    const totalWidth = siblingSpacing * (sortedUnits.length - 1);
+
+    selectedGroup.targetX = center;
+    selectedGroup.width = Math.max(220, totalWidth + 190);
+    sortedUnits.forEach((unit, index) => {
+      unit.targetX = center + index * siblingSpacing - totalWidth / 2;
+    });
+
+    const laneHalfWidth = Math.max(selectedGroup.width / 2 + 50, 210);
+    const laneLeft = center - laneHalfWidth;
+    const laneRight = center + laneHalfWidth;
+    const gutter = 34;
+
+    const leftGroups = groups
+      .filter((group) => group !== selectedGroup && group.targetX < center)
+      .sort((a, b) => b.targetX - a.targetX);
+    let leftEdge = laneLeft - gutter;
+    leftGroups.forEach((group) => {
+      const groupRight = group.targetX + group.width / 2;
+      if (groupRight > leftEdge) shiftGroup(group, leftEdge - groupRight);
+      leftEdge = group.targetX - group.width / 2 - gutter;
+    });
+
+    const rightGroups = groups
+      .filter((group) => group !== selectedGroup && group.targetX >= center)
+      .sort((a, b) => a.targetX - b.targetX);
+    let rightEdge = laneRight + gutter;
+    rightGroups.forEach((group) => {
+      const groupLeft = group.targetX - group.width / 2;
+      if (groupLeft < rightEdge) shiftGroup(group, rightEdge - groupLeft);
+      rightEdge = group.targetX + group.width / 2 + gutter;
+    });
+  }
+
+  function shiftGroup(group, shift) {
+    group.targetX += shift;
+    group.units.forEach((unit) => {
+      unit.targetX += shift;
+    });
   }
 
   function displayUnitsForGeneration(generationNodes) {
@@ -784,6 +1011,96 @@
     return birthTime(aAnchor) - birthTime(bAnchor) || aAnchor.name.localeCompare(bAnchor.name);
   }
 
+  function sortSiblingUnits(units) {
+    const selectedChildren = selectedChildIds();
+    if (!selectedChildren.size) return units.sort(compareSiblingUnits);
+    return units.sort((a, b) => {
+      const aSelected = Number(unitHasSelectedChild(a, selectedChildren));
+      const bSelected = Number(unitHasSelectedChild(b, selectedChildren));
+      return bSelected - aSelected || compareSiblingUnits(a, b);
+    });
+  }
+
+  function compareSiblingGroups(a, b) {
+    const selectedChildren = selectedChildIds();
+    if (selectedChildren.size) {
+      const aSelected = Number(groupHasSelectedChild(a, selectedChildren));
+      const bSelected = Number(groupHasSelectedChild(b, selectedChildren));
+      if (aSelected !== bSelected) return bSelected - aSelected;
+    }
+    const branchOrder = compareParentBranchKeys(a.key, b.key);
+    if (branchOrder !== 0) return branchOrder;
+    return a.targetX - b.targetX;
+  }
+
+  function compareParentBranchKeys(aKey, bKey) {
+    const aParents = parentIdsFromKey(aKey);
+    const bParents = parentIdsFromKey(bKey);
+    const aAnchor = branchAnchorForParents(aParents);
+    const bAnchor = branchAnchorForParents(bParents);
+
+    if (aAnchor && bAnchor && aAnchor.id !== bAnchor.id) {
+      return compareTreeOrder(aAnchor, bAnchor);
+    }
+
+    return aKey.localeCompare(bKey, undefined, { numeric: true });
+  }
+
+  function parentIdsFromKey(key) {
+    return key
+      .split("-")
+      .map((id) => Number(id))
+      .filter((id) => nodeById.has(id));
+  }
+
+  function branchAnchorForParents(parentIds) {
+    if (!parentIds.length) return null;
+    return parentIds
+      .map((id) => nodeById.get(id))
+      .sort(compareTreeOrder)[0] || null;
+  }
+
+  function selectedChildIds() {
+    return selectedId === null
+      ? new Set()
+      : new Set(childrenByParent.get(selectedId) || []);
+  }
+
+  function snapSelectedChildrenToTargets() {
+    const selectedChildren = selectedChildIds();
+    if (!selectedChildren.size) return;
+
+    nodes.forEach((node) => {
+      if (!selectedChildren.has(node.id)) return;
+      node.x = node.targetX;
+      node.y = node.targetY;
+      node.vx = 0;
+      node.vy = 0;
+    });
+  }
+
+  function selectedFamilyCenter() {
+    const selectedNode = nodeById.get(selectedId);
+    if (!selectedNode) return width() / 2;
+
+    const partnerNodes = partnerIds(selectedId)
+      .map((id) => nodeById.get(id))
+      .filter((node) => node && node.generation === selectedNode.generation);
+    const xValues = [selectedNode, ...partnerNodes]
+      .map((node) => node.targetX)
+      .filter((x) => Number.isFinite(x));
+
+    return xValues.length ? d3.mean(xValues) : selectedNode.targetX ?? width() / 2;
+  }
+
+  function unitHasSelectedChild(unit, selectedChildren) {
+    return unit.some((node) => selectedChildren.has(node.id));
+  }
+
+  function groupHasSelectedChild(group, selectedChildren) {
+    return group.units.some((unit) => unitHasSelectedChild(unit, selectedChildren));
+  }
+
   function anchorNodeForUnit(unit) {
     return unit.find((node) => parentIds(node).length) || unit[0];
   }
@@ -812,6 +1129,7 @@
 
   function comparePartnerPair(a, b) {
     return (
+      familyRank(a) - familyRank(b) ||
       Number(a.gender === "F") - Number(b.gender === "F") ||
       birthYear(a) - birthYear(b) ||
       a.name.localeCompare(b.name)
@@ -889,6 +1207,39 @@
       .filter((id) => memberById.has(id));
   }
 
+  function missingParentFields(member) {
+    return ["parent1Id", "parent2Id"].filter((field) => {
+      const parentId = member[field];
+      return parentId === null || parentId === undefined;
+    });
+  }
+
+  function addParentActions(member) {
+    const links = missingParentFields(member)
+      .map((field) => `<a class="tree-action" href="add-person.html?childId=${member.id}&childParentField=${field}">Add ${field === "parent1Id" ? "parent 1" : "parent 2"}</a>`);
+    return links.length ? `<div class="inline-actions">${links.join("")}</div>` : "";
+  }
+
+  function personManagedLinks(member, managedLinks) {
+    const linksMarkup = managedLinks.length
+      ? `<div class="link-list">${managedLinks.map((link) => `
+        <a class="managed-link" href="${escapeAttribute(link.url)}" target="_blank" rel="noreferrer">${escapeHtml(link.title)}</a>
+      `).join("")}</div>`
+      : "";
+
+    return `
+      ${linksMarkup}
+      <div class="inline-actions"><button class="tree-action" type="button" data-add-link data-person-id="${member.id}">Add link</button></div>
+    `;
+  }
+
+  function syncPerson(person) {
+    const member = memberById.get(person.id);
+    const node = nodeById.get(person.id);
+    if (member) Object.assign(member, person);
+    if (node) Object.assign(node, person);
+  }
+
   function siblingIds(member) {
     const ids = new Set();
     parentIds(member).forEach((parentId) => {
@@ -917,6 +1268,10 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#039;");
+  }
+
+  function escapeAttribute(value) {
+    return escapeHtml(value).replace(/`/g, "&#096;");
   }
 
   function addPartnerPair(sourceId, targetId, childId) {
