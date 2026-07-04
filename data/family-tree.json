@@ -17,7 +17,7 @@
     "deathDate": "2005-04-04",
     "partnerId": 1,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": 237
   },
   {
     "id": 3,
@@ -1034,6 +1034,14 @@
     "gender": "M",
     "family": "Bennett",
     "birthDate": "1860-08-27",
+    "parent1Id": null,
+    "parent2Id": null
+  },
+  {
+    "id": 237,
+    "name": "Grandma Cerk",
+    "gender": "F",
+    "family": "Cerk",
     "parent1Id": null,
     "parent2Id": null
   }

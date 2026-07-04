@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Family Relationships</title>
+  <style>
+    :root { --ink:#17202c; --muted:#677080; --paper:#fffdf8; --accent:#1f7a8c; --line:#ded8cc; }
+    * { box-sizing: border-box; }
+    body { margin:0; color:var(--ink); background:#f3eee4; font-family:Inter,system-ui,sans-serif; }
+    main { width:min(960px,calc(100% - 28px)); margin:0 auto; padding:28px 0 60px; }
+    nav { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    a { color:var(--accent); font-weight:750; }
+    header,.panel { background:var(--paper); border:1px solid var(--line); border-radius:18px; box-shadow:0 14px 36px rgba(24,33,47,.08); }
+    header { padding:24px; margin-bottom:18px; }
+    h1 { margin:4px 0 8px; font-family:Georgia,serif; font-size:clamp(2rem,6vw,3.5rem); }
+    p { margin:0; color:var(--muted); }
+    input { width:100%; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font:inherit; }
+    .panel { overflow:hidden; }
+    .relationship-header { display:grid; grid-template-columns:minmax(180px,1fr) minmax(150px,.7fr); gap:18px; align-items:center; padding:11px 20px; border-bottom:1px solid var(--line); background:#f8f3ea; color:var(--muted); font-size:.78rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    .sort-button { width:auto; margin:0; padding:0; border:0; background:transparent; color:inherit; cursor:pointer; font:inherit; font-weight:inherit; letter-spacing:inherit; text-align:left; text-transform:inherit; }
+    .sort-button:hover,.sort-button:focus-visible { color:var(--accent); }
+    .sort-label { text-align:right; }
+    .relationship { display:grid; grid-template-columns:minmax(180px,1fr) minmax(150px,.7fr); gap:18px; align-items:center; padding:15px 20px; border-bottom:1px solid var(--line); }
+    .relationship:last-child { border-bottom:0; }
+    .name { font-weight:850; text-decoration:none; }
+    .kind { color:var(--muted); text-align:right; }
+    .empty { padding:26px; text-align:center; }
+    @media (max-width:600px) { .relationship,.relationship-header { grid-template-columns:1fr; gap:4px; } .kind,.sort-label { text-align:left; } }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a href="tree.html">← Back to tree</a><a id="view-on-tree" href="tree.html">View highlighted on tree</a></nav>
+    <header>
+      <p>Known family connections</p>
+      <h1 id="person-name">Relationships</h1>
+      <p id="summary"></p>
+      <input id="relationship-search" type="search" placeholder="Search a person or relationship" aria-label="Search relationships">
+    </header>
+    <section class="panel">
+      <div class="relationship-header">
+        <button id="sort-name" class="sort-button" type="button" aria-label="Sort by name">Name</button>
+        <button id="sort-relationship" class="sort-button sort-label" type="button" aria-label="Sort by relationship">Relationship</button>
+      </div>
+      <div id="relationship-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="related-app.js"></script>
+</body>
+</html>

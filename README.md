@@ -19,6 +19,23 @@ Open <http://localhost:3000>.
 
 Without Redis env vars, votes/comments are written to local JSON files.
 
+## Verification
+
+```bash
+npm run verify
+npm run snapshot:tree-layout
+npm run snapshot:tree-layout:all
+npm run snapshot:tree-layout:json
+npm run snapshot:tree-layout:svg
+```
+
+The default verification command guards the Bennett branch ordering used by the family tree view and refreshes the reference layout artifact bundle.
+That includes the Clara/Musser/Dan-Amy/Caroline grouping shown in the reference layout.
+The snapshot command prints the reference branch coordinates and parent-child alignment deltas without running the failure gate.
+The all-in-one snapshot command refreshes the JSON, SVG, and HTML artifacts together.
+The JSON snapshot writes the same coordinate evidence to `artifacts/tree-layout-snapshot.json`.
+The SVG snapshot writes a compact visual preview to `artifacts/tree-layout-snapshot.svg` and a browser-friendly wrapper at `artifacts/tree-layout-snapshot.html`.
+
 ## Render environment variables
 
 Set these in Render:
@@ -34,6 +51,10 @@ REDIS_TOKEN=your-upstash-rest-token
 ```text
 GET  /api/health
 GET  /api/family/bootstrap
+GET  /api/family/tree
+POST /api/family/tree
+POST /api/family/tree/:id/links
+DELETE /api/family/tree/:id
 GET  /api/family/proposals
 POST /api/family/proposals
 POST /api/family/proposals/:id/vote

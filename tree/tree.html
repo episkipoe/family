@@ -245,6 +245,29 @@
       background: #185f6e;
     }
 
+    .edit-person-name {
+      width: auto;
+      min-height: 0;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      color: inherit;
+      font: inherit;
+      font-weight: inherit;
+      line-height: inherit;
+      text-align: left;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .edit-person-name:hover,
+    .edit-person-name:focus-visible {
+      background: transparent;
+      color: var(--accent);
+      transform: none;
+    }
+
     .inline-actions {
       display: flex;
       flex-wrap: wrap;
@@ -616,6 +639,61 @@
         <button class="tree-action" type="submit">Save link</button>
       </div>
       <span class="form-status" data-link-status></span>
+    </form>
+  </dialog>
+
+  <dialog id="edit-person-dialog" class="link-dialog">
+    <form id="edit-person-form" class="link-form" method="dialog">
+      <div class="dialog-topline">
+        <h2>Edit person</h2>
+        <button class="tree-action" type="button" data-close-edit-dialog aria-label="Close">X</button>
+      </div>
+      <input type="hidden" name="personId" id="edit-person-id">
+      <label>
+        Name
+        <input id="edit-person-name" name="name" required maxlength="120" autocomplete="name">
+      </label>
+      <label>
+        Family
+        <input id="edit-family-name" name="family" required maxlength="120">
+      </label>
+      <label>
+        Gender
+        <select id="edit-gender" name="gender">
+          <option value="">Unknown / not listed</option>
+          <option value="F">Female</option>
+          <option value="M">Male</option>
+        </select>
+      </label>
+      <label>
+        Birth date
+        <input id="edit-birth-date" name="birthDate" maxlength="40" placeholder="YYYY-MM-DD">
+      </label>
+      <label>
+        Death date
+        <input id="edit-death-date" name="deathDate" maxlength="40" placeholder="YYYY-MM-DD">
+      </label>
+      <label>
+        Marriage date
+        <input id="edit-marriage-date" name="marriageDate" maxlength="40" placeholder="YYYY-MM-DD">
+      </label>
+      <label>
+        Parent 1
+        <select id="edit-parent-1" name="parent1Id"></select>
+      </label>
+      <label>
+        Parent 2
+        <select id="edit-parent-2" name="parent2Id"></select>
+      </label>
+      <label>
+        Partner
+        <select id="edit-partner" name="partnerId"></select>
+      </label>
+      <div class="dialog-actions">
+        <button class="tree-action" type="button" data-close-edit-dialog>Cancel</button>
+        <button class="tree-action" type="submit">Save person</button>
+      </div>
+      <span class="form-status" data-edit-status></span>
     </form>
   </dialog>
 

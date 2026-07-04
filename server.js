@@ -220,7 +220,7 @@ function familyTreePersonFromBody(body, nextId) {
     ...(birthDate ? { birthDate } : {}),
     ...(deathDate ? { deathDate } : {}),
     ...(marriageDate ? { marriageDate } : {}),
-    ...(partnerId ? { partnerId } : {}),
+    ...(hasPersonId(partnerId) ? { partnerId } : {}),
     parent1Id,
     parent2Id
   };
@@ -281,6 +281,46 @@ app.post('/api/family/tree', async (req, res, next) => {
     familyTree.push(person);
     await setData('familyTree', familyTree);
     res.status(201).json({ person, updatedChild, familyTree });
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.put('/api/family/tree/:id', async (req, res, next) => {
+  try {
+    const personId = Number(req.params.id);
+    if (!Number.isInteger(personId) || personId < 0) {
+      return res.status(400).json({ error: 'Person id must be a positive number.' });
+    }
+
+    const familyTree = await getData('familyTree');
+    const personIndex = familyTree.findIndex((entry) => entry.id === personId);
+    if (personIndex === -1) return res.status(404).json({ error: 'Person not found.' });
+
+    const person = familyTreePersonFromBody(req.body.person || req.body, personId);
+    if (person.error) return res.status(400).json({ error: person.error });
+
+    const existingIds = new Set(familyTree.map((entry) => entry.id));
+    const relationIds = [person.partnerId, person.parent1Id, person.parent2Id].filter(hasPersonId);
+    if (relationIds.includes(personId)) {
+      return res.status(400).json({ error: 'A person cannot be their own parent or partner.' });
+    }
+    const missingRelationId = relationIds.find((id) => !existingIds.has(id));
+    if (missingRelationId) return res.status(400).json({ error: `Related person ${missingRelationId} was not found.` });
+
+    const updatedPerson = {
+      ...familyTree[personIndex],
+      ...person
+    };
+    ['gender', 'birthDate', 'deathDate', 'marriageDate'].forEach((field) => {
+      if (!Object.prototype.hasOwnProperty.call(person, field)) delete updatedPerson[field];
+    });
+    if (!Object.prototype.hasOwnProperty.call(person, 'partnerId')) updatedPerson.partnerId = null;
+
+    familyTree[personIndex] = updatedPerson;
+
+    await setData('familyTree', familyTree);
+    res.json({ person: familyTree[personIndex], familyTree });
   } catch (err) {
     next(err);
   }

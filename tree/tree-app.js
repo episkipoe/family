@@ -16,12 +16,34 @@
   const linkPersonId = document.querySelector("#link-person-id");
   const linkTitle = document.querySelector("#link-title");
   const linkStatus = linkForm.querySelector("[data-link-status]");
+  const editPersonDialog = document.querySelector("#edit-person-dialog");
+  const editPersonForm = document.querySelector("#edit-person-form");
+  const editPersonId = document.querySelector("#edit-person-id");
+  const editPersonName = document.querySelector("#edit-person-name");
+  const editFamilyName = document.querySelector("#edit-family-name");
+  const editGender = document.querySelector("#edit-gender");
+  const editBirthDate = document.querySelector("#edit-birth-date");
+  const editDeathDate = document.querySelector("#edit-death-date");
+  const editMarriageDate = document.querySelector("#edit-marriage-date");
+  const editParent1 = document.querySelector("#edit-parent-1");
+  const editParent2 = document.querySelector("#edit-parent-2");
+  const editPartner = document.querySelector("#edit-partner");
+  const editStatus = editPersonForm.querySelector("[data-edit-status]");
 
   const width = () => chart.clientWidth;
   const height = () => chart.clientHeight;
   const memberById = new Map(members.map((member) => [member.id, member]));
   const childrenByParent = new Map();
   const partnerPairs = new Map();
+  // These lanes keep the youngest Bennett descendants in visual branch order:
+  // Gil/James left, Mark/Terri/Dan middle, Jonathan right.
+  const BENNETT_BRANCH_LANES = {
+    11: -560,
+    12: -170,
+    13: 80
+  };
+  const DEFAULT_SIBLING_SPACING_MAX = 138;
+  const BENNETT_PARENT_SIBLING_SPACING_MAX = 260;
   let selectedId = null;
   let comparisonId = null;
   let touchRelationSourceId = null;
@@ -102,7 +124,7 @@
   hydrateControls();
   resize();
   render();
-  clearSelection();
+  selectInitialPerson();
   window.addEventListener("resize", resize);
 
   async function loadFamilyMembers() {
@@ -110,6 +132,15 @@
     if (!response.ok) throw new Error("Unable to load family tree data.");
     const people = await response.json();
     return people.map((member) => ({ ...member }));
+  }
+
+  function selectInitialPerson() {
+    const requestedId = Number(new URLSearchParams(window.location.search).get("id"));
+    if (Number.isFinite(requestedId) && nodeById.has(requestedId)) {
+      updateSelection(requestedId);
+      return;
+    }
+    clearSelection();
   }
 
   function hydrateControls() {
@@ -157,15 +188,27 @@
         return;
       }
 
+      const editPersonButton = event.target.closest("[data-edit-person]");
+      if (editPersonButton) {
+        openEditPersonDialog(Number(editPersonButton.dataset.personId));
+        return;
+      }
+
       const button = event.target.closest("[data-person-id]");
       if (!button) return;
       selectPerson(event, Number(button.dataset.personId));
     });
 
     linkForm.addEventListener("submit", savePersonLink);
+    editPersonForm.addEventListener("submit", savePersonEdit);
     linkDialog.addEventListener("click", (event) => {
       if (event.target === linkDialog || event.target.closest("[data-close-link-dialog]")) {
         closeLinkDialog();
+      }
+    });
+    editPersonDialog.addEventListener("click", (event) => {
+      if (event.target === editPersonDialog || event.target.closest("[data-close-edit-dialog]")) {
+        closeEditPersonDialog();
       }
     });
   }
@@ -344,7 +387,7 @@
 
     details.innerHTML = `
       <p class="eyebrow">Selected Person</p>
-      <h2>${escapeHtml(member.name)}</h2>
+      <h2><button class="edit-person-name" type="button" data-edit-person data-person-id="${member.id}">${escapeHtml(member.name)}</button></h2>
       <dl>
         <div><dt>Family</dt><dd>${escapeHtml(member.family || "Unknown")}</dd></div>
         <div><dt>Generation</dt><dd>${member.generation + 1}</dd></div>
@@ -408,6 +451,99 @@
 
   function closeLinkDialog() {
     linkDialog.close();
+  }
+
+  function openEditPersonDialog(personId) {
+    const person = memberById.get(personId);
+    if (!person) return;
+
+    editPersonForm.reset();
+    editPersonId.value = String(person.id);
+    editPersonName.value = person.name || "";
+    editFamilyName.value = person.family || "";
+    editGender.value = person.gender || "";
+    editBirthDate.value = person.birthDate || "";
+    editDeathDate.value = person.deathDate || "";
+    editMarriageDate.value = person.marriageDate || "";
+    hydrateEditPersonOptions(person.id);
+    editParent1.value = person.parent1Id ?? "";
+    editParent2.value = person.parent2Id ?? "";
+    editPartner.value = person.partnerId ?? "";
+    editStatus.textContent = "";
+    editStatus.classList.remove("error");
+    editPersonDialog.showModal();
+    window.setTimeout(() => editPersonName.focus(), 0);
+  }
+
+  function hydrateEditPersonOptions(personId) {
+    const options = nodes
+      .filter((node) => node.id !== personId)
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name) || a.id - b.id)
+      .map((person) => `<option value="${person.id}">${escapeHtml(person.name)} (${person.id})</option>`)
+      .join("");
+
+    [editParent1, editParent2, editPartner].forEach((select) => {
+      select.innerHTML = `<option value="">None</option>${options}`;
+    });
+  }
+
+  async function savePersonEdit(event) {
+    event.preventDefault();
+    const personId = Number(editPersonId.value);
+    const payload = editPersonPayload();
+    const error = editValidationError(payload);
+    if (error) {
+      editStatus.textContent = error;
+      editStatus.classList.add("error");
+      return;
+    }
+
+    editStatus.textContent = "Saving...";
+    editStatus.classList.remove("error");
+
+    try {
+      const response = await fetch(`/api/family/tree/${personId}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(payload)
+      });
+      const result = await response.json();
+      if (!response.ok) throw new Error(result.error || "Unable to save person.");
+      closeEditPersonDialog();
+      window.location.href = `tree.html?id=${result.person.id}`;
+    } catch (error) {
+      editStatus.textContent = error.message || "Unable to save person.";
+      editStatus.classList.add("error");
+    }
+  }
+
+  function editPersonPayload() {
+    return {
+      name: editPersonName.value.trim(),
+      family: editFamilyName.value.trim(),
+      gender: editGender.value,
+      birthDate: editBirthDate.value.trim(),
+      deathDate: editDeathDate.value.trim(),
+      marriageDate: editMarriageDate.value.trim(),
+      parent1Id: numberOrNull(editParent1.value),
+      parent2Id: numberOrNull(editParent2.value),
+      partnerId: numberOrNull(editPartner.value)
+    };
+  }
+
+  function editValidationError(payload) {
+    if (!payload.name) return "Name is required.";
+    if (!payload.family) return "Family is required.";
+    if (payload.parent1Id !== null && payload.parent1Id === payload.parent2Id) return "Parent 1 and Parent 2 must be different people.";
+    if (payload.partnerId !== null && [payload.parent1Id, payload.parent2Id].includes(payload.partnerId)) return "Partner cannot also be a parent.";
+    return "";
+  }
+
+  function closeEditPersonDialog() {
+    editPersonDialog.close();
   }
 
   function selectPerson(event, id) {
@@ -686,12 +822,12 @@
     const touchesSelection = selectedId !== null && (sourceId === selectedId || targetId === selectedId);
 
     if (link.type === "partner") return touchesSelection ? 124 : 80;
-    return touchesSelection ? 132 : 170;
+    return touchesSelection ? 104 : 132;
   }
 
   function chargeStrength(node) {
-    if (selectedId === null) return -290;
-    return immediateFamilyIds(selectedId).has(node.id) ? -180 : -360;
+    if (selectedId === null) return -150;
+    return immediateFamilyIds(selectedId).has(node.id) ? -90 : -210;
   }
 
   function collisionRadius(node) {
@@ -700,8 +836,8 @@
   }
 
   function xStrength(node) {
-    if (selectedId === null) return 0.42;
-    return immediateFamilyIds(selectedId).has(node.id) ? 0.78 : 0.58;
+    if (selectedId === null) return 0.72;
+    return immediateFamilyIds(selectedId).has(node.id) ? 1.05 : 0.84;
   }
 
   function updateForces(alpha = 0.32) {
@@ -822,9 +958,13 @@
     const units = displayUnitsForGeneration(generationNodes);
     const grouped = d3.group(units, parentKeyForUnit);
     const groups = [...grouped.entries()].map(([parentKey, parentUnits]) => {
-      const parentCenter = parentCenterForKey(parentKey) + branchLaneOffset(parentKey);
+      const parentCenter = parentCenterForKey(parentKey) + branchLaneOffset(parentKey, parentUnits);
       const sortedUnits = sortSiblingUnits(parentUnits);
-      const siblingSpacing = Math.max(102, Math.min(138, 520 / Math.max(1, sortedUnits.length)));
+      const generation = sortedUnits[0]?.[0]?.generation ?? 0;
+      const maxSiblingSpacing = generation === 3 && branchRootForParentKey(parentKey)
+        ? BENNETT_PARENT_SIBLING_SPACING_MAX
+        : DEFAULT_SIBLING_SPACING_MAX;
+      const siblingSpacing = Math.max(102, Math.min(maxSiblingSpacing, 620 / Math.max(1, sortedUnits.length)));
       const totalWidth = siblingSpacing * (sortedUnits.length - 1);
 
       sortedUnits.forEach((unit, index) => {
@@ -843,18 +983,7 @@
 
     groups.sort(compareSiblingGroups);
 
-    let rightEdge = -Infinity;
-    groups.forEach((group) => {
-      const leftEdge = group.targetX - group.width / 2;
-      if (leftEdge < rightEdge + 24) {
-        const shift = rightEdge + 24 - leftEdge;
-        group.targetX += shift;
-        group.units.forEach((unit) => {
-          unit.targetX += shift;
-        });
-      }
-      rightEdge = group.targetX + group.width / 2;
-    });
+    pushGroupsOutwardFromCenter(groups);
 
     reserveSelectedChildLane(groups);
 
@@ -875,6 +1004,37 @@
     return groups.flatMap((group) => group.units);
   }
 
+  function pushGroupsOutwardFromCenter(groups) {
+    const center = d3.mean(groups, (group) => group.targetX) ?? width() / 2;
+    const gutter = 24;
+    const shiftUnits = (group, shift) => {
+      group.targetX += shift;
+      group.units.forEach((unit) => {
+        unit.targetX += shift;
+      });
+    };
+
+    const leftGroups = groups
+      .filter((group) => group.targetX < center)
+      .sort((a, b) => b.targetX - a.targetX);
+    let leftBoundary = center - gutter;
+    leftGroups.forEach((group) => {
+      const groupRight = group.targetX + group.width / 2;
+      if (groupRight > leftBoundary) shiftUnits(group, leftBoundary - groupRight);
+      leftBoundary = group.targetX - group.width / 2 - gutter;
+    });
+
+    const rightGroups = groups
+      .filter((group) => group.targetX >= center)
+      .sort((a, b) => a.targetX - b.targetX);
+    let rightBoundary = center + gutter;
+    rightGroups.forEach((group) => {
+      const groupLeft = group.targetX - group.width / 2;
+      if (groupLeft < rightBoundary) shiftUnits(group, rightBoundary - groupLeft);
+      rightBoundary = group.targetX + group.width / 2 + gutter;
+    });
+  }
+
   function unitGroupBounds(units, minimumWidth) {
     const targets = units.map((unit) => unit.targetX).filter((x) => Number.isFinite(x));
     if (!targets.length) return { targetX: width() / 2, width: minimumWidth };
@@ -887,12 +1047,18 @@
     };
   }
 
-  function branchLaneOffset(parentKey) {
-    const branchRootId = branchRootForParentKey(parentKey);
-    if (branchRootId === 11) return -560;
-    if (branchRootId === 12) return -170;
-    if (branchRootId === 13) return 80;
-    return 0;
+  function branchLaneOffset(parentKey, units) {
+    if (!units.flat().some((member) => member.generation >= 4)) return 0;
+
+    const branchRootId = directBranchRootForParentKey(parentKey);
+    return BENNETT_BRANCH_LANES[branchRootId] || 0;
+  }
+
+  function directBranchRootForParentKey(parentKey) {
+    const parents = parentIdsFromKey(parentKey).map((id) => nodeById.get(id));
+    return Object.keys(BENNETT_BRANCH_LANES)
+      .map((id) => Number(id))
+      .find((id) => parents.some((parent) => parent?.id === id)) || null;
   }
 
   function branchRootForParentKey(parentKey) {
@@ -901,12 +1067,13 @@
     if (!anchor) return null;
 
     const parents = parentIdsFromKey(parentKey).map((id) => nodeById.get(id));
-    if (parents.some((parent) => parent?.id === 11)) return 11;
-    if (parents.some((parent) => parent?.id === 12)) return 12;
-    if (parents.some((parent) => parent?.id === 13)) return 13;
+    const directBranchParent = Object.keys(BENNETT_BRANCH_LANES)
+      .map((id) => Number(id))
+      .find((id) => parents.some((parent) => parent?.id === id));
+    if (directBranchParent) return directBranchParent;
 
     const ancestorIds = ancestorDistances(anchor.id);
-    for (const id of [11, 12, 13]) {
+    for (const id of Object.keys(BENNETT_BRANCH_LANES).map((value) => Number(value))) {
       if (ancestorIds.has(id)) return id;
     }
     return null;
@@ -1029,8 +1196,7 @@
       if (aSelected !== bSelected) return bSelected - aSelected;
     }
     const branchOrder = compareParentBranchKeys(a.key, b.key);
-    if (branchOrder !== 0) return branchOrder;
-    return a.targetX - b.targetX;
+    return a.targetX - b.targetX || branchOrder;
   }
 
   function compareParentBranchKeys(aKey, bKey) {
@@ -1120,11 +1286,18 @@
     if (!parentIds.length) return width() / 2;
 
     const parentXs = parentIds
-      .map((id) => nodeById.get(id).targetX)
+      .map((id) => parentAnchorX(nodeById.get(id)))
       .filter((x) => Number.isFinite(x));
 
     if (!parentXs.length) return width() / 2;
     return d3.mean(parentXs);
+  }
+
+  function parentAnchorX(node) {
+    if (!node) return NaN;
+    if (Number.isFinite(node.fx)) return node.fx;
+    if (Number.isFinite(node.x)) return node.x;
+    return node.targetX;
   }
 
   function comparePartnerPair(a, b) {
@@ -1205,6 +1378,10 @@
     return [member.parent1Id, member.parent2Id]
       .filter((id) => id !== null && id !== undefined)
       .filter((id) => memberById.has(id));
+  }
+
+  function numberOrNull(value) {
+    return value === "" || value === null || value === undefined ? null : Number(value);
   }
 
   function missingParentFields(member) {
@@ -1382,6 +1559,7 @@
     }
     if (!event.active) simulation.alphaTarget(0.25).restart();
     d.fx = d.x;
+    d.targetX = d.x;
   }
 
   function dragged(event, d) {
@@ -1394,6 +1572,12 @@
       return;
     }
     d.fx = event.x;
+    d.targetX = event.x;
+    updateLayeredTargets();
+    simulation
+      .force("x", d3.forceX((node) => node.targetX).strength(xStrength))
+      .alpha(0.18)
+      .restart();
   }
 
   function dragEnded(event, d) {
@@ -1408,6 +1592,9 @@
     }
     if (!event.active) simulation.alphaTarget(0);
     d.fx = event.x;
+    d.targetX = event.x;
+    updateLayeredTargets();
+    updateForces(0.14);
   }
 
   function startTouchTap(event, id) {

@@ -5,7 +5,13 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
-    "dev": "node --watch server.js"
+    "dev": "node --watch server.js",
+    "verify": "npm run verify:tree-layout && npm run snapshot:tree-layout:all",
+    "verify:tree-layout": "node utils/verifyTreeLayout.js",
+    "snapshot:tree-layout": "node utils/verifyTreeLayout.js --snapshot",
+    "snapshot:tree-layout:all": "node utils/verifyTreeLayout.js --snapshot --json artifacts/tree-layout-snapshot.json --svg artifacts/tree-layout-snapshot.svg",
+    "snapshot:tree-layout:json": "node utils/verifyTreeLayout.js --snapshot --json artifacts/tree-layout-snapshot.json",
+    "snapshot:tree-layout:svg": "node utils/verifyTreeLayout.js --snapshot --svg artifacts/tree-layout-snapshot.svg"
   },
   "dependencies": {
     "@upstash/redis": "^1.35.0",
