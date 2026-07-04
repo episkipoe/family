@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Family History Timeline</title>
+  <style>
+    :root { --ink:#17202c; --muted:#677080; --paper:#fffdf8; --accent:#1f7a8c; --accent-dark:#185f6e; --rose:#a04755; --gold:#bb8a1d; --line:#ded8cc; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#f3eee4; font-family:Inter,system-ui,sans-serif; }
+    main { width:min(1120px,calc(100% - 28px)); margin:0 auto; padding:28px 0 60px; }
+    nav { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    a { color:var(--accent); font-weight:750; }
+    header,.panel { background:var(--paper); border:1px solid var(--line); border-radius:8px; box-shadow:0 14px 36px rgba(24,33,47,.08); }
+    header { padding:24px; margin-bottom:18px; }
+    h1 { margin:4px 0 8px; font-family:Georgia,serif; font-size:clamp(2rem,6vw,3.5rem); letter-spacing:0; }
+    h2 { margin:0; font-size:1.25rem; }
+    p { margin:0; color:var(--muted); line-height:1.5; }
+    label { display:grid; gap:6px; color:var(--muted); font-size:.78rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
+    input,select,button { width:100%; min-height:40px; border:1px solid var(--line); border-radius:8px; background:#fffdf8; color:var(--ink); font:inherit; }
+    input,select { padding:0 12px; }
+    button { cursor:pointer; font-weight:850; }
+    button:hover,button:focus-visible { border-color:var(--accent); background:#eefafa; color:var(--accent-dark); }
+    .layout { display:grid; grid-template-columns:minmax(250px,.55fr) minmax(0,1.45fr); gap:18px; align-items:start; }
+    .panel { padding:18px; }
+    .controls { display:grid; gap:13px; position:sticky; top:16px; }
+    .stats { display:grid; gap:7px; color:var(--muted); font-size:.92rem; }
+    .stats strong { color:var(--ink); }
+    .timeline { position:relative; display:grid; gap:12px; margin-top:14px; }
+    .timeline::before { content:""; position:absolute; top:8px; bottom:8px; left:88px; width:3px; border-radius:999px; background:linear-gradient(var(--accent),var(--rose)); opacity:.3; }
+    .event-button { position:relative; display:grid; grid-template-columns:74px minmax(0,1fr); gap:26px; width:100%; min-height:0; padding:0; border:0; background:transparent; text-align:left; }
+    .event-button:hover,.event-button:focus-visible { background:transparent; color:inherit; }
+    .event-year { padding-top:14px; color:var(--accent-dark); font-weight:900; text-align:right; }
+    .event-card { position:relative; padding:13px 14px; border:1px solid var(--line); border-radius:8px; background:#fffaf2; }
+    .event-card strong { display:block; margin-bottom:4px; line-height:1.25; }
+    .event-card span { color:var(--muted); font-size:.92rem; }
+    .event-meta { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+    .pill { display:inline-flex; align-items:center; min-height:24px; padding:3px 8px; border-radius:999px; background:rgba(31,122,140,.09); color:var(--accent-dark); font-size:.76rem; font-weight:850; }
+    .pill.historic { background:rgba(160,71,85,.1); color:var(--rose); }
+    .empty { padding:18px; color:var(--muted); text-align:center; }
+    .history-dialog { width:min(720px,calc(100% - 28px)); border:1px solid var(--line); border-radius:8px; background:var(--paper); color:var(--ink); box-shadow:0 22px 56px rgba(24,33,47,.22); padding:0; }
+    .history-dialog::backdrop { background:rgba(24,33,47,.36); }
+    .dialog-body { display:grid; gap:16px; padding:20px; }
+    .dialog-topline { display:flex; align-items:start; justify-content:space-between; gap:14px; }
+    .dialog-topline button { width:auto; min-width:42px; }
+    .age-list { display:grid; grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); gap:9px; max-height:46vh; overflow:auto; padding-right:3px; }
+    .age-row { display:grid; gap:3px; padding:10px 11px; border:1px solid var(--line); border-radius:8px; background:#fffaf2; }
+    .age-row.is-event-person { border-color:rgba(31,122,140,.58); background:#eaf8f8; box-shadow:inset 4px 0 0 var(--accent); }
+    .age-row.is-event-parent { border-color:rgba(187,138,29,.42); background:#fff6df; box-shadow:inset 3px 0 0 rgba(187,138,29,.72); }
+    .age-row strong { line-height:1.25; }
+    .age-row span { color:var(--muted); font-size:.88rem; }
+    @media (max-width:820px) { .layout { grid-template-columns:1fr; } .controls { position:static; } .timeline::before { left:68px; } .event-button { grid-template-columns:56px minmax(0,1fr); gap:24px; } .event-card::before { left:-32px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a href="tree.html">Family tree</a>
+      <a href="calendar.html">Calendar</a>
+      <a href="map.html">Map</a>
+      <a href="/">Back to Family</a>
+    </nav>
+    <header>
+      <p>Family history</p>
+      <h1>Timeline</h1>
+      <p id="history-summary">Loading family events and historical milestones.</p>
+    </header>
+    <div class="layout">
+      <section class="panel controls" aria-label="Timeline filters">
+        <label for="history-search">
+          Search
+          <input id="history-search" type="search" placeholder="Name or event" autocomplete="off">
+        </label>
+        <label for="history-type">
+          Event type
+          <select id="history-type">
+            <option value="all">All events</option>
+            <option value="family">Family events</option>
+            <option value="historic">Historical events</option>
+          </select>
+        </label>
+        <section id="history-stats" class="stats" aria-live="polite"></section>
+      </section>
+      <section class="panel" aria-labelledby="timeline-heading">
+        <h2 id="timeline-heading">All Events</h2>
+        <div id="history-timeline" class="timeline" aria-live="polite"></div>
+      </section>
+    </div>
+  </main>
+
+  <dialog id="event-dialog" class="history-dialog">
+    <div class="dialog-body">
+      <div class="dialog-topline">
+        <div>
+          <p id="dialog-date"></p>
+          <h2 id="dialog-title"></h2>
+        </div>
+        <button type="button" data-close-dialog aria-label="Close">X</button>
+      </div>
+      <p id="dialog-description"></p>
+      <section>
+        <h2 id="age-heading">Alive Then</h2>
+        <div id="age-list" class="age-list"></div>
+      </section>
+    </div>
+  </dialog>
+
+  <script src="history-app.js"></script>
+</body>
+</html>
