@@ -187,7 +187,11 @@ function proposalFromBody(body, existing = {}) {
 function nullablePersonId(value) {
   if (value === null || value === undefined || value === '') return null;
   const id = Number(value);
-  return Number.isInteger(id) && id > 0 ? id : NaN;
+  return Number.isInteger(id) && id >= 0 ? id : NaN;
+}
+
+function hasPersonId(value) {
+  return value !== null && value !== undefined;
 }
 
 function familyTreePersonFromBody(body, nextId) {
@@ -204,9 +208,9 @@ function familyTreePersonFromBody(body, nextId) {
   if (!name) return { error: 'name is required.' };
   if (!family) return { error: 'family is required.' };
   if (gender && !['F', 'M'].includes(gender)) return { error: 'gender must be F, M, or blank.' };
-  if ([partnerId, parent1Id, parent2Id].some(Number.isNaN)) return { error: 'Related person ids must be positive numbers.' };
-  if (parent1Id && parent1Id === parent2Id) return { error: 'Parent 1 and Parent 2 must be different people.' };
-  if (partnerId && [parent1Id, parent2Id].includes(partnerId)) return { error: 'Partner cannot also be a parent.' };
+  if ([partnerId, parent1Id, parent2Id].some(Number.isNaN)) return { error: 'Related person ids must be zero or positive numbers.' };
+  if (hasPersonId(parent1Id) && parent1Id === parent2Id) return { error: 'Parent 1 and Parent 2 must be different people.' };
+  if (hasPersonId(partnerId) && [parent1Id, parent2Id].includes(partnerId)) return { error: 'Partner cannot also be a parent.' };
 
   return {
     id: nextId,
@@ -242,7 +246,7 @@ app.post('/api/family/tree', async (req, res, next) => {
     if (person.error) return res.status(400).json({ error: person.error });
 
     const existingIds = new Set(familyTree.map((entry) => entry.id));
-    const relationIds = [person.partnerId, person.parent1Id, person.parent2Id].filter(Boolean);
+    const relationIds = [person.partnerId, person.parent1Id, person.parent2Id].filter(hasPersonId);
     const missingRelationId = relationIds.find((id) => !existingIds.has(id));
     if (missingRelationId) return res.status(400).json({ error: `Related person ${missingRelationId} was not found.` });
 
@@ -250,8 +254,8 @@ app.post('/api/family/tree', async (req, res, next) => {
     const childParentField = cleanString(req.body.childParentField, 20);
     let updatedChild = null;
 
-    if (Number.isNaN(childId)) return res.status(400).json({ error: 'childId must be a positive number.' });
-    if (childId) {
+    if (Number.isNaN(childId)) return res.status(400).json({ error: 'childId must be zero or a positive number.' });
+    if (hasPersonId(childId)) {
       if (!['parent1Id', 'parent2Id'].includes(childParentField)) {
         return res.status(400).json({ error: 'childParentField must be parent1Id or parent2Id.' });
       }

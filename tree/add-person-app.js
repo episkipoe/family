@@ -101,11 +101,11 @@
     const parentId = params.get("parentId");
     const requestedParentField = params.get("childParentField");
 
-    if (childId && personById(Number(childId))) {
+    if (hasPersonIdValue(childId) && personById(Number(childId))) {
       child.value = childId;
     }
 
-    if (parentId && personById(Number(parentId))) {
+    if (hasPersonIdValue(parentId) && personById(Number(parentId))) {
       parent1.value = parentId;
     }
 
@@ -118,7 +118,7 @@
     const entry = personPayload();
     entry.id = nextId();
 
-    const selectedChild = child.value ? personById(Number(child.value)) : null;
+    const selectedChild = hasPersonIdValue(child.value) ? personById(Number(child.value)) : null;
     if (!selectedChild) return JSON.stringify(entry, null, 2);
 
     const updatedChild = {
@@ -174,11 +174,11 @@
   function validationError() {
     if (!fields.name.value.trim()) return "Name is required.";
     if (!fields.family.value.trim()) return "Family is required.";
-    if (parent1.value && parent1.value === parent2.value) return "Parent 1 and Parent 2 must be different people.";
-    if ([parent1.value, parent2.value].includes(partner.value) && partner.value) return "Partner cannot also be a parent.";
-    if (child.value && [parent1.value, parent2.value].includes(child.value)) return "Child cannot also be selected as this person's parent.";
-    if (child.value && partner.value === child.value) return "Child cannot also be selected as this person's partner.";
-    if (child.value) {
+    if (hasPersonIdValue(parent1.value) && parent1.value === parent2.value) return "Parent 1 and Parent 2 must be different people.";
+    if ([parent1.value, parent2.value].includes(partner.value) && hasPersonIdValue(partner.value)) return "Partner cannot also be a parent.";
+    if (hasPersonIdValue(child.value) && [parent1.value, parent2.value].includes(child.value)) return "Child cannot also be selected as this person's parent.";
+    if (hasPersonIdValue(child.value) && partner.value === child.value) return "Child cannot also be selected as this person's partner.";
+    if (hasPersonIdValue(child.value)) {
       const selectedChild = personById(Number(child.value));
       const existingParentId = selectedChild?.[childParentField.value];
       if (existingParentId !== null && existingParentId !== undefined) {
@@ -197,7 +197,11 @@
   }
 
   function numberOrNull(value) {
-    return value ? Number(value) : null;
+    return hasPersonIdValue(value) ? Number(value) : null;
+  }
+
+  function hasPersonIdValue(value) {
+    return value !== null && value !== undefined && value !== "";
   }
 
   function setStatus(message, isError = false) {

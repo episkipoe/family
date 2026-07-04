@@ -44,11 +44,11 @@ function mergeArrayById(localValue, remoteValue) {
   const mergedById = new Map();
 
   for (const item of localValue) {
-    if (item?.id) mergedById.set(item.id, item);
+    if (item?.id !== null && item?.id !== undefined) mergedById.set(item.id, item);
   }
 
   for (const remoteItem of remoteValue) {
-    if (!remoteItem?.id) continue;
+    if (remoteItem?.id === null || remoteItem?.id === undefined) continue;
     const localItem = mergedById.get(remoteItem.id);
     mergedById.set(remoteItem.id, localItem ? newestByUpdatedAt(localItem, remoteItem) : remoteItem);
   }
