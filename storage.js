@@ -22,7 +22,8 @@ const seedFiles = {
   votes: 'votes.json',
   comments: 'comments.json',
   recipes: 'recipes.json',
-  mealPlans: 'mealPlans.json'
+  mealPlans: 'mealPlans.json',
+  familyTree: 'family-tree.json'
 };
 
 const redisKey = (name) => `family-planner:${name}`;

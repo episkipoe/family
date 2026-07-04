@@ -25,6 +25,7 @@ const gamePlaces = {
 
 app.use(express.json({ limit: '200kb' }));
 app.use(express.static('public'));
+app.use('/tree', express.static('tree'));
 
 function cleanString(value, max = 500) {
   return String(value || '').trim().slice(0, max);
@@ -183,8 +184,102 @@ function proposalFromBody(body, existing = {}) {
   };
 }
 
+function nullablePersonId(value) {
+  if (value === null || value === undefined || value === '') return null;
+  const id = Number(value);
+  return Number.isInteger(id) && id > 0 ? id : NaN;
+}
+
+function familyTreePersonFromBody(body, nextId) {
+  const name = cleanString(body.name, 120);
+  const family = cleanString(body.family, 120);
+  const gender = cleanString(body.gender, 10);
+  const birthDate = cleanString(body.birthDate, 40);
+  const deathDate = cleanString(body.deathDate, 40);
+  const marriageDate = cleanString(body.marriageDate, 40);
+  const partnerId = nullablePersonId(body.partnerId);
+  const parent1Id = nullablePersonId(body.parent1Id);
+  const parent2Id = nullablePersonId(body.parent2Id);
+
+  if (!name) return { error: 'name is required.' };
+  if (!family) return { error: 'family is required.' };
+  if (gender && !['F', 'M'].includes(gender)) return { error: 'gender must be F, M, or blank.' };
+  if ([partnerId, parent1Id, parent2Id].some(Number.isNaN)) return { error: 'Related person ids must be positive numbers.' };
+  if (parent1Id && parent1Id === parent2Id) return { error: 'Parent 1 and Parent 2 must be different people.' };
+  if (partnerId && [parent1Id, parent2Id].includes(partnerId)) return { error: 'Partner cannot also be a parent.' };
+
+  return {
+    id: nextId,
+    name,
+    ...(gender ? { gender } : {}),
+    family,
+    ...(birthDate ? { birthDate } : {}),
+    ...(deathDate ? { deathDate } : {}),
+    ...(marriageDate ? { marriageDate } : {}),
+    ...(partnerId ? { partnerId } : {}),
+    parent1Id,
+    parent2Id
+  };
+}
+
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, storage: storageMode() });
+});
+
+app.get('/api/family/tree', async (req, res, next) => {
+  try {
+    res.json(await getData('familyTree'));
+  } catch (err) {
+    next(err);
+  }
+});
+
+app.post('/api/family/tree', async (req, res, next) => {
+  try {
+    const familyTree = await getData('familyTree');
+    const nextId = Math.max(0, ...familyTree.map((person) => Number(person.id) || 0)) + 1;
+    const person = familyTreePersonFromBody(req.body.person || req.body, nextId);
+    if (person.error) return res.status(400).json({ error: person.error });
+
+    const existingIds = new Set(familyTree.map((entry) => entry.id));
+    const relationIds = [person.partnerId, person.parent1Id, person.parent2Id].filter(Boolean);
+    const missingRelationId = relationIds.find((id) => !existingIds.has(id));
+    if (missingRelationId) return res.status(400).json({ error: `Related person ${missingRelationId} was not found.` });
+
+    const childId = nullablePersonId(req.body.childId);
+    const childParentField = cleanString(req.body.childParentField, 20);
+    let updatedChild = null;
+
+    if (Number.isNaN(childId)) return res.status(400).json({ error: 'childId must be a positive number.' });
+    if (childId) {
+      if (!['parent1Id', 'parent2Id'].includes(childParentField)) {
+        return res.status(400).json({ error: 'childParentField must be parent1Id or parent2Id.' });
+      }
+
+      if (relationIds.includes(childId)) {
+        return res.status(400).json({ error: "Child cannot also be selected as this person's parent or partner." });
+      }
+
+      const childIndex = familyTree.findIndex((entry) => entry.id === childId);
+      if (childIndex === -1) return res.status(400).json({ error: 'Selected child was not found.' });
+      const existingParentId = familyTree[childIndex][childParentField];
+      if (existingParentId !== null && existingParentId !== undefined) {
+        return res.status(400).json({ error: `Selected child's ${childParentField} is already set.` });
+      }
+
+      updatedChild = {
+        ...familyTree[childIndex],
+        [childParentField]: person.id
+      };
+      familyTree[childIndex] = updatedChild;
+    }
+
+    familyTree.push(person);
+    await setData('familyTree', familyTree);
+    res.status(201).json({ person, updatedChild, familyTree });
+  } catch (err) {
+    next(err);
+  }
 });
 
 app.get('/api/family/bootstrap', async (req, res, next) => {

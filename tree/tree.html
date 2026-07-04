@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Family Tree</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #18212f;
+      --muted: #667085;
+      --paper: #f7f2ea;
+      --panel: #fffaf2;
+      --line: #dacfc0;
+      --accent: #1f7a8c;
+      --accent-2: #a04755;
+      --gold: #bb8a1d;
+      --shadow: 0 18px 46px rgba(36, 30, 22, 0.15);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background:
+        linear-gradient(135deg, rgba(31, 122, 140, 0.08), transparent 42%),
+        linear-gradient(315deg, rgba(160, 71, 85, 0.1), transparent 42%),
+        var(--paper);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .page {
+      display: grid;
+      grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      padding: 28px;
+      background: rgba(255, 250, 242, 0.86);
+      border-right: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      z-index: 2;
+    }
+
+    .nav {
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(2.1rem, 5vw, 4.2rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .intro {
+      margin: 0;
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.55;
+    }
+
+    .controls {
+      display: grid;
+      gap: 12px;
+    }
+
+    label {
+      display: grid;
+      gap: 7px;
+      color: var(--muted);
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    input,
+    select,
+    button {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: #fffdf8;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    input,
+    select {
+      min-height: 42px;
+      padding: 0 12px;
+    }
+
+    button {
+      min-height: 42px;
+      padding: 0 14px;
+      cursor: pointer;
+      font-weight: 700;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    button:hover {
+      border-color: var(--accent);
+      background: #f5fbfc;
+      transform: translateY(-1px);
+    }
+
+    .button-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .details {
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 253, 248, 0.92);
+    }
+
+    .eyebrow {
+      margin: 0 0 7px;
+      color: var(--gold);
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .details h2 {
+      margin: 0 0 14px;
+      font-size: 1.45rem;
+      line-height: 1.15;
+    }
+
+    dl {
+      display: grid;
+      gap: 11px;
+      margin: 0;
+    }
+
+    dl div {
+      display: grid;
+      gap: 2px;
+    }
+
+    dt {
+      color: var(--muted);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    dd {
+      margin: 0;
+      line-height: 1.35;
+    }
+
+    .name-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .person-link {
+      width: auto;
+      min-height: 30px;
+      padding: 0 10px;
+      border-color: rgba(31, 122, 140, 0.28);
+      background: rgba(31, 122, 140, 0.08);
+      color: var(--accent);
+      font-size: 0.88rem;
+      font-weight: 750;
+    }
+
+    .person-link:hover,
+    .person-link:focus-visible {
+      background: rgba(31, 122, 140, 0.14);
+      transform: translateY(-1px);
+    }
+
+    .related-link {
+      display: inline-flex;
+      margin-top: 14px;
+      padding: 9px 12px;
+      border-radius: 9px;
+      background: var(--accent);
+      color: white;
+      font-size: 0.86rem;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .related-link:hover,
+    .related-link:focus-visible {
+      background: #185f6e;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .stats strong {
+      color: var(--ink);
+    }
+
+    .stats .relationship-result {
+      margin-bottom: 4px;
+      padding: 10px 12px;
+      border: 1px solid rgba(31, 122, 140, 0.24);
+      border-radius: 10px;
+      background: rgba(31, 122, 140, 0.09);
+      color: var(--ink);
+      line-height: 1.4;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .dot,
+    .rule {
+      display: inline-block;
+      flex: 0 0 auto;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid rgba(24, 33, 47, 0.28);
+    }
+
+    .dot.male {
+      background: #8bd3e6;
+    }
+
+    .dot.female {
+      background: #f0a8b3;
+    }
+
+    .rule {
+      width: 22px;
+      height: 0;
+      border-top: 2px solid var(--accent);
+    }
+
+    .rule.dashed {
+      border-top-color: var(--accent-2);
+      border-top-style: dashed;
+    }
+
+    .tree-stage {
+      position: relative;
+      min-width: 0;
+      min-height: 100vh;
+      padding: 18px;
+    }
+
+    .tree-chart {
+      width: 100%;
+      height: calc(100vh - 36px);
+      min-height: 640px;
+      overflow: hidden;
+      border: 1px solid rgba(218, 207, 192, 0.85);
+      border-radius: 8px;
+      background:
+        linear-gradient(rgba(24, 33, 47, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(24, 33, 47, 0.04) 1px, transparent 1px),
+        rgba(255, 253, 248, 0.72);
+      background-size: 36px 36px;
+    }
+
+    svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      cursor: grab;
+      touch-action: none;
+    }
+
+    svg:active {
+      cursor: grabbing;
+    }
+
+    .link {
+      stroke-linecap: round;
+      transition: opacity 180ms ease;
+    }
+
+    .parent-link {
+      stroke: var(--accent);
+      stroke-width: 2.3;
+      opacity: 0.58;
+    }
+
+    .partner-link {
+      stroke: var(--accent-2);
+      stroke-width: 2.6;
+      stroke-dasharray: 7 7;
+      opacity: 0.72;
+    }
+
+    .person-node {
+      cursor: pointer;
+      outline: none;
+      transition: opacity 180ms ease;
+    }
+
+    .avatar {
+      stroke: rgba(24, 33, 47, 0.64);
+      stroke-width: 2.5;
+      filter: drop-shadow(0 8px 10px rgba(24, 33, 47, 0.16));
+      transition: stroke-width 180ms ease, filter 180ms ease, transform 180ms ease;
+    }
+
+    .avatar-male {
+      fill: #8bd3e6;
+    }
+
+    .avatar-female {
+      fill: #f0a8b3;
+    }
+
+    .avatar-neutral {
+      fill: #d8d1c6;
+    }
+
+    .initials {
+      fill: #17202c;
+      font-size: 0.88rem;
+      font-weight: 800;
+      pointer-events: none;
+      text-anchor: middle;
+    }
+
+    .node-label {
+      fill: #17202c;
+      paint-order: stroke;
+      stroke: rgba(255, 253, 248, 0.92);
+      stroke-linejoin: round;
+      stroke-width: 5px;
+      font-size: 0.78rem;
+      font-weight: 750;
+      pointer-events: none;
+      text-anchor: middle;
+    }
+
+    .person-node:hover .avatar,
+    .person-node:focus-visible .avatar,
+    .person-node.is-selected .avatar {
+      stroke: #111827;
+      stroke-width: 4;
+      filter: drop-shadow(0 12px 15px rgba(24, 33, 47, 0.22));
+    }
+
+    .person-node.is-match .avatar {
+      stroke: var(--gold);
+      stroke-width: 5;
+      filter: drop-shadow(0 0 0 rgba(187, 138, 29, 0.45)) drop-shadow(0 14px 18px rgba(187, 138, 29, 0.24));
+    }
+
+    .person-node.is-relation-target .avatar {
+      stroke: var(--accent-2);
+      stroke-width: 6;
+      filter: drop-shadow(0 0 10px rgba(196, 91, 72, 0.48));
+    }
+
+    .person-node.is-match .node-label {
+      font-size: 0.86rem;
+      font-weight: 850;
+    }
+
+    .person-node.is-dimmed,
+    .link.is-dimmed {
+      opacity: 0.18;
+    }
+
+    .person-node.is-hidden,
+    .link.is-hidden {
+      display: none;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+        box-shadow: none;
+      }
+
+      .tree-stage {
+        min-height: 70vh;
+        padding: 12px;
+      }
+
+      .tree-chart {
+        height: 72vh;
+        min-height: 520px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <aside class="sidebar" aria-label="Family tree controls">
+      <header>
+        <h1>Family Tree</h1>
+        <p class="intro"></p>
+      </header>
+
+      <section class="controls" aria-label="Tree filters">
+        <label for="member-search">
+          Search
+          <input id="member-search" type="search" placeholder="Name">
+        </label>
+        <label for="generation-filter">
+          Generation
+          <select id="generation-filter">
+            <option value="all">All generations</option>
+          </select>
+        </label>
+        <div class="button-row">
+          <button id="fit-view" type="button">Fit</button>
+          <button id="reset-view" type="button">Reset</button>
+        </div>
+      </section>
+
+      <section id="member-details" class="details" aria-live="polite"></section>
+      <section id="tree-stats" class="stats" aria-label="Tree statistics"></section>
+
+      <section class="legend" aria-label="Legend">
+        <span><i class="dot male"></i>Male</span>
+        <span><i class="dot female"></i>Female</span>
+        <span><i class="rule"></i>Parent</span>
+        <span><i class="rule dashed"></i>Partner</span>
+      </section>
+    </aside>
+
+    <section class="tree-stage" aria-label="Interactive family tree">
+      <div class="tree-chart">
+        <svg id="family-tree" role="img" aria-label="Interactive Bennett and Reynolds family tree"></svg>
+      </div>
+    </section>
+  </main>
+
+  <script src="tree-app.js"></script>
+</body>
+</html>

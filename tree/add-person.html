@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Add Family Member</title>
+  <style>
+    :root { --ink:#17202c; --muted:#677080; --paper:#fffdf8; --accent:#1f7a8c; --line:#ded8cc; --soft:#f3eee4; --danger:#a04755; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:var(--soft); font-family:Inter,system-ui,sans-serif; }
+    main { width:min(1080px,calc(100% - 28px)); margin:0 auto; padding:28px 0 60px; }
+    nav { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    a { color:var(--accent); font-weight:750; }
+    header,.panel { background:var(--paper); border:1px solid var(--line); border-radius:8px; box-shadow:0 14px 36px rgba(24,33,47,.08); }
+    header { padding:24px; margin-bottom:18px; }
+    h1 { margin:4px 0 8px; font-family:Georgia,serif; font-size:clamp(2rem,6vw,3.5rem); }
+    p { margin:0; color:var(--muted); line-height:1.45; }
+    .layout { display:grid; grid-template-columns:minmax(0,1fr) minmax(320px,.72fr); gap:18px; align-items:start; }
+    .panel { padding:22px; }
+    form { display:grid; gap:16px; }
+    .grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; }
+    label { display:grid; gap:7px; color:var(--muted); font-size:.78rem; font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+    input,select,textarea,button { width:100%; border:1px solid var(--line); border-radius:8px; background:#fffdf8; color:var(--ink); font:inherit; }
+    input,select,textarea { min-height:42px; padding:0 12px; }
+    textarea { min-height:280px; padding:12px; font-family:Consolas,Monaco,monospace; font-size:.9rem; line-height:1.45; resize:vertical; }
+    button { min-height:42px; padding:0 14px; cursor:pointer; font-weight:800; }
+    button.primary { background:var(--accent); border-color:var(--accent); color:white; }
+    button.secondary:hover,button.primary:hover { filter:brightness(.96); }
+    .actions { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+    .hint { color:var(--muted); font-size:.86rem; letter-spacing:0; text-transform:none; font-weight:500; }
+    .status { min-height:22px; color:var(--accent); font-weight:750; }
+    .status.error { color:var(--danger); }
+    .preview-title { margin:0 0 12px; font-size:1.1rem; }
+    @media (max-width:860px) { .layout,.grid,.actions { grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <nav><a href="/">Back to Family</a><a href="tree.html">Family tree</a></nav>
+    <header>
+      <p>Family tree data helper</p>
+      <h1>Add a Person</h1>
+      <p>Generate a new member entry for the family tree data file.</p>
+    </header>
+
+    <div class="layout">
+      <section class="panel">
+        <form id="person-form">
+          <div class="grid">
+            <label>
+              Name
+              <input id="person-name" autocomplete="name" required>
+            </label>
+            <label>
+              Family
+              <input id="family-name" list="family-options" required>
+              <datalist id="family-options"></datalist>
+            </label>
+          </div>
+
+          <div class="grid">
+            <label>
+              Gender
+              <select id="gender">
+                <option value="">Unknown / not listed</option>
+                <option value="F">Female</option>
+                <option value="M">Male</option>
+              </select>
+            </label>
+            <label>
+              Birth date
+              <input id="birth-date" placeholder="YYYY-MM-DD">
+              <span class="hint">Use exact dates when known; partial text is okay.</span>
+            </label>
+          </div>
+
+          <div class="grid">
+            <label>
+              Death date
+              <input id="death-date" placeholder="YYYY-MM-DD">
+            </label>
+            <label>
+              Marriage date
+              <input id="marriage-date" placeholder="YYYY-MM-DD">
+            </label>
+          </div>
+
+          <div class="grid">
+            <label>
+              Parent 1
+              <select id="parent-1"></select>
+            </label>
+            <label>
+              Parent 2
+              <select id="parent-2"></select>
+            </label>
+          </div>
+
+          <label>
+            Partner
+            <select id="partner"></select>
+          </label>
+
+          <div class="grid">
+            <label>
+              Child
+              <select id="child"></select>
+              <span class="hint">Optional. Generates the child update too.</span>
+            </label>
+            <label>
+              Child parent field
+              <select id="child-parent-field">
+                <option value="parent1Id">Parent 1</option>
+                <option value="parent2Id">Parent 2</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="actions">
+            <button class="primary" type="submit">Save Person</button>
+            <button class="secondary" id="copy-entry" type="button">Copy Entry</button>
+          </div>
+          <p id="status" class="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2 class="preview-title">family-tree.json changes</h2>
+        <textarea id="entry-output" readonly spellcheck="false"></textarea>
+      </section>
+    </div>
+  </main>
+
+  <script src="add-person-app.js"></script>
+</body>
+</html>
