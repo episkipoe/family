@@ -201,6 +201,7 @@ function familyTreePersonFromBody(body, nextId) {
   const birthDate = cleanString(body.birthDate, 40);
   const deathDate = cleanString(body.deathDate, 40);
   const marriageDate = cleanString(body.marriageDate, 40);
+  const location = cleanString(body.location, 120);
   const partnerId = nullablePersonId(body.partnerId);
   const parent1Id = nullablePersonId(body.parent1Id);
   const parent2Id = nullablePersonId(body.parent2Id);
@@ -220,6 +221,7 @@ function familyTreePersonFromBody(body, nextId) {
     ...(birthDate ? { birthDate } : {}),
     ...(deathDate ? { deathDate } : {}),
     ...(marriageDate ? { marriageDate } : {}),
+    ...(location ? { location } : {}),
     ...(hasPersonId(partnerId) ? { partnerId } : {}),
     parent1Id,
     parent2Id
@@ -312,7 +314,7 @@ app.put('/api/family/tree/:id', async (req, res, next) => {
       ...familyTree[personIndex],
       ...person
     };
-    ['gender', 'birthDate', 'deathDate', 'marriageDate'].forEach((field) => {
+    ['gender', 'birthDate', 'deathDate', 'marriageDate', 'location'].forEach((field) => {
       if (!Object.prototype.hasOwnProperty.call(person, field)) delete updatedPerson[field];
     });
     if (!Object.prototype.hasOwnProperty.call(person, 'partnerId')) updatedPerson.partnerId = null;

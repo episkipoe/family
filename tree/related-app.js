@@ -16,6 +16,8 @@
   const search = document.querySelector("#relationship-search");
   const sortNameButton = document.querySelector("#sort-name");
   const sortRelationshipButton = document.querySelector("#sort-relationship");
+  const geneticSummary = document.querySelector("#genetic-summary");
+  const geneticSankey = document.querySelector("#genetic-sankey");
   let sortMode = "generation";
   let nameSortDirection = "asc";
 
@@ -27,6 +29,7 @@
   document.title = `${person.name} · Family Relationships`;
   name.textContent = person.name;
   document.querySelector("#view-on-tree").href = `tree.html?id=${person.id}`;
+  document.querySelector("#view-calendar").href = `calendar.html?id=${person.id}`;
   const relationships = people
     .filter((candidate) => candidate.id !== person.id)
     .map((candidate) => ({ person: candidate, relation: relationshipTo(candidate, person) }))
@@ -34,6 +37,7 @@
   const proximityById = proximityDistances(person.id);
 
   summary.textContent = `${relationships.length} known relationships. Each label describes how that person is related to ${person.name}.`;
+  renderGeneticSankey();
   updateSortButtons();
   renderFiltered();
   search.addEventListener("input", renderFiltered);
@@ -108,6 +112,119 @@
       </article>`).join("") : '<p class="empty">No matching relationships.</p>';
   }
 
+  function renderGeneticSankey() {
+    const { nodes, links, knownPercent } = geneticContributionGraph(person.id);
+    geneticSummary.textContent = `Approximate known ancestry for ${person.name}. Each parent contributes about half of a child's genetic material, so older generations taper by powers of two.`;
+    if (!links.length) {
+      geneticSankey.innerHTML = '<p class="sankey-empty">No parent data is available for this person yet.</p>';
+      return;
+    }
+
+    const width = 920;
+    const columnWidth = 132;
+    const nodeHeight = 34;
+    const rowGap = 16;
+    const topPad = 18;
+    const leftPad = 20;
+    const columns = groupByGeneration(nodes);
+    const maxRows = Math.max(...columns.map((column) => column.length));
+    const height = Math.max(240, topPad * 2 + maxRows * nodeHeight + (maxRows - 1) * rowGap);
+    const rightPad = 20;
+    const xGap = columns.length > 1 ? (width - leftPad - rightPad - columnWidth) / (columns.length - 1) : 0;
+    const positioned = new Map();
+
+    columns.forEach((column, columnIndex) => {
+      const blockHeight = column.length * nodeHeight + (column.length - 1) * rowGap;
+      const startY = Math.max(topPad, (height - blockHeight) / 2);
+      column.forEach((node, rowIndex) => {
+        positioned.set(node.id, {
+          ...node,
+          x: leftPad + columnIndex * xGap,
+          y: startY + rowIndex * (nodeHeight + rowGap),
+          width: columnWidth,
+          height: nodeHeight
+        });
+      });
+    });
+
+    geneticSankey.innerHTML = `
+      <svg class="sankey" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(person.name)} known genetic contribution Sankey chart">
+        <g>${links.map((link) => renderSankeyLink(link, positioned)).join("")}</g>
+        <g>${[...positioned.values()].map((node) => renderSankeyNode(node)).join("")}</g>
+      </svg>`;
+    geneticSummary.textContent += ` This chart can account for about ${formatPercent(knownPercent)} of the known upstream flow in the current tree data.`;
+  }
+
+  function geneticContributionGraph(startId) {
+    const contributions = new Map([[startId, 1]]);
+    const distances = new Map([[startId, 0]]);
+    const links = [];
+    const queue = [startId];
+    while (queue.length) {
+      const childId = queue.shift();
+      const childContribution = contributions.get(childId) || 0;
+      const childDistance = distances.get(childId) || 0;
+      parentIds(byId.get(childId)).forEach((parentId) => {
+        const parentContribution = childContribution / 2;
+        links.push({ source: parentId, target: childId, value: parentContribution });
+        contributions.set(parentId, (contributions.get(parentId) || 0) + parentContribution);
+        if (!distances.has(parentId) || distances.get(parentId) < childDistance + 1) {
+          distances.set(parentId, childDistance + 1);
+          queue.push(parentId);
+        }
+      });
+    }
+    const nodes = [...contributions.entries()]
+      .map(([id, value]) => ({ id, value, generation: distances.get(id) || 0, person: byId.get(id) }))
+      .filter((node) => node.person)
+      .sort((a, b) => b.generation - a.generation || birthTime(a.person) - birthTime(b.person) || a.person.name.localeCompare(b.person.name));
+    return {
+      nodes,
+      links,
+      knownPercent: links.filter((link) => link.target === startId).reduce((sum, link) => sum + link.value, 0)
+    };
+  }
+
+  function groupByGeneration(nodes) {
+    const byGeneration = new Map();
+    nodes.forEach((node) => {
+      const column = node.generation;
+      if (!byGeneration.has(column)) byGeneration.set(column, []);
+      byGeneration.get(column).push(node);
+    });
+    return [...byGeneration.keys()]
+      .sort((a, b) => b - a)
+      .map((generation) => byGeneration.get(generation));
+  }
+
+  function renderSankeyLink(link, positioned) {
+    const source = positioned.get(link.source);
+    const target = positioned.get(link.target);
+    if (!source || !target) return "";
+    const sourceX = source.x + source.width;
+    const sourceY = source.y + source.height / 2;
+    const targetX = target.x;
+    const targetY = target.y + target.height / 2;
+    const mid = (targetX - sourceX) / 2;
+    const strokeWidth = Math.max(2, Math.min(28, link.value * 34));
+    return `<path class="sankey-link" d="M ${sourceX} ${sourceY} C ${sourceX + mid} ${sourceY}, ${targetX - mid} ${targetY}, ${targetX} ${targetY}" stroke-width="${strokeWidth}"><title>${escapeHtml(byId.get(link.source)?.name || "Unknown")} to ${escapeHtml(byId.get(link.target)?.name || "Unknown")}: ${formatPercent(link.value)}</title></path>`;
+  }
+
+  function renderSankeyNode(node) {
+    const focusClass = node.id === person.id ? " is-focus" : "";
+    return `<a class="sankey-node-link" href="related.html?id=${node.id}" aria-label="View relationships for ${escapeHtml(node.person.name)}">
+      <g class="sankey-node${focusClass}" transform="translate(${node.x} ${node.y})">
+        <rect width="${node.width}" height="${node.height}" rx="8"></rect>
+        <text class="sankey-name" x="10" y="15">${escapeHtml(shortName(node.person.name))}</text>
+        <text class="sankey-percent" x="10" y="28">${formatPercent(node.value)}</text>
+      </g>
+    </a>`;
+  }
+
+  function shortName(value) {
+    return value.length > 18 ? `${value.slice(0, 16)}...` : value;
+  }
+
   function relationshipTo(subject, reference) {
     if (arePartners(subject.id, reference.id)) return genderWord(subject, "husband", "wife", "spouse");
     const blood = bloodRelationshipTo(subject, reference);
@@ -166,8 +283,8 @@
     if (/brother|sister|sibling/.test(relation)) return genderWord(subject, "brother-in-law", "sister-in-law", "sibling-in-law");
     if (/father|mother|parent/.test(relation)) return genderWord(subject, "father-in-law", "mother-in-law", "parent-in-law");
     if (/son|daughter|child/.test(relation)) return genderWord(subject, "son-in-law", "daughter-in-law", "child-in-law");
-    if (/uncle|aunt/.test(relation)) return generationPrefix(relation) + genderWord(subject, "uncle", "aunt", "aunt or uncle");
-    if (/nephew|niece/.test(relation)) return generationPrefix(relation) + genderWord(subject, "nephew", "niece", "niece or nephew");
+    if (/uncle|aunt/.test(relation)) return generationPrefix(relation) + genderWord(subject, "uncle-in-law", "aunt-in-law", "aunt- or uncle-in-law");
+    if (/nephew|niece/.test(relation)) return generationPrefix(relation) + genderWord(subject, "nephew-in-law", "niece-in-law", "niece- or nephew-in-law");
     return `${relation} by marriage`;
   }
 
@@ -238,6 +355,7 @@
   function ancestorWord(member, distance) { return distance === 1 ? genderWord(member, "father", "mother", "parent") : `${"great-".repeat(distance - 2)}${genderWord(member, "grandfather", "grandmother", "grandparent")}`; }
   function descendantWord(member, distance) { return distance === 1 ? genderWord(member, "son", "daughter", "child") : `${"great-".repeat(distance - 2)}${genderWord(member, "grandson", "granddaughter", "grandchild")}`; }
   function ordinal(number) { const n = number % 100; return `${number}${n >= 11 && n <= 13 ? "th" : number % 10 === 1 ? "st" : number % 10 === 2 ? "nd" : number % 10 === 3 ? "rd" : "th"}`; }
+  function formatPercent(value) { return `${Math.round(value * 1000) / 10}%`; }
   function escapeHtml(value) { return String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;"); }
   async function loadFamilyMembers() {
     const response = await fetch("/api/family/tree");

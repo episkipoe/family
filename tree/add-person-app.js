@@ -17,7 +17,8 @@
     gender: document.querySelector("#gender"),
     birthDate: document.querySelector("#birth-date"),
     deathDate: document.querySelector("#death-date"),
-    marriageDate: document.querySelector("#marriage-date")
+    marriageDate: document.querySelector("#marriage-date"),
+    location: document.querySelector("#location")
   };
   const params = new URLSearchParams(window.location.search);
 
@@ -158,6 +159,7 @@
       birthDate: fields.birthDate.value.trim(),
       deathDate: fields.deathDate.value.trim(),
       marriageDate: fields.marriageDate.value.trim(),
+      location: fields.location.value.trim(),
       partnerId: numberOrNull(partner.value),
       parent1Id: numberOrNull(parent1.value),
       parent2Id: numberOrNull(parent2.value)

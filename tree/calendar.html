@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Family Calendar</title>
+  <style>
+    :root { --ink:#17202c; --muted:#677080; --paper:#fffdf8; --accent:#1f7a8c; --accent-dark:#185f6e; --rose:#a04755; --line:#ded8cc; }
+    * { box-sizing:border-box; }
+    body { margin:0; color:var(--ink); background:#f3eee4; font-family:Inter,system-ui,sans-serif; }
+    main { width:min(1120px,calc(100% - 28px)); margin:0 auto; padding:28px 0 60px; }
+    nav { display:flex; gap:10px; flex-wrap:wrap; margin-bottom:24px; }
+    a { color:var(--accent); font-weight:750; }
+    header,.panel { background:var(--paper); border:1px solid var(--line); border-radius:18px; box-shadow:0 14px 36px rgba(24,33,47,.08); }
+    header { padding:24px; margin-bottom:18px; }
+    h1 { margin:4px 0 8px; font-family:Georgia,serif; font-size:clamp(2rem,6vw,3.5rem); letter-spacing:0; }
+    h2 { margin:0; font-size:1.25rem; }
+    p { margin:0; color:var(--muted); line-height:1.5; }
+    .layout { display:grid; grid-template-columns:minmax(280px,.85fr) minmax(0,1.35fr); gap:18px; align-items:start; }
+    .panel { padding:18px; }
+    .event-list { display:grid; gap:10px; margin-top:14px; }
+    .event-card { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fffaf2; }
+    .event-card strong { display:block; margin-bottom:3px; }
+    .event-card span { color:var(--muted); font-size:.92rem; }
+    .calendar-button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:8px 11px; border:1px solid rgba(31,122,140,.3); border-radius:8px; background:rgba(31,122,140,.08); color:var(--accent); font-size:.84rem; font-weight:850; text-decoration:none; white-space:nowrap; }
+    .calendar-button:hover,.calendar-button:focus-visible { background:rgba(31,122,140,.14); color:var(--accent-dark); }
+    .year-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; margin-top:14px; }
+    .month { min-width:0; border:1px solid var(--line); border-radius:8px; background:#fffaf2; overflow:hidden; }
+    .month h3 { margin:0; padding:10px 12px; border-bottom:1px solid var(--line); background:#f8f3ea; font-size:1rem; }
+    .weekdays,.days { display:grid; grid-template-columns:repeat(7,minmax(0,1fr)); gap:3px; padding:8px; }
+    .weekdays { padding-bottom:0; color:var(--accent-dark); font-size:.68rem; font-weight:900; text-align:center; }
+    .day { display:grid; min-height:34px; padding:4px; border-radius:6px; background:#fffdf8; color:var(--muted); font-size:.78rem; }
+    .day.is-empty { background:transparent; }
+    .day.has-event { background:#fff0c2; color:#59400d; font-weight:850; }
+    .day.is-today { box-shadow:inset 0 0 0 2px var(--rose); color:var(--rose); font-weight:900; }
+    button.day { width:100%; border:0; cursor:pointer; font:inherit; text-align:left; }
+    button.day:hover,button.day:focus-visible,.day.is-selected { outline:2px solid var(--accent); outline-offset:1px; background:#e9faf5; color:var(--accent-dark); }
+    .dots { display:flex; flex-wrap:wrap; gap:2px; margin-top:3px; }
+    .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
+    .dot.anniversary { background:var(--rose); }
+    .empty { padding:18px; color:var(--muted); text-align:center; }
+    @media (max-width:860px) { .layout,.year-grid { grid-template-columns:1fr; } }
+    @media (max-width:520px) { .event-card { grid-template-columns:1fr; } .calendar-button { width:100%; } }
+  </style>
+</head>
+<body>
+  <main>
+    <nav>
+      <a id="back-to-related" href="related.html">Back to relationships</a>
+      <a id="back-to-tree" href="tree.html">View tree</a>
+    </nav>
+    <header>
+      <p>Birthdays and anniversaries</p>
+      <h1 id="calendar-title">Family Calendar</h1>
+      <p id="calendar-summary"></p>
+    </header>
+    <div class="layout">
+      <section class="panel" aria-labelledby="upcoming-heading">
+        <h2 id="upcoming-heading">Next 10 Events</h2>
+        <div id="upcoming-events" class="event-list" aria-live="polite"></div>
+      </section>
+      <section class="panel" aria-labelledby="year-heading">
+        <h2 id="year-heading">Calendar</h2>
+        <div id="year-calendar" class="year-grid" aria-live="polite"></div>
+        <div class="event-list" aria-labelledby="selected-date-heading">
+          <h2 id="selected-date-heading">Selected Date</h2>
+          <div id="selected-date-events" aria-live="polite"></div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <script src="calendar-app.js"></script>
+</body>
+</html>

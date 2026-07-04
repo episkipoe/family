@@ -37,7 +37,8 @@
         "url": "https://docs.google.com/document/d/1lB5l_7XJH0kAUJT876ScIrmPa51ZzHmtVvo9MVvEXC0/edit?tab=t.0",
         "createdAt": "2026-07-04T13:37:33.691Z"
       }
-    ]
+    ],
+    "location": "Gurnee, IL"
   },
   {
     "id": 4,
@@ -49,7 +50,8 @@
     "marriageDate": "1951-04-06",
     "partnerId": 3,
     "parent1Id": 228,
-    "parent2Id": 229
+    "parent2Id": 229,
+    "location": "Gurnee, IL"
   },
   {
     "id": 5,
@@ -60,7 +62,8 @@
     "marriageDate": "1971-06-12",
     "partnerId": 101,
     "parent1Id": 3,
-    "parent2Id": 4
+    "parent2Id": 4,
+    "location": "AZ"
   },
   {
     "id": 6,
@@ -82,7 +85,8 @@
     "marriageDate": "1974-08-03",
     "partnerId": 125,
     "parent1Id": 3,
-    "parent2Id": 4
+    "parent2Id": 4,
+    "location": "Austin, TX"
   },
   {
     "id": 8,
@@ -93,7 +97,8 @@
     "marriageDate": "1980-05-17",
     "partnerId": 13,
     "parent1Id": 3,
-    "parent2Id": 4
+    "parent2Id": 4,
+    "location": "Lake Villa, IL"
   },
   {
     "id": 9,
@@ -104,7 +109,8 @@
     "marriageDate": "1985-08-18",
     "partnerId": 136,
     "parent1Id": 3,
-    "parent2Id": 4
+    "parent2Id": 4,
+    "location": "Fox Lake, IL"
   },
   {
     "id": 10,
@@ -115,7 +121,8 @@
     "marriageDate": "1997-01-22",
     "partnerId": 140,
     "parent1Id": 3,
-    "parent2Id": 4
+    "parent2Id": 4,
+    "location": "Kenosha, WI"
   },
   {
     "id": 11,
@@ -126,7 +133,8 @@
     "marriageDate": "1989-06-22",
     "partnerId": 201,
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "location": "Racine, WI"
   },
   {
     "id": 12,
@@ -137,7 +145,8 @@
     "marriageDate": "1978-10-01",
     "partnerId": 205,
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "location": "Lisle, IL"
   },
   {
     "id": 13,
@@ -148,7 +157,8 @@
     "marriageDate": "1980-05-17",
     "partnerId": 8,
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "location": "Lake Villa, IL"
   },
   {
     "id": 14,
@@ -159,7 +169,8 @@
     "marriageDate": "1983-02-26",
     "partnerId": 215,
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "location": "Corfu, NY"
   },
   {
     "id": 15,
@@ -170,7 +181,8 @@
     "marriageDate": "1987-09-19",
     "partnerId": 219,
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "location": "Reston, VA"
   },
   {
     "id": 16,
@@ -179,7 +191,8 @@
     "family": "Bennett",
     "birthDate": "1967-05-15",
     "parent1Id": 1,
-    "parent2Id": 2
+    "parent2Id": 2,
+    "partnerId": null
   },
   {
     "id": 0,
@@ -197,7 +210,8 @@
         "url": "https://episkipoe.github.io/",
         "createdAt": "2026-07-04T13:42:40.066Z"
       }
-    ]
+    ],
+    "location": "Ballwin, MO"
   },
   {
     "id": 17,
@@ -205,10 +219,10 @@
     "gender": "M",
     "family": "Bennett",
     "birthDate": "1982-09-07",
-    "marriageDate": "2015-07-31",
     "partnerId": 129,
     "parent1Id": 13,
-    "parent2Id": 8
+    "parent2Id": 8,
+    "location": "Energy, IL"
   },
   {
     "id": 18,
@@ -219,7 +233,8 @@
     "marriageDate": "2024-05-11",
     "partnerId": 224,
     "parent1Id": 13,
-    "parent2Id": 8
+    "parent2Id": 8,
+    "location": "Arlington, TX"
   },
   {
     "id": 101,
@@ -505,7 +520,8 @@
     "gender": "F",
     "partnerId": 17,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Energy, IL"
   },
   {
     "id": 133,
@@ -707,7 +723,8 @@
     "marriageDate": "1989-06-22",
     "partnerId": 11,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Racine, WI"
   },
   {
     "id": 202,
@@ -717,7 +734,8 @@
     "birthDate": "1988-12-04",
     "partnerId": 203,
     "parent1Id": 11,
-    "parent2Id": 201
+    "parent2Id": 201,
+    "location": "Racine, WI"
   },
   {
     "id": 203,
@@ -726,7 +744,8 @@
     "family": "Stummer",
     "partnerId": 202,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Kenosha, WI"
   },
   {
     "id": 204,
@@ -735,7 +754,8 @@
     "family": "Bennett",
     "birthDate": "2022-06-13",
     "parent1Id": 202,
-    "parent2Id": 203
+    "parent2Id": 203,
+    "location": "Racine, WI"
   },
   {
     "id": 205,
@@ -746,7 +766,8 @@
     "marriageDate": "1978-10-01",
     "partnerId": 12,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Lisle, IL"
   },
   {
     "id": 206,
@@ -757,7 +778,8 @@
     "marriageDate": "2010-09-04",
     "partnerId": 207,
     "parent1Id": 12,
-    "parent2Id": 205
+    "parent2Id": 205,
+    "location": "Freeport, IL"
   },
   {
     "id": 207,
@@ -768,7 +790,8 @@
     "marriageDate": "2010-09-04",
     "partnerId": 206,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Freeport, IL"
   },
   {
     "id": 208,
@@ -777,7 +800,8 @@
     "family": "Musser",
     "birthDate": "2014-01-26",
     "parent1Id": 207,
-    "parent2Id": 206
+    "parent2Id": 206,
+    "location": "Freeport, IL"
   },
   {
     "id": 209,
@@ -786,7 +810,8 @@
     "family": "Musser",
     "birthDate": "2017-11-12",
     "parent1Id": 207,
-    "parent2Id": 206
+    "parent2Id": 206,
+    "location": "Freeport, IL"
   },
   {
     "id": 210,
@@ -797,7 +822,8 @@
     "marriageDate": "2017-12-02",
     "partnerId": 211,
     "parent1Id": 12,
-    "parent2Id": 205
+    "parent2Id": 205,
+    "location": "Seattle, WA"
   },
   {
     "id": 211,
@@ -808,7 +834,8 @@
     "marriageDate": "2017-12-02",
     "partnerId": 210,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Seattle, WA"
   },
   {
     "id": 212,
@@ -817,7 +844,8 @@
     "family": "Bennett",
     "birthDate": "2019-03-31",
     "parent1Id": 210,
-    "parent2Id": 211
+    "parent2Id": 211,
+    "location": "Seattle, WA"
   },
   {
     "id": 213,
@@ -826,7 +854,8 @@
     "family": "Bennett",
     "birthDate": "2021-12-18",
     "parent1Id": 210,
-    "parent2Id": 211
+    "parent2Id": 211,
+    "location": "Seattle, WA"
   },
   {
     "id": 214,
@@ -837,7 +866,8 @@
     "marriageDate": "2017-04-02",
     "partnerId": 225,
     "parent1Id": 11,
-    "parent2Id": 201
+    "parent2Id": 201,
+    "location": "Oak Creek, WI"
   },
   {
     "id": 215,
@@ -848,7 +878,8 @@
     "marriageDate": "1983-02-26",
     "partnerId": 14,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Corfu, NY"
   },
   {
     "id": 216,
@@ -859,7 +890,8 @@
     "marriageDate": "2022-08-06",
     "partnerId": 217,
     "parent1Id": 215,
-    "parent2Id": 14
+    "parent2Id": 14,
+    "location": "Clarksville, AR"
   },
   {
     "id": 217,
@@ -869,7 +901,8 @@
     "marriageDate": "2022-08-06",
     "partnerId": 216,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Clarksville, AR"
   },
   {
     "id": 218,
@@ -878,7 +911,8 @@
     "family": "Williams",
     "birthDate": "1989-03-27",
     "parent1Id": 215,
-    "parent2Id": 14
+    "parent2Id": 14,
+    "location": "Ajo, AZ"
   },
   {
     "id": 219,
@@ -889,7 +923,8 @@
     "marriageDate": "1987-09-19",
     "partnerId": 15,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Reston, VA"
   },
   {
     "id": 220,
@@ -898,7 +933,8 @@
     "family": "Meade",
     "birthDate": "2000-07-22",
     "parent1Id": 219,
-    "parent2Id": 15
+    "parent2Id": 15,
+    "location": "Reston, VA"
   },
   {
     "id": 221,
@@ -907,7 +943,8 @@
     "family": "Bennett",
     "birthDate": "2024-06-24",
     "parent1Id": 17,
-    "parent2Id": 129
+    "parent2Id": 129,
+    "location": "Energy, IL"
   },
   {
     "id": 224,
@@ -918,7 +955,8 @@
     "marriageDate": "2024-05-11",
     "partnerId": 18,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Arlington, TX"
   },
   {
     "id": 225,
@@ -929,7 +967,8 @@
     "marriageDate": "2017-04-02",
     "partnerId": 214,
     "parent1Id": null,
-    "parent2Id": null
+    "parent2Id": null,
+    "location": "Oak Creek, WI"
   },
   {
     "id": 226,
@@ -938,7 +977,8 @@
     "family": "Nordgren",
     "birthDate": "2020-05-07",
     "parent1Id": 225,
-    "parent2Id": 214
+    "parent2Id": 214,
+    "location": "Oak Creek, WI"
   },
   {
     "id": 227,
@@ -947,7 +987,8 @@
     "family": "Nordgren",
     "birthDate": "2023-05-08",
     "parent1Id": 225,
-    "parent2Id": 214
+    "parent2Id": 214,
+    "location": "Oak Creek, WI"
   },
   {
     "id": 228,

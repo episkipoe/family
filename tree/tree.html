@@ -157,6 +157,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
+      margin-top: auto;
     }
 
     .details {
@@ -580,6 +581,7 @@
         <p class="intro"></p>
         <nav class="nav-actions" aria-label="Tree links">
           <a href="add-person.html">Add person</a>
+          <a href="map.html">Map</a>
           <a href="tree-admin.html">Tree admin</a>
         </nav>
       </header>
@@ -589,16 +591,6 @@
           Search
           <input id="member-search" type="search" placeholder="Name">
         </label>
-        <label for="generation-filter">
-          Generation
-          <select id="generation-filter">
-            <option value="all">All generations</option>
-          </select>
-        </label>
-        <div class="button-row">
-          <button id="fit-view" type="button">Fit</button>
-          <button id="reset-view" type="button">Reset</button>
-        </div>
       </section>
 
       <section id="member-details" class="details" aria-live="polite"></section>
@@ -610,6 +602,11 @@
         <span><i class="rule"></i>Parent</span>
         <span><i class="rule dashed"></i>Partner</span>
       </section>
+
+      <div class="button-row" aria-label="Tree view controls">
+        <button id="fit-view" type="button">Fit</button>
+        <button id="reset-view" type="button">Reset</button>
+      </div>
     </aside>
 
     <section class="tree-stage" aria-label="Interactive family tree">
@@ -676,6 +673,10 @@
       <label>
         Marriage date
         <input id="edit-marriage-date" name="marriageDate" maxlength="40" placeholder="YYYY-MM-DD">
+      </label>
+      <label>
+        Location
+        <input id="edit-location" name="location" maxlength="120" placeholder="City, ST">
       </label>
       <label>
         Parent 1

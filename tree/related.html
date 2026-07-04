@@ -17,6 +17,10 @@
     p { margin:0; color:var(--muted); }
     input { width:100%; margin-top:18px; padding:12px 14px; border:1px solid var(--line); border-radius:10px; font:inherit; }
     .panel { overflow:hidden; }
+    .relationship-panel summary { display:flex; align-items:center; justify-content:space-between; gap:14px; padding:14px 20px; border-bottom:1px solid var(--line); background:#fffaf1; cursor:pointer; font-weight:850; }
+    .relationship-panel summary::-webkit-details-marker { display:none; }
+    .relationship-panel summary::after { content:"Show"; color:var(--accent); font-size:.82rem; letter-spacing:.08em; text-transform:uppercase; }
+    .relationship-panel[open] summary::after { content:"Hide"; }
     .relationship-header { display:grid; grid-template-columns:minmax(180px,1fr) minmax(150px,.7fr); gap:18px; align-items:center; padding:11px 20px; border-bottom:1px solid var(--line); background:#f8f3ea; color:var(--muted); font-size:.78rem; font-weight:850; letter-spacing:.08em; text-transform:uppercase; }
     .sort-button { width:auto; margin:0; padding:0; border:0; background:transparent; color:inherit; cursor:pointer; font:inherit; font-weight:inherit; letter-spacing:inherit; text-align:left; text-transform:inherit; }
     .sort-button:hover,.sort-button:focus-visible { color:var(--accent); }
@@ -26,24 +30,42 @@
     .name { font-weight:850; text-decoration:none; }
     .kind { color:var(--muted); text-align:right; }
     .empty { padding:26px; text-align:center; }
+    .sankey-panel { margin-top:18px; padding:20px; }
+    .sankey-panel h2 { margin:0 0 6px; font-family:Georgia,serif; font-size:clamp(1.45rem,3vw,2.15rem); }
+    .sankey-note { margin-bottom:16px; }
+    .sankey-wrap { overflow-x:auto; padding-bottom:2px; }
+    .sankey { display:block; width:100%; min-width:680px; height:auto; }
+    .sankey-link { fill:none; stroke:#8fb9c3; stroke-opacity:.42; }
+    .sankey-node-link { text-decoration:none; cursor:pointer; }
+    .sankey-node-link:hover .sankey-node rect,.sankey-node-link:focus .sankey-node rect { stroke:var(--accent); stroke-width:2; }
+    .sankey-node rect { fill:#fffaf0; stroke:#cfc6b7; stroke-width:1; }
+    .sankey-node.is-focus rect { fill:#e8f4f6; stroke:#1f7a8c; }
+    .sankey-name { fill:var(--ink); font-size:12px; font-weight:800; }
+    .sankey-percent { fill:var(--muted); font-size:11px; font-weight:700; }
+    .sankey-empty { padding:18px 0 4px; color:var(--muted); }
     @media (max-width:600px) { .relationship,.relationship-header { grid-template-columns:1fr; gap:4px; } .kind,.sort-label { text-align:left; } }
   </style>
 </head>
 <body>
   <main>
-    <nav><a href="tree.html">← Back to tree</a><a id="view-on-tree" href="tree.html">View highlighted on tree</a></nav>
+    <nav><a href="tree.html">Back to tree</a><a id="view-on-tree" href="tree.html">View highlighted on tree</a><a id="view-calendar" href="calendar.html">Calendar</a></nav>
     <header>
-      <p>Known family connections</p>
       <h1 id="person-name">Relationships</h1>
       <p id="summary"></p>
       <input id="relationship-search" type="search" placeholder="Search a person or relationship" aria-label="Search relationships">
     </header>
-    <section class="panel">
+    <details class="panel relationship-panel" open>
+      <summary>Relationship List</summary>
       <div class="relationship-header">
         <button id="sort-name" class="sort-button" type="button" aria-label="Sort by name">Name</button>
         <button id="sort-relationship" class="sort-button sort-label" type="button" aria-label="Sort by relationship">Relationship</button>
       </div>
       <div id="relationship-list" aria-live="polite"></div>
+    </details>
+    <section class="panel sankey-panel" aria-labelledby="genetic-heading">
+      <h2 id="genetic-heading">Genetic Contribution</h2>
+      <p id="genetic-summary" class="sankey-note"></p>
+      <div id="genetic-sankey" class="sankey-wrap" aria-live="polite"></div>
     </section>
   </main>
   <script src="related-app.js"></script>

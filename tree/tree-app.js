@@ -6,7 +6,6 @@
   const linkLayer = viewport.append("g").attr("class", "links");
   const nodeLayer = viewport.append("g").attr("class", "nodes");
   const searchInput = document.querySelector("#member-search");
-  const generationFilter = document.querySelector("#generation-filter");
   const resetButton = document.querySelector("#reset-view");
   const fitButton = document.querySelector("#fit-view");
   const details = document.querySelector("#member-details");
@@ -25,6 +24,7 @@
   const editBirthDate = document.querySelector("#edit-birth-date");
   const editDeathDate = document.querySelector("#edit-death-date");
   const editMarriageDate = document.querySelector("#edit-marriage-date");
+  const editLocation = document.querySelector("#edit-location");
   const editParent1 = document.querySelector("#edit-parent-1");
   const editParent2 = document.querySelector("#edit-parent-2");
   const editPartner = document.querySelector("#edit-partner");
@@ -51,7 +51,6 @@
   let touchTapCandidate = null;
   let suppressClickUntil = 0;
   let searchTerm = "";
-  let activeGeneration = "all";
   let searchTimer = null;
 
   members.forEach((member) => {
@@ -144,15 +143,6 @@
   }
 
   function hydrateControls() {
-    const generations = [...new Set(nodes.map((node) => node.generation))].sort((a, b) => a - b);
-
-    generations.forEach((generation) => {
-      const option = document.createElement("option");
-      option.value = String(generation);
-      option.textContent = `Generation ${generation + 1}`;
-      generationFilter.appendChild(option);
-    });
-
     searchInput.addEventListener("input", (event) => {
       searchTerm = event.target.value.trim().toLowerCase();
       applyState();
@@ -160,16 +150,9 @@
       searchTimer = window.setTimeout(focusSearchMatch, 180);
     });
 
-    generationFilter.addEventListener("change", (event) => {
-      activeGeneration = event.target.value;
-      applyState();
-    });
-
     resetButton.addEventListener("click", () => {
       searchInput.value = "";
-      generationFilter.value = "all";
       searchTerm = "";
-      activeGeneration = "all";
       comparisonId = null;
       nodes.forEach((node) => {
         node.fx = null;
@@ -375,6 +358,7 @@
     const marriedDuration = marriageDuration(member, partners);
     const diedRow = diedDate ? `<div><dt>Died</dt><dd>${diedDate}</dd></div>` : "";
     const marriedRow = marriedDate ? `<div><dt>Married</dt><dd>${marriedDate}${marriedDuration ? ` (${marriedDuration})` : ""}</dd></div>` : "";
+    const locationRow = member.location ? `<div><dt>Location</dt><dd>${escapeHtml(member.location)}</dd></div>` : "";
     const parentContent = [
       personLinks(parents, "Not listed"),
       addParentActions(member)
@@ -394,6 +378,7 @@
         <div><dt>Born</dt><dd>${bornText}</dd></div>
         ${diedRow}
         ${marriedRow}
+        ${locationRow}
         <div><dt>Parents</dt><dd>${parentContent}</dd></div>
         <div><dt>Siblings</dt><dd>${personLinks(siblings, "None listed")}</dd></div>
         <div><dt>Partner link</dt><dd>${personLinks(partners, "Not listed")}</dd></div>
@@ -465,6 +450,7 @@
     editBirthDate.value = person.birthDate || "";
     editDeathDate.value = person.deathDate || "";
     editMarriageDate.value = person.marriageDate || "";
+    editLocation.value = person.location || "";
     hydrateEditPersonOptions(person.id);
     editParent1.value = person.parent1Id ?? "";
     editParent2.value = person.parent2Id ?? "";
@@ -528,6 +514,7 @@
       birthDate: editBirthDate.value.trim(),
       deathDate: editDeathDate.value.trim(),
       marriageDate: editMarriageDate.value.trim(),
+      location: editLocation.value.trim(),
       parent1Id: numberOrNull(editParent1.value),
       parent2Id: numberOrNull(editParent2.value),
       partnerId: numberOrNull(editPartner.value)
@@ -559,9 +546,6 @@
   }
 
   function clearGenerationFilter() {
-    if (activeGeneration === "all") return;
-    activeGeneration = "all";
-    generationFilter.value = "all";
   }
 
   function clearSelectionFromBackground(event) {
@@ -687,10 +671,8 @@
     if (/brother|sister|sibling/.test(relation)) return genderWord(person, "brother-in-law", "sister-in-law", "sibling-in-law");
     if (/father|mother|parent/.test(relation)) return genderWord(person, "father-in-law", "mother-in-law", "parent-in-law");
     if (/son|daughter|child/.test(relation)) return genderWord(person, "son-in-law", "daughter-in-law", "child-in-law");
-    // Everyday kinship treats the spouse of an aunt/uncle as an aunt/uncle,
-    // rather than the technically possible but uncommon "aunt/uncle-in-law."
-    if (/uncle|aunt/.test(relation)) return generationPrefix(relation) + genderWord(person, "uncle", "aunt", "aunt or uncle");
-    if (/nephew|niece/.test(relation)) return generationPrefix(relation) + genderWord(person, "nephew", "niece", "niece or nephew");
+    if (/uncle|aunt/.test(relation)) return generationPrefix(relation) + genderWord(person, "uncle-in-law", "aunt-in-law", "aunt- or uncle-in-law");
+    if (/nephew|niece/.test(relation)) return generationPrefix(relation) + genderWord(person, "nephew-in-law", "niece-in-law", "niece- or nephew-in-law");
     return `${relation} by marriage`;
   }
 
@@ -737,7 +719,6 @@
   function visibleNodeIds() {
     return new Set(
       nodes
-        .filter((node) => activeGeneration === "all" || String(node.generation) === activeGeneration)
         .filter((node) => !searchTerm || node.name.toLowerCase().includes(searchTerm))
         .map((node) => node.id)
     );
@@ -745,7 +726,7 @@
 
   function isCollapsedByDefault(node, connectedIds, isSearching) {
     if (!node || !defaultCollapsedIds.has(node.id)) return false;
-    if (isSearching || activeGeneration !== "all") return false;
+    if (isSearching) return false;
     return selectedId === null || !connectedIds.has(node.id);
   }
 
