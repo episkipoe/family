@@ -22,6 +22,7 @@ const elements = Object.fromEntries([
 
 let game = null;
 let krakenTimer = null;
+let lastResultKey = "";
 
 elements.backLink.href = "/games.html";
 
@@ -38,6 +39,54 @@ function showKraken() {
 	clearTimeout(krakenTimer);
 	elements.krakenBanner.hidden = false;
 	krakenTimer = setTimeout(() => { elements.krakenBanner.hidden = true; }, 4000);
+}
+
+function ensureResultModal() {
+	let modal = document.getElementById("resultModal");
+	if (modal) return modal;
+	modal = document.createElement("div");
+	modal.id = "resultModal";
+	modal.className = "result-modal";
+	modal.hidden = true;
+	modal.innerHTML = `
+		<div class="result-card" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+			<div id="resultFace" class="result-face" aria-hidden="true"></div>
+			<div class="result-fireworks" aria-hidden="true"></div>
+			<h2 id="resultTitle"></h2>
+			<p id="resultMessage"></p>
+			<button id="resultClose" class="result-close" type="button">Close</button>
+		</div>
+	`;
+	document.body.append(modal);
+	modal.querySelector("#resultClose").addEventListener("click", () => { modal.hidden = true; });
+	return modal;
+}
+
+function showResultWindow(result, label = "Voyage") {
+	const results = result?.results ?? [];
+	const highScore = results.length ? Math.max(...results.map(player => player.score)) : (result?.winners?.[0]?.score ?? 0);
+	const winners = result?.winners?.length
+		? result.winners
+		: results.filter(player => player.score === highScore);
+	const key = `${result?.gameId ?? game?.id}:${result?.type ?? "result"}:${result?.completedRound ?? ""}`;
+	if (!winners.length || key === lastResultKey) return;
+	lastResultKey = key;
+
+	const modal = ensureResultModal();
+	const card = modal.querySelector(".result-card");
+	const face = modal.querySelector("#resultFace");
+	const title = modal.querySelector("#resultTitle");
+	const message = modal.querySelector("#resultMessage");
+	const isWinner = winners.some(player => player.userId === userId);
+	const winnerNames = winners.map(player => player.name).join(" & ");
+
+	card.classList.toggle("winner", isWinner);
+	face.innerHTML = isWinner ? "&#128515;" : "&#9785;";
+	title.textContent = isWinner ? `${label} victory!` : `${label} complete`;
+	message.textContent = isWinner
+		? `Fireworks for you. You won with ${highScore} booty.`
+		: `${winnerNames} won with ${highScore} booty.`;
+	modal.hidden = false;
 }
 
 function updateResult(result) {
@@ -209,11 +258,17 @@ socket.on("playerBusted", playerId => {
 });
 
 socket.on("voyageEnded", result => {
-	if (result?.gameId === game?.id) setNotice(`Voyage ${result.completedRound} is complete. Prepare to sail again.`);
+	if (result?.gameId === game?.id) {
+		setNotice(`Voyage ${result.completedRound} is complete. Prepare to sail again.`);
+		showResultWindow(result, `Voyage ${result.completedRound}`);
+	}
 });
 
 socket.on("treasureHoldFinished", result => {
-	if (result?.gameId === game?.id) setNotice("The fifth voyage is complete. The richest pirate wins!");
+	if (result?.gameId === game?.id) {
+		setNotice("The fifth voyage is complete. The richest pirate wins!");
+		showResultWindow({ ...result, type: "finished" }, "Final");
+	}
 });
 
 render();

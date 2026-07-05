@@ -307,17 +307,26 @@ function advanceTurn(voyage) {
 	const order = getPlayerOrder(voyage);
 	const allSubmitted = order.every(userId => voyage.players[userId]?.turn.submitted);
 	if (allSubmitted) {
-		const highest = order
+		const roundResults = order
 			.map(userId => voyage.players[userId])
-			.reduce((winner, player) => {
-				const playerScore = player.history[0]?.score ?? 0;
-				const winnerScore = winner?.history[0]?.score ?? -1;
-				return playerScore > winnerScore ? player : winner;
-			}, null);
+			.map(player => ({
+				userId: player.userId,
+				name: player.name,
+				score: player.history[0]?.score ?? 0
+			}));
+		const highScore = Math.max(...roundResults.map(player => player.score));
+		const winners = roundResults.filter(player => player.score === highScore);
+		const highest = winners[0] ? voyage.players[winners[0].userId] : null;
 		const starterId = highest?.userId ?? voyage.startedBy;
 		resetRound(voyage, starterId);
 		voyage.log.unshift(`${voyage.players[starterId]?.name ?? "The high scorer"} starts the next round.`);
-		return;
+		return {
+			type: "roundEnded",
+			results: roundResults,
+			winners,
+			highScore,
+			completedAt: now()
+		};
 	}
 
 	let nextIndex = voyage.round.currentIndex + 1;
@@ -325,6 +334,7 @@ function advanceTurn(voyage) {
 		nextIndex += 1;
 	}
 	voyage.round.currentIndex = Math.min(nextIndex, order.length - 1);
+	return null;
 }
 
 export function rollPirateDice(voyage, userId, random = Math.random) {
@@ -386,8 +396,8 @@ export function submitPirateRound(voyage, userId) {
 	}
 	voyage.updatedAt = now();
 	voyage.log.unshift(`${player.name} scored ${score} cargo.`);
-	advanceTurn(voyage);
-	return { ok: true, score, complete };
+	const transition = advanceTurn(voyage);
+	return { ok: true, score, complete, transition };
 }
 
 function getSocketContext(socket, daves, savedPlaces, sourceId, placeId, callback) {
@@ -413,6 +423,15 @@ function getSocketContext(socket, daves, savedPlaces, sourceId, placeId, callbac
 function emitVoyageUpdate(io, placeId) {
 	io.emit("pirateVoyageUpdated", { placeId });
 	io.emit("update");
+}
+
+function emitRoundTransition(io, placeId, voyage, transition) {
+	if (!transition) return;
+	io.emit("pirateRoundEnded", {
+		placeId,
+		voyageId: voyage.id,
+		...transition
+	});
 }
 
 export function registerHandlers(socket, daves, savedPlaces, io, logEvent = () => {}, random = Math.random) {
@@ -502,6 +521,7 @@ export function registerHandlers(socket, daves, savedPlaces, io, logEvent = () =
 		}
 
 		markActive(context.dave);
+		emitRoundTransition(io, placeId, voyage, result.transition);
 		emitVoyageUpdate(io, placeId);
 		callback({ ok: true, ...result, voyage: getPlaceVoyageSummary(placeId, sourceId) });
 	});

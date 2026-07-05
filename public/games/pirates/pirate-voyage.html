@@ -292,9 +292,78 @@
 			line-height: 1.35;
 		}
 
+		.result-modal {
+			position: fixed;
+			inset: 0;
+			z-index: 20;
+			display: grid;
+			place-items: center;
+			padding: 18px;
+			background: rgba(5, 12, 14, 0.78);
+		}
+
+		.result-modal[hidden] {
+			display: none;
+		}
+
+		.result-card {
+			width: min(390px, 100%);
+			padding: 24px;
+			border: 1px solid var(--line);
+			background: rgba(29, 18, 13, 0.98);
+			box-shadow: 0 24px 70px rgba(0, 0, 0, 0.42);
+			text-align: center;
+		}
+
+		.result-face {
+			font: 72px/1 "Segoe UI Emoji", system-ui, sans-serif;
+		}
+
+		.result-card h2 {
+			margin: 12px 0 6px;
+			color: var(--gold);
+			font-size: 24px;
+			line-height: 1.1;
+		}
+
+		.result-card p {
+			margin: 0 0 18px;
+			color: var(--muted);
+			font: 700 13px/1.4 system-ui, sans-serif;
+		}
+
+		.result-fireworks {
+			height: 58px;
+			margin: 6px 0 10px;
+			background:
+				radial-gradient(circle, #efb647 0 3px, transparent 4px) 18% 35% / 44px 44px,
+				radial-gradient(circle, #59b477 0 3px, transparent 4px) 76% 45% / 52px 52px,
+				radial-gradient(circle, #fff3d8 0 3px, transparent 4px) 52% 18% / 46px 46px;
+			animation: fireworksPop 900ms ease-in-out infinite alternate;
+		}
+
+		.result-card:not(.winner) .result-fireworks {
+			opacity: 0.18;
+			animation: none;
+		}
+
+		.result-close {
+			margin: 0;
+			color: #160d08;
+			background: var(--green);
+			border-color: var(--green);
+			font-weight: 900;
+			text-transform: uppercase;
+		}
+
 		@keyframes sailDrift {
 			0%, 100% { transform: translateY(0) rotate(-2deg); }
 			50% { transform: translateY(-8px) rotate(2deg); }
+		}
+
+		@keyframes fireworksPop {
+			from { opacity: 0.45; transform: scale(0.92); }
+			to { opacity: 1; transform: scale(1.04); }
 		}
 
 		@media (max-width: 680px) {
@@ -428,6 +497,7 @@
 
 		let voyage = null;
 		let renderedRoundKey = "";
+		let lastResultKey = "";
 
 		backLink.href = "/games.html";
 
@@ -458,6 +528,50 @@
 			voyage = result.voyage;
 			render();
 			return true;
+		}
+
+		function ensureResultModal() {
+			let modal = document.getElementById("resultModal");
+			if (modal) return modal;
+			modal = document.createElement("div");
+			modal.id = "resultModal";
+			modal.className = "result-modal";
+			modal.hidden = true;
+			modal.innerHTML = `
+				<div class="result-card" role="dialog" aria-modal="true" aria-labelledby="resultTitle">
+					<div id="resultFace" class="result-face" aria-hidden="true"></div>
+					<div class="result-fireworks" aria-hidden="true"></div>
+					<h2 id="resultTitle"></h2>
+					<p id="resultMessage"></p>
+					<button id="resultClose" class="result-close" type="button">Close</button>
+				</div>
+			`;
+			document.body.append(modal);
+			modal.querySelector("#resultClose").addEventListener("click", () => { modal.hidden = true; });
+			return modal;
+		}
+
+		function showResultWindow(result) {
+			const winners = result?.winners ?? [];
+			const key = `${result?.voyageId ?? voyage?.id}:${result?.completedAt ?? ""}:${winners.map(player => player.userId).join(",")}`;
+			if (!winners.length || key === lastResultKey) return;
+			lastResultKey = key;
+
+			const modal = ensureResultModal();
+			const card = modal.querySelector(".result-card");
+			const face = modal.querySelector("#resultFace");
+			const title = modal.querySelector("#resultTitle");
+			const message = modal.querySelector("#resultMessage");
+			const isWinner = winners.some(player => player.userId === userId);
+			const winnerNames = winners.map(player => player.name).join(" & ");
+
+			card.classList.toggle("winner", isWinner);
+			face.innerHTML = isWinner ? "&#128515;" : "&#9785;";
+			title.textContent = isWinner ? "Round victory!" : "Round complete";
+			message.textContent = isWinner
+				? `Fireworks for you. You won with ${result.highScore} cargo.`
+				: `${winnerNames} won with ${result.highScore} cargo.`;
+			modal.hidden = false;
 		}
 
 		async function loadVoyageState() {
@@ -633,6 +747,12 @@
 		socket.on("pirateVoyageUpdated", (update) => {
 			if (update?.placeId === placeId) {
 				loadVoyageState();
+			}
+		});
+
+		socket.on("pirateRoundEnded", (result) => {
+			if (result?.placeId === placeId) {
+				showResultWindow(result);
 			}
 		});
 
