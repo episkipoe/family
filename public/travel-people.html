@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel People</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body class="travel-page">
+  <header class="hero travel-people-hero">
+    <div>
+      <p class="eyebrow"><a href="/travel.html">Travel map</a></p>
+      <h1>Travel people</h1>
+      <p class="lede">Names found across the travel archive, grouped by shared documents.</p>
+    </div>
+  </header>
+  <main class="travel-people-shell">
+    <section class="people-viz-panel" aria-label="People co-occurrence visualization">
+      <svg id="peopleViz" class="people-viz" role="img" aria-label="People that appear together in documents are closer together"></svg>
+    </section>
+    <section class="people-list-panel" aria-labelledby="peopleHeading">
+      <div class="people-toolbar">
+        <div>
+          <p class="label-text">Archive names</p>
+          <h2 id="peopleHeading">Loading people</h2>
+        </div>
+        <input id="peopleSearch" type="search" placeholder="Search names" autocomplete="off" aria-label="Search travel people">
+      </div>
+      <div id="peopleList" class="people-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="/travel-people.js" type="module"></script>
+</body>
+</html>

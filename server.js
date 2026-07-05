@@ -6,6 +6,7 @@ import { getData, initStorage, setData, storageMode } from './storage.js';
 import * as pirateVoyage from './utils/pirates/pirateVoyage.js';
 import * as resolveSignal from './utils/resolveSignal.js';
 import * as treasureHold from './utils/treasure-hold/treasureHold.js';
+import { getTravelArchive, getTravelLocation, getTravelPerson } from './utils/travelArchive.js';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -235,6 +236,90 @@ function familyTreePersonFromBody(body, nextId) {
 
 app.get('/api/health', (req, res) => {
   res.json({ ok: true, storage: storageMode() });
+});
+
+app.get('/api/travel/locations', (req, res, next) => {
+  try {
+    const archive = getTravelArchive();
+    res.json({
+      generatedAt: archive.generatedAt,
+      locations: archive.locations.map(({ aliases, references, ...location }) => ({
+        ...location,
+        aliases,
+        references: references.slice(0, 6).map(({ snippet, ...reference }) => reference)
+      }))
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/locations/:id', (req, res, next) => {
+  try {
+    const location = getTravelLocation(req.params.id);
+    if (!location) {
+      res.status(404).json({ error: 'Location not found.' });
+      return;
+    }
+    res.json({ location });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/people', (req, res, next) => {
+  try {
+    const archive = getTravelArchive();
+    const people = archive.people.map(({ references, ...person }) => ({
+      ...person,
+      references: references.slice(0, 4).map(({ snippet, ...reference }) => reference)
+    }));
+    res.json({
+      generatedAt: archive.generatedAt,
+      people,
+      links: archive.peopleLinks
+    });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/people/:id', (req, res, next) => {
+  try {
+    const person = getTravelPerson(req.params.id);
+    if (!person) {
+      res.status(404).json({ error: 'Person not found.' });
+      return;
+    }
+    res.json({ person });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/travel/go/:id', (req, res, next) => {
+  try {
+    const location = getTravelLocation(req.params.id);
+    if (!location) {
+      res.redirect('/travel.html');
+      return;
+    }
+    if (location.theme === 'cyberpunk') {
+      res.redirect(`/travel-vegas.html?id=${encodeURIComponent(location.id)}`);
+      return;
+    }
+    if (location.referenceCount > 8) {
+      res.redirect(`/travel-collection.html?id=${encodeURIComponent(location.id)}`);
+      return;
+    }
+    if (location.referenceCount === 1) {
+      res.redirect(location.references[0].url);
+      return;
+    }
+    res.redirect(`/travel-place.html?id=${encodeURIComponent(location.id)}`);
+  } catch (error) {
+    next(error);
+  }
 });
 
 app.get('/api/family/tree', async (req, res, next) => {

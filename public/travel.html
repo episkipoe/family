@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Map</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body class="travel-page">
+  <header class="hero travel-hero">
+    <div>
+      <p class="eyebrow">Travelogues</p>
+      <h1>Map the stories</h1>
+      <p class="lede">Each marker is a place found in the archived trip docs. Dense clusters open into their own little world.</p>
+      <p class="travel-hero-actions"><a class="button-link" href="/travel-people.html">People index</a></p>
+    </div>
+  </header>
+
+  <main class="travel-shell">
+    <section class="travel-map-panel" aria-label="Travel map">
+      <div id="travelMap" class="travel-map"></div>
+      <aside class="travel-sidebar">
+        <div>
+          <p class="label-text">Locations</p>
+          <h2 id="locationCount">Loading map</h2>
+        </div>
+        <div id="travelList" class="travel-list"></div>
+      </aside>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/travel.js" type="module"></script>
+</body>
+</html>
