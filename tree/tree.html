@@ -153,13 +153,6 @@
       transform: translateY(-1px);
     }
 
-    .button-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: auto;
-    }
-
     .details {
       padding: 20px;
       border: 1px solid var(--line);
@@ -349,28 +342,6 @@
 
     .form-status.error {
       color: var(--accent-2);
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 8px;
-      color: var(--muted);
-      font-size: 0.92rem;
-    }
-
-    .stats strong {
-      color: var(--ink);
-    }
-
-    .stats .relationship-result {
-      margin-bottom: 4px;
-      padding: 10px 12px;
-      border: 1px solid rgba(31, 122, 140, 0.24);
-      border-radius: 10px;
-      background: rgba(31, 122, 140, 0.09);
-      color: var(--ink);
-      line-height: 1.4;
     }
 
     .legend {
@@ -594,7 +565,6 @@
       </section>
 
       <section id="member-details" class="details" aria-live="polite"></section>
-      <section id="tree-stats" class="stats" aria-label="Tree statistics"></section>
 
       <section class="legend" aria-label="Legend">
         <span><i class="dot male"></i>Male</span>
@@ -602,11 +572,6 @@
         <span><i class="rule"></i>Parent</span>
         <span><i class="rule dashed"></i>Partner</span>
       </section>
-
-      <div class="button-row" aria-label="Tree view controls">
-        <button id="fit-view" type="button">Fit</button>
-        <button id="reset-view" type="button">Reset</button>
-      </div>
     </aside>
 
     <section class="tree-stage" aria-label="Interactive family tree">

@@ -6,10 +6,7 @@
   const linkLayer = viewport.append("g").attr("class", "links");
   const nodeLayer = viewport.append("g").attr("class", "nodes");
   const searchInput = document.querySelector("#member-search");
-  const resetButton = document.querySelector("#reset-view");
-  const fitButton = document.querySelector("#fit-view");
   const details = document.querySelector("#member-details");
-  const stats = document.querySelector("#tree-stats");
   const linkDialog = document.querySelector("#link-dialog");
   const linkForm = document.querySelector("#link-form");
   const linkPersonId = document.querySelector("#link-person-id");
@@ -120,6 +117,8 @@
 
   svg.call(zoom);
   svg.on("click", clearSelectionFromBackground);
+  svg.on("dblclick.zoom", null);
+  svg.on("dblclick", resetViewFromBackground);
   hydrateControls();
   resize();
   render();
@@ -149,20 +148,6 @@
       window.clearTimeout(searchTimer);
       searchTimer = window.setTimeout(focusSearchMatch, 180);
     });
-
-    resetButton.addEventListener("click", () => {
-      searchInput.value = "";
-      searchTerm = "";
-      comparisonId = null;
-      nodes.forEach((node) => {
-        node.fx = null;
-        node.fy = null;
-      });
-      clearSelection();
-      fitToView();
-    });
-
-    fitButton.addEventListener("click", fitToView);
 
     details.addEventListener("click", (event) => {
       const addLinkButton = event.target.closest("[data-add-link]");
@@ -330,7 +315,6 @@
         .classed("is-dimmed", isSearching ? !searchConnected : !visible || !connected);
     });
 
-    updateStats(isSearching ? matchedIds : visibleIds);
   }
 
   function updateSelection(id, options = { center: true }) {
@@ -554,6 +538,21 @@
     clearSelection();
   }
 
+  function resetViewFromBackground(event) {
+    if (Date.now() < suppressClickUntil || event.defaultPrevented) return;
+    if (event.target.closest(".person-node")) return;
+    event.preventDefault();
+    searchInput.value = "";
+    searchTerm = "";
+    comparisonId = null;
+    nodes.forEach((node) => {
+      node.fx = null;
+      node.fy = null;
+    });
+    clearSelection();
+    fitToView();
+  }
+
   function clearSelection() {
     selectedId = null;
     comparisonId = null;
@@ -571,17 +570,6 @@
     applyState();
     updateLayeredTargets();
     updateForces(0.2);
-  }
-
-  function updateStats(visibleIds) {
-    const generations = new Set(nodes.filter((node) => visibleIds.has(node.id)).map((node) => node.generation));
-    const relationship = comparisonId === null ? "" : relationshipSummary(selectedId, comparisonId);
-    stats.innerHTML = `
-      ${relationship ? `<span class="relationship-result">${relationship}</span>` : ""}
-      <span><strong>${visibleIds.size}</strong> people</span>
-      <span><strong>${partnerLinks.length}</strong> partner links</span>
-      <span><strong>${generations.size}</strong> generations shown</span>
-    `;
   }
 
   function relationshipSummary(firstId, secondId) {

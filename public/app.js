@@ -402,7 +402,7 @@ function renderEventMeals(container, mealPlans = []) {
           `;
         }).join('') : '<p class="meta inline-empty">No meals scheduled during these dates.</p>'}
       </div>
-      <a class="calendar-action event-meal-link" href="/meal-planning.html">Plan meals</a>
+      <a class="calendar-action event-meal-link" href="/planning/meal-planning.html">Plan meals</a>
     </details>
   `;
 }

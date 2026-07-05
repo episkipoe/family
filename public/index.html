@@ -3,162 +3,55 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Family Gathering Planner</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Family Hub</title>
+  <link rel="stylesheet" href="/styles.css" />
   <link rel="icon" href="/favicon.ico" type="image/x-icon">
 </head>
-<body data-event-view="upcoming">
-  <header class="hero">
+<body>
+  <header class="hero hub-hero">
     <div>
-      <p class="eyebrow">Family Gathering Planner</p>
+      <p class="eyebrow">Family Hub</p>
     </div>
   </header>
 
   <main>
-    <section class="panel controls">
-      <div class="identity-card">
-        <span class="label-text">Posting as</span>
-        <strong id="currentUserName">Not set</strong>
-        <button id="changeNameButton" type="button">Change name</button>
-      </div>
-      <div class="control-actions">
-        <a class="button-link" href="/meal-planning.html">Meals</a>
-        <a class="button-link" href="/games.html">Games</a>
-        <a class="button-link" href="/tree/tree.html">Family tree</a>
-        <a class="button-link" href="/archive.html">Archive</a>
-        <a class="button-link" href="/admin.html">Admin</a>
-        <button id="addProposalButton" class="primary-action" type="button">Add event</button>
-      </div>
-    </section>
+    <section class="hub-grid" aria-label="Family tools">
+      <a class="hub-card planning-card" href="/planning/">
+        <span class="year">Trips</span>
+        <h2>Planning</h2>
+        <p class="meta">Vote on future gatherings, add comments, and keep the event details together.</p>
+      </a>
 
-    <section id="proposalList" class="proposal-list" aria-live="polite"></section>
+      <a class="hub-card archive-card" href="/planning/archive.html">
+        <span class="year">Past</span>
+        <h2>Archive</h2>
+        <p class="meta">Look back through family gatherings that have already wrapped up.</p>
+      </a>
 
-    <section class="panel list-tools" aria-label="Event filters">
-      <div>
-        <span class="label-text">Filter by year</span>
-        <div id="yearFilters" class="segmented-controls"></div>
-      </div>
-      <div>
-        <span class="label-text">Sort by date</span>
-        <div class="segmented-controls">
-          <button type="button" data-sort-direction="asc">Earliest</button>
-          <button type="button" data-sort-direction="desc">Latest</button>
-        </div>
-      </div>
+      <a class="hub-card meals-card" href="/planning/meal-planning.html">
+        <span class="year">Food</span>
+        <h2>Meals</h2>
+        <p class="meta">Plan meals by date, save recipes, and keep cooking notes handy.</p>
+      </a>
+
+      <a class="hub-card games-card" href="/games.html">
+        <span class="year">Play</span>
+        <h2>Games</h2>
+        <p class="meta">Open score trackers and family table games from one quick menu.</p>
+      </a>
+
+      <a class="hub-card tree-card" href="/tree/tree.html">
+        <span class="year">People</span>
+        <h2>Family Tree</h2>
+        <p class="meta">Browse relatives, relationships, history, maps, and the wider family view.</p>
+      </a>
+
+      <a class="hub-card admin-card" href="/planning/admin.html">
+        <span class="year">Tools</span>
+        <h2>Admin</h2>
+        <p class="meta">Clean up proposals and jump into family tree management tasks.</p>
+      </a>
     </section>
   </main>
-
-  <dialog id="nameDialog" class="name-dialog">
-    <form id="nameForm" method="dialog">
-      <h2>Who are you?</h2>
-      <label>
-        Your name
-        <input id="nameInput" name="name" autocomplete="name" required maxlength="80" placeholder="e.g. Dave" />
-      </label>
-      <button type="submit">Save name</button>
-    </form>
-  </dialog>
-
-  <dialog id="proposalDialog" class="proposal-dialog">
-    <form id="proposalForm" method="dialog">
-      <div class="dialog-topline">
-        <h2 id="proposalDialogTitle">Add event</h2>
-        <button class="ghost-button" type="button" data-close-proposal aria-label="Close">X</button>
-      </div>
-      <label>
-        Trip name
-        <input name="title" required maxlength="120" placeholder="e.g. Galveston Beach Weekend" />
-      </label>
-      <label>
-        Location
-        <input name="location" list="locationOptions" required maxlength="120" placeholder="Choose a saved place or type a new one" />
-        <datalist id="locationOptions"></datalist>
-      </label>
-      <label>
-        Year
-        <input name="year" type="number" min="2026" max="2100" step="1" placeholder="e.g. 2027" />
-      </label>
-      <div class="form-grid">
-        <label>
-          Start date
-          <input name="startDate" type="date" />
-        </label>
-        <label>
-          End date
-          <input name="endDate" type="date" />
-        </label>
-      </div>
-      <label>
-        Notes
-        <textarea name="summary" maxlength="1000" rows="4" placeholder="Why this spot? Lodging ideas, travel notes, rough plan..."></textarea>
-      </label>
-      <section class="subevent-editor">
-        <div class="dialog-topline">
-          <h3>Sub-events</h3>
-          <button type="button" data-add-subevent>Add sub-event</button>
-        </div>
-        <div id="subEventRows" class="subevent-rows"></div>
-      </section>
-      <section class="link-editor">
-        <div class="dialog-topline">
-          <h3>Links</h3>
-          <button type="button" data-add-link>Add link</button>
-        </div>
-        <div id="linkRows" class="link-rows"></div>
-      </section>
-      <button class="primary-action" type="submit">Save event</button>
-    </form>
-  </dialog>
-
-  <template id="proposalTemplate">
-    <article class="proposal-card">
-      <div class="proposal-topline">
-        <div>
-          <p class="year"></p>
-          <h2></h2>
-        </div>
-        <span class="status"></span>
-      </div>
-      <div class="proposal-actions">
-        <a class="calendar-action" data-calendar-link target="_blank" rel="noreferrer">Add to Google Calendar</a>
-        <button type="button" data-edit-proposal>Edit</button>
-      </div>
-      <p class="meta"></p>
-      <p class="summary"></p>
-      <section class="subevents"></section>
-      <section class="event-meals"></section>
-      <section class="proposal-links"></section>
-
-      <div class="proposal-details">
-        <section class="mini-calendar" aria-label="Event dates"></section>
-        <section class="mini-map" aria-label="Event location"></section>
-      </div>
-
-      <div class="vote-row">
-        <button data-vote="yes">Yes <span class="yes-count">0</span></button>
-        <button data-vote="maybe">Maybe <span class="maybe-count">0</span></button>
-        <button data-vote="no">No <span class="no-count">0</span></button>
-      </div>
-
-      <details class="vote-details">
-        <summary>
-          <span>Vote details</span>
-          <strong class="vote-total">0</strong>
-        </summary>
-        <div class="vote-detail-list"></div>
-      </details>
-
-      <section class="comments">
-        <h3>Comments</h3>
-        <div class="comment-list"></div>
-        <form class="comment-form">
-          <input name="text" placeholder="Add a thought, concern, or idea" required />
-          <button type="submit">Comment</button>
-        </form>
-      </section>
-    </article>
-  </template>
-
-  <script src="app.js" type="module"></script>
 </body>
 </html>

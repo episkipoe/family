@@ -905,6 +905,98 @@ h3 {
   gap: 16px;
 }
 
+.hub-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.hub-card {
+  position: relative;
+  display: grid;
+  min-height: 250px;
+  align-content: space-between;
+  gap: 18px;
+  overflow: hidden;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  color: inherit;
+  text-decoration: none;
+  box-shadow: var(--shadow);
+}
+
+.hub-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  opacity: 0.18;
+  background: linear-gradient(135deg, transparent, var(--sun));
+  pointer-events: none;
+}
+
+.hub-card > * {
+  position: relative;
+}
+
+.hub-card h2 {
+  margin-top: 4px;
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  line-height: 1;
+}
+
+.hub-card .meta {
+  line-height: 1.5;
+}
+
+.hub-card:hover {
+  border-color: var(--ocean);
+  transform: translateY(-2px);
+}
+
+.hub-hero {
+  background:
+    linear-gradient(115deg, rgba(22, 140, 162, 0.78), rgba(239, 116, 95, 0.58)),
+    url("https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=1600&q=80") center 45% / cover;
+}
+
+.planning-card {
+  background:
+    linear-gradient(180deg, rgba(22, 140, 162, 0.12), rgba(255, 255, 255, 0.86)),
+    #f7fffc;
+}
+
+.archive-card {
+  background:
+    linear-gradient(180deg, rgba(23, 49, 59, 0.11), rgba(255, 255, 255, 0.86)),
+    #fff8e2;
+}
+
+.meals-card {
+  background:
+    linear-gradient(180deg, rgba(44, 143, 107, 0.14), rgba(255, 255, 255, 0.86)),
+    #f2fff8;
+}
+
+.games-card {
+  background:
+    linear-gradient(180deg, rgba(239, 116, 95, 0.13), rgba(255, 255, 255, 0.86)),
+    #fff6f4;
+}
+
+.tree-card {
+  background:
+    linear-gradient(180deg, rgba(246, 183, 60, 0.17), rgba(255, 255, 255, 0.86)),
+    #fffdf4;
+}
+
+.admin-card {
+  background:
+    linear-gradient(180deg, rgba(119, 211, 214, 0.2), rgba(255, 255, 255, 0.86)),
+    #f6fbff;
+}
+
 .game-card {
   position: relative;
   display: grid;
@@ -1035,6 +1127,7 @@ h3 {
   }
 
   .proposal-details,
+  .hub-grid,
   .games-grid,
   .form-grid,
   .vote-detail-list,

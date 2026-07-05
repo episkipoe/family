@@ -24,6 +24,11 @@ const gamePlaces = {
 };
 
 app.use(express.json({ limit: '200kb' }));
+app.get(['/index.html', '/planner.html'], (req, res) => res.redirect(301, '/planning/'));
+app.get('/archive.html', (req, res) => res.redirect(301, '/planning/archive.html'));
+app.get('/meal-planning.html', (req, res) => res.redirect(301, '/planning/meal-planning.html'));
+app.get('/recipes.html', (req, res) => res.redirect(301, '/planning/recipes.html'));
+app.get('/admin.html', (req, res) => res.redirect(301, '/planning/admin.html'));
 app.use(express.static('public'));
 app.use('/tree', express.static('tree'));
 
