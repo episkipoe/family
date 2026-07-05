@@ -16,10 +16,22 @@
     h1 { margin:4px 0 8px; font-family:Georgia,serif; font-size:clamp(2rem,6vw,3.5rem); letter-spacing:0; }
     h2 { margin:0; font-size:1.25rem; }
     p { margin:0; color:var(--muted); line-height:1.5; }
+    .calendar-controls { display:grid; gap:8px; margin-top:16px; max-width:360px; }
+    .calendar-controls label { color:var(--accent-dark); font-size:.82rem; font-weight:900; text-transform:uppercase; }
+    .calendar-controls select { width:100%; min-height:42px; padding:9px 12px; border:1px solid var(--line); border-radius:8px; background:#fffaf2; color:var(--ink); font:inherit; font-weight:750; }
     .layout { display:grid; grid-template-columns:minmax(280px,.85fr) minmax(0,1.35fr); gap:18px; align-items:start; }
+    .event-sidebar { display:grid; gap:18px; }
     .panel { padding:18px; }
+    details.panel { padding:0; overflow:hidden; }
+    details.panel summary { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:18px; cursor:pointer; font-size:1.25rem; font-weight:850; list-style:none; }
+    details.panel summary::-webkit-details-marker { display:none; }
+    details.panel summary::after { content:"+"; display:inline-grid; place-items:center; width:28px; height:28px; border:1px solid var(--line); border-radius:50%; color:var(--accent-dark); font-weight:900; }
+    details.panel[open] summary::after { content:"-"; }
+    details.panel .event-list { padding:0 18px 18px; }
     .event-list { display:grid; gap:10px; margin-top:14px; }
     .event-card { display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; padding:12px; border:1px solid var(--line); border-radius:8px; background:#fffaf2; }
+    .event-card.is-immediate { border-color:rgba(160,71,85,.55); background:#fff0f1; }
+    .event-card.is-partner { border-color:rgba(31,122,140,.75); background:#e3fbf6; box-shadow:inset 5px 0 0 var(--accent); }
     .event-card strong { display:block; margin-bottom:3px; }
     .event-card span { color:var(--muted); font-size:.92rem; }
     .calendar-button { display:inline-flex; align-items:center; justify-content:center; min-height:36px; padding:8px 11px; border:1px solid rgba(31,122,140,.3); border-radius:8px; background:rgba(31,122,140,.08); color:var(--accent); font-size:.84rem; font-weight:850; text-decoration:none; white-space:nowrap; }
@@ -32,13 +44,27 @@
     .day { display:grid; min-height:34px; padding:4px; border-radius:6px; background:#fffdf8; color:var(--muted); font-size:.78rem; }
     .day.is-empty { background:transparent; }
     .day.has-event { background:#fff0c2; color:#59400d; font-weight:850; }
+    .day.has-immediate-event { background:#ffd8de; color:#6f2531; box-shadow:inset 0 0 0 2px rgba(160,71,85,.45); }
+    .day.has-partner-event { background:#98f0df; color:#0e4d58; box-shadow:inset 0 0 0 3px var(--accent-dark); }
     .day.is-today { box-shadow:inset 0 0 0 2px var(--rose); color:var(--rose); font-weight:900; }
+    .day.is-today.has-immediate-event { box-shadow:inset 0 0 0 2px var(--rose), inset 0 0 0 4px rgba(255,255,255,.7); }
+    .day.is-today.has-partner-event { box-shadow:inset 0 0 0 2px var(--rose), inset 0 0 0 5px var(--accent-dark); }
     button.day { width:100%; border:0; cursor:pointer; font:inherit; text-align:left; }
     button.day:hover,button.day:focus-visible,.day.is-selected { outline:2px solid var(--accent); outline-offset:1px; background:#e9faf5; color:var(--accent-dark); }
     .dots { display:flex; flex-wrap:wrap; gap:2px; margin-top:3px; }
     .dot { width:6px; height:6px; border-radius:50%; background:var(--accent); }
     .dot.anniversary { background:var(--rose); }
+    .dot.is-immediate { width:8px; height:8px; box-shadow:0 0 0 2px rgba(160,71,85,.22); }
+    .dot.is-partner { width:9px; height:9px; background:var(--accent-dark); box-shadow:0 0 0 2px rgba(31,122,140,.28); }
     .empty { padding:18px; color:var(--muted); text-align:center; }
+    dialog { width:min(520px,calc(100% - 28px)); padding:0; border:1px solid var(--line); border-radius:14px; background:var(--paper); color:var(--ink); box-shadow:0 24px 70px rgba(24,33,47,.28); }
+    dialog::backdrop { background:rgba(23,32,44,.42); }
+    .dialog-head { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:18px; border-bottom:1px solid var(--line); }
+    .dialog-head h2 { min-width:0; }
+    .dialog-close { display:inline-grid; place-items:center; width:34px; height:34px; border:1px solid var(--line); border-radius:50%; background:#fffaf2; color:var(--accent-dark); cursor:pointer; font-size:1.3rem; line-height:1; }
+    .dialog-close:hover,.dialog-close:focus-visible { background:#e9faf5; outline:2px solid var(--accent); outline-offset:1px; }
+    .dialog-body { padding:18px; }
+    .dialog-body .event-list { margin-top:0; }
     @media (max-width:860px) { .layout,.year-grid { grid-template-columns:1fr; } }
     @media (max-width:520px) { .event-card { grid-template-columns:1fr; } .calendar-button { width:100%; } }
   </style>
@@ -51,24 +77,39 @@
     </nav>
     <header>
       <p>Birthdays and anniversaries</p>
-      <h1 id="calendar-title">Family Calendar</h1>
-      <p id="calendar-summary"></p>
+      <div class="calendar-controls">
+        <label for="calendar-person">Calendar for</label>
+        <select id="calendar-person"></select>
+      </div>
     </header>
     <div class="layout">
-      <section class="panel" aria-labelledby="upcoming-heading">
-        <h2 id="upcoming-heading">Next 10 Events</h2>
-        <div id="upcoming-events" class="event-list" aria-live="polite"></div>
-      </section>
+      <div class="event-sidebar">
+        <details id="partner-events-panel" class="panel" open>
+          <summary id="partner-heading">Partner Events</summary>
+          <div id="partner-events" class="event-list" aria-live="polite"></div>
+        </details>
+        <details class="panel" open>
+          <summary id="upcoming-heading">Next 10 Events</summary>
+          <div id="upcoming-events" class="event-list" aria-live="polite"></div>
+        </details>
+      </div>
       <section class="panel" aria-labelledby="year-heading">
         <h2 id="year-heading">Calendar</h2>
         <div id="year-calendar" class="year-grid" aria-live="polite"></div>
-        <div class="event-list" aria-labelledby="selected-date-heading">
-          <h2 id="selected-date-heading">Selected Date</h2>
-          <div id="selected-date-events" aria-live="polite"></div>
-        </div>
       </section>
     </div>
   </main>
+  <dialog id="selected-date-dialog" aria-labelledby="selected-date-heading">
+    <div class="dialog-head">
+      <h2 id="selected-date-heading">Selected Date</h2>
+      <form method="dialog">
+        <button class="dialog-close" type="submit" aria-label="Close selected date details">&times;</button>
+      </form>
+    </div>
+    <div class="dialog-body">
+      <div id="selected-date-events" class="event-list" aria-live="polite"></div>
+    </div>
+  </dialog>
   <script src="calendar-app.js"></script>
 </body>
 </html>

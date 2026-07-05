@@ -3,18 +3,27 @@
   const byId = new Map(people.map((person) => [person.id, person]));
   const partnerPairs = new Map();
   const today = startOfToday(new Date());
+  const storageKey = "familyCalendarPersonId";
 
   people.forEach((person) => {
     addPair(person.id, person.partnerId);
     addPair(person.parent1Id, person.parent2Id);
   });
 
-  const requestedId = Number(new URLSearchParams(window.location.search).get("id"));
-  const person = byId.get(requestedId) || people[0];
-  const title = document.querySelector("#calendar-title");
-  const summary = document.querySelector("#calendar-summary");
+  const params = new URLSearchParams(window.location.search);
+  const requestedPerson = personFromStoredId(params.get("id"));
+  const savedPerson = personFromStoredId(localStorage.getItem(storageKey));
+  let person = requestedPerson || savedPerson || people[0];
+  let events = [];
+  let immediateIds = new Set();
+  let selectedPartnerIds = new Set();
+  const calendarPerson = document.querySelector("#calendar-person");
   const upcoming = document.querySelector("#upcoming-events");
+  const partnerEventsPanel = document.querySelector("#partner-events-panel");
+  const partnerEvents = document.querySelector("#partner-events");
   const yearCalendar = document.querySelector("#year-calendar");
+  const selectedDateHeading = document.querySelector("#selected-date-heading");
+  const selectedDateDialog = document.querySelector("#selected-date-dialog");
   const selectedDateEvents = document.querySelector("#selected-date-events");
 
   if (!person) {
@@ -23,32 +32,66 @@
   }
 
   document.title = `${person.name} Calendar`;
-  title.textContent = `${person.name} Calendar`;
-  document.querySelector("#back-to-related").href = `related.html?id=${person.id}`;
-  document.querySelector("#back-to-tree").href = `tree.html?id=${person.id}`;
-
-  const relatedPeople = people
-    .filter((candidate) => candidate.id !== person.id)
-    .map((candidate) => ({ person: candidate, relation: relationshipTo(candidate, person) }))
-    .filter((item) => item.relation)
-    .map((item) => item.person);
-  const relatedIds = new Set(relatedPeople.map((member) => member.id));
-  const events = buildEvents(relatedPeople, relatedIds);
-  const upcomingEvents = events
-    .map((event) => ({ ...event, nextDate: nextOccurrence(event.month, event.day) }))
-    .sort((a, b) => a.nextDate - b.nextDate || a.title.localeCompare(b.title))
-    .slice(0, 10);
-
-  summary.textContent = `${events.length} events from the same ${relatedPeople.length} people shown on ${person.name}'s relationships page.`;
-  renderUpcoming(upcomingEvents);
-  renderYear(events);
-  selectDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  renderPersonOptions();
+  refreshCalendar();
 
   yearCalendar.addEventListener("click", (event) => {
     const dayButton = event.target.closest("[data-year][data-month][data-day]");
     if (!dayButton) return;
     selectDate(Number(dayButton.dataset.year), Number(dayButton.dataset.month), Number(dayButton.dataset.day));
   });
+
+  selectedDateDialog.addEventListener("click", (event) => {
+    if (event.target === selectedDateDialog) selectedDateDialog.close();
+  });
+
+  calendarPerson.addEventListener("change", () => {
+    person = byId.get(Number(calendarPerson.value)) || person;
+    selectedDateDialog.close();
+    localStorage.setItem(storageKey, String(person.id));
+    window.history.replaceState(null, "", `calendar.html?id=${person.id}`);
+    refreshCalendar();
+  });
+
+  function renderPersonOptions() {
+    calendarPerson.innerHTML = people
+      .slice()
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .map((member) => `<option value="${member.id}"${member.id === person.id ? " selected" : ""}>${escapeHtml(member.name)}</option>`)
+      .join("");
+  }
+
+  function refreshCalendar() {
+    document.title = `${person.name} Calendar`;
+    document.querySelector("#back-to-related").href = `related.html?id=${person.id}`;
+    document.querySelector("#back-to-tree").href = `tree.html?id=${person.id}`;
+    calendarPerson.value = String(person.id);
+
+    const relatedPeople = people
+      .filter((candidate) => candidate.id !== person.id)
+      .map((candidate) => ({ person: candidate, relation: relationshipTo(candidate, person) }))
+      .filter((item) => item.relation)
+      .map((item) => item.person);
+    const relatedIds = new Set(relatedPeople.map((member) => member.id));
+    immediateIds = immediateFamilyIds(person);
+    selectedPartnerIds = new Set(partnerIds(person.id));
+    partnerEventsPanel.hidden = selectedPartnerIds.size === 0;
+    events = buildEvents(relatedPeople, relatedIds);
+    const upcomingEvents = events
+      .map((event) => ({ ...event, nextDate: nextOccurrence(event.month, event.day) }))
+      .sort((a, b) => a.nextDate - b.nextDate || a.title.localeCompare(b.title))
+      .slice(0, 10);
+    const upcomingPartnerEvents = events
+      .filter(isPartnerEvent)
+      .map((event) => ({ ...event, nextDate: nextOccurrence(event.month, event.day) }))
+      .sort((a, b) => a.nextDate - b.nextDate || a.title.localeCompare(b.title))
+      .slice(0, 10);
+
+    renderUpcoming(upcomingEvents);
+    renderPartnerEvents(upcomingPartnerEvents);
+    renderYear(events);
+    highlightDate(today.getFullYear(), today.getMonth() + 1, today.getDate());
+  }
 
   function buildEvents(members, memberIds) {
     const events = [];
@@ -59,6 +102,7 @@
         events.push({
           type: "birthday",
           title: `${member.name}'s birthday`,
+          memberIds: [member.id],
           month: birthday.month,
           day: birthday.day,
           originalYear: birthday.year
@@ -76,6 +120,7 @@
       events.push({
         type: "anniversary",
         title: partner ? `${member.name} and ${partner.name}'s anniversary` : `${member.name}'s anniversary`,
+        memberIds: [member.id, partner?.id].filter(Number.isFinite),
         month: anniversary.month,
         day: anniversary.day,
         originalYear: anniversary.year
@@ -85,15 +130,11 @@
   }
 
   function renderUpcoming(items) {
-    upcoming.innerHTML = items.length ? items.map((event) => `
-      <article class="event-card">
-        <div>
-          <strong>${escapeHtml(event.title)}</strong>
-          <span>${escapeHtml(formatDate(event.nextDate))}${event.originalYear ? `, ${event.nextDate.getFullYear() - event.originalYear} years` : ""}</span>
-        </div>
-        <a class="calendar-button" href="${googleCalendarUrl(event, event.nextDate)}" target="_blank" rel="noreferrer">Add to Google Calendar</a>
-      </article>
-    `).join("") : '<p class="empty">No birthdays or anniversaries are listed for these relatives.</p>';
+    upcoming.innerHTML = items.length ? items.map((event) => eventCardMarkup(event, event.nextDate)).join("") : '<p class="empty">No birthdays or anniversaries are listed for these relatives.</p>';
+  }
+
+  function renderPartnerEvents(items) {
+    partnerEvents.innerHTML = items.length ? items.map((event) => eventCardMarkup(event, event.nextDate)).join("") : '<p class="empty">No partner events are listed for this calendar.</p>';
   }
 
   function renderYear(events) {
@@ -115,10 +156,14 @@
       const day = index + 1;
       const monthNumber = monthIndex + 1;
       const events = byMonthDay.get(`${monthNumber}-${day}`) || [];
+      const hasImmediateEvent = events.some(isImmediateEvent);
+      const hasPartnerEvent = events.some(isPartnerEvent);
       const titleText = events.map((event) => event.title).join("; ");
-      const dots = events.slice(0, 4).map((event) => `<i class="dot ${event.type}" aria-hidden="true"></i>`).join("");
+      const dots = events.slice(0, 4).map((event) => `<i class="dot ${event.type}${isImmediateEvent(event) ? " is-immediate" : ""}${isPartnerEvent(event) ? " is-partner" : ""}" aria-hidden="true"></i>`).join("");
       const classes = ["day"];
       if (events.length) classes.push("has-event");
+      if (hasImmediateEvent) classes.push("has-immediate-event");
+      if (hasPartnerEvent) classes.push("has-partner-event");
       if (isToday(year, monthNumber, day)) classes.push("is-today");
       const label = events.length
         ? `${monthName(year, monthIndex)} ${day}, ${year}: ${titleText}`
@@ -136,26 +181,67 @@
 
   function selectDate(year, month, day) {
     if (!year || !month || !day) {
+      selectedDateHeading.textContent = "Selected Date";
       selectedDateEvents.innerHTML = '<p class="empty">No events are listed.</p>';
+      openSelectedDateDialog();
       return;
     }
     const selectedDate = new Date(year, month - 1, day);
     const matchingEvents = events.filter((event) => event.month === month && event.day === day);
+    highlightDate(year, month, day);
+    selectedDateHeading.textContent = formatDate(selectedDate);
+    selectedDateEvents.innerHTML = matchingEvents.length ? matchingEvents.map((event) => eventCardMarkup(event, selectedDate)).join("") : `<p class="empty">No events on ${escapeHtml(formatDate(selectedDate))}.</p>`;
+    openSelectedDateDialog();
+  }
+
+  function highlightDate(year, month, day) {
     yearCalendar.querySelectorAll(".day").forEach((element) => {
       element.classList.toggle(
         "is-selected",
         Number(element.dataset.year) === year && Number(element.dataset.month) === month && Number(element.dataset.day) === day
       );
     });
-    selectedDateEvents.innerHTML = matchingEvents.length ? matchingEvents.map((event) => `
-      <article class="event-card">
+  }
+
+  function eventCardMarkup(event, date) {
+    const classes = ["event-card"];
+    if (isImmediateEvent(event)) classes.push("is-immediate");
+    if (isPartnerEvent(event)) classes.push("is-partner");
+    return `
+      <article class="${classes.join(" ")}">
         <div>
           <strong>${escapeHtml(event.title)}</strong>
-          <span>${escapeHtml(formatDate(selectedDate))}${event.originalYear ? `, ${selectedDate.getFullYear() - event.originalYear} years` : ""}</span>
+          <span>${escapeHtml(formatDate(date))}${event.originalYear ? `, ${date.getFullYear() - event.originalYear} years` : ""}</span>
         </div>
-        <a class="calendar-button" href="${googleCalendarUrl(event, selectedDate)}" target="_blank" rel="noreferrer">Add to Google Calendar</a>
+        <a class="calendar-button" href="${googleCalendarUrl(event, date)}" target="_blank" rel="noreferrer">Add to Google Calendar</a>
       </article>
-    `).join("") : `<p class="empty">No events on ${escapeHtml(formatDate(selectedDate))}.</p>`;
+    `;
+  }
+
+  function openSelectedDateDialog() {
+    if (!selectedDateDialog.open) selectedDateDialog.showModal();
+  }
+
+  function immediateFamilyIds(member) {
+    const directParentIds = new Set(parentIds(member));
+    const ids = new Set(directParentIds);
+    people.forEach((candidate) => {
+      if (candidate.id === member.id) return;
+      const candidateParents = parentIds(candidate);
+      const hasSharedParent = candidateParents.some((id) => directParentIds.has(id));
+      const isChild = candidateParents.includes(member.id);
+      if (hasSharedParent || isChild) ids.add(candidate.id);
+    });
+    ids.delete(member.id);
+    return ids;
+  }
+
+  function isImmediateEvent(event) {
+    return event.memberIds.some((id) => immediateIds.has(id));
+  }
+
+  function isPartnerEvent(event) {
+    return event.memberIds.some((id) => selectedPartnerIds.has(id));
   }
 
   function googleCalendarUrl(event, date) {
@@ -269,6 +355,11 @@
   }
 
   function calendarDate(date) { return `${date.getFullYear()}${pad(date.getMonth() + 1)}${pad(date.getDate())}`; }
+  function personFromStoredId(value) {
+    if (!value) return null;
+    const id = Number(value);
+    return Number.isFinite(id) ? byId.get(id) || null : null;
+  }
   function startOfToday(date) { return new Date(date.getFullYear(), date.getMonth(), date.getDate()); }
   function formatDate(date) { return date.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric", year: "numeric" }); }
   function monthName(year, index) { return new Date(year, index, 1).toLocaleDateString(undefined, { month: "long" }); }
