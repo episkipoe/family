@@ -1,0 +1,59 @@
+﻿08/15/09
+I take a trip to Ohio to visit Lee & Laura
+It would have been another time, another place
+but he got everything he needed from German, words smashed together
+
+
+we crack open the crystal vodka skull (crystalheadvodka.com)
+and stay up until 5am talking about Mormonism and shit like that
+the sun creeps into the room so I'm back up at 8am
+
+
+breakfast at the cafe and the waitress is cute in a miniature way
+then we tour the campus – it has a very impressive library and a math garden
+I started playing with a TV looking for features and turned it off when it got awkward
+later I made the library map into a D&D scenario
+
+
+driving around, pick up some rollerblades from a rich neighborhood
+picking tomatoes from the garden, eating them with cheese
+we play Wii and somehow got obsessed with basketball
+watch an episode of Mad Men and it may make my list
+and a sweetish Swedish vampire move, Let the Right One in
+
+
+brother calls as I drive back home – he bought a hearse
+which makes Dr. Nightmare, his GPS, a lier when he says
+“This is a nice car, but it's no hearse”
+
+
+another late night
+downing nodoz with espresso, hell of a rush
+I swear I can smell the home-brewed espresso
+that permeated the apt senior year at Knox
+hacking, learning never sleeping
+I've been in full-blown hack-mode since Def Con
+having so much fun re-setting up my system
+since I upgraded to Jaunty Jackalope
+fixing the sound playback
+wrestling with madwifi
+ath0, wifi0 Kubuntu Atheros
+and finally I got it the way I want
+it's been a while since a machine has felt as much a home
+swaddled, can't get my head out of the computer
+
+
+researching assembly and reverse engineering
+a thrill to see code's privates splayed out to view
+ah, so this is what notepad.exe depends on
+and where I can find the function calls to unlock that same functionality
+feeling like a maniac, getting high off the hack
+and exploring the network tools available
+there is a temptation to slide into script kiddie mode
+but the tastiest of fruit grows on the shoulders (not in the shadows) of giants
+
+
+coding on the couch, the Agents program
+porting it to Qt to learn the API
+qmake is such a dream, a doll
+I never thought it could be this easy

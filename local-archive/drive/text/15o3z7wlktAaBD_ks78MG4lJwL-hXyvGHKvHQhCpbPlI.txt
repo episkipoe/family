@@ -1,0 +1,27 @@
+,write-up,word count,location,attendees,badge,con count
+0,2006 - DEF CON 14,1689,Riviera,,,1
+1,2007 - DEF CON 15,1744,Riviera,,,2
+2,2008 - DEF CON 16,2184,Riviera,8000,,3
+3,2009 - DEF CON 17,1339,Riviera,,,4
+4,2010 - DEF CON 18,2495,Riviera,,,5
+5,2011 - DEF CON 19,1197,Rio,,,6
+6,2011 - PhreakNIC 15,1074,Days Inn,,,1
+7,2012 - DEF CON 20,6369,Rio,,,7
+8,2013 - DEF CON 21,3734,Rio,12000,,8
+9,2014 - DEF CON 22,3760,Rio,16000,,9
+10,2014 - PhreakNIC 18,1602,Millennium Maxwell,,,2
+11,2015 - DEF CON 23,4888,Paris/Ballys,16000,,10
+12,2015 - PhreakNIC 19,1611,Clarion,,,3
+13,2016 - DEF CON 24,4839,Paris/Ballys,22000,,11
+14,2017 - DEF CON 25,9068,Caesars,25000,,12
+15,2018 - DEF CON 26,6802,Caesars,28000,,13
+16,2019 - DEF CON 27,3599,Paris/Ballys,30000,,14
+17,2020 - DEF CON 28,,Home,,:(,
+18,2021 - DEF CON 29 / DaveCon 0x0,,Paris/Ballys,8700,,15
+19,2022 - DEF CON 30 / DaveCon 1.0,,Caesars Forum,25000,,16
+20,2023 - DEF CON 31 / DaveCon 2.1,,Caesars Forum,25000,,17
+21,2023 - PhreakNIC 24,,Clarion,157,,4
+22,2024 - DEF CON 32 / DaveCon 3.14,,LVCC,27000,,18
+23,2025 - DEF CON 33 / DaveCon 4.2,,LVCC,26000,,19
+24,2026 - DEF CON 34 / DaveCon V,,LVCC,,,20
+

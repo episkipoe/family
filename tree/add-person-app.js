@@ -159,7 +159,7 @@
       birthDate: fields.birthDate.value.trim(),
       deathDate: fields.deathDate.value.trim(),
       marriageDate: fields.marriageDate.value.trim(),
-      location: fields.location.value.trim(),
+      location: locationInputValue(fields.location.value),
       partnerId: numberOrNull(partner.value),
       parent1Id: numberOrNull(parent1.value),
       parent2Id: numberOrNull(parent2.value)
@@ -204,6 +204,22 @@
 
   function hasPersonIdValue(value) {
     return value !== null && value !== undefined && value !== "";
+  }
+
+  function locationInputValue(value) {
+    const seen = new Set();
+    const locations = String(value || "")
+      .split(/\r?\n|,/)
+      .map((entry) => entry.trim())
+      .filter((entry) => {
+        const key = entry.toLowerCase();
+        if (!entry || seen.has(key)) return false;
+        seen.add(key);
+        return true;
+      });
+
+    if (locations.length > 1) return locations;
+    return locations[0] || "";
   }
 
   function setStatus(message, isError = false) {

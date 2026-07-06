@@ -342,7 +342,8 @@
     const marriedDuration = marriageDuration(member, partners);
     const diedRow = diedDate ? `<div><dt>Died</dt><dd>${diedDate}</dd></div>` : "";
     const marriedRow = marriedDate ? `<div><dt>Married</dt><dd>${marriedDate}${marriedDuration ? ` (${marriedDuration})` : ""}</dd></div>` : "";
-    const locationRow = member.location ? `<div><dt>Location</dt><dd>${escapeHtml(member.location)}</dd></div>` : "";
+    const locations = locationList(member.location);
+    const locationRow = locations.length ? `<div><dt>Location</dt><dd>${escapeHtml(locations.join(", "))}</dd></div>` : "";
     const parentContent = [
       personLinks(parents, "Not listed"),
       addParentActions(member)
@@ -434,7 +435,7 @@
     editBirthDate.value = person.birthDate || "";
     editDeathDate.value = person.deathDate || "";
     editMarriageDate.value = person.marriageDate || "";
-    editLocation.value = person.location || "";
+    editLocation.value = locationList(person.location).join("\n");
     hydrateEditPersonOptions(person.id);
     editParent1.value = person.parent1Id ?? "";
     editParent2.value = person.parent2Id ?? "";
@@ -498,7 +499,7 @@
       birthDate: editBirthDate.value.trim(),
       deathDate: editDeathDate.value.trim(),
       marriageDate: editMarriageDate.value.trim(),
-      location: editLocation.value.trim(),
+      location: locationInputValue(editLocation.value),
       parent1Id: numberOrNull(editParent1.value),
       parent2Id: numberOrNull(editParent2.value),
       partnerId: numberOrNull(editPartner.value)
@@ -1351,6 +1352,28 @@
 
   function numberOrNull(value) {
     return value === "" || value === null || value === undefined ? null : Number(value);
+  }
+
+  function locationList(value) {
+    const values = Array.isArray(value) ? value : [value];
+    const seen = new Set();
+    const locations = [];
+
+    values.forEach((entry) => {
+      const location = String(entry || "").trim();
+      const key = location.toLowerCase();
+      if (!location || seen.has(key)) return;
+      seen.add(key);
+      locations.push(location);
+    });
+
+    return locations;
+  }
+
+  function locationInputValue(value) {
+    const locations = locationList(String(value || "").split(/\r?\n|,/));
+    if (locations.length > 1) return locations;
+    return locations[0] || "";
   }
 
   function missingParentFields(member) {

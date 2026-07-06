@@ -1,0 +1,311 @@
+﻿Thursday, November, 5
+Both my Ryans and all of my coworkers fell through so I’m driving down alone.
+Leave STL through stormy rain and then it’s the dark, drowsy monotony of Cracker Barrel country.
+Cruise control.  Counting clock cycles.
+The lights of Nashville.
+Batman building.
+
+
+  
+
+  
+
+My paranoia is assuaged when I see the sign at the Clarion welcoming me.
+And then I enter the lobby and find Elonka sorting things out.
+Signs guiding me to mayhem.
+I’m in the right place.
+
+
+A brief catch-up in the atrium with Ben White of Bainbridge fame.
+Always a friendly face and a touch of the tropical to his attire.
+James, one of his students, jumps the velvet rope and gets himself some juice.
+(What’s your name, again?  I’m going to write it down this time)
+
+
+And there’s this drunk guy in an ICP shirt.
+Warning us about Freaknik in Atlanta, which isn’t the same thing as PhreakNIC.
+Phonetically identical, but it’s not phone phreaking and it’s nothing to do with a network interface controller.
+“I like to party”  He demonstrates this fact with a little dance.  Some sashaying softshoe.
+They looked him up and down and told him  “No.  You don’t like to party.  Not like this...”
+
+
+James is into embedded development.  I suggest he give propellers a spin.
+Comparing ASM and C is like apples and oranges.
+But, he just drank both those juices.
+So let’s do it.
+
+
+This guy might be named Larry.  
+Probably not, but he’s certainly a bit lairy.
+He’s so drunk he’s lambasting Python and advocating for Perl
+And having trouble articulating flaws in Java (vis a vis lower level languages)
+James successfully derails him with a NOP sled of “Oh shit”  Once again he forgot what he was going to say.
+And then he insists quite adamantly we take a shot of bourbon.  It’s a bit rough.  Coke chaser.  
+I swear to god he said “Ship Bordays”  
+But that’s not really a thing.
+He says get some Jefferson’s Ocean if you like both bourbon and your mouth.
+
+
+We’re recruited to move things from what will be Track 2, up to the Con suite 226
+I had to take away Larry’s cart driving privileges after he spilled a load.
+
+
+  
+
+James seems to be putting together something with a Breaking Bad motif.
+Severed heads in a desert.  
+
+
+And just like last year, Elonka is looking for a new job 
+(the drama we discussed last DEF CON turned into wholescale fiasco)
+And just like last year, she has hardware trouble.
+  
+
+This time, it’s a printer.  You have to trick it just to turn it on.
+We don’t have a cord and the networking is not cooperating.
+We have a .pdf that we can put on a Strangeloop thumb drive (we carry matching USB bottle openers)
+But that format isn’t recognized.  Let’s trust a random site far enough to convert it to .jpg
+(I’m actually a bit impressed with the resulting quality)
+We scan a pamphlet, but can’t even get a simple grayscale image to print.
+Yup, time for another hardware run.
+The new printer doesn’t seem to have a USB slot
+So I run and get my laptop.  Copy the image to an SD card.
+At 1:30 we finally have the flyers printed and head out, victorious, to hang them.
+  
+
+Friday, November 6
+
+
+Breakfast is provided.  The atrium is quite pleasant.  Pool and palm trees.  
+  
+
+I learn about avionics from Joe
+And Pebble development from Leslie 
+
+
+Manilla packets are out of order.  
+We head to opening ceremonies before registration officially opens.
+Next time we’ll use TCP.
+
+
+  
+
+The lid of the ice bucket looks nothing like the badge.  How am I to work with this? (c.f. DEF CON 23)
+
+
+Ben the Magnificent walks by and he remembers my name.
+
+
+Magnetic rainbows turns to new Crypto
+Diversity is the solution to Adversity
+Track 2, the drone talk is overflowing
+
+
+A soccer club bailed, so rooms in the hotel have opened up.
+
+
+I head over to KFC with Ben & Ben
+Telling the tale of those that drove the wrong way after leaving a Flea Market.
+Had to turn around after hitting the east coast, adding hours and hours to their trip.
+And I thought the 3 extra miles out of the way for gas near Metropolis was annoying
+
+
+Then Elonka’s talk on the Beale ciphers.
+A cool story, bro, but evidence seems to indicate it’s a hoax.
+“STL is a perfectly acceptable city.”
+We have a contingency from Arch Reactor.
+
+
+Android debugging talk
+He looks a little like Jayson Street
+“Anybody who tells you they delete stuff is lying”
+
+
+  
+
+This is Hacking Crime
+“We’re not going to be talking about weaving”
+Some excellent deadpan humor during projector issues
+“Everything's fine.  Ben’s here”
+Half a dozen adapters and twice as many nerds shouting advice.
+15 minutes in, a round of applause because we have something on screen
+“There’s this problem and it’s called HTML.  Polymer is trying to solve that”
+A follow up on last year’s talk.
+CrimsonFist.net
+A real life hero.
+Firebase looks like some cool tech.
+
+
+  
+
+Then the Ingress talk.
+“I speak Ingress”
+“It’s more than just a language.”
+The real speaker, Dagmar, is delayed.  
+So two guys take the podium.  Hi, I’m Dag and this is Mar.  
+Two Freeside Atlanta people stalling.  Ad lib.
+Pimping Polymer with its declarative semantics:
+“The Internet sucks a lot of dick to write stuff for”
+And then Johnny X encourages us all to take a turn being Dagmar.  Why not?  A lovely little chaos.
+We’ve founded a new religion.
+Chapter 1, verse 1
+In the beginning was the noise.
+And hellacious traffic.
+The Dagmar saw it and it was evil.
+
+
+  
+
+An hour later and we’re ready to start the real talk.
+The real Dagmar is here, 
+
+
+A talk on Cognitive Bias.
+“And in this corner we have Dave.  Dave is my target.”
+I’m sitting in the back and we’re discussing the coldness of the room.
+Thermostat says it’s mid 60s but I’m shivering.
+
+
+  
+
+  
+
+I’m sitting at the table, picking locks.
+I laugh when he describes the puzzle in the shape of an easter egg as “a hidden feature of a program”
+Then a delayed chuckle from the guy next to him.  “I just got it”
+
+
+Ben the Meek, rushing past, asks me.   “Are you a Linux guy?”
+“Yeah…”
+“Like, know the kernel…”
+“Naw, you might need to find a guy with a beard for that”
+
+
+Boot into Kali, fire up Armitage.
+Poke at some KOTH boxen.
+Learn a thing or two.
+
+
+And now Jonathan has a Dagmar badge.
+The man is a pathological liar.  
+Just like my father, who coincidentally is also named Jonathan.
+
+
+  
+
+
+
+  
+
+“Are you OK?”
+He mumbles in the affirmative.
+I join a game of Cards Against Humanity.
+  
+
+I don’t remember what happened after this.
+Saturday, November 7
+
+
+I wake up and seem to have a fat lip.  What the hell?
+
+
+  
+
+Head down to watch an eleven year old give a presentation on Linux.
+“That’s my first book...”
+
+
+“What gave you the idea to write a book?”
+“Well, first off I got a C in language”
+
+
+Woman from the room next to me apologizes “Sorry if you heard yelling.”
+They just rescued two dogs.  No worries.
+She likes my pin [Don’t Panic], saying: “It matches my tattoo”   
+I like her shirt.  An old school Dead Kennedys logo.
+
+
+Sitting in the atrium with a subset of the Georgian contingency.
+We start a game of Exploding Kittens.
+Some of us are skeptical while the instructions are read.  
+It sounds like it has insufficient interactivity.
+But it’s actually pretty fun.
+(I won)
+We receive reports that a car drove into the gas station / convenience store across the street.
+
+
+  
+
+~1500, time for “Seriously, I really do have a PhD”
+A great speaker.  And this talk reminds me a bit of Cognitive Bias by Bryan Liles, 
+One of my favorite talks from Strangeloop this year.
+“You can’t spell geek without E.E.”
+
+
+  
+
+~1700, Winn’s talk.  “Analogue Network Security”
+Another awesome speaker.
+“I went to a Catholic school and my knuckles are still sore”
+Digital is not binary.  Digital and analogue depend on time and scale.
+
+
+Dagmar rants a bit on how containers disincentivize patching.
+Hmm, I never really thought of it that way.
+
+
+Hacking 201, another boisterous panel
+
+
+As I’m ducking out of the room the Crimson Fist recognizes me as Notebook Guy.
+His companion tells him:  “He might have a name...”
+I respond in the negative.
+No, no, I’m Notebook Guy.
+Apparently, we interacted last year (in a drunken state)
+And I was a bit cagey about the contents of my notebook.
+
+
+  
+
+Some awesome lightning talks organized by @shapr
+“I taught people to do cartwheels and no one died”
+
+
+Wander back out into the atrium.  
+Games are going on upstairs.
+I start to chat with Dr. Theda.
+Elonka arrives and we take a table.
+
+
+  
+
+What would you do if you woke up with crab claws instead of hands?
+Can I have your badge?
+  
+
+Eat this pizza for it is my body
+Drink this booze for it is my blood
+A treatise on the Duality of Dagmar
+Dagmar is good and Dagmar is evil.
+Dagmar giveth and Dagmar taketh away.
+Dagmar loves assembly and Dagmar loves Javascript.
+The Dagmar that can be expressed is not the eternal Dagmar.
+
+
+Real cop shows up
+Please put down the bullhorn
+When they ask you what ACAB stands for, tell them it’s “Always Carry A Bible”
+And not “All Cops Are Bastards”
+
+
+Sunday, November 8
+
+
+I wake up faded.
+Too many normal people in the atrium.
+I want to help break down and such, but instead I skedaddle early
+
+
+
+
+Index

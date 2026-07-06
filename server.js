@@ -6,7 +6,18 @@ import { getData, initStorage, setData, storageMode } from './storage.js';
 import * as pirateVoyage from './utils/pirates/pirateVoyage.js';
 import * as resolveSignal from './utils/resolveSignal.js';
 import * as treasureHold from './utils/treasure-hold/treasureHold.js';
-import { getTravelArchive, getTravelLocation, getTravelPerson } from './utils/travelArchive.js';
+import {
+  addTravelAdminEntity,
+  getDefconWriteups,
+  getTravelAdminData,
+  getTravelArchive,
+  getTravelLocation,
+  getTravelPerson,
+  hideTravelAdminEntity,
+  migrateTravelAdminPerson,
+  removeTravelAdminEntity,
+  saveTravelAdminEntity
+} from './utils/travelArchive.js';
 
 const app = express();
 const httpServer = http.createServer(app);
@@ -200,6 +211,30 @@ function hasPersonId(value) {
   return value !== null && value !== undefined;
 }
 
+function cleanLocations(value) {
+  const values = Array.isArray(value)
+    ? value
+    : String(value || '').split(/\r?\n|,/);
+  const seen = new Set();
+  const locations = [];
+
+  values.forEach((entry) => {
+    const location = cleanString(entry, 120);
+    const key = location.toLowerCase();
+    if (!location || seen.has(key)) return;
+    seen.add(key);
+    locations.push(location);
+  });
+
+  return locations;
+}
+
+function locationValueFromBody(value) {
+  const locations = cleanLocations(value);
+  if (locations.length > 1) return locations;
+  return locations[0] || '';
+}
+
 function familyTreePersonFromBody(body, nextId) {
   const name = cleanString(body.name, 120);
   const family = cleanString(body.family, 120);
@@ -207,7 +242,7 @@ function familyTreePersonFromBody(body, nextId) {
   const birthDate = cleanString(body.birthDate, 40);
   const deathDate = cleanString(body.deathDate, 40);
   const marriageDate = cleanString(body.marriageDate, 40);
-  const location = cleanString(body.location, 120);
+  const location = locationValueFromBody(body.location);
   const partnerId = nullablePersonId(body.partnerId);
   const parent1Id = nullablePersonId(body.parent1Id);
   const parent2Id = nullablePersonId(body.parent2Id);
@@ -292,6 +327,112 @@ app.get('/api/travel/people/:id', (req, res, next) => {
       return;
     }
     res.json({ person });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/defcon-writeups', (req, res, next) => {
+  try {
+    res.json({ writeups: getDefconWriteups() });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/admin', (req, res, next) => {
+  try {
+    res.json(getTravelAdminData());
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/api/travel/admin/:kind', (req, res, next) => {
+  try {
+    const kind = req.params.kind;
+    if (!['people', 'locations'].includes(kind)) {
+      res.status(400).json({ error: 'kind must be people or locations.' });
+      return;
+    }
+    const name = cleanString(req.body.name, 120);
+    const referenceIds = Array.isArray(req.body.referenceIds)
+      ? req.body.referenceIds.map((id) => cleanString(id, 120)).filter(Boolean)
+      : [];
+    if (!name) {
+      res.status(400).json({ error: 'name is required.' });
+      return;
+    }
+    addTravelAdminEntity(kind, {
+      ...req.body,
+      name,
+      referenceIds
+    });
+    res.json(getTravelAdminData());
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.put('/api/travel/admin/:kind/:id', (req, res, next) => {
+  try {
+    const kind = req.params.kind;
+    if (!['people', 'locations'].includes(kind)) {
+      res.status(400).json({ error: 'kind must be people or locations.' });
+      return;
+    }
+    saveTravelAdminEntity(kind, req.params.id, {
+      name: cleanString(req.body.name, 120),
+      lat: req.body.lat,
+      lng: req.body.lng,
+      theme: cleanString(req.body.theme, 40),
+      hidden: Boolean(req.body.hidden),
+      referenceAdds: Array.isArray(req.body.referenceAdds) ? req.body.referenceAdds.map((id) => cleanString(id, 120)).filter(Boolean) : [],
+      referenceRemoves: Array.isArray(req.body.referenceRemoves) ? req.body.referenceRemoves.map((id) => cleanString(id, 120)).filter(Boolean) : []
+    });
+    res.json(getTravelAdminData());
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.post('/api/travel/admin/people/:id/migrate', (req, res, next) => {
+  try {
+    const targetId = cleanString(req.body.targetId, 120);
+    const result = migrateTravelAdminPerson(req.params.id, targetId);
+    if (result.error) {
+      res.status(400).json({ error: result.error });
+      return;
+    }
+    res.json(getTravelAdminData());
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.delete('/api/travel/admin/:kind/:id', (req, res, next) => {
+  try {
+    const kind = req.params.kind;
+    if (!['people', 'locations'].includes(kind)) {
+      res.status(400).json({ error: 'kind must be people or locations.' });
+      return;
+    }
+    hideTravelAdminEntity(kind, req.params.id);
+    res.json(getTravelAdminData());
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.delete('/api/travel/admin/:kind/:id/override', (req, res, next) => {
+  try {
+    const kind = req.params.kind;
+    if (!['people', 'locations'].includes(kind)) {
+      res.status(400).json({ error: 'kind must be people or locations.' });
+      return;
+    }
+    removeTravelAdminEntity(kind, req.params.id);
+    res.json(getTravelAdminData());
   } catch (error) {
     next(error);
   }

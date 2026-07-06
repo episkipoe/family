@@ -211,7 +211,10 @@
         "createdAt": "2026-07-04T13:42:40.066Z"
       }
     ],
-    "location": "Ballwin, MO"
+    "location": [
+      "Lake Villa, IL",
+      "Ballwin, MO"
+    ]
   },
   {
     "id": 17,
@@ -222,7 +225,10 @@
     "partnerId": 129,
     "parent1Id": 13,
     "parent2Id": 8,
-    "location": "Energy, IL"
+    "location": [
+      "Lake Villa, IL",
+      "Energy, IL"
+    ]
   },
   {
     "id": 18,
@@ -234,7 +240,10 @@
     "partnerId": 224,
     "parent1Id": 13,
     "parent2Id": 8,
-    "location": "Arlington, TX"
+    "location": [
+      "Lake Villa, IL",
+      "Arlington, TX"
+    ]
   },
   {
     "id": 101,

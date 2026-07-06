@@ -1,0 +1,180 @@
+﻿DEF CON 19
+  Thursday (Pre Con)
+I take a pre-con inventory
+Head to the airport, the first comment I hear is from the TSA agent checking IDs
+"I like your laces"
+On the plane I read Design Patterns on my phone and occasionally glance at the iPad of the suit across the aisle.
+He's watching the new Tron.  
+I land and text Ryan to arrange for pickup 
+the dry heat is sand paper on my eyes
+
+Settle into the Rio and establish the pacing
+from the room in the Masquerade to the conference center
+Hunt down Lost with Jaku, the tail end of DEF CON 101 in Track 1
+The room is quite crowded, the con seems to start earlier each year
+There's a Nintendo fan boy in a powder blue shirt with a TV B Gone in a zapper
+Ryan still has Nintendo thumb from the Gauntlet II marathon 
+I head out to the smoking area to chat with a familiar face
+the advocate for Schemaverse, the game in a Postgres DB
+to be quite clear: this is a DEF CON  contest
+ergo, you are expected and encouraged to cheat
+"Where is your brother?  You guys were attached to the hip"
+he texts me "I'm back" so I head up to the room
+where I find him and Kyle (he's about this tall)
+now, by this time, we've broken into the Medea vodka
+so things start to get a little silly
+
+  
+
+How did that blue powerade turn green?
+Party's getting started, better drink my own piss
+
+We have a view of the pools and it looks like there's a mini rave down there
+some loud music and pac man lookin' mothafuckas
+
+  
+
+Diane arrives with her friend (It's her birthday) and Carl in tow
+He's especially salacious and strongly reminds me of Tommy Chong
+Ryan brought pure caffeine powder, the only way to overdose
+Snorting that shit is acceptable, I guess
+but with Foosh it's better to just put it in your mouth
+Ostensibly we're after:  drinks and karaoke
+she has a tattoo of a microphone on her finger
+(where her mustache should be)
+two independent conversations become conflated, entangled
+"What do you mean, karaoke isn't metal!?"
+
+Eventually we make our way down stairs
+I have to show you this banner.  (see: Denny's during Def Con 16)
+  
+
+Approached by a group and asked:
+Are you sober?  Is your hand steady?
+I reply, Soberish.  Yes, steady
+You're doing it wrong.
+Finally Kyle gives the right answer: drunk and shaky
+so they hand him the camera for a group shot
+Surprisingly, it comes out blurry and they hand me the camera
+and my shot is much sharper
+Also, we're informed:
+if you're not headed to the EFF fundraiser you're doing it wrong.
+I mean, you like the EFF and you like DualCore, so it's a no brainer
+
+Here, our group fragments with one half going off-campus for karaoke
+and the other half looking for Hacker Karaoke
+but it's another logistical cluster fuck and we never find it
+the next morning twitter informs me that there was some confusion...
+
+the window to the shower is a rather creepy thing
+  
+The Con
+Wake up dehydrated and we get started with some clips from the Regular Show
+Giant Bearded Face, GBF
+  
+
+line up outside the Penn and Teller theater for the intro talk
+and conversations spark:  "So you're saying you're full of chit?"
+There's an uber leet with Android running on his iPad
+checking on the status of his game that plays the player
+My Don't Panic button leads to a discussion of interactive fiction
+culminating in Dwarf Fortress, which I've only played a little of
+but have always meant to dive into 
+
+"You can have nunchucks if you have carpal tunnel"
+quick hellos in hallways with faces from years gone by
+browsing super mega comics
+
+"Cobalt doesn't react with dick" and "hard drives are hard"
+"metal gets hot when flame is applied"
+
+the PA is down for Mouse's presentation
+she's reasonably loud for such a little speaker
+the danger of code reuse:
+new code gives you a grace period against discovery of vulnerabilities 
+even if the new code is crap
+rewrite your whole code base every 3 months (ha ha)
+
+there is some debate as to whether my jacket has always been purple
+or perhaps it spent some time last night being black
+
+epic lulz at the art of trolling
+
+sitting in the hallway, with sushi and a beer
+there was a flashing of boobs and a high five from Dan Kaminski
+"best Con in years"
+
+we get swept up by Aestetix to the Gold Coast for copies
+and then we start hanging up WikiLeaks drop point signs
+we start in the casino and I'm not cutout for covert operations
+without a word the guard tears the sign in half
+the tags have a much better success rate in the con area
+
+a passing dude pours us a glass of Jameson
+"You look like you need a drink"
+
+Back to the room pour some Mansinthe
+and catch some 10,000 cent pyramid on DCTV
+before physically heading down to Track 1 for Hacker Jeopardy
+  
+
+My bag is searched at the pool entrance
+Is there booze in there?  
+I shake the thermos.  No, I think it's empty
+(there was water in it earlier, my booze is in my jacket pocket 
+and Ryan has his in his pant's pocket)
+
+  
+Def Con is a fan of Sartre 
+(Yeah, but all his blokes were French)
+
+Heading back down, Saturday morning
+Housekeeping chastised me for the Red Bull boxen resting on the lamp shades
+It's a fire hazard
+
+"Parrot heads ain't hippies"
+"Who's going to lick butter off my nipples?"
+There was definite removal of pants
+
+Head to the contest area for the beard competition.
+We catch Dr. Tran's epic Gringo Warrior run.
+"He's a real doctor."  
+
+Ryan is a contestant and his girlfriend makes her way onto the panel of judges.  
+He bribes Jack Daniels with a Jack Daniels belt buckle
+but the competition is fierce 
+beards galore
+
+Time for Hacker Jeopardy
+Incredible entertainment value
+We're sitting a row in front of shiny pants
+Ryan owns a shirt that matches those pants  
+Vegas 2.0 stands out again for drinking much and correctly answering little
+Who has a computer with power point?
+
+And then back to the pool for freak show
+and conversation with the German Beard Fellow
+  
+
+Sunday wake up hung over again
+morning talk with Moxie and Diffie
+at breakfast a chef comments on my outfit
+"you look like the guy from 16 candles"
+
+dozing in talks, now too tired to take notes
+Don't Fix it in Software was a surprise favorite
+
+after closing ceremonies we catch dinner in the Italian restaurant with Cenobyte
+they're playing mob movies muted with classic soft romance songs playing in the background
+Cenobyte strikes out again, but we set up the NES and call it an early night
+
+In the morning we head to Kyle's for more Nintendo
+and then to the airport, where I fall in and out of love
+
+I had to invert the colors so my phone could scan the t-shirt's QR code
+
+  
+
+
+
+$ cd ..

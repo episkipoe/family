@@ -1,0 +1,932 @@
+﻿DEF CON 23 - Return of the Lid
+Preamble
+Wednesday, August 5
+Thursday, August 6
+Friday, August 7
+Saturday, August 8
+Sunday, August 9
+Monday, August 10
+
+
+DEF CON 23 - Return of the Lid
+  Preamble
+Looking forward to this trip with intensity.
+Only one more sleep until Vegas.  
+Why I love this crowd:
+They are the sharp, the intelligent
+Able to analyze, to break apart things other people with willful ignorance treat as atomic black boxes
+Able to synthesize, to combine ideas in novel ways to produce surprising results
+And they are irreverent, rambunctious, mischievous
+The place fairly resonates with shenanigans.
+I can’t sleep, I can’t sleep.  I wake up.
+Double check packed bags, throw in some random last-minute stuff.
+
+
+Wednesday, August 5
+Airport after work.  STL.
+1720:  Through security, pretzel dog.
+Amber Bock at the end of the terminal.
+It’s like a brown, but has a cheap sweetness.
+Assessing the situation, adjusting my mental state.
+Eyes painted on clay, scanning for something to make me smile.
+My otherness frightens me, the distance of my mask from my thoughts.
+I need to relax, I’m too tense, but comfort is the antithesis of action.
+The news is talking about a hatchet-wielding gunman in Nashville.
+“Would you like another beer?”  A Shock Top and the check.
+106° in Las Vegas, a full flight, a few minutes late.
+She sees my shirt:  “Do you keep snakes?”
+“Not currently.  At least, not that I know of.”
+She’s a fan.  Belly dances and spirituality.
+Reading The Gunslinger.  Stephen King.
+I listen to the ERB of him and Poe.[a]
+
+
+“How many of you are going to Vegas?  How many of you are going to party?”
+I spy a bit of the newspaper in the seat in front of me.
+Car hacking at a security conference.
+
+
+We fly up into clouds.  Scene goes grey.  Then blue sky over white.
+Flying into sunset, a streak of orange sandwiched by black.
+
+
+I look at my hands again.  And they are like unto a word repeated so oft it loses its meaning.
+So ten seems a strange number of fingers to have.  Why should it be so?
+How far up the phylogenetic tree do I need to climb for that answer?
+
+
+The pretty girl in the window seat is sleeping.
+I intercept her snacks.  Honey Roasted Nuts and Chips.
+Old woman in the aisle seat acknowledges my happy bonus.
+After window seat stirs again, I proffer them.  These were intended for you.
+She declines, politely.  Then says “you got my back, I see”  
+I’d need a save point or source code to say any more.
+We share a smile and I put the snacks in my bag.
+
+I land and jump into Ryan’s waiting Tiburon.
+Introduced to Brian in the back seat.
+Joking about drugs and Bill Cosby.  Too soon?
+We’re playing the Fallout New Vegas soundtrack.
+I got spurs that jingle jangle jingle and big iron on my hip.
+We grab food at In-N-Out.
+I let Elonka know we still don’t have a plan for where we’ll stay tonight.  Kyle is out of town and nothing else coalesced.
+  
+
+She graciously lets us crash in her room.  
+We leave her and Brian glued to Mr. Robot.
+Go down to get the lay of the land.  A new venue.
+This is going to be an interesting lane.  We’re gonna take over this bar.
+We drink a little bit of the Wild Turkey Spiced that Bennett brought.  
+It’s mixed with Coke and tastes a lot like any spiced rum.
+We speculate, but don’t come up with the answer.
+Vanilla bean, clove, and cinnamon.
+  
+
+
+
+Back to the room.  They’ve been talking about games and Gamergate.  
+Thankfully, they are two reasonable adults and no blood was spilled.
+
+
+Wednesday total:  3.00 miles
+
+
+Thursday, August 6
+
+
+Sleep … Wake.
+
+
+We descend into madness.
+Well, it’s more of a lateral movement, really.
+There’s some references to space cocaine and magnets.
+Ryan is wearing a Night Vale “All Hail the Glow Cloud” shirt.
+I’m so similar to my brother, Brian remarks “It’s like there’s two of you”
+We get in line for badges.  Amidst beards and silly / smart shirts.
+I don’t care what his shirt says, that guy is not undercover.
+I’m technically correct, which is the best kind of correct.
+His volleyball nickname is “Sandy Beard Bennett”
+He still has some sand in his pocket.
+Family text:  our old high school was hit by a tornado.
+He seems to have missed the one with content.
+And so asks me what “Via facebook” meant.
+PBR in a top hat yells “Funerals!”
+Ryan vehemently denies owning any kilts
+But Brian insists he wore one with a tux shirt.
+The line moves another quantum.  Goon says “stop”  
+Ryan instinctively replies ”collaborate and listen”
+I think that he did elicit a chortle for that.
+Next must be “In the name of love”
+Followed by “Hammer time” 
+
+
+  
+
+This is line con’s art in the new venue.  Real hoity toity like.  A bit different than what we had at the Riviera.
+
+
+Badges in hand.
+And now to figure out how to attach it.
+There are several popular permutations.
+I predict there will be quite a few broken records.
+We opt for a rolled corner of the plastic wrap.
+
+
+We try to make it to the Hacking Web Apps talk, but when we get near the door track four has been full for 10 minutes.
+Hit the vendor area for t-shirts and what-not.  Looks like these will go fast.
+Hackerstickers seems to be the new Jinx.  
+I sorely miss the mint people.
+Where’s my Foosh?
+
+
+Dan will be MIA this year, sadly.
+We head to the Jack in the Box for food.
+Spend some time discussing possible meanings of T-V, the novel utility that the motel is so eager to advertise.
+Opening gambit:  it could be from before television was accepted in its own right as a word.
+And then the implications of time minus velocity.  
+  
+
+We stop in Napoleon for drinks.
+We get swords with our Blue Moons.
+But Brian has an expired ID, a consequence of city living, which somehow means he’s not old enough for a Manhattan.
+He picked up a newspaper.  We convert the binary ascii characters:  DEF CON Parties
+We discuss the art of writing.
+He recommends Moleskine and the Ghost platform.
+I’m supposed to read Ovid - Metamorphosis; Ryan keeps quoting llamas with hats
+
+
+  
+
+We head to the Chillout Lounge and speculate on code cracking with the guy from Orange County
+Then up to the Sky View.  There aren’t any talks there, but we do find water.  Awesome!
+We meet two guys, one that looks like Tommy D and one that looks like Jesus.
+There’s pens & paper here, too, but is nobody excited about that?
+All together we head down to the social engineering village.
+In time for their mission impossible to begin.
+Banter with the crowd on cracking.
+“I use reverse psychology, like I don’t even want to know your password, please don’t tell it to me”
+Discussing the badge challenge, the audio has been extracted, but we haven’t heard it yet.
+We’re told it’s the hacker manifesto, numbers, dial tones.
+Comparing lanyards.  What does it all mean?
+The successor to Gringo Warrior has lasers.  It’s crowded in here.
+There are places you can’t stand.  “I have a solution.  Let’s take all the exit signs off.”
+OK, we can’t do that.  But what’s the big deal?  If you're flammable and have legs you’re never blocking a fire exit.
+It’s a lot of shuffling papers and not a lot of action.  We duck out after the first round.
+A brief hello to Mike between the two casinos; he’s in search of coffee.
+
+
+I check into our room online and as we pick up our stuff from Elonka’s room we get a stack of PhreakNIC cards.
+For anyone that signs up to codexcasts.com with nashville2600, PhreakNIC gets some money.
+And charged with this happy little task we’ve negotiated our night’s stay.
+
+
+Our new home is in the Indigo tower.  Awesomely close to the action, but there is much contention for the elevators.
+  
+
+  
+  
+
+And there always seems to be one out of service.
+
+
+1630:  I’m still not sure where the day went.  I sit by noise and talk to Leigh a little.
+Outside the Chillout lounge I hear the distinctive staccato drawl of Adrian Crenshaw.
+I thank him for bringing his Lockpick Village to ShowMeCon.
+He says: “I got more stuff for next year”
+ShowMeCon really emphasized the “ethical hacking” aspect.
+But here, it’s much more of a “fuck shit up for lulz” vibe.
+
+
+In the hallway someone is carrying a blinky LED stick.
+“It’s only flickering because everything is bad.  That’s not supposed to happen”
+Ryan needs to consult on this project.  Making stuff like this more effective is his speciality.
+
+
+By the bar I witness a mini magic show.  Red hair surrounded by leather’d, gruffy biker dudes.
+I think that’s tommEE pickles.
+What’s this?
+A marker.
+A magic marker.
+And now there’s a cap in his ear.
+
+
+Back in the room Brian wants to put my packet of Honey Roasted Nuts in his mouth.
+I explain it’s okay, those are not really mine.  I already ate mine.
+
+
+  
+Taco!
+We talk with Leigh and Chris a bit.
+Zoz shows up with his Zoz badge.
+He’s been hassled for it already, but it’s actually totally legit.
+I ask him what element is on it.  He counts off 23 and concludes it is Vanadium.
+
+
+1815:  We head over to the bar.
+Ryan introduces himself as Kevin.
+“People watching is half the fun of this thing”
+Guy requests a new liver from Kevin’s bag of fun.
+He’s from Hawaii and makes moonshine from mangos.
+They discuss guns.
+There was a cannon at the DEF CON shoot.
+It’s so big, the guy has to take it into the shower to clean it.
+Well, I mean, maybe he doesn’t exactly need to…
+
+
+Back to the Chillout Area
+The gamers are talking about MOBAs
+The military guys are quoting Skippy's List
+Bennett is telling Dumb Jokes That Are Funny
+“You should be a comedian.”
+Except he is just an amalgamation, mostly one-liners:  
+Stewart Francis, Milton Jones, Tim Vine, a little Frankie Boyle et al
+Could use some more Mitch Hedberg, Stephen Wright in his repertoire IMHO
+
+
+2100:  To the airport to acquire Jonas
+“What’d I tell you about picking up whales?”
+“Uh, nothing.”
+“Fair enough”
+He bursts into the scene like he was made for this city.  Gung ho for strip clubs.
+It doesn’t matter what we do.  So long as there are hookers and blow, he’s in.
+I quickly become inured to the level of lechery that my party possesses.
+
+
+We head out down the strip a short ways, to the Cosmopolitan.  In search of the secret pizza.
+I get a slice of white and one of mushroom.  But I’m not allowed to tell anyone about it.
+
+
+Ryan insists that Jonny5 will be DJing
+Don’t get my hopes up with robots you can’t deliver.
+  
+DNA and dub step.  Welcome to DEF CON
+Tales asks me to steal this sculpture for the office.
+I promise to try.
+  
+Blinky tubes 
+
+
+Thursday total:  10.45 miles
+Friday, August 7
+
+
+Sleep … Wake.
+
+
+I rouse, just a lone Dave writing in the darkness
+And then we play John Cena’s super slam
+And the glory of llamas with hats
+
+
+We head across the street to the liquor store.
+And acquire a handle of Titos (plus additional beverages)
+You guys really like to party
+Go big or go home…
+  
+
+Jonas takes a picture for his Tito-based instagram account
+
+
+  
+
+
+
+  
+
+It’s a little subtle, but I think that our artwork is telling me to kill someone.
+I’m glad my bed is under the other picture.
+How you feeling Brian?  OK, fine?  A little homicidal, maybe?
+
+
+We noticed that the lid of the ice bucket looks a lot like the badge.
+Plus, if you flip it over you get a black badge.
+  
+
+After this, he clips it so that the white side will remain visible.
+We walk into Track 2 and take a seat.
+We congratulate our cleverness, but too soon.  The door Goon comes in.  
+“Let me see your badge”
+So he reaches into his bag and pulls it out.
+“You little shit...  You’re lucky I don’t beat you up right here in front of everyone.”
+“It was the same size...”
+She confiscates it.
+“I’m going to put an X through this”
+But we need it back.  Or we’ll be charged...
+You can get it back at the end of your shift, I mean, end of the day, in SOC.
+
+
+We watch the intro video
+Should have brought my copy of the Principia.
+I’m a big fan of the theme.  A Discordian twist on film noir.
+This year’s black badge is a radioactive tribute to Feynman.
+And apparently Wassenaar is something that should be on our radar.
+
+
+We exit the room into a clusterfuck of a hallway situation.  This is going to be interesting.  
+It’s a good thing talks are not my primary interest.
+  
+
+What’s the word on the street?  Only. 
+Only.
+
+
+  
+
+We spy cardboard signs announcing Free Beer.  Just head down this empty, industrial hallway.  Keep going...
+Looks like a trap.  We follow it, expecting to find a creepy guy in a panel van at the end.
+Instead, we discover the Beverage Cooling Contraption Contest.
+Yay!
+  
+
+
+
+Let’s start with apologies.  The hotel mandates we buy from them.
+So the beer that is being cooled is Miller Lite.
+Which isn’t beer, really.[b]
+But rather is like unto sex in a canoe.
+
+
+Liver let die.
+It’s not from a guy in a van
+But people in the crowd seem reluctant to accept the free-as-in-beer.  So we drank mebbe half of it.
+And that “calibration fluid” (the contraband Mountain Dew and Vodka) was oh so good.
+I thought I was being too lush by consuming it concurrent with my beer.
+But I see Jonas somehow triple-fisting and I don’t feel quite so bad.
+
+
+We chat with team He-brew.  A couple of awesome dudes.
+They have a low-tech, but very effective solution.
+Jonas chills his Titos in their bath.
+Dry ice and isopropyl alcohol.
+
+
+We start making plans to enter next year.
+
+
+  
+
+
+
+
+
+  
+
+You can trust these random, homemade pills.  I’m pretty sure that none of these are poisonous.  Or dinosaurs.
+Oddly enough, no takers.
+People seem more willing to accept the life savers.  They’re individually wrapped for your protection.
+  
+
+
+
+  
+
+He prefers single malts and isn’t a huge fan of this, so we help him out by pouring shots of his Johnnie Walker.
+
+
+  
+
+Remember this one for later.
+
+
+Talking with a Sci Fi author, SB Jones
+Dave from Mozilla has one of the greatest business cards I’ve ever seen.  It’s a flippin’ mini punch card.
+  
+
+
+
+We’ve adopted a new Mike, but I suffered some agnosia during his introduction.
+And your name was…
+Oh, yeah.
+
+
+So much fun at BCCC we missed the talk by Chris Rock (not that one):  I will kill you
+A hacker looks at the death industry.
+
+
+A stranger approaches, leans in and educates us regarding the chemtrail conspiracy.
+Has it on good authority, a secret source, that it involves dihydrogen monoxide.  Dangerous stuff.
+We hang around the water cooler, laugh and hydrate.
+
+
+  
+
+
+
+It seems late enough
+So we stop by the lost & found.
+“You haven’t seen the lid to an ice bucket, have you?”
+“Did you lose it?”
+“In a manner of speaking...”
+Ryan steps up and confesses the full story of its confiscation.
+We learn the location of SOC and head down there offering apologies and bribes.
+There isn’t a lid there.  It isn’t the end of the day yet.
+It is implied that it has been destroyed.  
+
+
+Another elevator ride.
+“Is it?   Yeah, that’s Darude - Sandstorm”
+“But you’d say that no matter what it was.”
+“Somebody hacked the elevator”
+
+
+  
+
+Mike smokes a cigarette while Jonas gambles away a few more bucks.
+Someone has accepted one of Kevin’s random pills.  That’s a first.
+Goon takes a closer look at a passing badge
+“There have been counterfeits already”
+Oh, you don’t say…
+
+
+We head back up to the top floor.
+  
+
+
+
+  
+
+These guys got Ms. Pac Man; Bennett gets a high score.
+  
+
+  
+
+I have all these badges, except the left-most.
+  
+
+
+
+  
+  
+
+Playing more games.  I made it to level two, but I’m no King of Kong.
+
+
+  
+
+
+
+  
+
+Old school centipede.  Sweet!
+  
+
+We’ve run into these guys again.  
+
+
+Down for Hacker Jeopardy
+  
+
+Hey, that’s my state!  But why are sports happening?
+
+
+  
+
+Up to floor 26 for music.  Dualcore and MC Chris.
+I ask the guy in the Biohacking Village about his interests.  It’s implanted tech.
+Here, talk to my brother.  He’s got an RFID chip in his hand.
+  
+
+I have no idea what this drink is or how I acquired it.
+
+
+Priest gets on stage and apologetically implores us:  no smoking, not even vaping.
+I don’t envy him, the cats he has to herd.  I hope we haven’t caused too much trouble.
+
+
+After YT Cracker we head down the hall to parties.
+Chatting with someone in the financial industry about some awesome crazy shit. 
+
+
+Friday total:  5.38 miles
+Saturday, August 8
+
+
+It’s 0137 and I notice that Brian and Jonas have dropped off.
+From this we incorporate a new idiom into our vernacular.
+To pull a Jonas is to radiate enthusiasm, to intoxicate (by force, if necessary) those around you.
+And then fall asleep too early.  Like, before midnight early.
+Popular form:  “Don’t be a little Jonas”
+
+
+  
+
+I don’t think I’ve ever seen Kevin smile.
+  
+
+This party, like most nerd parties, has a standard issue slave Leia
+  
+
+Hanging out on the balcony.  More military talk.  
+Shots guy is handing out shots.
+I respectfully decline.  
+
+
+Kevin has picked up a DEFCOIN wallet.  
+The Alexis Park is before my time, but I do recognize pool 2 girl.
+
+
+Sleep ... wake.
+
+
+I duck into DC101 (which has moved to Bally’s)
+Lean against the wall and listen to Bruce Potter’s motormouth.
+He interacts endearingly with the transcriber.  “I love you, other person”
+“me too”
+
+
+  
+
+  
+
+
+
+  
+  
+
+Super hungry.  I cruise the food court, but lines are too long.
+I grab food in the Chillout.  Chatting about cons and congestion.
+Hackers have a reputation for being antisocial, but on this side of the veil we’re quite friendly.
+
+
+1130:  I achieve my first Jaku sighting as he makes his way to TF2.
+
+
+Ryan appears to be a big fan of Hebb’s postulate.
+The sight of me triggers familiar pathways, well reinforced:
+“Dave.  Hey Dave.”
+My conditioned response:  “How may I help you?”
+And then some nonsense, like:
+“One of these Daves…”
+Remember that time we went to secret pizza?
+Additional source material we keep repeating incessantly:
+What I actually said was yeah, sure, but what I meant was yeah, sir.
+License and registration, chicken fucker
+Stop all the downloading
+I’m Old Gregg
+
+
+In the contest area I have a quick catchup chat with Ram.
+He makes his way to a side talk and I resume my wandering.
+I enter the social engineering village and the content is again: don’t block the exits.
+I walk along the back wall, turn around, walk out.
+Legs are tired now from all the walking.
+Bally’s to Paris again and again.
+
+
+A brief rest on a soft seat.
+Drooping eyes appreciating leg tattoos.
+There’s something mayan.
+There’s pi.
+
+
+Ryan takes Jonas to the strip.
+There are hackers at the Caesars.
+
+
+We’ve enlisted as much assistance as we can muster in our quest for an ice bucket lid.
+“It made a bit of a splash.  They talk about it.”
+I tell Ryan about the counterfeit badge contest and he’s excited.
+We head down to the sign.
+  
+
+I mean, there’s someone walking around with a goddamn paper plate.
+And this guy is putting together a frickin’ goon badge.  “Be cautioned, you don’t exactly look like a goon”
+The guy on the other side of the desk cuts off the human set from the display board for us.
+Thankee much, sai.
+
+
+  
+
+The sad syringe with a smirking needle in his eye is probably my most favorite thing in the history of everything.
+
+
+  
+
+Dave, why did you break the robots?
+You know I didn’t do that.  That’s like my least favorite thing to do.
+  
+  
+
+Next year, the rise of the robots, is going to be intense.
+
+
+Another trip to SOC with null results, vis a vis our precious lid.
+I mean, I wouldn’t mind getting charged for it, but at this point, it’s all about the sentimental value.
+We spot the goon that confiscated it.  It hasn’t been destroyed. 
+She promises it’ll be in SOC in the morning.
+Jonas, pressing his luck, wants a time.
+Before your drunk ass is up...
+
+
+This guy is walking around, cosplaying as the dude.  Including the robe and a carton of half&half.
+Watching the Hacker Jeopardy trials.  Dropping caffeine like mad, heading for a heart attack.
+We’re drinking in the room, smiling through Jonas’ belligerence.
+“I don’t see you drinking…”
+I head down but track 4 is full again.
+  
+
+Endure the elevator back up and catch Richard Thieme on DCTV.
+Hacking the Human Body/brain:  Identity Shift, the Shape of a New Self, and Humanity 2.0
+After that, half awake, I watch the quick spot the fed that fills the hole left by a speaker cancellation.
+
+
+  
+
+We’re headed back out for secret pizza (shhhh…)
+Bennett tells me there’s a shoe vending machine.  I gotta see that.
+  
+
+
+
+Sloppy elevation.  We missed our floor.
+  
+
+Goddammit.
+But we’re making new friends:  “Hey, it’s elevator guy!”
+
+
+Hacker Jeopardy.  
+  
+
+Two girls walk by and apologize for something we may have seen.  But really, we didn’t see anything.
+Discussion ensues with respect to the term “Engineering hot”
+
+
+  
+And I’ve got one of these stickers on the back of my shoe.
+  
+
+Swag.  Yeah, this CD is not suspicious at all…
+Someone walking by warns us that there may be malware on that.  
+You don’t say?
+
+
+Walking from Hacker Jeopardy, back to the room.
+Past a smashed beer bottle Ryan quips: “Go home, stepladder, you’re drunk”
+Zoz walks by with Joe Grand, laughing.  Maybe it was at that.
+
+
+Ryan gets a text from an unknown number.  “Ha, you got a new sister.”
+Which leaves us a bit confused.  (Why doesn’t Dave have one?)
+“She doesn’t live in the basement.”
+Thusly, we conclude it is from Elisha, our new sister-in-law.
+Eventually I get my own notification.
+
+
+So, we’re in the elevator.  We take the second set, up to 16.  Switch to the other batch, down to lobby.
+There’s a crowd trying to get in, but we play like we’re full.  And no one gets in.  I can’t believe that worked.
+
+
+  
+
+Someone is handing out goatse stickers.  There’s no way this will end badly...
+  
+
+Hanging out again at DC801.  They have kegs and implore us to drink their beer.
+Devastator on the end.  It’s like a brown, better than bad, but it’s not my cup of tea.
+I head to the head, then over to music.  The floor shakes with the bass.
+Gumby is dancing with a shark.
+And there’s a dinosaur.
+
+
+  
+
+Ceci n’est pas un appareil photo.  Head.  blown.
+
+
+Saturday total:  9.96 miles
+Sunday, August 9
+
+
+0036  text from Ryan:  “Dave… Hey Dave… I got a high 5 from Zoz”  
+Though, the Australian psychologist joke doesn’t go over so well.
+G’day, g’day, no worries.
+
+
+  
+
+Shots guy is out in full force again.  
+
+
+The Goon band is playing RATM.
+Fuck you, I won’t do what you tell me.
+  
+
+This room has an ice bucket.  But, mysteriously, it’s missing its lid.
+
+
+Ducked into hacker karaoke.
+Someone singing Pork & Beans.
+I’ll let you choose:  Beatles or Smiths?  
+Free Bird!
+Free Bird is not gonna happen.
+Hey Jude.
+
+
+Du Hast with English lyrics.
+“Here’s to the old DEF CON”
+
+
+“I commend you on the attire”
+Fist bump from another guy in a suit.
+That zebra is wearing a human badge.  
+The coke in my backpack is mostly vodka and not fit for human consumption.
+  
+
+I think that the blood on my pants is from my finger.  But I can’t be certain.
+
+
+It’s after 2 and I find Elonka in the hall.
+We head over to Nosh and then to her room.  A chance for some real talk.
+Down to a party of Solomon, wound down.
+
+
+Looks like I lost my Don’t Panic pin.  I guess that means it’s now time to panic.
+
+
+Ryan shows up to the room a special sort of messed up that I hadn’t seen before.
+It’s the same sort of tired fear that I share but a big layer of military stuff.
+We talk, sitting in the hallway until after 5 am.
+Still collecting high fives.
+  
+
+I spend some time studying patterns in the carpet.
+
+
+Sleep … wake
+
+
+  
+
+He waded through a layer of vomit and tried to return it; he earned his extra badge.
+And yeah, he got a third one too.
+So, as per an earlier discussion, he’s ready to make a badge bra.
+
+
+Last day, a bit the worse for wear.
+But I make it down for the docker talk.
+No real slides, his voice is soft background.
+“Don’t download the Internet and click on it.  Right, people?”
+Mild laughter.
+“C’mon, people that was funny”
+Securing docker sounds a lot like just securing a box.
+Reduce your attack vectors.  Accept minimal convenience.
+
+
+1039:  I’ve received word that our lid has been acquired.
+As promised, Ryan does the Zelda victory pose.
+  
+
+  
+
+  
+
+And all is right with the world.
+
+
+  
+
+OK, so maybe there are still some things wrong with this world.
+
+
+Chilling in the room, watching more talks.  
+Messing with reverse engineers through control flow.
+Something wrong with the audio transmission, turning the speaker into a robot. 
+
+
+  
+
+Much fun was had with googly eyes  (c.f. the end of DC21)
+
+
+I’ve come to Vegas once a year for ten years in a row and still haven’t gambled once.
+Bennett and Jonas put some more money down.  They win some, they lose some.
+Bennett is a font of bad advice, every time Jonas listens he loses.
+Always bet on black.  A fun slogan, but not statistically sound.
+
+
+Two girls from SoCal inquire about the badges.
+Hey guys, we should totally drink some water in front of them.
+“You are the good guys right?  Learning how to protect against the bad guys”
+That makes me giggle.
+“He’s laughing at me.  He’s laughing at me.”
+“Don’t worry about it.  He laughs at everything”
+“Is it all convention stuff or do you get a chance to party?”
+The convention stuff is indistinguishable from party.
+
+
+Closing ceremonies.  Elonka finds us.
+I check in to my flight and Jonas leaves for his.
+I attempt to nap, but pretty much fail and then we head out to Taco Y Taco.
+  
+
+Legend tells of an even better taco joint:  Tacos El Gordo.
+But Kyle doesn’t put credence in such myths.
+  
+
+
+
+Then to the pinball museum.
+  
+
+
+
+
+
+  
+
+OK, we’re gonna take the lid out and show it a good time.  The strip, the show girls, the works.
+
+
+After we get back to the room we take a nap.
+Set an alarm, then head out to the Tuscany to say hi to Claudus and Jelly.
+We enter the room, somehow missing Claudus who went down to let us in.
+We play a round of skulls and roses.  “You promised there wouldn’t be thinking”
+Drinking water.  Pretty sure there’s no alcohol left in Vegas.  We thoroughly cleaned it out.
+
+
+  
+I’m not sure that we’re going to leave this lid behind.
+  
+
+
+
+Sunday total:  8.55 miles
+
+
+
+
+Monday, August 10
+
+
+Jelly heads off to sleep, saying “I hate to pull a Jonas…”
+But it’s after midnight, so he’s OK.
+Sometimes you have to be a bit Jonas, but you never go full Jonas.
+
+
+Sleep … Wake.
+  
+
+Brian’s been trying to get a game together, and Elonka was on board, too.
+Circumstances conspired against us
+  
+But this old lady knows what’s up.   She’s down with the D&D
+
+
+  
+
+I started and ended the trip with ouroboros t-shirts.
+
+
+  
+I’ve seen enough anime to know where this is going...
+  
+
+What is this?  A stripper flash bomb.
+
+
+  
+
+Ryan and Brian put some money down on black and win, twice in a row.
+Jonas texts back “Fuckin bastard”
+
+
+Drive off to Kung Fu for food.
+  
+
+I almost forgot to get a picture of Brian’s Mohawk Con (support the EFF).
+
+
+We head out and walk up and down Freemont Street.
+  
+  
+
+This place was made for me, I guess.  
+
+
+A visit to our old stomping grounds, the Rio.
+  
+
+This bar and smoker con were two awesome conversation incubators.  I’ve yet to find their equivalent in the new venue.
+  
+
+What the heck is going on here?
+  
+
+Star Trek on our heels.  “I hate nerds.”  “Oh, honey…”
+
+
+We drive by the Riv, but it’s already shut down, boarded up, ready for dismantling.
+
+
+  
+
+I land in St. Louis and tech still ain’t safe
+
+
+Monday total:  8.29 miles.
+
+
+Total trip:  walked 45.63 miles 
+[a]here's the one that turned me on to them: https://www.youtube.com/watch?v=8yis7GzlXNM
+[b]hahahahaha agreed!

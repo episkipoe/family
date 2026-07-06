@@ -1,0 +1,29 @@
+﻿STL JUG July 2012
+Ted Neward - Rethinking Enterprise
+
+
+Updating Brooks' "No Silver Bullet" with "No Best Practices"  
+Trying to breathe underwater is a bad idea.  It sounds like common sense.  
+Until you realize he's espousing critical thinking.  The opposite of common sense.
+I'm not going to tell you what to do, to use the same old box arrow box arrow cylinder
+I'm going to ask / empower you to to go and reason through what's appropriate for your situation.
+He exhorts us to resist the temptation of the familiar, the lure of the cognitively proximal
+But just beginning a project, selecting a framework is computationally infeasible
+When taking time to dig past platitudes into the actual pros and cons of each.
+The complexity of the problem space puts it beyond the ability to grok.
+Flat-landers in N-dimensional, non-euclidean enterprise space
+But some of us gutter-bound are looking at the stars, 
+Both the beauty and the cosmic horrors.
+
+
+It’s always “rethinking”
+You can never safely step back and say:
+ “O.K.  I just rethought my enterprise.  That was hard, but I’m glad that’s over with”
+Technologies come, change, and go.  Feeding the geek’s neophilic need.
+Environments change and requirements are revealed.
+Solving new problems is what keeps us going.
+
+
+The dude of the software world
+Informative, entertaining, refreshing.
+"Now get out of here and think about it"

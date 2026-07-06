@@ -61,13 +61,14 @@
     members.forEach((person) => {
       const birth = eventDate(person.birthDate);
       if (birth) {
+        const locations = locationText(person.location);
         familyEvents.push({
           id: `birth-${person.id}`,
           type: "family",
           subtype: "Birth",
           date: birth,
           title: `${person.name} was born`,
-          description: person.location ? `Location listed: ${person.location}.` : "Family birth event.",
+          description: locations ? `Location listed: ${locations}.` : "Family birth event.",
           personIds: [person.id]
         });
       }
@@ -238,6 +239,14 @@
 
   function formatDate(date) {
     return date.toLocaleDateString(undefined, { month: "short", day: "numeric", year: "numeric" });
+  }
+
+  function locationText(value) {
+    const values = Array.isArray(value) ? value : [value];
+    return values
+      .map((entry) => String(entry || "").trim())
+      .filter(Boolean)
+      .join(", ");
   }
 
   async function loadFamilyMembers() {

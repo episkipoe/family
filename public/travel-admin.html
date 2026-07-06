@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Admin</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body class="travel-page">
+  <header class="hero travel-admin-hero">
+    <div>
+      <p class="eyebrow"><a href="/travel.html">Travel map</a></p>
+      <h1>Travel admin</h1>
+      <p class="lede">Curate extracted people and places without changing the archived documents.</p>
+    </div>
+  </header>
+  <main class="travel-admin-shell">
+    <section class="travel-admin-list panel" aria-labelledby="adminListHeading">
+      <div class="travel-admin-toolbar">
+        <div class="segmented-controls" role="group" aria-label="Admin mode">
+          <button id="modePeople" class="is-active" type="button">People</button>
+          <button id="modePlaces" type="button">Places</button>
+        </div>
+        <input id="adminSearch" type="search" placeholder="Search" autocomplete="off" aria-label="Search travel records">
+        <button id="newRecord" type="button">Add</button>
+      </div>
+      <h2 id="adminListHeading">People</h2>
+      <div id="adminList" class="travel-admin-records"></div>
+    </section>
+
+    <section class="travel-admin-editor panel" aria-labelledby="editorHeading">
+      <form id="adminForm">
+        <div class="proposal-topline">
+          <div>
+            <p id="recordKind" class="label-text">Selected record</p>
+            <h2 id="editorHeading">Choose a record</h2>
+          </div>
+          <span id="recordMeta" class="meta"></span>
+        </div>
+
+        <label>
+          Name
+          <input id="recordName" name="name" maxlength="120" required>
+        </label>
+
+        <section id="personActions" class="travel-person-actions" hidden>
+          <div class="form-grid">
+            <label>
+              Migrate / alias to person
+              <select id="personMigrateTarget"></select>
+            </label>
+          </div>
+          <div class="proposal-actions">
+            <button id="renamePerson" type="button">Rename selected person</button>
+            <button id="migratePerson" type="button">Migrate / alias entries</button>
+          </div>
+        </section>
+
+        <div id="placeFields" class="form-grid" hidden>
+          <label>
+            Latitude
+            <input id="recordLat" name="lat" inputmode="decimal">
+          </label>
+          <label>
+            Longitude
+            <input id="recordLng" name="lng" inputmode="decimal">
+          </label>
+          <label>
+            Theme
+            <input id="recordTheme" name="theme" maxlength="40" placeholder="cyberpunk">
+          </label>
+        </div>
+
+        <label>
+          Added document IDs
+          <textarea id="referenceAdds" rows="5" spellcheck="false" placeholder="One Google Doc id per line"></textarea>
+        </label>
+
+        <label>
+          Removed document IDs
+          <textarea id="referenceRemoves" rows="5" spellcheck="false" placeholder="One Google Doc id per line"></textarea>
+        </label>
+
+        <section class="travel-current-docs" aria-labelledby="currentDocsHeading">
+          <h3 id="currentDocsHeading">Current document context</h3>
+          <div id="currentReferenceList" class="travel-reference-list"></div>
+        </section>
+
+        <details>
+          <summary>Available document IDs</summary>
+          <div id="docList" class="travel-doc-list"></div>
+        </details>
+
+        <div class="proposal-actions">
+          <button class="primary-action" type="submit">Save</button>
+          <button id="hideRecord" type="button">Hide</button>
+          <button id="resetOverride" type="button">Reset</button>
+        </div>
+        <p id="adminStatus" class="meta" aria-live="polite"></p>
+      </form>
+    </section>
+  </main>
+  <script src="/travel-admin.js" type="module"></script>
+</body>
+</html>

@@ -1,0 +1,1513 @@
+﻿Wednesday        1
+Thursday        12
+Friday        33
+Saturday        58
+Sunday        85
+Monday        99
+Tuesday        103
+DEF CON 33 - DaveCon 4.2
+  
+
+Wednesday
+
+
+Work is in another crazy busy period 
+So yeah, the timing isn't the best, especially given I just took time off for Ireland
+But I simply cannot skip DEF CON / DaveCon
+Would be great if it could just align with the summer shutdown 
+But at least it's after the 0.6 release
+
+
+Finalizing packing.  Going light, but taking the Kali laptop
+  
+
+Catch up on a few emails in the morning and click through compliance with assigned trainings
+
+
+  
+Righto 
+Only Zuul
+
+
+Drive to the airport, park in the back
+Guy standing here wearing a sash and crown 
+40th birthday king
+
+
+Long wait for the shuttle
+Bus is full so I sit on the floor
+These guys might miss their flight
+
+
+Ryan meets me at the gate and we negotiate a ride
+The rideshare zone is crowded, but it doesn’t take too long
+Head to Circus Circus for slots a fun
+How many hot dogs are you gonna get?
+
+
+  
+
+Our buddy Eddie is here
+And he seems to vaguely remember us
+Or at least he does remember asking a Hacker to help him with his credit score
+Was that hot dog rotator here last year?
+I thought yes, but Eddie confirms no
+We grab a couple of the $2 beers
+
+
+Check in to Seigel
+Or: as Ryan calls it, the seig heil 
+  
+
+Pool on the roof must have a leak
+  
+
+
+
+Peruse and organize the swag we intend to redistribute
+  
+  
+
+
+
+I take a Buc-ee and a PANIC sticker for myself
+
+
+Try pho you & mi
+Pretty good for strip mall fare
+  
+  
+
+
+
+The hotel smells exactly like that pine tree air freshener that Tommy D’s mom included in the care package when he was living in our house
+
+
+Nice thing about this location is that it’s between the liquor store and LVCC, 
+So dropping off drinks is conveniently en route
+As opposed to Circus Circus, which required backtracking
+
+
+“At least it's a dry heat”
+But the room is cold
+AC is locked at 67
+We tried messing with it a bit, but ultimately just unplugged it.
+  
+
+Surprisingly that didn’t fix it
+
+
+1700
+Head to the center
+linecon has started, but it's quiet still, 
+not much in the way of congregation
+
+
+  
+
+But the main sticker wall has started
+
+
+  
+
+  
+
+Doesn’t look like we’ll be able to buy it here
+Guess we’ll have to find someone who drove 
+
+
+R reciting: “That’s for the marketing department to figure out”
+“No it’s not”
+RC Glow
+
+
+Wander around a bit, Ryan thinks he recognizes this guy from Vet Con
+But maybe there’s some other white guy with a stetson 
+No, it is him, it’s Crabb.  Patch on canteen:
+Maybe the real wmds were the friends we made along the way
+
+
+Willy and his wife show up, he looks like El Kentaro
+Hattori arrives, he looks like Wes Chatham
+They head over to the Conrad for vet con activities, badge building 
+
+
+Another search for the AC documentation 
+Turns out it's press and hold the Display button for 10s
+Looks like someone who didn’t figure that out seriously engaged with the panel trying to turn it off
+  
+
+Keep Calm and RTFM
+
+
+Back to linecon, give out some DaveCon 3.14 badges
+Received a QR code for free wifi
+Seems legit
+
+
+Picked up the Phrack special issue
+Some people were playing phone book tennis with ‘em
+  
+
+
+
+Claudus and Eagal Eater arrive
+Collect this year’s Raitlin’s Challenge card 
+https://dc33.minervallux.com/challenge
+and a couple of chips
+  
+
+One is a linecon exclusive, the other, it seems, is a band
+
+
+
+
+  
+
+
+
+Found ourselves another Aaron 
+Avoid alcohol in cold weather situations
+You feel warmer, but are colder since you're radiating more heat
+So in a hot weather situation like this, drink more.  OK, say no more. 
+
+
+Got a preview of the badge from the goons
+Yep, it’s physical, not electronic, but it has a vulnerability 
+Things have been popping off, this screw gets loose
+Locktite em if you gottem
+
+
+DaveCon badges so far haven’t had any supply chain issues 
+Physical badges usually dont
+The titanium badge did
+But Claudus calls BS on it (DC19)
+
+
+She was staying at the Rio and found a cricket in the bathtub
+Took a shower and it stayed in the corner 
+(Must not be a baby)
+And that's how you make friends
+She’s got a little plastic toy
+Says it’s a pokemon, but no one here knows which one.
+Looks like an axolotl.  Someone looks it up:  wooper
+  
+
+
+
+This guy is looking to get into physical security
+Isn’t a programmer, not excited about AI
+Wants to learn lockpicking
+Point him to the village, but good luck, it’s always so busy
+Try a smaller con to get more hands on
+
+
+Thursday
+0000
+Strangers have the best candy.  This one looks like a magician
+Pizza shows up as soon as I put the sucker in my mouth
+
+
+“He's got pepperoni, I got Hawaiian”
+At least this pineapple has Pizza under it  (cf DC26)
+I take a slice of pepperoni 
+
+
+A second dragonborn has appeared
+  
+
+Photo:  Cannibal
+
+
+0500
+Snoring suddenly stops and R asks
+“Want to head over to line con?”
+
+
+Dreams are a swarm of processing tech talk
+Including a nightmare involving debugging
+Some build issues and a nonexistent CI/CD problem
+Opaque binaries in revision control
+
+
+Submit the DaveCon badge order and head out for line con
+
+
+0800
+Found end of cash line
+Shouts of goons rise above the din of the crowd
+Someone dropped a rubber duck.  “Duck down!”
+
+
+0848
+Got the badge (and a new bag)
+They already ran out of real badges
+  
+
+And next year should be electronic.  
+More expensive and line seems longer, but maybe pre reg next year?
+R did and he got a real badge.  Inversion of DC31
+  
+
+
+
+Hang out in the caf with some vet con folks
+Follow mama duck to con set up
+We cross the velvet rope, knocking it down
+How many kitties do you have?
+I have a lot
+
+
+They don't need so much help and don't want too many people back there
+So anyone not carrying something, please exit
+
+
+1000
+Head to SuperBook so Ryan can put 50 on Purdue men's basketball for Victoria 
+Got two free beers out of it
+He says that breaks my ‘zero gambling in vegas ever’ streak since I touched the ticket and got the beer
+But I respectfully disagree 
+Not my circus, not my mnke
+
+
+  
+
+Gotta put my team up on the sticker board
+
+
+  
+
+Hell yah, episkipoe will hack for tacos
+
+
+  
+
+
+
+Pipcked up a flyer for cooler con.  
+Nice to see there’s some sunday night content
+That has been rather hit or miss lately
+
+
+Handing out more DaveCon 3 badges while we wait for this year's drop
+Are you Dave?
+I'm Dave
+Is this QR code safe?  I was told not to scan anything at DEF CON.  Can I borrow your phone?
+I scan it with mine to prove that it is
+
+
+Chatting with the lyft driver
+R quotes it as a joke:  I have enough money for the rest of my life
+Provided I die next Tuesday 
+But the driver seems to take it too seriously 
+Oh hun, that’s not enough.  You need enough for 5 years
+And then she gives us some more life / family advice 
+
+
+Pickup the badges and get some gyros 
+  
+
+
+
+1500
+Arrive toxic BBQ
+Daveputize fiber moose
+With a stack of badges in a bag
+We’re gonna parallelize distribution this year 
+
+
+  
+
+They insist we grab a nametag, just one, even if you’re not gonna write your name
+Toxic needs to report how many people we had in the park
+
+
+1520
+We're already done punching badges
+Seems like it always took way longer
+Are you sure we got 500 of them?
+Maybe we're just that good now…
+
+
+  
+
+Ryan’s wearing his malort shirt
+We’re poisoning pigeons in the park (RIP Tom Lehrer)
+
+
+Find PepperCon
+I do the powder.  It starts off feeling reasonably hot
+(Not like the shot that pretty immediately knocked me on my ass)
+But then it builds into unreasonably hot
+And sticks around for a while
+Numb lips, real pain
+Then it fades
+And I get my chip
+  
+
+
+
+He notices Ryan’s shirt and gives him the Ghost Pepper Malort
+Well, he reports, the good thing is that you can hardly taste the malort 
+So, in that regard, it’s better than the pumpkin spice malort
+  
+
+  
+
+  
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+Fourth badge we've personally witnessed spontaneously combust
+R has been tightening it with his fingernail
+And generally not messing with it
+Each manipulation loosens it
+Rivets would have been better
+At least they make a satisfying noise when landing on most surfaces
+And we reckon I'll be able to construct my own badge from lost components
+
+
+This little guy started poking out furtively but frequently
+  
+
+and by the end he was boldly full body out
+  
+
+
+
+
+
+1730
+While Ryan is chatting I spot Fraggle giving out swag and badge him
+Direct him to the other Dave 
+The story is: Ryan flew to Denver for Punk in the Park
+Had a few too many beer tastings
+Saw a guy in a recognizable t-shirt
+Slurs something like “Hey, do you actually go to DEF CON?”
+And turns out he was there with Fraggle, a PepperCon/DEF CON superstar 
+  
+
+  
+
+
+
+Last year this guy was passing out habanero fireball at linecon
+And people were telling him ‘this ain't shit’
+So now he has Overpowered titos
+  
+
+Reapers for a year
+Ryan has been left as its custodian for a short bit
+He passes it to a new arrival, who takes a little too big a swig
+Has to stumble away for a bit, find a bathroom
+At least he didn’t throw up, just burp some
+Apparently, he heard ‘do want to take a shot?’
+When R said ‘do you want to make a bad decision?’ 
+“All this because I wanted to know what DaveCon is…”
+
+
+Colorado mutton chops shows up, same huge grin, love this guy
+I usually find him in darker, noisier spaces…
+
+
+  
+
+Round off this party with some popcorn
+
+
+Make our way back to the venue
+  
+
+Oho!  looks like we have a rival
+  
+
+
+
+  
+
+I hella wanna copy that floppy
+  
+  
+
+  
+
+
+
+  
+  
+
+  
+  
+
+
+
+  
+
+We keep dropping stickers and picking up more
+Challenge coins were always a thing, bleed over from the military folks
+But it seems like stickers / googly eyes weren’t all that popular until Caesars (DC25)
+And they’ve really blown up since then
+  
+  
+
+
+
+Adopted a beach ball.  I have sharpies
+Make some additions to it then I’ll release it back into the wild
+  
+  
+
+  
+
+Photo: Cannibal
+
+
+Walking over to fontainbleu
+We start chatting with this guy with a color change technology t-shirt
+He grabs some ice from his cup.  Let me draw a D for you
+Let me get a picture of your D.  
+I mean the one on your shirt
+  
+
+
+
+Friday
+0830
+I transcribe the text from the card that peppercon gave us:
+
+
+Coxn "Qsfo wo k rsxd?"
+dy zozzobmyxzejjvo@qwksv.myw
+
+
+It’s pretty short for frequency analysis, 
+But I’ll assume it’s not a sophisticated cypher 
+And a fair amount of the content is easily guessed
+Send the message, got a response 
+  
+
+zip file magic number.  we can work with this
+but for now let’s get out and enjoy the con
+
+
+Now I remember what we needed that sticker for… 
+The toothbrushes the goon gave us at linecon
+  
+
+  
+  
+
+  
+  
+
+  
+
+
+
+
+
+  
+
+Can’t stop here.  This is cat country
+
+
+0930
++1 badge explosion (5)
+  
+
+EBS:  exploded badge syndrome
+Well, it’s better than IBS
+(Imploded badge syndrome?  Yeah, that sounds dangerous)
+
+
+Hallway is a crowded clusterfuck 
+So rather than trying to get into track 1 I suggest we sit for ‘Aw, man… pages’
+A quiz about software & software documentation 
+Ryan really isn't a fan of either
+So he heads up to vet con
+
+
+Things clear up pretty quick at 10
+So I duck out for track 1 
+It's full, but I can still hear DT talk
+“We're a con of cons”
+
+
+Aw, man… is still running when his talk wraps 
+So I sit for the rest of the rounds
+  
+
+
+
+Round 4: no help
+List of tools, what is the longform flag for their -h shortform
+OH:  I'm going to answer - -help for all of them
+
+
+Eg ls: --human-readable
+mysql, less, grep, rpm, chown 
+
+
+Cryptic crossword round is fun.  
+I guessed them all but the last
+
+
+Dr Kim scrambles to create file cabinets (5)
+Lifting winter Olympic sports (4)
+Sounds like you spoke editorially (3)
+Reproduction initially can only please you (4)
+Signal sleuth concealed by shining reputation (5)
+
+
+mkdir, curl, sed, copy, ngrep
+
+
+Hit the villages
+AIxCC looks amazing, cyberpunk come to life 
+  
+
+
+
+On my way to a kubernetes talk
+Pass by R and Crabb on their way to hhv 
+He hands me some free sunglasses from vet con (2)
+Last year I showed up with 1 pair
+Went home with 0, despite having found one on a table
+This year I'm hoping to leave with more than that
+
+
+kubernetes talk is in cloud village
+He pronounces Jupyter like Ju Piter (mentat de Vries) instead of like the planet
+
+
+  
+
+Post location in the Dave-cord for additional badge distribution
+Find Perryman and chat
+Exchange some swag
+Daveputized him
+mediKanren 
+
+
+He’s DaveCon staff, a Dave Goon, aka doon
+
+
+Is that Bill?
+Bill who?
+Oh, “I’m just a bill” from schoolhouse rock 
+No, it's towlie from South Park
+Fits into both 42 and 420
+  
+
+  
+
+
+
+Duck around the corner to the maker space for a bit
+Chatting with Willy’s wife
+  
+
+
+
+Head to the stage for the pub quiz.  And there’s Jaku!
+Hand him some badges.
+
+
++1 badge explosion (6)
+
+
+1300
+Pub quiz starting 
+Audio issues causing a delay
+“Go get a beer or something.  It's a pub quiz”
+
+
++1 explosion (7)
+
+
+Probably for the best that I got a paper badge
+I can't help but fidget 
+I had such a hard time with the key caps during DC 29
+And I have to keep replacing my dragon’s eye
+Pick up some extras from an nfo table
+  
+
+
+
+t-shirt sez:  What happens in Vegas stays in a data center
+
+
++1 sunglasses (3)
+  
+
+Taco truck
+  
+
+  
+
+Ryan met another Dave.  Hell yeah
+
+
++1 badge explosion (8)
+  
+
+
+
+  
+
+They got soma just at the end of the hall
+Their vibe really needs the dark and comfy chairs of the chillout area
+
+
++1 badge explosion (9)
+
+
+  
+
+I swear I have a copy of that whiz kids comic
+
+
+R asks me:  Hey, is that guy in the black suit Fat Mike?
+Which guy?
+That one?
+No
+That one?
+No
+That one?
+Yeah
++1 fat Mike spotted
+He’s an owner of the nearby punk rock museum 
+And was a special guest at a party we couldn’t attend
+  
+
+
+
+“That mohawk isn't very punk rock”
+He says to someone who has a mohawk more punk rock than Ryan’s
+
+
+  
+
+His hands are full with a Stella and a mixed drink
+(He looked just like this, but we didn’t take this photo)
+So R stuffs a DaveCon badge in his jacket pocket (it’s sewn shut)
+He doesn't resist, but someone in the entourage promptly removes it
+
+
+  
+
+
+
+Down the hall, spot a guy in a Descendents t-shirt
+He'll want to know fat Mike is here
+“Did you know he's at def con?”
+“No I don't know if he is”
+“No, I'm saying he is.  Right over there”
+
+
+  
+
+(No functioning projector, throws the speaker through a loop)
+He had to move to Panama since his stuff is illegal here
+Does anybody know what a game genie is?
+Some subset of us raise our hands
+He's holding his laptop rather precariously to show his slides
+MAID (MAD magazine AI slop parody image)
+Giving AI the middle fingers
+Is anybody familiar with nanopore sequencing?
+Combine a synthesizer with a sequencer with his device in between
+Pigeon-related question from the audience wrt degradation from uv 
+
+
+Meet R in front of chillout 
+Heading to our room
+Find Fraggle 
+He's frazzled
+Hand him some more DaveCon badges
+
+
+  
+
+I’m not taking either of these stickers home
+
+
++1 sunglasses (4)
+
+
+1800
+  
+
+Ryan got the car hacking village badge
+Comes with 2 SAOs: a horn and an accelerometer 
+
+
+  
+  
+
+Chilling in the room, drinking the Jaws
+It doesn't taste very blue…  Just a generic white wine
+  
+
+
+
+OMG, do you realize it's already Friday and we haven't eaten a single hot dog
+
+
+1830
+Give a badge to the goon on the escalator:
+“If anybody asks you to be head of security at DEF CON just say no”
+He’s aged 5 years in one Dave (day)
+
+
+  
+
+  
+
+
+
+1927
+R dav3d hellcat 
+  
+
+Photo:  Cannibal
+
+
+
+
+2000
+
+
+Find DumDumz and chat for a bit
+He gives Ryan some fancy chocolate 
+Head over to Hacker Jeopardy 
+Daveputized the guy I met in line
+He reminds me of a young Joe Grand
+We discuss mushrooms (not magic).  He forages, next seat over grows them
+Area codes.  He shouts out when it's his home town 404, Atlanta 
+No chopsticks, no babies, is this even Hacker jeopardy?
+Next year, I'll bring my own
+  
+
+Chalupas on stage
+
+
+Technical difficulties, screens go dark  “You fucked it up!”
+  
+
+Ryan picks up another free t-shirt
+
+
+What is malort?
+Look up:  what is south america?
+Seems it was DC17
+But I didn’t write down any context and it wasn’t recorded
+media.defcon.org
+Beef Thief from DC22 is a little more straightforward
+
+
+The cockroach is referenced, so I give away my Trevor Forget sticker
+
+
+They're doing a 3rd round tonight
+Give ‘em the D
+(All the answers are Dave)
+
+
+2200
+After hj we dump a bunch of trash stickers
+They are eagerly picked up
+And we met the guy behind the cool Skull stickers
+(They’re from temu)
+
+
+2230
+  
+
+New friend shares shots of the good stuff
+
+
+Guy notices the grim reaper on the DaveCon badge
+Hold on, I think I have him.  Here, help me look for him
+  
+
+Pours his temporary tattoos onto the table
+We shuffle around for a while
+I’ll just take the coffin
+Thanks!
+  
+
+
+
+2300
+  
+
+
+
+  
+
+BlanketFortCon is looking good!
+
+
+2340
+Got my paper badge exchanged by a goon
+Oh noes!  It’s gonna pop
+Tuck it into a badge holder and hope for the best
+  
+
+
+
+Saturday
+0018
++1 badge explosion (10)
+  
+
+  
+
+  
+
+
+
+  
+  
+
+  
+
+
+
+0100
+  
+
+We both got some IoT hats at some point
+But some random guy liked ‘em so much I gave mine to him
+
+
+“Can I get a picture of the back of your head?”
+“Of course”
+  
+
+
+
+
+
+
+
+0200
+  
+
+We’re gonna need those Vs for next year, DaveCon 5
+And find out what’s on that floppy
+
+
+To bed
+
+
+0940
+R hands me a breakfast Stella 
+He’s Kevin today
+  
+
+
+
+  
+
+Tattoo is fading fast, but the red eye made it overnight
+
+
+1000
+Heading back to the con area
+  
+
+1.  How do pigeons not simply fall under the pest umbrella?
+2. I don’t like this
+
+
+1030
+  
+
+R snags some malort from HHV
+
+
+1100
+  
+
+Back to the maker space.  Laser burning wood smells good
+
+
+  
+
+
+
+  
+
+Wandering through the spaces
+
+
+  
+
+Ryan picked up one of those plants we’ve seen around
+No one we’ve asked knows what they’re all about
+Was really hoping it was a Fallout reference
+His name’s Herbert.  I talk to him when I get lonely… Heh heh.  Just kiddin’... His name’s Bob
+
+
+(learned about it from peppercon discord post-con)
+  
+
+
+
+
+
+
+
+1130
++1 sunglasses (5)
++1 explosion (11.  Final count, people getting clever)
+
+
+1200
+  
+
+Pretty sure we still haven’t hacked it, but…
+We do got some dancing cats on the dome
+
+
+They turned the drink into a pinball machine!?
+  
+  
+
+
+
+  
+
+Ham radio villiage, guy working on cantennas
+“Not even sure what band it would work on…”
+R says: “Probably Metallica”
+OK, that’s actually funny
+  
+
+
+
+  
+
+Beverage cooling.  But they’re not giving out any beverages.
+Remember the pony times?
+  
+  
+
+
+
+  
+
+Stop by biohacking
+  
+
+No sequencers, but they do have a machine from Roche 
+
+
+1300
+Grab a seat for taskmooster 
+  
+
+Pretty funny sandwich round
+Then technical difficulties 
+Do I prefer magicians or robots?
+  
+
+The AI round is good too
+  
+
+
+
+And we got some Oreos out of it.
+
+
+
+
+1500 
+Head out with Jaku to get some of those 2-dollar hot dogs 
+Discussing work - he’s still in Chicago and doing quite well
+And Ireland - he went there with Johnny X who got quite ill there
+Jaku gets a second round of 2 dogs, now that’s twice as many as Ryan got
+And four times as many as me
+
+
+  
+
+  
+
+
+
+Back at con
+Pass by with hellos
+To Bruce Potter and G Mark Hardy
+Jaku knows everybody, including the shirts off, oiled up hacker jeopardy team from Chicago
+
+
+  
+
+  
+
+I really don’t need any more t-shirts
+but couldn’t turn down this free one
+  
+
+
+
+1620
+Ryan trades a DaveCon badge for a pack of Black Badge Raffle cards
+And gets raffle tickets for his military service
+Goon asks me:  Do you have a riddle or a joke?
+Where does George Washington keep his armies?
+I don’t know, in the field?
+In his sleevies
+That's a good one
+(No its not)
+Ryan keeps telling the same frog joke.  Ribbit.
+
+
+  
+
+It's fine, the first 8 or 9 times he says it
+But once it gets into double digits, it starts to grate
+
+
+Hey, it's my neighbor from the wall
+He takes a picture of my DaveCon shirt and I take a picture of him
+  
+
+
+
+1900
+A little early to get in line 
+We got a dinosaur fight
+  
+
+
+
+Ryan has finally got rid of all his hats
+Last year’s ‘Don’t click on shit’ to Fraggle
+Blind Lemon to someone in the Hacker Jeopardy line
+“I just noticed that doesn’t say blind melon”
+
+
+Ryan leaves Hacker Jeopardy early to head to the Vet Con party
+They are auctioning off swag to benefit the EFF
+Some challenge coins and the like.
+And two bags of tacos
+
+
+I duck out early, to find a restroom and check out parties
+And just generally Dave it up
+
+
+  
+
+Shhh, this is a secret society
+Eagal Eater pulls me aside to discuss a controversy 
+He witnessed a goon take down a ‘Resist the new world order’ sticker
+  
+  
+
+  
+
+  
+  
+
+
+
+Sitting on the floor, writing with a pen, evoking mem’ries of DC14, where by doing this I was ushered into a quiet room with Dan Kaminski (RIP)
+
+
+Day of the Dead isn't quite what I was expecting
+Mostly empty, no content, just a DJ  “whoop there it is”
+I expected something more somber or mexican
+
+
+R is the eidedic one, my brain is a sieve
+I thought I just recognized this guy from last year, but he says we talked last night.
+Maybe he's the mistaken one and it was a different Dave, but he seems suspiciously sober
+
+
+Up to vet con
+Get a Stella from R
+Chat for a bit about con vibes, move on
+
+
+Spotted dual core.  Should have badged him, but he looked busy
+
+
+2200
++1 sunglasses (6.  Final count, didn’t lose a single pair 😎)
+Duck into Feet Feud for some quiet reflection
+And this game show is more fun than I thought it'd be
+
+
+(John Hammond is not the Jurassic Park guy)
+“dude, why are you showing nipple?  Get up here”
+“Raise your hand if you have more than 3 certs”
+“I'm literally a software engineer”
+        “I get the feeling we’re gonna be hearing that a lot”
+“Why does he have a pop tart?”
+“a lot of vibe coding went into this”
+
+
+Woman across the aisle is wearing a DaveCon badge!
+
+
+Name a tool used in IR
+“I've never worked in IR - why am I up here?”
+Jira? Slack? Data dog - dog with the data
+“wtf?  Are you guys using email?”
+“I'm a SE be nice to me”
+So, so many Xs
+>splunk gets a team on the board 
+Next guess is: your mom
+Other correct answers are:  excel, grep, wireshark 
+
+
+“This is not a bribe.  This is just a drink”
+
+
+Someone in the front row says:  
+Buzzer?  I hardly know ‘er
+(But don't tell Ryan I laughed at that)
+
+
+Team pronounces SQL as sequel.  That’s the way I say it. 
+Host says ‘I'll accept it’ (and pronounces it as S.Q.L.)  crowd boos since both are perfectly valid
+“Hey!  I said I'll accept it”
+He clearly has tourettes, but it seems thankfully mild, and he’s still a great host
+  
+
+
+
+No chill in chillout, same loud EDM 
+Fashion and glow sticks and blinking LEDs 
+  
+
+
+
+2348
+Picked up a copy of the forbidden sticker near the entrance
+  
+
+
+
+Sunday
+0030
+I've headed back up to vetcon to check on R
+He sends out a missive to peppercon
+As a group we do shots of malort
+I get the normal kind from the flask
+While the rest do the ghost pepper infused nightmare…
+
+
+  
+
+Acquired this sticker, how apropos re: Lann
+Hey Dave, how's your botnet doing?
+Autocorrected to bonnet
+R:  I told you
+
+
+0050
+Ryan peels off with an urgent Hattori
+Someone downstairs is in a bad way
+
+
+“What's up?”
+“Depends on your frame of reference”
+I’m thinking this is going to be a good conversation 
+‘Til a 3rd party comes in with:
+“Did you start the fight?”
+And his response is “Yeah, I did”
+Nothing too tense, but I decide to bounce
+
+
+A DJ sits next to me and asks if they really sell Stella Artois here
+I try to explain about my vet con hookup, he says:
+“I thought it might be smuggled booze”
+Chat for a little while, my initials are DJ but I don't have musical talent
+I donate him a can of my Jack Daniels and he goes on his way
+
+
+0100
+Got secreted into the back of packet hacking village
+For last call of a secret non-bar
+I ask for Gin and tonic?
+He says “Fuck off”  and offers Tequila and cranberry
+I reply “Fuck off”
+He counters with Vodka and cranberry 
+OK, yeah, thank you!
+(If anybody asks, you got this from…)
+  
+
+
+
+Ryan points out Warlord, who’s cracking a whip
+That guy, that's the guy what set his pants on fire
+DC16 the Riviera.  2008 and we’re still talking about it
+We move towards talking to him. 
+But security is quite insistent that we make our way towards the exit
+We comply.  We don’t want trouble.
+
+
+0230
+R seems quite a bit worse for wear
+That's what free alcohol can do to you 
+I manage to escort him safe to our room
+No major street crossings, no real incident.
+
+
+Hey Dave
+Are you red team or blue team?
+  
+
+
+
+0800
+  
+
+
+
+Table goon says: “Someone take the protein”
+R responds: “I'm anti-teen”
+As a reflexive, flippant, immediately forgettable dad joke
+“Why did you say that you’re anti-teen?”  “It was just a joke”
+So she sees in him the making of a fellow professional standup
+And takes him aside to teach him the secrets of standup
+That I’m not allowed to overhear, I’m just a dilettante
+
+
+  
+
+
+
+  
+
+Follow Claudus and Eagal Eater to hac man.  
+They are dominating to mess with Druid
+Got some black badge cards of my own
+
+
+Make the rounds some more
+At the maritime village:
+R asks:  Does the drug sub still have drugs in it? 
+She responds: “I don’t know”
+You know, if you're a cop you gotta say you're a cop
+She seems slightly bewildered:  “You tell me…”
+I'm not a cop
+
+
+Head back to hardware hacking villiage
+Is that guy Pluto or Bluto?
+Turns out it's both.
+
+
+  
+
+We try the homebrew malort
+It tastes the same to me as when I made homebrew “absinthe”
+Before it was legal here.  Just vodka and wormwood  (That was a rough concert)
+Allegedly, it’s got anise and cloves and whatnot in it.  R can taste it, I cannot.
+We think the grapefruit is the missing secret ingredient 
+She gives me some fireball to take the edge off
+Thank you.  Yes, now some more fireball.
+  
+
+  
+
+How about we do a shot of that whipped cream, too
+Wait, no!
+
+
+Makerspace: I couldn’t remember the name of Willy’s wife
+It’s: Amy.  But Teezy and ‘Willy’s wife’ work too
+
+
+  
+
+Ryan picks up a string of giant electric balls
+
+
+Discussing DaveCon lore with fibermoose 
+A big part of it is that Ryan would introduce himself as Dave
+Knowing I have to give my name next.  
+And he reveled in the look of confusion on my face.
+Do I say I’m Dave, too?  Or take his name?  Or make one up?
+I’m Dave, he’s Dave, we’re all Daves here.
+  
+
+  
+
+  
+
+I think this might be my favorite sticker I got from DEF CON 33
+
+
+Ryan picked up this bag, ‘cause he thinks Victoria will like it
+  
+
+Yeah, it looks good to me
+1200
+  
+
+
+
+
+
+Tacos El Gordo is a bit crowded (Is Miguel Gordo (FatMike) here?)
+  
+
+So we head a little further to Tacos El Pastor
+  
+  
+
+It’s not bad
+  
+  
+
+Fanny Packs are cool (I picked one up too)
+
+
+Closing Ceremonies is at capacity, we're among the first to not get in
+  
+
+Head to the lobby and chat with Jaku
+Then back to the room to just chill and watch it on our phone
+
+
+1700
+  
+
+There’s Claudus on the screen for his HacMan victory 
+
+
+  
+
+Across the street to the Marriott, looking for Cooler Con
+Find some Swiss with the same mission
+Take a look at maps and lead/follow them to the other Inn around the corner
+On our way, someone walking the other direction confirms we’re on the right path
+
+
+  
+
+A low-key gathering
+
+
+  
+  
+
+Sweet cat tats
+
+
+Excellent discussions
+Stick around for a while 
+But the conversations are pretty hardware focused, so I zone out for a bit
+Hopefully we’ll meet our goal of introducing more intermediate material next year
+Most content is either quite remedial, like basic soldering or way above my head
+And Ryan has identified that a session on debugging would fill a gap
+Even if he has to fly next year, he’s got connections to set it up
+
+
+2200
+They're soft-shutting us down now
+It has been a long weekend, we decide to just head home and to bed
+
+
+We’ll have to find them again next year
+  
+
+
+
+Monday
+Keep the traditions going
+  
+
+This shirt
+
+
+And Daves and Daves post-party depression
+  
+
+
+
+  
+
+Pool is basically ready to go now
+
+
+Sit down at slots a fun for our last 2 dollar beers
+  
+
+
+
+Turns out Eddie’s favorite game was Age of Empires III (not 2)
+“I'm serious, we need a gamer’s resort”
+And he’s cracking up about the time he saw a line at Game Stop
+They were all waiting for Pokémon cards
+He just wanted a controller
+
+
+Head to the airport quite early
+R’s toolkit gets flagged, but no big deal
+
+
+  
+
+Prohibited to carry these drinks onto an airplane
+But we have plenty of time to sit at the bar and kill time
+
+
+I like our neighbor’s laptop stickers
+They overhear something I said about Hacker Jeopardy and engage us in discussion
+Gamer Hacking Village couple from San Antonio 
+Hardware and Texas and DEF CON stuff
+And someone who really appreciates R’s cat and dog pics 
+
+
+It’s all packed away, but we do exchange some swag
+Hand them a DaveCon badge, get a gamehacking sticker
+Aside from a small stash for Daves that couldn’t make it from the con, we’ve given them all away
+Next year we’ll have to print more
+
+
+OH:  “I've taken as much acid as I weigh”
+Slurring loudmouth at the end of the bar what works security for a credit card company
+  
+
+um, actually (R points out) it’s more like COMSEC FAIL
+
+
+Tuesday
+  
+
+Four pounds of swag, 500 dollars for the con, that’s $125 per pound
+Seems reasonable
+And next year I’ll give half of it away
+
+
+Poke at the next stage of the Peppercon puzzle:
+  
+&
+
+
+  
+
+
+
+Final hi-res: Sticker Wall
+
+
+Index

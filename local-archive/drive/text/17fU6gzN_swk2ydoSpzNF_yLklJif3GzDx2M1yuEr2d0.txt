@@ -1,0 +1,197 @@
+﻿sDEF CON 17
+  
+
+Wednesday (Pre-Pre Con)
+Anticipation - 'cause the con kicks ass even at its worst
+researching social interaction - goals and methods 
+the quintessential nerd
+looking to establish an API for interpersonal communication
+without escaping the safety of my shell
+
+
+Thursday (Pre Con)
+Reading Terry Pratchett while I wait
+throw the horns to a hacker on the plane
+"This guy's going to DEF CON"
+Cab it to the Riviera and walk towards Denny's
+Where I find my brother and Kyle (a friend who lives in town)
+who hands me my badge and ends his reign as an honorary hacker
+he is now confused by and obsessed with obtaining the ninja badge
+a bright red board festooned with LEDs hardly seems stealthy
+
+stock up at the liquor store
+A shot of Absinthe and a little bottle of Absente
+Bottle of Bombay for me and Ryan gets Kilo Kai
+12-pack of Red Bull and some pomegranate juice
+“A fella could have a pretty good weekend in Vegas with all that stuff"
+
+Con Kung Fu and what to do when arrested
+then we drive to the Toxic BBQ
+park by frolfers then wander through the park
+We make a revolution around the lake
+where a girl joins us in our quest
+she was told to look for the group in black t-shirts
+and my brother and I match that description
+then we merge with a group led by an iPhone
+and are thusly empowered to reach our destination
+plus these guys have supplies  
+worst case we can start our own BBQ
+in the end someone communicates with a cop
+who was kinda cool but cost us some hacker cred
+we wait in line with bread on a plate - buns and tortillas 
+I've never seen this many nerds outside
+reminds of the LAN party in the park
+but we held that event in the dark
+here we sit on the ground and watch people
+there is a guy who looks like Hulk Hogan who let himself go
+and we thought Kyle was the only person in Vegas who wore tie-dye
+but there is a tie-dye pac man over there
+
+night time at the Riviera
+hanging around the pool
+talking to Claudus and that guy that looks like Roland
+
+The Con
+We spend the day in talks
+although education doesn't come in an hour and some power point
+direction and inspiration can
+speakers work when they engage, excite, entertain
+I'm enamored by screen shots from the new IDA pro
+it's been a while since I've played with that tool
+and science is all about reverse engineering
+biology with the body and physics with the universe 
+Cenobyte has some great ideas
+
+In the Chillout Room we grab a tiny table
+heads are bobbing to techno music
+we are introduced to two people from London
+and later there is a shirt with pedo bear
+that seems to be giving me a funny look
+
+the con, my con she claws my eyes
+damn dry Vegas air
+a seed, a seat, a slap of hands
+a steady beat, another band 
+inside, outside, inside-out
+attention-seeking whores and horrors and heroes 
+the reflections of flashing lights
+a high-cut dress and a low-cut blouse
+separated by the width of a wrist band 
+attention-fleeing, never guessing the answers
+caffeine clarity and drunken blurriness
+snatched cigarettes - "I wasn't spying on your notes"
+Dark Tangent exits from somewhere with a tray of food
+and someone said I had the best style of the con - my tails
+a little touch of culture in a sea of counter-culture
+now I just need a top hat - oh and a monocle would be nice
+I like black t-shirts with witty sayings as much as the next hacker
+but I can't consciously put on what would be a uniform
+my ears are sponges as tongues are liquid loosened
+heart is racing, but my voice is still on ice
+"I haven't heard you speak all night"
+just shy, I guess
+
+I'm listening to more military talk
+since my brother is a Marine
+radios, communications
+wearing his BCGs
+apparently strippers dig them
+
+what entropy means to me
+a slow, steady blood-letting of bits
+the sweet smell of clove cigarettes brings back memories of college
+I used to smoke them, sometimes unfiltered
+and I miss the fearless immortality of youth
+
+getting high off the cadence of the speech of a technical discussion
+a sharp mind and the sprinting language of the geek 
+losing interest when the topic turns to triviality
+
+We let Flea, but not Amanda, mark us with a sharpie
+tree in the corner and smoked mirrors frame generic hotel art
+a table with a beer and three bottles of water
+watching people and the spaces between them
+man morphs into a garden variety drunk
+intoxicated counter production
+eyes red and heavy
+and I hide in the corner
+the host said I look suspicious
+with my nose buried in a clipboard
+I lend a marker to one who scribes upon one passed out
+and the party is shutting down so I leave 
+with overwhelming ambivalence and without my marker
+eventually it makes sense to go to sleep
+
+goons did a great job managing
+the crowded clusterfuck of a hallway
+phreaks and phenotypes, coders and codons
+
+Vendor Area
+Usually I pick up a few boxes of Foosh mints
+but this year I brought a bottle full of NoDoz in one of their tins
+bought a t-shirt since it had DNA on it and I am a bioinformaticist
+didn't eat an apple this year 
+and I wonder why all the laptops at the UNIX surplus are running windows
+except for the one running OSX
+
+my mind must take my body's word
+that I'm standing in the hall waiting for track 1
+I feel like I've taken a dissociative drug
+running on caffeine, booze, everything else
+DEF CON means never having to say "I'm sober"
+
+Mobile Disco takes the stage for Hacker Jeopardy
+while in the contest area my brother helps them with the Lost Challenge
+investigating the chip; their usual circuit jockey is absent
+Ryan can handle hardware; I'm just a software guy
+I've swallowed the shot of Absinthe 
+from a plastic cup mixed with tap water and pilfered sugar packets
+my eyes are wide and they behold wonderful things
+.Damn, I love this game.  "What is South America?"
+
+To the Sky Box looking for Lost 
+Ryan had to literally do a cartwheel to gain entrance
+green lasers and smoke and Jolly is really good at dancing
+while I shout out my confusion - cause all I can do is mosh
+
+in the morning Jaku is helping out the security ladies
+and they really seem to appreciate it
+humans won't be allowed past until 10
+press can go past, contest is alright
+a goon or a gun can get you in
+there's a reporter with a scheduled interview
+So we're looking for Larry.  We'll let Larry through.
+Q:  Are you Larry?  (Hint:  The Answer is Yes)
+A:  ...
+Q:  Hey Larry, how's it going?
+A:  ...
+Q:  Ready for your interview Larry?
+A:  ...
+Come on, people!  
+You're supposed to be the cream of the social engineering crop
+How can you pass up this chance?
+
+if you're not hung-over you're not doing it right
+there's a talk on hacking sleep
+and my memory is certainly slipping at this point
+
+Killer bees attracted by the honey pot
+the whole thing is rather amusing
+in an Oh My God kind of way
+
+Crazy Girls walking around
+but they aren't getting much love
+"Please take this so I don't get in trouble"
+shoving cards in my brother's hand
+and I don't seem to be paying much attention
+she says to me "You don't speak English"
+
+and soon enough we start to feel like outsiders again
+men dressed in black are replaced by women wearing white
+as the gospel singers arrive
+
+Monday (Post Con)
+at the airport a guy had a shirt "Frisk me I'm a terrorist"
+good for him, what balls he has
+
+$ cd ..

@@ -1,0 +1,304 @@
+﻿DEF CON 14
+  
+
+Wednesday
+        St. Louis, airport.  Waiting to board.  
+        A blond heading home sits between me and a man.
+        mentions something sounding like a strip search, stops short
+        the man conjures camaraderie with me.  
+        says we want to hear more.
+        humidity and hair
+        compliments and conversation
+        business or pleasure, my line of work: computers
+        he tells me that common people (not that I'm not one) 
+        don't think about these sorts of things
+        
+        Arrival.
+        I spot a hacker on the tram.  
+        We exchange a greeting 
+        Do we own the city already? 
+        This should be fun...
+        
+        dinner at in&out burger, pick up supplies, 
+        walk the strip, 
+        most amused by a midget with a microphone at Doublin' Up
+        scout the Riviera
+        the devil is pouring drinks
+        
+        We are asked "Do you speak English?"
+        Then she borrows my friend's cell phone.
+        
+        A well-dressed woman asking for money
+        is agitated by my ambivalence.
+
+Thursday ("pre-con")
+        registered, walked around, going free agent.
+        Trapped in perimeter.  
+        Pacing, bounded by an invisible fence
+        afraid to leave, afraid to integrate.
+        I feel like I recognize these people.
+        But like me they are insular.
+        Coagulated into cliques.
+        Presenting a high barrier to entry.
+        
+        Toxic BBQ launch area.
+        Crowd reaching critical mass, I'm shedding the shell.
+        Sit by a laptop, friendly faces. 
+        Meet Cenobyte and Cygnus.  Canadians.
+        Then through them H20 and SnowMan.  Brothers from Bronx.
+        
+        Taxi to the Wynn for fancy cars, walk to TI for the show.
+        H20 is giving us lessons in confidence.
+        Pictures of pretty ladies with Cygnus.
+        Walking back to the Riviera.  
+        It is night.
+        
+        Someone gave me a parachuting ninja.
+        "It's okay, it won't hurt you."
+
+        I don't have a hotel room
+        so I borrow some floor space
+
+Friday (it begins)
+        Breakfast at the Pepper Mill
+        Late start due to inspection.  
+        Fierce crowding and confusion.
+        iPod boom box plays our soundtrack
+        I feel cooler than I should be allowed to
+
+        First talk:  atlas script kiddie to hacker
+        net cat is your friend
+        
+        another talk
+        harmony of multiple personalities
+        madness to go half-way
+
+        spend the day in sessions, wandering.
+        I find Elonka, follow her to the cafe
+
+        hard drive forensics
+        Nathan comes to check on me
+        tail end of a Johnny Long talk
+
+        a talk on bioinformatics (my core interest)
+        I was hit by a beach ball 
+
+        the sun has set, night takes over
+        by the pool security tap on SnowMan shoulder, 
+        requests the music off.
+        he asks for respect
+        some jocks attempt to escalate, 
+        speculating upon our gathering
+        a number of security disperse those evil hackers
+        We're being followed
+        duck into the end of hiding data in file system
+        
+        tcp/ip drinking game
+        these are the men that get things done
+        awe and reverence and laughter 
+        head to the skybox on rumors of strippers
+        moose gets us into hacker pimps.
+        life's transience is here in ink saviored
+        
+        a man, visibly intoxicated,
+        attempts to inform me of a party at...
+        the end of the conversation 
+        he seems to have forgotten that it began.
+
+        heading to the Hilton 
+        I break off from (a growing) congregation
+        (for my fear of grass)
+        
+        back to the (quieting) box.
+        I am a mortal that has stumbled on to mount Olympus
+        everywhere I turn I can see a god.
+        I hear the story of a little Jewish boy in a catholic school.
+        his first communion: "Thanks for the cookie"
+        (I never expected to see nerds with doey-eyed groupies)
+[This was Dan Kaminsky]
+        
+        I wander: surreal, as if in a dream.
+        Follow someone following a goon
+        Wind up in the penthouse
+        I'm not cool enough for the black ball
+        Find Cenobyte and Cygnus up there
+        The Bronx boys arrive and I follow them out
+        
+        to a different Hilton building for a shmoo con party.
+        Fish saw Madonna on a tootsie roll inside a bible.
+        pouring miraculous drinks.
+        spiritus sancti, beautiful blasphemy
+        he whispers to me 'there is no god'
+        We leave as they start to make waffles.
+        
+        Back to the Pepper Mill 
+        to a glut of beautiful women.
+        watching H20 operate
+        
+        The sun is rising
+        Walking another first-timer back to the Sahara
+        I catch a few hours of sleep
+        Sizable blister on left foot
+
+Saturday
+        never been so happy to have 
+        my synapses firing as erratically
+        there is nothing like a crowd to make me feel alone
+        but in the midst of Def Con I have found a second home
+        
+        EFF dunk tank.  An entertaining representative
+        in a Microsoft shirt, singing its praises
+        mocking the penguin boys.
+                
+        Visual log analysis beauty of graphs
+        log analysis and correlation
+
+        hacking unix with FreeBSD jail(8)
+        layers of complexity
+        in India they love rats, in NYC they don't
+
+        hunting for metamorphic engines
+        liken viruses to genetic diversity 
+        interesting overlap with bioinformatics talk
+
+        Hacker Jeopardy most amusing.
+        A drunk wants to exchange badges as a sign of friendship
+        almost an altercation, but they pull him off of me
+        
+        leave the room, see a crew struggling in the hallway with old hardware. 
+        A prize, a relic
+        They keep dropping it, so I help them carry it.
+        They let me in the room, give me a sticker
+        keep asking who I am.
+        And I never know quite how to answer that.
+        Am I a demigod or just a simple daemon?
+        
+        I'm drinking SoCo & Red Bull in a former water bottle.
+        They insist that I'm drinking my own urine.
+        I offer them some.  Strangely, they decline.
+        We head out into the street.
+        An interesting chat with cops.
+        Literally asking to be arrested (really, but not really, you know)
+        He sniks out his baton and pretends to assault for a photo op.
+        The cops here are pretty cool, I guess
+        
+        Solar powered personas find fuel in neverending nights
+        guardians of requisite sanity gain wrinkles from worry
+        
+        life, it bleeds in all directions 
+        hear the peace that permeates 
+        achieve stealthy stability
+        try not to worry, sweet children, try not to cry
+        try to turn a blind eye to these travesties that accrue
+        an angel checking ids, but the devil didn't have to
+        this david cares not to
+        let the light last, and the confusion reign
+        
+        The Wynn was wild, a drink over the edge
+        gut damn these women if they couldn't stop a heart
+        
+        I reach the point where words fail.  
+        The language center is soaked, the periphery only doused
+        And so I communicate with Spanish and sign language.
+        Neither of which I really know that well.
+        I think the surrogate crew knows ASL, 
+        they made me stop for fear of ghosts
+
+        One is gambling: craps at circus, circus.
+        I remember not-hearing a comment 
+        that sparked some controversy
+        an underage kid denied entrance
+        I think I promised to see his talk tomorrow
+        consent by 'too confused to argue'
+        I'm entranced by the wise red hat giving him a life-lesson
+        he talks like a stream both calm and fast
+        
+        I find myself back in the hotel.
+        Alone.  I must have surreptitiously escaped their company.
+        
+        Sitting, writing.
+        a few drunken conversations with strangers
+        one informs me that there might be hackers in this building.  
+        wink, wink
+        
+        Hotel staff made me move, made me hide from fear of dominoes
+        (afraid those bastards will steal electricity if they see me operate a pen)
+        but the dominoes have hit the floor, the power is held captive in batteries
+        and is being made to perform unspeakable calculations
+        
+        So I move upstairs and kneel at a table in the hallway and continue to write.
+        I am seen.
+        Hackers move me to a couch
+        in darkness.
+                
+        Looks like I've made it, accidentally, to what they call a "party"
+        exhilaration, exuberance.  the liberation of libation
+        as I attempt to explain that I am nobody 
+        and that I am Dave to souls that mostly understand
+        but will never, can never remember.
+        
+        like that state of living that is pure
+        my state of identity, belonging, is fleeting
+        the ink flows in beautiful patterns, music moves my hand
+        manifest to an unwilling, unknowing mind
+        shadows of form swaying in my periphery
+        constitute the only other part of my existence
+        
+        they lament my killing of trees
+        brain cells are the prey du jour
+        what can we glean from these minds focused on debauchery
+        one of more mettle than I would integrate
+        one with more edge would prowl
+        I am a dagger among swords 
+        
+        I can't compete with this noise so I withdraw
+        asking for too much food in too little a mouth
+        but I love this energy, this beat, this feeling
+        where else can we find salad days for the mentally inclined?
+                
+        words are my medium.  except in them I do not exist.
+        and they are (each, alone) mundane.
+        in sequences they can be (but rarely) brilliant
+        illuminating.
+        
+        I am face down, furniture.
+        But it is a forcibly social environment.
+        Conversation ensues.
+        Incoherent connections.  I now know I am not alone.
+        I could live forever between these words.
+
+Sunday
+        A daze.  My brain has failed to cycle after the last power down.
+        I failed to attend two talks I wanted to see.
+        don't have a change of clothes with me
+        So I jump in a shower with my shorts on.
+        
+        Sitting at a table with a man with blue hair.  
+        I am introduced to the term "rollin' balls"
+        as his excuse for not really remembering we met last night
+        He's playing World of Warcraft.
+        Small talk, system administration
+        He touches my knee and continues to hit on me.
+                
+        Come evening I again hook up with my core four.
+        Tropicana in a limo looking for a Cuban restaurant.
+        Eat Italian instead, coffee perks me up.
+        learn about Sleep, Time management, Study skills        
+        Talking physics with the local girl that H20 found.
+
+Monday
+        Con over, back to being a freak
+        called my host on a stranger's cell phone for no answer
+        I'm not there for his call back, but I hear that I was abducted by ninjas.
+        
+        Shrink Wrap
+        We must be humble, we must be plastic.
+        But bullshit sounds sweeter than truth when it slides through sly lips
+        We must be vigilant and know what is axiomatic.
+        Building immense towers by stacking grains of sands.
+        A rush, a thrill.  Akin to panic.   To get it all done today.
+
+
+        
+
+$ cd ..

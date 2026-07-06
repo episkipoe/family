@@ -1,0 +1,1140 @@
+﻿Friday, August 3
+#roadtodefcon26
+Wednesday, August 8
+#tacolife
+Thursday, August 9
+#badgelife
+Friday, August 10
+#stickerlife
+Saturday, August 11
+#walklife
+Sunday, August 12
+#no_egrets
+Monday, August 13
+#squirrellife
+Tuesday, August 13
+
+
+
+
+Pre-pre con
+Friday, August 3
+2600 meeting at Arch Reactor
+Bob presents on putting together a privacy-focused phone
+Head to a bar afterwards.  Only a few of us will be making it to DEF CON this year.
+Recommend we watch:  Kellman Meghu - Star Wars infosec
+
+
+#roadtodefcon26
+Prep work involves checking out those socials in cyberspace:  twitter, insta, slack
+  
+
+Aww yiss, that was DEF CON 23
+
+
+Studying the map.
+Making a plan of attack.
+See Hacker Jeopardy and bands
+Jesus, that's a lot of ground to cover.
+Drink all the booze, talk to all the people
+Frequent sweeps through vendor, contests, villages
+Rooftop chillout, looks like it could function as smokercon
+Earmarked a handful of talks in the Hacker Tracker just in case 
+Wednesday, August 8
+Park the car, take the shuttle, wheels in motion
+Driver says they won’t let him go to Vegas because there are “too many golf courses”
+Two middle aged, midwestern women talking about a room Elvis stayed in
+They’re headed for Vegas but certainly not for the con.
+Two young adult males sitting in the back of the bus. 
+NASA patch on backpack makes it likely.  
+Cult of the Dead Cow patch cinches it.
+At security my bag is pulled aside.
+It waits.  Someone new approaches.
+“Is this your bag, sir?  Come this way.  Stand over there.”
+He reviews the scan as I mentally survey its contents.
+What am I going to have to explain this time?
+He unzips a side pouch.
+Pulls out my tortillas.
+Looks at them.
+Looks at me.
+Sends me on my way.
+#tacolife
+
+
+Flight 1111 ETA 11:11
+It looks like a newer plane
+Some warm accent lighting, blue, red
+But the white plastic is so clinical I feel like I’m back inside a CT scanner.
+  
+
+
+
+Trying to appear normal, aware of tapping in my periphery
+I’m excited, agitated, I want to geek out or calm down
+Fire up Wolfram Alpha right before airplane mode.
+I’m 1.753*1010 Ångströms tall
+
+
+Once again I’m taught how to fasten a seatbelt
+The guy giving the announcements looks a little like Joe Pesci
+But it isn’t fear that compels me to note that he’s not really funny.
+I don’t think anyone else on the plane will remember what they were thinking at this time.
+But I spent some time navel-gazing, then reading Umberto Eco and David Cross
+Land and coordinate with Steve via his burner phone
+I get on the shuttle and he gets in a line
+Almost lost him
+
+
+I am far from an authority on hacker culture, lore, history.
+But Steve isn’t familiar with the term phreaker, so I exposit
+We arrive, survey the space, in particular the Flamingo 
+Down an alley, seeking temperature regulation
+Sushi Burritos sounds like a terrible idea.
+We’re in the middle of a desert.
+Ah, let’s do it.
+“We’re actually out of tortillas”
+It’s in nori, but shut your face.  This still counts as a taco.
+  
+
+“My only complaint is that I’d like to eat the green one first”
+But it’s practically impossible since it is sandwiched between yellow and red.
+“You can put that in your DEF CON notes, if you want”
+Yeah, why didn’t they copy slack’s dango emoji?   
+
+
+Head to CVS, Steve attempts to acquire sunscreen
+Pick up some Bombay and Tonic.  “That looks like mouthwash”
+I’m wearing the shirt that earned me the camera stickers last year
+He’s expecting a modem command or another networking in-joke
+Hacker in a ponytail asks me what AT🗲GC stands for 
+Takes him a second to notice the DNA strand
+
+
+  
+
+Head back up to the con
+Steve takes a nap on the couch
+People gathering, adorned with LEDs, blue hair, kilts
+“Steve, are you starting to feel more at home, like you are among your people?”
+“No, but I am starting to feel more like DEF CON is a real thing”
+
+
+We’re approached by a German
+Something about a cop and reddit?
+We chat about trains and code and cons
+He uses Eclipse.  I bite my tongue, preferring IntelliJ
+Prices on the strip are too high, the legality of cannabis.
+
+
+Ryan arrives with Victoria and supplies.
+I never got the email I was promised, but a room is available
+We head up and spent some time talking about Sam and Max
+Making plans for Taco Y Taco
+
+
+  
+
+Send this photo to Jonas (aka Titos):  “Where you at?”
+His reply:  “Ahhh man, looks like an incredible time”
+
+
+Why is Guy Fieri rubbing that Asian man’s head?
+Oh, he's pouring wine
+Did you just now notice that?
+He's gonna make a helluva mess.
+That glass can't hold that much wine.
+It's probably photoshop
+Someone came into work one day and was told to make it look like Guy wasn't rubbing an Asian man’s head.
+
+“I’m part Taiwanese because my Dad was made in Taiwan”
+We’ve poured some drinks, but Steve is still sober, doing homework
+“You’re the worst Jonas ever...”
+
+
+To the Bellagio to meet Steve’s friend, a programmer for Salesforce
+Dinner, then back to the room, hangout a bit, ~2200 means 0000 local time (CST)
+I tried to portmanteau the words Bellagio and Belligerent.  The result was a beautiful disaster.
+Head down solo
+In the conference area they are installing floor stickers
+The couch Steve was napping on has been snagged for line con
+Meet up with Claudus and he starts handing out his Illuminati challenge cards
+We’ll meet with less resistance if we start at the front and move our way back
+Since you’re stuck here we’ll bring the DEF CON chatup experience to you
+2300 pizza shows up.  A bottle of something is being passed around and beach balls start flying
+It’s inevitable - you get this many nerds around and sports are bound to break out
+Balls start to accumulate in the chandeliers to the sound of cheers
+I’m hit in the head by another one
+  
+
+
+
+We choose our tokens and totems to spark conversations
+My DON’T PANIC pin attracts extra bits of Douglas Adams lore
+Quick chat with Cosa Nostra pizza regarding Snow Crash
+Claudus has connections and a badge already
+Blinking LEDs, D-Pad, two buttons
+He enters the Konami code.
+It blinks more.
+
+
+People start to work on Claudus’ cipher
+The codes on the card are classic, deliberately easy:  ROT13 and uuencode
+You know you’re looking at a fresh face when you ask it what the plaintext for QP26 could possibly be 
+And the reaction is panic’d confusion.
+Well, we all start somewhere.
+The real fun starts when you get to the website that the card points to:  http://dc26.minervallux.com/challenge
+Some are simple.  He wants people to solve and feel good.
+Others are devilish.  He wants everyone to find a challenge and success to be rewarding.
+This guy has been drinking Absinthe.  We discuss the ritual of it.  The glass, the spoon, the pour.
+And he shares descriptions of Douglas Adam books I’ve never read.
+His friend talks about her work with government regulations.
+“I can’t hack your shit, but I can crash it”  
+Sales start at 0600 tomorrow
+Sounds like the first in line was here since 1600
+Claudus collects timestamps down the line, looking for discrepancies
+Yeah, that’s a fine strategy: sleeping bag or tent and no need to pay for a room the first night
+But I need my beauty sleep.  
+
+
+Thursday, August 9
+Fall asleep ~0100 wake up throughout the night, final awakening ~0600
+I had a nightmare regarding loading a cert into a keystore.  It’s just not working.  Why isn’t it working?
+
+
+  
+
+I’m not technically obligated to turn snacks into tacos, but Hell, why not, I got enough tortillas
+Time for a fish taco.  Flavor profile:  Kick it up a nacho
+Head on down for Line Con.
+The line is long, but it moves quickly.
+Goons packing us in.  “Hot breath on necks”
+“It’s not that people come to line con for DEF CON, people come to DEF CON for Line Con
+I recognize that guy in the green shirt from the last 2600 meeting.  I’ll say hi the next time I see him.
+[Spoiler alert:  he’s never spotted again]
+Also: Steve has fallen behind.
+The pair ahead of us have a non-trivial transaction to conduct.
+Buying a bag full of badges.  Help is waved over.  We wait and wait.
+#badgelife
+
+
+The little bit of text in the program re: the badge makes me see it in a whole new light.
+You are green, green is good
+Last night with Claudus’ badge I couldn’t clearly connect activity to our button presses.  
+It looked like random chaos.  
+Now I’ve stumbled my way to the bottom, not really sure how.
+As I play with it, it starts to coalesce and now I know:
+First position:  toggles D, if D is green you can’t go down to third position
+You can always go right to second position
+Second position:  Toggles O, go left to first position.
+Third position:  You can go right to fourth position.
+Down to fifth position, but only if C&O are on and you toggle a hidden state that precludes going up to first position
+Fourth position:  toggles C, go left to third position
+etc…
+Badges can be connected to other badges.  
+We test some theories regarding this, but have not yet made any significant progress
+Suspecting now that it’s only worthwhile to connect to badges of a different type.  We’re all humans.
+In the elevator this blue speaker badge has all 6 letters green 
+He implies the narrative from the TTY connection is important
+
+
+Capacitive touch buttons
+Ryan asks: “Are we going to need another Fuck You sticker?”
+
+
+  
+
+1000  Choices in the food court are very limited at this hour.  Smashburger taco.
+We head to the Flamingo for the 101 track.  That’s a bigger room than I was expecting TBH
+
+
+Already time for a nap.
+Rest for a bit and then my crew rolls up.
+I uudecode the URL for them and we start cracking codes while watching Naked and Afraid
+Victoria solves the circuit puzzle and by remarkable coincidence the solution includes her name.
+
+
+1430 Marko, Jen, & I head out to 101 for the Hacker Tracker talk
+Line Con 2.0, it practically reaches the escalators
+Goon warns us it’s not super likely we’ll get in.
+Guy ahead of us warns he witnessed a battery explosion
+We reach the end of the line and the room isn’t even close to full
+Flagged as explicit, they’re allowed to swear, but can’t say jailbreak on iOS
+Handwriting JSON, that’s nobody’s envy
+Sooo much friggin’ content, some of our villages are bigger than other entire conferences
+Stick around for the DC101 panel.  Thankfully they didn’t even clear the room.
+“Fist your friends.  Fist them often”
+Avoid hand shakes.  Wash your damn hands.  Avoid the infamous con crud.
+“Anyone worth knowing has imposter syndrome” ~ Tarah
+“Introduce yourself to your neighbors”
+OK, you just unleashed your herded cats
+
+
+  
+
+Walk over to Secret Pizza (Taco) 
+Geek out with Kyle over Star Wars: Galaxy of Heroes
+It’s the new Pokemon.  He’s been hitting first in fleet arena.
+Serious business, he’s in a coordinated guild like Lee has.  Mine is ultra casual.
+With the spotty network and no down time I’ve been neglecting the game
+Also I still owe Ma a phone call
+
+
+1630  Head back to the room and spend more time getting to know these people.
+Jen puts cereal in a tortilla.  Getting high on Life (taco).
+Talking Quantum Physics and Philosophy with Kyle
+He’s moved in with the girl we helped buy the wine for
+(But I don’t want to get in the wheelchair)
+Ryan tries checking our messages to get rid of the blinking lights
+(There are two lights and they are clearly not in sync)
+Security picks up - “What’s your emergency?”
+Rehashing classic stories.
+Ryan spent prom night in jail.  Christmastime Slow Ride Texas adventure.
+Laverne in a film canister, library + trenchcoat = free groceries
+I can power my badge with my backup battery in my backpack
+Ironically my white cord is soo much longer than my black
+I think that there’s a little bit of Dave inside of all of us.
+Oh no!  What did you do to the Triscuits?
+We’re heading towards sleep at 2300
+
+
+Steve wants to party without all the troublesome bits of talking to people
+So his solution is to show up to a pool party and swim laps in the vicinity of festivity
+Reminiscing regarding electriquarium and the time he showed up with flippers.  [Not that kind of pool party]
+
+
+Ryan spent all of yesterday wearing the “This person accepts high fives from strangers”
+“You know how many high fives this shirt got me?  Zero.”
+That’s on you, man.  There could’ve been a non-stop stream of them at line con
+Like the end of a grade school soccer game.  Also:  orange slices.
+
+
+Friday, August 10
+
+
+Steve describes the worst decision ever made in Vegas:
+Someone on the street was handing out chapstick and he didn’t take one.
+I don’t care how dry it is.  It is crazy hot outside.
+Dr. Evil has set up shop between Caesar’s and Flamingo
+Olaf & Scooby make my suit jacket look like reasonable attire
+A woman with a ukulele is playing “I hate Donald Trump”
+To the tune of I like candy [Warning:  Explicit lyrics]
+Guy handing out discount drink cards:
+“Come back later, there’s nothing better than drunk hacking!”
+0840  The middle 2 escalators are broke already.
+Still better than the elevator shitshow at Paris/Ballys
+Ryan found a chip/coin with an orange W (or is it M?)
+Last night we flipped it around the room, he’s trying to get it in my drink.
+Apparently that’s Monero, they have a village.
+Year of the blockchain, is that how it is?
+  
+
+
+
+  
+
+Looking for people I know.  Or, even better, situations similar to those that introduced me to them
+Find the Soma chillout lounge on the top floor.  It’s the best.
+  
+
+
+
+Sitting in track one for DT’s opening
+Guy pauses, looks at me.  Or he’s just eyeing the adjacent open seat.
+“Have we met?” he asks me.
+It’s possible.  Very possible.  All around me are familiar faces.
+“Have you ever been to Finland?”
+Oh.  No, no.
+
+
+Soundhound a new song:  Gold Guns Girls
+That’d make a good Beat Saber song
+
+
+Toymakers built the badge
+DT @ the opening talk espouses the virtues of skipping all the talks.
+You come here not to learn about a specific thing, but to connect and learn more generally.
+“It’s a hacker con, not an infosec con”
+26,300 human badges x 4 batteries x 1.5 V = 157,800 volts
+Don’t reverse a battery.  Badge still lights up, but you’re trying to charge a battery not built for it.
+It doesn’t get hot, it just pops
+
+
+Walk out into a crowded hallway, formed into some seemingly winding lines
+Follow the Torres to the Vendor area
+
+
+They didn’t have it in a hoodie like I wanted, but this t-shirt has DNA on it so I gotta buy it
+  
+
+
+
+1100  Follow Marko & Jen to track 2 then break off again.
+Take another caffeine pill and some L-theanine
+I plan to peak, crash, peak again at night
+
+
+Chasing content, navigating through the crowd
+Mobile museum, I recognize that tech.
+  
+
+Wait, does that make me old?
+
+
+Hit up the contest area.  So much space and noise.
+Scavenger Hunt always entertaining.  Tickle me elmo guts played into a microphone.
+DarkMateria - Picard Song playing in the CTF area.  That’s promising.
+Main stage has a man and woman using broadcaster / interview intonations talking about robots.
+Usually that would have me fully engaged, but here my attention is pulled in many directions.
+I think of that Heinlein quote and go full ADHD
+
+
+Bump into Steve and we wander back through contests, hardware hacking village, voting machines.
+He hit up lockpick early and earned some cred there
+Packet Hacking Village has some cool vibes, the wall of sheep
+Encryption being so ubiquitous should have made them practically obsolete by now
+  
+cat badge eyes blink
+Username:  admin  
+
+
+  
+
+I leave Steve and head back over to the Flamingo
+The line for Sky Talks is long.  A rando throws balled up tin foil, misses the garbage, but I get the rebound.
+Duck into Cannabis Village / Puff Puff Hack.  Coincidentally, the random talk I’ve chosen is fascinating to me
+Indica / Sativa don’t actually exist in any practical sense, since prohibition all these plants are hybrids
+What we need is better access to deeper chemical analysis.  He shows some sweet reports.
+THC / CBD ratios are a useful tool, but there are nuances.  Flavors, effects, science.
+THC content has been steadily increasing over the years.
+So have reports of negative, adverse effects.
+Having a CBD epen onhand can stop freakouts.  Good to know.
+She was painting on her wall with mustard, it was the only thing that would calm her down.
+And he’s all like yeah, break out the ketchup too, if that’d help.
+THC strips your ego, makes you face your demons.
+It’s like the only drug rats won’t self-administer.
+  
+
+We don’t talk about strains, that’s for viruses.  But yeah, let’s talk about cultivars, etc
+Speaker says 1.5:1  THC:CBD ratio results in less freakout for “Samantha” (aka him) 
+1:2.5 seems to eliminate it completely.  He can finally enjoy his high 
+
+
+  
+
+Alright, grab a sub form of taco and head back to the room.
+Ryan and Victoria show up.  With a haul of swag and stickers.
+Resting, we watch a unicode talk on TV.  Homographs and shit.
+Hello world.  11 character, 500MB file.  You can’t say cat is doing the wrong thing here.
+
+
+In HHV I’m again mistaken for someone else.  
+My alter ego sounds like a cool guy, Mr. Robot badge and sunglass hookups.
+I play along for a while, smile, nod, saying very little.  
+Then I just come clean and fess up.  Moving on…
+
+
+I’m glad voting machine village is happening again this year
+But I didn’t hit it at the right time or crowd this year
+Last year I felt like I was part of a discovery
+This year it just feels like an autopsy
+
+
+#stickerlife
+Back to the room.  Marko is using my bed to apply stickers to his laptop
+As some random dude in the vendor area said:  “Everybody knows stickers make you a better hacker”
+  
+  
+
+  
+
+Ryan and I were handed a pair of these.  Made absolutely no sense to me at the time.
+Then I had to learn that Coinye was a thing
+I mean, of course it was
+
+
+  
+
+
+
+1700 watching a (Reverse Engineering) documentary in track 3
+This guy looks like a combination of David Herman (aka Michael Bolton) and Clark Duke (aka Jacob)
+
+
+Ryan decides we’re doing the Mad Lib on the back of the box of Life cereal.
+Dave, give me an adjective.  
+No.
+Dave, give me an adjective.  
+No.
+...
+Dave, give me an adjective.  
+Happy
+  
+
+
+
+How does Ryan remember the Fish Bowl BBS?  I was just a kid when I ran it.
+And that means he was four years less than being a kid.
+Bless his seemingly eidetic memory
+
+
+Gordon Ramsey for dinner.  Take a break from food court drek
+It’s fancy enough that I almost fear that I’ll be chastised for bringing my own tortillas
+  
+
+Chicken curry, the naan bread is sooo close to being a tortilla I could possibly get away with it
+But better to play it safe, the stakes are so high 
+
+
+Steve rolls in as we roll out for Hacker Jeopardy.
+We try to recruit him, but he’s too tired to party with us.
+It’s not yet 2000 but it seems like he’s been immersed all day long, so yeah, he’s gotta be mentally exhausted.
+
+
+  
+
+Stickers come and stickers go 
+
+
+Ryan tries to steal my pen.  Pulls out my whole pocket protector.  Awkward…
+  
+
+Random swag thrown while in line for Hacker Jeopardy
+Someone else caught it and rejected it
+How appropriate for me.
+I’d like to buy a vowel
+Only U can prevent cancer
+  
+
+I’m offering pills.  Take anything you want.  
+“It’s funny because he’s going to shit a dinosaur.”
+Jen grabs one.  I tell her no, don’t take that without this.
+It’s not dangerous, it’s just L-theanine.  It synergizes with caffeine
+And then she decides she doesn’t want either.
+The yellow pills are just Vivarin, but I’m always afraid I’m going to say Vicodin, which is practically the opposite. 
+Entertained by G. Mark and whoever is running that center board.
+More offensive than Winn (It’s a null category)
+Fedspeak.  Give the words in POTUS is the first question (boo at its easiness)
+Classic Callbacks for us old timers:  What is South America? and Beef Thief
+Effin Acronyms:  First answer:  DFIU
+LMFAO:  controversy over whether the “ing” in laughing is critical.  
+“Do you want to use your one audience veto for this?”  Oh, hells yeah.
+“That’s a manly giggle”
+«Putation marks» - quotation marks for Russians, clever nom de plume for Guillemets
+Yeah, Fuck that table!
+Not in the form of a question!  
+  
+
+And we used dollar bills’ serial numbers to pick teams.
+With no pre-qualifications there was some suckage.
+There was a time before the Humperdink award
+
+
+Now it’s time for Track 1.  Music.  
+The room starts off sparse but
+Crowd grows quickly and
+Crowd glows quickly.
+  
+
+  
+
+Marko appears to be proposing
+
+
+  
+
+This is his happy face
+
+
+JG and the Robots
+We want to be like Humans
+
+
+I break off to the restroom.
+An empty OJ bottle rolls into my stall.
+“Ohhhh, fuck”
+I kick it out.
+“Thank you”
+  
+
+Through unnatural means we managed to create a light stick with not one, but rather two LED strips
+TBH this is a power that man was not meant to weild
+I meet this chill guy, his white hat has been signed by YT Cracker. 
+Cool.
+Are you into nerdcore?
+Yeah, I got a stick of RAM signed by MC Frontalot.
+“This is the only thing I’m concerned with:  Don’t be a bitch”
+Wait, who said that and why?
+
+
+  
+
+Poor Impulse Control.
+That reminds me.  I haven’t spotted Gray Raven yet
+Or Kamikazee Joe, Cenobyte, Kaminski, etc
+
+
+“Dumb Dave says what?”
+“I don’t know anything that a person of that particular description would say”
+“That is exactly correct”
+
+
+Leaving Karaoke we run into Claudus and discuss our progress on his challenges.
+  
+
+Ryan is now known as Super Duper Dylan.
+
+
+Back to the music room.
+Catch Dual Core’s Natural 20s
+And MC Frontalot is standing over there.
+I really want to see that set again
+But we got other offers
+Follow Claudus to the circle bar
+It’s one of those con ground zeroes.  
+Central location, libations, and ash trays.  A holy trinity
+[Then something about Jaku and/or prostitutes wooing their way up the escalator]
+
+
+Saturday, August 11
+Midnight and the hallways are looking fairly clear.   Victoria heads to bed.
+0030 We’ve merged with the Biohazard / Guerilla Hallway Party
+“Come with us”  the Pied Piper again somehow makes sense.
+Safety in numbers, hi-fives all the way up the escalators.
+The one I was riding on suddenly stopped.  
+Headbutted by backpack, glasses go flying, fall back several stairs, beer spilled on me.
+It’s all good.
+  
+
+There is a wound at the top of my forehead
+
+
+  
+
+
+
+Someone says to me:  “I feel like I’ve seen you for the last 10 DEF CONS…  What’s your name?”
+I hand him my card.  
+Keep dancing.
+
+
+“My lord and savior of not giving a fuck…   Let’s move on.”
+Now we’re walking past fun-sized
+
+
+  
+
+LED suited awesomeness
+My pictures didn’t turn out, but thankfully someone was on top of things
+  
+
+
+
+  
+  
+
+
+
+Electric music.  Some amused bystanders pull out their phones and record us
+Random confused dude asks us “Where the hoes at?”  Umm, what?
+0130 I bump fists with a goon.  Looks like we’re still sanctioned
+We circle around and a couple people groove in the center
+Near last year’s chillout room, this year’s demo zone
+A man wearing a DEF CON flag as a cape says
+He’ll pair me with all badges if I go out there
+And dance for 10 seconds
+I debate it for a little bit
+He plugs into me
+I jump out there
+And solo for a while
+They cheer me, then join me
+Now I’ve got every letter green(ish) except ‘E’
+OK, so tell me.  How did you do that?  “With an arduino…”
+We head back down and out, a view of the pool
+At some point I’m given a swig of vodka
+“We’ve been doing this a long time”
+In terms of years, not hours
+We have a reputation
+So we’re confined, closely watched
+Allowed within these parameters, these spaces
+But starting to wear it thin, we’re going to shut it down
+  
+
+
+
+0222  Due to the grace and wisdom of some DEF CON sec goons we have clemency to continue
+“Remember kids:  when a stranger offers you drugs say ‘thank you’ because drugs are expensive”
+
+
+“Usually I just bite ‘em and I’m done - OK, that sounds really bad”
+  
+
+
+
+0300  Yakety Sax starts playing 
+Someone bumps into me
+“Gotta move!”
+Running down the hall with twists and turns
+Thanks and good night
+
+
+[sleep]
+
+
+Chipmunks (new school) on TV I gotta head out of here
+A non-con woman in the elevator asks me:  “What was that boulder that hit me?  …  Yet we start another day”    
+Escalators are now UUUD (when last night they were UDDD)
+
+
+Siviak is a goon is DeadPool
+OMGWTFBBQ (this was an actual Hacker Jeopardy answer)
+
+
+Ryan cracks open one of the MicroSD adapters we received last night
+And it appears to be a pure copper-to-copper connection
+No chip, no malware
+I’m not mad, just disappointed
+  
+
+
+
+  
+
+Ryan got one of these stickers for his badge
+
+
+Weird how some people I’ve just met this year already seem like deep friends
+While most others still feel so unapproachable.  I need a catalyst
+Loiter by the circle bar, an open invitation to conversation
+Recognize this guy from last night and we chat with familiarity
+He says that the negative interactions drag on him that much more
+It’s true that this place does attract many people with poor social skills.  
+But it is over all a very welcoming environment “positive experience after positive experience”
+You gotta take that afternoon nap.  All that stimulation exhausts your synapses.
+Your brain is flooded.  Neurotransmitters need some time for uptake.
+
+
+  
+
+1100  I take this picture on the way into the Flamingo.  It is art than Ryan mistakenly labels smut
+Walking back out not too long after, the eyes are already gone.  Absens oculi, tempus fugit.
+  
+
+You scream, eye scream
+
+
+Find Jaku at Hack Fortress
+Eat another mint from Kevin
+
+
+  
+
+1200  Halal, is it meat you're looking for?
+
+
+Marko’s in car hacking village.
+We head over, poke around
+Duck into Puff Puff Hack
+Agro Tech Farm
+“Bitcoin will be used because it’s bitcoin”
+In ICS village a woman takes a picture of my badge
+It’s the first she has seen with that many green letters
+I explain that I cheated.  I feel guilty not for breaking rules (that’s what this con is all about)
+But rather because I can’t explain exactly how it was done - someone else did the clever work
+All I had to do was dance.
+Script kiddy equivalence.
+
+
+1430 head back downstairs while Ryan naps with MASH in the background
+BCCC is wrapping up on the contest stage
+It’s typically one of my favorite contests but I’m not loving this space for it
+Outside is brutal and can be isolating, but here on the stage it feels off limits
+Like the audience witnesses it, rather than is a part of it
+  
+
+“I don’t know what is going on here, but I like it”
+
+
+Stroll past the demo stages.  It’s a great idea, but my attention span is shot right now
+Accidentally wander into track 1 at a time that a talk I earmarked is starting
+Screen says:  Sorry for the lame-ass title  (All your math are belong to us)
+Reversing matlab p-files.  OK, this isn’t as useful as I had hoped
+
+
+Back to the contest area
+Guy at scav hunt table says to me:  “This guy knows how to party!
+I recognize you from last night.  My legs are sore from the walking”
+Rage Against the Machine logo on screen at the CTF but no music
+There’s a scoreboard but not much details on team progress
+
+
+A family full of random pool people accidentally wandered into the con area
+“We should’ve gone up”  They head deeper in
+
+
+1700  Head to the vendor area so Marko and Jen can do some shopping 
+  
+
+I tried to avoid getting yet another free t-shirt, but ultimately I could not
+  
+
+
+
+Where is Steve?  That’s classified.
+Ryan may have clearance, but this requires Asian clearance.
+At some point we’ve decided Jen and Steve are the same person
+“It’s time to get your Steve on”
+Down to the line for Hacker Jeopardy day 2
+I’m recording the text on that guy’s t-shirt (“Zuul House Rock”)
+Jen/Steve says “he’s writing ‘Kill Kevin’”
+We sit near where we did last time.
+Sing the happy goon day song.  20 years of service for G. Mark
+Identifying commands from man page text.  Yeah, I like this.
+“What is visudo?”
+Center screen asks: “Visual studio?”
+Then we got a category on windows registry details (boo windows)
+Rejecting a security update (“What’s a little blue screen among friends”)
+Schrodinger's cat jokes on the center screen (Heisenberg != Schrodinger)
+XKCD is a category!  Bobby Tables and such
+“I just popped a seam on my cumberbund”
+“You want some candy? …  Eh, mint condition…”
+I got hit by a beach ball right in my escalator scar.
+Then everyone except Ryan is warned about the sand storm and flash food.
+Jen deflected another beach ball what had malicious intent.  “I just saved your life, Dave”
+“Honestly, I kinda wish you hadn’t”
+“Too dark, Dave”
+
+
+I poured the squirrel sauce into the water bottle, the ratio is a little too strong.
+We get a lead on a handful of parties, but fail ingress
+Head back to track 1 to enjoy the electronic music
+“Hey!  Stop being creepy.  Move on.”
+  
+  
+
+
+
+My phone tells me I’ve once again broken my step record at DEF CON
+  
+
+#walklife
+
+
+Most active between the hours of 0 and 3.  Yeah, that’s what a hallway dance party will do to ya  
+Looks like I still haven’t done a marathon’s worth of walking in a single day since it started tracking me 
+
+
+And yet, according to Google I’ve walked only 1.0 miles this day.   Ha, so much for their omniscience...
+  
+
+Though, I do not question that their boundaries are right... 
+Sunday, August 12
+A little after midnight Marko heads out.
+The MGM may be cheaper, but next year he’s gotta stay on site.
+  
+
+Apparently I slept with a goldfish.  How did that happen?
+#no_egrets
+  
+
+
+
+  
+
+Yeah, that planet got hacked
+
+
+Back outside, in search of food.  
+This guy is cracking up over the t-shirt:  “I don’t need Google my wife knows everything”
+Someone points at me (I think).  “He’s a fuckin’ hacker - hardcore”
+A girl working working at In N Out - “I like your Think Geek”
+“Are your batteries still going?”  I mean, in my badge they are.
+  
+
+
+
+1130 tinfoil hat judging
+“What’s your handle?”
+“My name is Max”
+
+
+Oh, yeah, looks like the batteries in my badge just died
+
+
+“What’s your handle?”
+“Bubbles”
+“Much better than Max”
+
+
+“What’s your handle?”
+“Skittles”
+“Still better than Max.  Do you have any skittles?”
+“I wish I had skittles”
+“You have many skills”
+
+
+There’s a mint in my pocket protector.
+Damn you Kevin!
+
+
+“Are you violating the rules on purpose?  I mean, at DEF CON we like to follow the rules”
+“I like hacking the rules”
+“Good answer”
+
+
+“How does it work in terms of attenuation?”
+It’s an antenna, so like, an anti-tin foil hat.
+“If I put a handful of popcorn in my mouth it starts to cook”
+“That’s a very odd super power”
+
+
+1200 Scavenger Hunt is closing down
+I notice my bottle opener is back in my possession.
+I remember handing it off, but don’t remember receiving it.
+ 
+  
+
+The alien’s mouth fell out.  Looks like a technical victory for the predator
+Head back to the room, Kyle is on his way, ready to become the new Marko
+Goon says:  “Do not lick the escalator handles!”
+Villages are closed
+In line for closing ceremonies.  T-shirts:
+“I’m into fitness.  Fit’ness taco in my mouth”
+I heart ❤ redundancy
+
+
+Boo the sun
+“We have a plan for next year which does not involve destroying the sun”
+Next year back to Paris & Bally’s, adding Planet Hollywood
+
+
+Transparency report:  https://defcon.org/html/links/dc-transparency.html
+[Looking back at my pictures I suspect that maybe there were actually more than three cases of vandalism…]
+
+
+  
+
+Walk over to Planet Hollywood for some Panda Express
+There’s a robot serving drinks.
+Say goodbye to Kyle.
+Til’ next year.
+
+
+  
+
+
+
+“This shirt’s a lie, by the way.”  Girl in elevator says “I’m not really a cyber bully”
+Back in the room watching Rick and Morty, it’s Steve’s first episode.
+What’s one more day without sleep?  I head back down.
+Conversations at the circle bar.
+Programming and languages.  
+“I’m going to give you TMI”
+He’s thinking about applying genetic algorithms to traffic
+I’m sure there have been plenty of books written that are more directly applicable
+But I recommend reading the Selfish Gene and thinking about the problem space yourself
+I felt trite for mentioning it, but seeing him misspell Dawkins makes me think it wasn’t a bad idea.
+These programmers are writing in Ruby, thinking of branching out to other languages.
+I’m trying to talk about the benefits of learning a functional language.
+But it’s misinterpreted as just a reference to functionality.
+And I’m not sure that I subsequently succinctly conveyed the benefits of functions as a first-class citizen.
+
+
+  
+
+They hand me a free (warm) beer:  Rogue Dead Guy
+I’m thankful.  Free as in speech, free as in beer.
+These guys work in surveillance.
+But not the government
+Or so they say
+We’re discussing the dropping prices of drives and the rising value of metadata
+
+
+Chatting with some people experiencing their first con.
+This is my thirteenth, so they call me a veteran.  (And do the ‘we’re not worthy’ bow) 
+And they note the camo of my backpack so I gotta explain.  No, my brothers are veterans.
+I’m just a guy that loves to party with really smart people.
+It’s not even that late, but the con is catching up.  Exhaustion.
+There’s a dog in a bag.  A tiny cute looking thing.  But it has an attitude problem.  No petting it.
+[Someone tells me to make a note of it]  This guy spilled his vodka right here.
+
+
+  
+
+Respect.
+Cracking codes, locks and pcaps
+Owner of one of the coveted black badges
+Capacitors and a nixie tube.  The skull matches your shirt.
+Monday, August 13
+
+
+“Hey, wanna start a flame war?  vim or emacs?”
+But no one chooses emacs and the flame just fizzles.
+
+
+0034  Ryan texts me “Where you at?”  
+I missed the message but it didn’t take him long to find me.
+
+
+Born in Russia, now living in the Netherlands
+Eugene’s shirt says “Your favorite band sucks”  
+Big impish grin and mannerisms that remind me of Tales
+Or Eugene Hütz from Gogol Bordello (“Oh, is that your favorite band?”)
+This guy over here introduces himself differently depending on the accent he hears.
+Introduces himself to me as Robert.  I don’t have the key accent.
+He gets a real kick out of Russians.  Loves Eugene.
+Writes some hebrew in my notebook.
+Tells me Tal’s name means Dew.
+“Are you guys really brothers?”
+Ryan has grey in his beard and I can’t grow one to save my life.
+Guesses that I’m 32 and Ryan is 27.  Yeah, OK, I’ll take it.
+
+
+Ryan starts talking about slab city.
+
+
+I explain how we maintain approximately zero nines of uptime at my job.
+“I’m so glad you said that”
+He went to an interview at a company, asked them a question about their nines
+And they didn’t know what he was talking about.
+
+
+Do you have a twitter?  
+I hand him my card 
+  
+
+He questions me on my URL
+“I have a relationship with squirrels”
+“Oh?  What kind of relationship”
+“Uhhh…   Love/hate”
+#squirrellife
+
+
+“I remember you from last year”  Hands me a ShitterCon VI flyer
+You have the megaphone, that makes you the leader. 
+Standing next to a guy wearing a Leslie Hall shirt
+Still on the lookout for the Microsoft guy 
+And Beer Santa, but no such luck.
+Maybe I wasn’t good this year.
+
+
+I think I met someone named Abbie who told a story about someone on all the drugs.
+Yeah, he went to an ATM and gave too much money to strippers.
+
+
+Eugene comes by and warns them:  “Be careful - he writes everything you say”
+There’s a glitch in the matrix - we have two people that look kinda like Jesus
+Our guy clandestinely moves in over behind the other one for a photo op 
+
+
+Ryan and I go up the escalator intending on some scavenging
+There’s a velvet rope and a small cadre of goons
+We head back down
+
+
+“Here’s a question for you:  is pineapple OK on pizza?”
+I’m not a big fan, but sure, I’ll allow it.  The pizza box opens.
+But there’s no pizza under the pineapple.
+  
+
+“Here’s another one for you:  Do you put in the cereal or the milk first?”
+That’s an easy one, but some monster over there got wrong
+
+
+  
+
+The green comes first.  Steve would love this?
+
+
+I think we’re heading to the Flamingo for some reason.
+Yeah, to hang out at some bar that Kyle mentioned.
+Random street guy to me:  “I love you, man”
+OK…
+“Oh no!  She’s not working good”
+  
+
+Ryan tells the guy wearing two hats:  “But no one would ever wear three hats…”
+Well, that’s a challenge that can’t go unanswered.
+I think we’ve closed down the circle bar again.
+Head over to the other one.
+Sitting with Eugene and associates.
+Zoz and his crew sits at the table next to us.
+“They say never meet your heroes but he’s actually cool” 
+Was Elon Musk really here or was that just a hoax?
+[Jaku made him laugh with a SkyNet joke]
+I’m starting to pay less attention to conversation.
+I’ve got a notebook full of words, but now they’re scared to come out of my mouth.
+
+
+Someone asks Ryan:  “Do you know John?”
+“No”
+“That’s probably for the best”
+
+
+0330 this is the first time I’ve talked to Joe this con
+
+
+#notebook life
+“He’s writing to Zaphod Beeblebrox”
+We’re about to leave the planet...
+Got to know where your towel is at.
+  
+
+
+
+OK, maybe not the planet, but it’s time to leave the bar.
+Ryan’s got to leave for his flight soon.
+
+
+I wake up, pack up.
+My voice is rough as hell.
+Getting too old for this shit.
+Go back down to the bar for the comfy chairs
+I’m not ordering any drinks but get carded anyways “You all look so young”
+Noting my birth year:  “Ohh, same as me.  Enjoy it while we can”
+Message from Ryan:  confirmed that he survived the trip.
+Steve heads to the pool for swimming.
+I stay in the AC.  Wander around
+A little more caffeine just to feel alive
+The hallway has a view of hummingbirds
+
+
+Text from Kyle and I clarify my book recommendation:  Surely, You’re Joking, Mr. Feynman!
+He throws back a few I haven’t read, but want to check out
+
+
+  
+
+Sadly I remove Hacker Tracker from my phone’s home screen.
+
+
+Wander through the hotel some and discuss Steve’s CTF plans
+He gets a kick out of sitting in faces
+
+
+I’m feeling queasy, not really super into food right now, but we head to the food court
+The con is over so technically I could eat a non-taco and still claim my 100% streak
+  
+
+But I’m still living #tacolife
+
+
+Head over to the airport.  
+I still have tortillas, but somehow make it through security without any incident this time.
+But my flight is delayed.
+And there’s a bunch of dudebros in matching tank tops hanging out at my gate 
+Thankfully Joe finds me.  We find a bar and pass the time.
+Looking forward to STL b-sides and PhreakNIC 
+He recommends Road to Resilience, Thieme
+Academics can be the wild, wild west
+He has a badge that’s a working NES cartridge that’s a brainfuck interpreter
+
+
+Tuesday, August 13
+0100 I’m home..
+
+
+  
+
+
+
+Book recommendations from the STL2600 signal group

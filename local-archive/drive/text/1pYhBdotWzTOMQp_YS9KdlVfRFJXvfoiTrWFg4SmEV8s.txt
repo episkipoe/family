@@ -1,0 +1,318 @@
+﻿DEF CON 16
+  
+
+Thursday
+        Sunny day, eager anticipation for this new adventure
+        Santa drives the shuttle bus
+        the AC hums and a child intones "we're moving, we're moving"
+
+        Security asks "What have you got in your bag?  Candy?"
+        I dunno, I mumble under my breath
+        "Oh, Slim Fast bars.  Very Nutritious"
+        My skull-shoes have failed to follow me - too light
+
+        Kid in a preppy shirt reclines and talks loudly on his cell phone
+        An older gentleman in a red shirt with his wife - they both seem dour
+        on the phone he comes alive 
+        hangs up phone and is curt again
+        she says something about the Olympics
+        his reply is characterized by politeness, impersonal and uninterested        
+        his phone rings and he is jovial once more
+
+        "A representative from the American Bagel Company is needed outside security"
+        behind my head some girls chatter, just turned 21
+        blond and raucous, up late dancing last night, now making club plans
+        "I got tired just watching you"
+        the father has a drawl and once had a gall stone
+        my head is buried in my book and I wince when I listen
+
+        enter the plane
+        the woman next to me offers 5 dollars to the screaming kid to shut it up
+        and a drink to anyone who silences it
+        "I'll buy you a drink" she says to the girl who happens to be seventeen
+        and she offers to buy me a drink for the hell of it 
+        her husband throws the horns - we're headed to a party town
+        they've gone through 8 mini-bottles of Vodka and a couple of beers
+        she calls me "genius computer guy" and says I'm the perfect seatmate
+
+        Okay.  I'm in the hotel now.  Safe from the Norms.
+        But what is this, in the elevator?
+        He asks us what DEF CON  is
+        "It's a hacker convention"
+        "A hacker what?"
+        "A whole bunch of hackers get together"
+        "Oh man, you guys are gonna get arrested"
+        
+        We drop off our bags and then pick up supplies
+        crossing the street frogger-style
+        SD Card, Red Bull, SoCo, Gatorade, Vodka
+        back in the room, testing the TV B Gone of the badge
+        plug the laptop into the alarm clock and rock out to some techno
+
+        wandering, wandering - bumping into some familiar faces
+        slap some high fives and then we merge with the Chicago crew
+        up in the room we've strewn out suitcases full of equipment
+        10 of us hacking - coding, soldering, and cracking crypto
+        one has trouble tethering the phone - re error code 67
+        Wild Jaku has decided that I'm his kindred spirit
+        "You know what I'm talking about"
+        We've decided to get the Legend membership to Pole Position
+        $4999 for a year of unlimited racing
+        The fire tossing guy that we see from the window briefly lights his shorts on fire        
+
+        My brother goes to sleep since he's had a long day
+        I find Cenobyte and we're talking about Physics        
+        my head spins with a comfortable euphoria
+        and I start to explain bioinformatics
+        and we find a guy who does proteomics
+        He regales us regarding dangerous lab stuff
+        (sometimes sans pants)
+        listening to techno in the common area
+
+
+Friday
+        Although I know I'm here now I feel like 
+        Sir Real, the Knight of Day
+        shower and change
+        As I'm leaving the room our neighbor enters his, heading for bed        
+        I sketch out a rough schedule and watch some talks
+
+        I talk with Scott (who spoke on BLAST and ASM) 
+        and inspired me to play with SNPs and ASM 
+        genetic and computer code - scientific crosstalk
+
+        Joe Grand and Hacking in the name of science
+        playing ping pong for research and dancing ninja attack
+
+        Sitting in Kevin and Marco's talk
+        I enjoy absorbing their energy and knowledge 
+
+        Buy caffeinated mints from the vendor area
+        (I'm making it a tradition)
+        something to stave off the sleep at night
+
+        Listening in the Quantum demonstration
+        quite interesting but I'm starting to feel faded
+        in and out of sync        
+
+        Visiting the skyboxen and the LockPickZone  is packed too dense
+        In the Hardware Hacking Village Joe Grand recaps his talk
+        and I get a little look at the poem in the bootloader
+        Making a note to check it out on the CD
+
+        watching TCP/IP and Hacker jeopardy
+        I'm getting drunk with hackers - Brother's thermos has rubber grips
+        never underestimate the necessity of viscosity in a high velocity drinking situation
+
+        Jesus calls as we recharge and so we head out
+        step into the mouth of fearsome noise and smoke
+        "I'm in hacker Hell" guy says as his compatriot starts holy wars
+        from Star Trek to Distros - loud and obnoxious in that endearing way
+        the drunk fucker that grabs your shoulder and amuses you
+        Circus Circus is out the window; gonna hack that clown
+        making fun of Vista then someone mentions a relative with ME
+        "Why does it keep crashing?"  "Well, you're using Windows ME"
+
+        watching the guy rock the dot around last year's badge
+        "I'm proud of myself" he says (and it truly is a righteous hack)
+
+        and in the corner catching pockets of quiet
+        Claudus is talking on art and ASP
+
+        my voice is harsh and I'm low on talk
+        but high on listen, light-headed
+        with a clipboard and a hard-hat
+        to protect me from the linguistic gymnastics
+        "I've budgeted for a whore - have you played Warcraft III?"
+        
+        And I observe the strange transition, how a room transforms
+        starting as white noise, visually veiled
+        with familiarity faces start to form 
+        songs and voices become recognizable
+
+        my head is bowed to paper so I'm shifting
+        from neural storm to a real live party to my own personal world
+        I am separate but receptive - warmed by the heat of voices
+        someone is talking about dot net and emacs
+        Fish and Jesus serving drinks and the chandelier shakes precarious
+        soulful eyes and starry skies the night beat back with a mighty hack
+        see another sage, flip the page.  lost another pen, I start again
+        circular reasoning spinning in this intellectual cul de sac
+        I am confronted - "taking notes make people like us nervous"
+        I show him some words and he says I'm alright
+        but still bashful I put away my clipboard
+
+        Brother is swapping stories with a goon
+        "My job is to make sure you have a good time"
+        but I don't have any good whore-r type stories to tell
+        "Your brother makes me a happy drunk.  You are making me an irate drunk"
+        And so after a while I rail on my side projects
+        I talk of C code and biology and other familiar things
+        amino acids and op codes, of sequences and strings
+        it isn't considered interesting
+        not in this place at this time
+                
+
+Saturday
+        I wake up with only a vague notion of what day it is 
+        and where I am and no idea where my brother is
+        the other bed contains only a laptop
+        phone call goes unanswered
+        I later learn that he's alive
+        just never went to sleep
+
+        I spend the day in talks
+        knowing that it's not the talks that make the con
+        they frame the canvas and the canvas is the people
+
+        wearing my shirt with the phylogenic tree 
+        go far enough back in your family tree 
+        and you're related to rats and trees
+
+        G. Mark walks around before the talk
+        shaking hands, a charismatic gentleman
+        I'm smacked in the face with a t-shirt        
+        "He isn't awake yet"
+
+        talks on video games and brains stimulate the neurons
+
+        and I'm musing on the algorithm
+        Introduce yourself to a subset of the population
+        For each person P maximize time spent 
+        based on their knowledge and congeniality
+        
+        Sitting in the chillout area
+        a crack in progress to my left
+        to my right a pair trying to get hacked
+        and you have to take a vacation to get the perfect work environment
+        drink in one hand, DJ in the background, and thousands of smart geeks around
+
+        I like the Ubuntu Dragon background at the solid state talk
+        and then we're watching Hacker jeopardy and it's worth some laughs
+        Yes, sir.  We have achieved epic levels of lulz.
+
+        The Chicago crew is still chewing on LosT puzzles
+        "I want to stab a baby now"
+        and the "You know what I'm talking about" meme has spread
+        "I don't even need to say it anymore"
+
+        I'm losing lucidity, brain bleeding
+        body zombie jerks
+        eyes open, brain shut down
+        stuck somewhere in the occipital
+
+        security runs down the hallway
+        and a gaggle of freaks stroll by
+        how it warms my heart to see them        
+
+        I'm tired, but afraid that if I put head to pillow
+        I will find out that now is the dream
+        because this feels better than real 
+
+        You push it too hard, up 'til four or more
+        the sun it rises unforgiving
+        but "Hell Yah"  it rocks
+        and you never quite recover
+        cause you keep it full throttle
+        as a consequence it unseats your core
+        (toaster computer using bread as a heat sink)
+        and then "Oh Noes" your eyes burst into flame
+        and you need to close them, to douse them with water
+        now I'm very light-headed - a charred husk in zombie horde
+        and it's totally fucking worth it
+        because it is universally unique and lovely beyond words 
+
+Sunday
+        early morning 
+        the carpet zamboni drives through an otherwise empty hallway
+        sitting by the pool waiting for critical mass to return
+        too early to start drinking?
+        but thoughts are more intoxicating
+        is it, therefore, too early to start thinking
+        petty truisms, but words are free and ink is cheap 
+        take any familiar pattern far enough and it becomes novel
+        talk about it with someone new and get a fresh perspective
+        sitting by the pool - fading in and out
+        I notice the palm trees and my concept of location changes
+        I jump from DEF COT to headspace to Las Vegas then back inside
+        and the Wackenhut badge walks by - what an oddly appropriate name
+        grab yer billy club and come on down to the Wackenhut
+
+        sitting on a bench listening to Mouse give a preview of her talk
+        and I recognize the cadence - the speed and the beat 
+        of a smart person talking on a familiar topic
+        and here you don't have to dumb it down
+
+        Kaminsky naturally draws quite a crowd
+        and we spill across the hall to see Renderman
+        and learn about hacking Internet Kiosks and billboards
+
+        it really is inspiring
+        planning tools and frameworks
+        to get my ideas into hands like these
+
+        At the closing ceremonies it is requested that I impersonate Todd
+        who won the Guitar Hero contest and was kicked out for Goatse
+        Chicago crew flashes the ceiling with their shiny Def Con ball
+
+        At the Dennys the waitress lays it thick with the honeys and sweeties
+        Asks if we're here for Star Trek and we rail on the "fuckin' nerds"
+        riding the remains of the high laughing all the while.
+        then my brother heads to the airport
+
+        I'm sitting on the floor
+        a goofy guy with a grin collecting nods
+        most days a hundred walk by that don't understand
+        but here a skull-shirt explains that java ruins the kids
+        and they don't consider the big oh complexity of their algorithms
+
+        the novelty has faded and the armor is down - chipped away by booze 
+        and the reassurance that yes, here you are among your kind
+
+        but this guy only has a hint of lanyard underneath a beer shirt
+        and I fear that we're starting to hide our signs
+        fade back into the minority 
+        we've a decreased density and increased desperation
+        
+        I manage to receive a file through the badge
+        his friend says that this is nerd sex
+        "Was it good for you?" I ask
+
+        wandering with the Chicago crew 
+        as they take snap shots with their wrench
+        hand cuffed and goon badged and smoking on a bench
+
+        They show up in my dream
+        hiding in a covered wagon with LED wheels
+        after perpetrating various wacky hijinks
+        "This year we outdid ourselves"
+
+Monday
+        He mistakes me for a skater rather than a SysAdmin
+        from the shoes, I guess - I play along with a sigh inside
+        and that's when I know the spell has faded        
+
+        Playing "Spot the geek" 
+        it gets hard at the hotel around mid-day 
+        and the airport is quite challenging
+        but STL is like a non-stop bossfight
+        
+        Discriminating questions like "I can haz 0day?"
+        and the right response is something like
+        "I copied you a sploit but I deleted it"
+        oh, sure it's tongue in cheek mockery today
+        but too many can't remember when we spelled it "elite"
+        
+        The armor starts to come back on
+        a helmet to protect me from inane drivel
+        and plates to hide my frail geek physique
+        
+        the guy sitting next to me offered me an Oreo bite
+        and to save my life in lieu of his son's should we crash
+        outside the window it looks like Cassiopeia frames the moon
+        I remember thinking at some point "Fuck Kansas"
+        a lively birthday party behind my head
+        and flashes of lightning below
+        
+
+$ cd ..

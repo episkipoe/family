@@ -1,0 +1,170 @@
+﻿9/29
+
+
+Strangeloop opening.
+This is usually part reunion, but it’s early still.  So far no familiar faces.
+Platinum sponsor is comcast.  And I was listening to net neutrality talk on the way over.
+I seem to see a lot of smug arrogance.  Neckbeards and man buns.
+
+
+Opening keynote
+Measuring tail (latency)
+Lowering cost of electricity with better software.
+Lucene is telling you where Mickey Mouse is.
+Cumulative Distribution Function is your friend.  Use it to do offline processing.
+Using parallelism for to reduce latency (instead of the usual, to increase throughput)
+My pen says Pilot in 3 places.  That seems excessive.
+
+
+Biological Path Toward Strong AI
+“There’s a small protest going on outside”
+Clever pre-talk banter.
+Raise your hand if you think humans are intelligent.
+Neuroscience, particularly the neo cortex.
+(A 10 year old startup)
+
+
+ANNs are old.  We’ve learned more about neurons, but most models haven’t caught up.
+Postulates that to be intelligent it must move.
+Name one exception
+Stephen Hawking
+Awwwww
+
+
+Columns have layers have neurons
+Distal connections put cells into a predictive state.
+This finger helps this finger figure out what you’re touching.
+
+
+In between talks.  Adam has had some car trouble.  
+He maps out a route to a mechanic on my phone.
+I feel like I could have done more to help, but I trust he’s capable of solving this problem.
+
+
+Next room.  Nick and Tyler are talking about running PublicExecutor commands on workers.
+A talk on memory allocators.  Too much dancing, not enough tech.
+My ESVP analysis denigrates from Shop to Prisoner
+“She doesn’t need to know about tap or jazz”
+
+
+It me.  Web Authentication
+Encryption != Hashing
+Adobe encrypted passwords, but not the hints.
+Timing safe string comparisons is something I haven’t really thought about before.
+
+
+Antics, Drift, and Chaos
+How a unit test brought down Netflix.
+“Complex systems exhibit unexpected behavior”
+John Gall - one of those non-CS guys with a lot of relevance to our field
+“A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system.”
+Reasonable local decisions can lead to global problems.
+
+
+A program to turn horses into zebras.
+More deep learning & neural networks.
+
+
+Duck out a little early from Strangeloop, drive with traffic, cars, listening to Harmontown.
+Arrive at Collinsville, Archon.  Encounter Ken almost immediately.  
+I can’t believe he remembers my name so readily.
+
+
+It’s a very different crowd from strangeloop.  An entirely different bingo card.
+Even more beards,but fewer manbuns?
+I still feel like an outsider here, but it’s an unexpected inversion.
+I feel like a freak for being too “Normal”
+
+
+
+
+Opening Ceremonies.  
+“We take full credit for the weather”
+Unseasonably warm.
+
+
+White castle then Game of Thrones panel.
+“A family with a sack full of faces”
+
+
+Some Filking in Mississippian.
+Pirates and a guy that looks like Steve Twigger from Gaelic storm.
+Plagued by technical difficulties.
+Bravado and confidence for a small crowd hardly engaged.
+Makes the eclipse band’s audience feel like even more of a rousing success.
+Gracious purple hair moves one chair over, the room has a gentle charm.
+
+
+Then to the main event, the Mad Poet Joey Froehlich
+He’s retired now.  A little laconic, but with a subtle energizing joie de vivre.
+I must watch Big Eyes.  Christoph Waltz and Tim Burton.
+Stacks of yellow legal pad.  Wrote about 500 poems this year.
+These got a check, these are the ones that Amoreena thought were good.
+She’s not here this year.  
+
+
+  
+
+Audience is 
+Eye Fez
+A 17 year old girl
+Ken
+Me
+Patty
+
+
+  
+
+Seagrams juiced to 3.2% and 90 proof straight Kentucky Bourbon from the Flask.
+“They don’t make it like this any more”
+Basil Gogos Monster Portraits.
+I take a picture with his “eyephone”
+“Plastic spoons melting in my food…   Who comes up with this shit!?”
+“Biker nipples!  What the Hell does that mean!?”
+  
+
+
+
+
+
+Head home and prepare for another Strangeloop
+Rebuilding the Cathedral
+Gogol Bordello & Mountain Goats play on the PA in the main hall.
+
+
+A keynote on open source technologies
+In 2001 208k projects on Sourceforge
+In 2017 20 million on github
+
+
+“The best minds of my generation are thinking about how to make people click ads”
+“destroyed by madness, starving hysterical naked”
+
+
+No Such Thing as a Fish talking about DEF CON and Ourroborus.
+
+
+Anticipation, a year and a wait.
+A pyramid inverted, pressing down on a handful of hours
+Interesting how small the delta actually is.
+
+
+Biomaterials as UI
+Nature is full of sensors and actuators
+Bacteria to create heat modulating clothing
+Making ears out of apples.
+
+
+YFG stands for Your Favorite Gene
+
+
+What we learned from building a DSl was: don’t implement a DSL
+Users will learn to abuse your language as quickly as they learn to use it.
+
+
+Incident command system.  Report up, delegate out
+“Never waste a good crisis”
+“Try to be the waffle house of the Internet”
+
+
+Need to skip out on Adam Savage’s talk to catch Joey’s panel on the Dark Universe

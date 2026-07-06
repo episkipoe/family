@@ -1,0 +1,306 @@
+﻿[a][b]
+Thursday, 4:20
+In Tales’ car, Audi.
+Heading out, St. Louis.
+Flat farmland, fall foliage.
+Sun sets.
+Refuel the car.
+Drink a smart water.
+Electrolytes.  Seriously?
+You have to watch the sail cat video.
+Text from Elonka as the hotel comes into view.
+Gas station beer run.  It’s a bit audacious to call this a craft section.
+
+
+I see purple hair.  Is that us?
+No, those are roller derby girls in the lobby.
+
+
+We can see the Batman building from the elevator, but not from our room.
+I guess you have to pay extra for that.
+  
+
+We head to the conference room and say hello to Frankenstein
+And be still, my beating heart.  8 machines running Ubuntu and Unreal Tournament
+
+
+Friday.
+Wake up, my first Taco Bell breakfast.
+Head to Best Buy for a hardware run with Elonka.
+She gets a new 750W power supply, plus a portable system and its pile of peripherals.
+
+
+Plug things in, push button.  Light blinks.
+Fan spins then stops.
+Remove, replace questionable components.
+Same outcome.
+Ah, we were missing a second 4-pin power connection to the mobo.
+
+
+We play a little Unreal before the first talk.
+13:00.  Planetariums.
+Apparently Adler has an 8k projector.
+Guy in front of me cracks open a 40 of Olde English
+Between talks Tales & I head to the bar for a beer.
+Mog speaks on MURS, the public band that allows encryption.
+Dead microwave ovens make a great Faraday cage.  I have two.
+
+
+15:00  Open source firearms.  
+Guy built an AK out of a shovel.
+
+
+Dinner, another drink, some more UT
+
+
+Finding it without FOIA
+vault.fbi.gov has 50 parts on Abbie Hoffman.
+
+
+Elonka’s talk on unsolved codes.  
+She got her hardware in shape with 30 whole minutes to spare.
+She had Flying Spaghetti Monster last time, giving this talk at Dragon Con
+And here’s Jesus.
+
+
+The carrot asks me if her foliage is blocking my view.
+I respond in the negative.
+
+
+We turn off the BBC documentary on Open Source
+When two people nearly simultaneously show up with Hackers.
+Well, there goes the Gibson.
+
+
+And then reintroductions and drunken conversations.
+  
+
+
+
+
+
+Saturday.
+I, an anomaly, wake up at a reasonable hour.
+“The thing about cons - people get too drunk on Friday night to be useful the next morning”
+I guess the consensus is that it’s too early for assembly.
+It’s time for the talk and in the room:
+@benthemeek @anarchival running the show
+@BrandonTansey the presenter.  
+And me.  
+Now some guy in the back of the room.
+We press record and power through.
+
+
+Top 14 mnemonics make up >92% of code.
+I add http://opensecuritytraining.info/ to my trello board
+
+
+At the top of the hour the talk transitions to malware analysis.
+Even static analysis (strings) can get you pwn’d
+
+
+An analysis of Cryptolocker is a nice segue to @critical24’s talk.
+Confessions of a Black Hat.  
+
+
+Elonka’s talk on tech hobby to paycheck.
+Adds a few more resources to my TODO list:
+* http://www.manager-tools.com/
+* http://learncodethehardway.org/
+
+
+Random candy from strangers.  Seems legit.
+Fireballs on the table.  Kickin’ it old school.
+
+
+After Elonka’s Wikipedia talk she heads back out to Best Buy
+And we, in search of food.  Almost ate at a Japanese place.
+But end up at a Greek place with derby girls
+
+
+Back for 3D printing.  Victories and mishaps.
+At PN15 I saw this speaker successfully operate a nuclear reactor.
+And last night I watched the 3D printer make a pretty mess.
+Apparently, I left myself this note:  “Build a cyclotron?”
+And then FOSS.  Find a mentored bug.
+IRC is important in this context.
+Interstellar Travel.
+Throw a bowling ball while standing on a skateboard.
+Now you’re a rocket scientist.
+Space is friggin’ awesome.
+
+
+  
+
+Next door we take another look at Voynich.  
+
+
+UT is dominated by: Osiris, the Egyptian god of the dead and Duckzin, the Brazilian god of ducks 
+I have fun adopting whatever handle my terminal happens to have.
+Looks like I’m omicron today.  The greek letter meaning small ‘o’
+I love the fast pace and relative unsophistication of this game.
+
+
+[There is a non-trivial degradation in my handwriting between these two paragraphs.]
+
+
+I sit and observe some KOTH exploits.
+I like how this is set-up, it seems much more accessible than I had feared.
+Mount the drive, use vi to add the tag, throw in a few commands to lock out other users.
+This all seems too easy, like there’s only a thin line between “Linux user” and “hacker”
+And now I want to learn more
+
+
+Tales gets a tarot card reading 
+As I chat with the guy that has a “Don’t Panic” sticker on his laptop
+(I’m wearing the pin from the old text adventure game)
+
+
+
+
+
+
+  
+
+  
+
+Tales demonstrates modularity and architectural design patterns whilst constructing his lego house
+
+
+TechNomadic SpaceTruck
+
+
+[At some point there has been a transition to Sunday]
+
+
+Another walk down the hallway and I end up shivering at smoker con.
+Two people from Ohio.
+In the midst of a stateful conversation, I wonder regarding the efficacy of the exposed wire of a particular strain of neuro linguistic programming.  
+Hypothesis:        This challenge will elicit a particular response.
+Experiment:        “O.H.”  I utter.
+Result:        “I.O.”   Then she mutters “Damn conditioned response”
+After he moved to Las Vegas he learned that money can buy happiness.
+Is that a code word for chlamydia?  No, those girls are tested.
+
+
+We follow a set of speakers in a suitcase, in elegant, prancing pied piper style.
+To a “room party.”  In bed is the guy that looks vaguely like Wil Wheaton 
+And he’s well and truly passed out.  Eventually rouses and...
+Our gracious host hands out more alcohol.
+And there’s a wheel chair.
+People are trying to balance on it.
+And then we stop disturbing the neighbors.
+There are missing yellow safety guys guarding the haunted elevator.
+Back to the lobby.  (There’s no party like a lobby party)
+Where we merge with the derby girls.  “Join us”
+And hotel staff ushers us into the ballroom.
+
+
+“He’s got the hacker ethos down.  That (briefcase) carries his clothes as well”
+
+
+And here we have a synergy, that goes beyond buzz and to the root of the word
+The creation of a whole greater than the sum of its parts
+A semi-crass, cross-section of outsiders.
+Ginsberg, gin’s berry, the Hoffmans.
+Movers and thinkers on the fringe.
+Traitors and cultural loyalists.
+Fusion, this time not of atoms, but ideas.
+Bring in the big guns and let loose the big fun.
+He up and dances from the wheelchair.  Praise the lawd.
+Noise and secrets in corners.  We’re gonna need more watts.
+I have no body, no credentials, no face, no name.  But I waltz into top party.
+
+
+Derby girl says:  “Are you taking notes?  Do you know who we are?”
+The facilitator says:  “Dance with them.  They are the geeks of the derby world”
+(And we get it, that’s a compliment)
+Judges and stats people are here, the skaters are still skating.
+And she’s got moonshine in a mason jar.
+“You made that?”  I ask.
+She nods.
+I swig.
+It tastes like candy and doesn’t burn.
+
+
+Hacker says:  “I don’t even wanna know what you’re writing down”
+Dancing.  I can’t coordinate enough to accomplish it.
+But I can with a pen penetrate a membrane.
+Crowd density diminishes and so we’re corralled closer.
+OK, fine.  What a strange, alien, congenial environment.  Disco Inferno.
+
+
+[And by this time my text is nigh illegible]
+And someone tries to read my notebook.
+My handwriting is my encryption.
+(Better than AES mothafucka!)
+
+
+Arm motion.  Likeness - a currency, measure of acuity.
+Eye perceptions.  Good content, good combo  (song: Barbra Streisand)
+[Why did I write this?]
+
+
+And there’s the FOSS speaker and others that are also ambiguously my heroes.
+I mean, that guy says he does security for NASA.
+
+
+Someone falls, “Don’t worry we have a medic”  “Is she OK?”  “I hope so”
+And I find myself between worlds, with a page of this is and this isn’t.
+Stacey hands me a hard cider.  “I don’t feel like holding two”
+
+
+The tetris theme plays and I don’t understand how anyone with a pulse can avoid dancing.
+Since in this context any movement counts.  And it’s so easy to be nucleated.
+And with the realization that neither skill nor coordination are prerequisite
+I’ve achieved victory over reasonable precautions
+And have assuaged exaggerated anxiety
+
+
+But I reflect upon my movements and my body language is still closed, clutching the notebook.
+I am an introvert and my recent interactions have drained my energy reserves.
+I need solitude to recharge.
+But at the same time, I feel I am in a safe place.
+Inside a petri dish, with such an exquisite culture
+And I’ve supplemented depleted components with caffeine and alcohol.
+
+
+“Freaky robot shit”
+“C’mon, note taker”
+“The mouth feel of Olde English is like applesauce”
+“Why aren’t you writing this down?”
+She’s pretty good on the keyboard.  Pachelbel, c.f. the last Def Con.
+“I like Ohio, bitches”
+
+
+And this is a relic from the early days of air travel.
+The travel bar.  A leather case of bottles and mixing hardware.
+Android and Apple.  Why did that guy just throw his phone down the hall?
+The clock says 5, but it’s really only 4.  Regardless, I think sleep is about to happen.
+
+
+Nearly noon now.
+Why isn’t Taco Bell serving breakfast?
+
+
+Another interesting Les Johnson talk.  Solar sails.
+
+
+Rather than a Sunday crescendo, people have been steadily bleeding off.
+We make our way into town for ribs.
+
+
+  
+
+
+
+Listening to a genetics podcast on the way home, aging wrt senescence.
+
+
+
+
+Previous:  PhreakNIC15
+
+
+[a]What a weekend! Gave me goosebumps reading it! Missing the old days! Good reading and good thing you wrote all this down! Was telling Nick the Derby girls story and I found this on the internet! What a great time to be alive! :D
+[b]hahaha, hell yeah!

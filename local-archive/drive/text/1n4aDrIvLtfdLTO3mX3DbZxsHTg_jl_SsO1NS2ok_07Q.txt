@@ -1,0 +1,307 @@
+﻿The time has come at last for PhreakNIC to return to form
+The drive down wasn’t a ton of fun.  So many dead deer, blood trails made me scared, sad
+And apparently Nashville traffic on 24 always sucks
+But I arrive ~2000 and things feel familiar.
+Big hug from Elonka in the lobby.  Haven’t seen her in ages.  She heads out as I’m checking in.
+  
+
+Room 118, probably best room assignment I’ve had in this hotel yet
+It’s right at the mezzanine hot spot.  
+But the mezzanine area is suspiciously barren
+Do a little pacing, exchange some furtive head nods with familiar faces, but there’s nowhere to sit and set up shop.
+Chill in my room for a bit.  
+  
+
+Verify that I can clone my room key with the flipper zero
+
+
+Roaches in the bathroom.  That’s not great, but I can laugh it off.  A nice room isn’t what I came here for.
+Despite some evidence of renewal (wet paint signs) this place seems to be fighting a losing war against entropy
+But ain’t we all
+
+
+Breakfast is in the bar
+The woman policing it has a feisty drawl
+Demanding room numbers and someone stole this guy’s slot
+He can still eat, mind you, but be aware “I’ll underline it”
+I assume this will go on his permanent record
+And you, you’re not allowed to sit at the bar.  “Did you hear me?”
+
+
+Overhear NotLarry talking about ChatGPT.  He doesn’t give it much credence.  Yeah, I’m in the right place.
+Chat with Kamikazee Joe.  My St. Louis compatriot that I somehow never find in St. Louis.  Always another state.
+At DEF CON this year I didn’t find him until the airport for our shared flight out.  Of course at PhreakNIC it’s harder to hide.
+He’s giving a talk today, still tweaking his slides.  Classic.  Move fast, break stuff.
+How’s the coffee?
+I’ve had worse
+Head out to be first in line for registration.
+Unfortunately, the sheet of names is not in alphabetical order
+So attendee retrieval is O(N) instead of O(log(N)) as it should be.  Thanks eventbrite.
+And then we print our own name labels and laminate our badges on the fly
+For a big-ass conference this would be a logistical nightmare
+But, no worries, this just proves our DIY ethos
+I recognize so many faces, but match them with so few names
+Opening ceremonies, starting to get a critical mass of miscreants.  
+I love that this little, scrappy conference attracts some heavy hitters
+[By ‘last year’ I mean ‘last PhreakNIC’  4 years, pre-covid, a lifetime ago]
+But apparently not so long ago that we’ve reset our reputation with the hotel
+We’ve been kicked out of the mezzanine FRFR for pre-emptive noise complaints
+But Ben’s gonna negotiate us some tables, some chairs, at least during daylight hours
+And we can all acknowledge this ain’t exactly the most glamorous venue 
+But hell, we’re a smol shoestring nonprofit in an expensive world 
+And I’ll take some skeevyness to keep this family together
+Next year we just need to sell out the venue 
+So they will give us free reign over it
+I’ve got good memories there
+
+
+First talk is on creating your own windows ISOs.  Poiupoiu aka Steve
+I send my brother a snapshot of the Buc-ee’s sticker on the speaker’s laptop.
+  
+
+
+
+Interesting talk on circuit python from Tyler Crumpton
+I was hoping to get into micro python based on the DC30 badge, but that hasn’t happened 
+But this sounds even more compelling, so fingers-crossed soon I’ll pick it up.  Nearly REPL-like iterations
+“You can use vim because it’s better than emacs”  (I agree, but he’s JKJK, uses visual-whatever)
+This dials accessibility up to 11 “You accidentally did embedded programming”
+He built a hotdog midi synthesizer during the pandemic, pics to prove it
+(But did he eat the hotdogs afterwards?  No. No, he did not)
+He should.  For Science.
+
+
+Electroplating with Tain.
+Literal bugs.  Some cool shit.  
+With relatively mild warning labels.
+Acid.  Poison.  But don’t worry about it.
+OK, sometimes I am a fan of that ‘safety third’ mentality
+But I think I’ll pass.  Stick to software.
+
+
+  
+  
+
+Got one of the last glow-in-the-dark ones                                Replenish my eye stock a bit
+
+
+Ben & Jon talking about some local infrastructure, business ventures
+“What is a data center?”  These slides aren’t meant for you.
+
+
+Headed to Joe’s talk
+Did other Joe say “Whiskey?”  That’s the name of my brother’s cat
+But this talk is Whisker Watch.  Chat GPT came up with that name
+“Who’s ready to see some cat pictures!?”
+N.B. Edison was named after an Intel MicroChip, not Thomas
+Check out “Home Assistant” 
+
+
+Winn’s Talk on his Metaonia
+Projector issues.  No signal.  WTF M8
+Brain’s main job is predict the future to survive
+Conscious vs unconscious.  Who’s in charge?  
+We don’t like AI because we built it as a model of ourselves
+I make a note that I need to take a step back to critically reevaluate his puffery 
+And coincidentally his next slide is on the cognitive immune system, aka not getting swept up in such fun
+I mean, Winn is one of the leading factors in why I’d never miss a DEF CON Hacker Jeopardy
+He’s got an explosive showman charisma, backed by a fierce intellect
+And everything’s a spectrum, rather than ‘swallow my dogma’
+
+
+Now thinking about the massive degree to which I change and try to reflect the person I’m talking to 
+But there are speakers that are kaiju kiki, throwing sentences  around like lightning bolts
+And I still feel like a soft little bouba
+OK, yeah, you’ve energized me
+But I’m not a pikachu
+
+
+quiet my mind, turn off my internal monologue for a while
+then find myself speaking, surprised by what I say
+it went from the depths of my subconscious brain to my mouth motor neurons unfiltered, unrehearsed
+usually before I speak I second guess myself so many times, the moment has passed before I actually say anything 
+and I just stay silent
+
+
+I exchange some more words with Elonka, who’s going through some changes
+(But we never really got a chance to catch up proper)
+Wasn’t until it she pointed it out to me that I noticed NotLarry lost a leg
+He’s wearing an elegant skirt and a shirt what reads “I ain’t dead yet, motherfuckers”  
+(And later he slags off the “fuckin’ bipeds”)
+
+
+  
+
+Brimstone gives a presentation on how to talk like a pirate
+It can’t be recorded because of some controversial discussion of Linux ISOs
+Items 6-9 were not correctly labeled.  And item 10 was on the screen from the start.  
+I’m skeptical as to whether such buffoonery was unintentional, but honestly, I don’t care.  I love it regardless.
+
+
+How nice, Telco bob made it.  He’s fun people.  An impish scamp.
+
+
+  
+
+Sitting at the table with the southern version of Lee Mack
+Tinkering with a tank.  Pull off the compass, put on a gyro.  
+Trying to drive it like the turtle from logo.  Sounds like math.
+
+
+In the morning the Huntsville crowd is evaluating various permutations of [Drug][Animal]
+Run the full gamut from Ayahuasca Alligator to Cocaine Bear to Crack Coon to Meth Monkey to Zoloft Zebra
+Red shirt sticks out his hand:  “Have we met yet?”  
+Discuss genomics.
+I’m about to ask questions about this guy’s pipeline
+But now it’s time to head to 0ddball’s talk on 3D printed guns
+Ben explains that things didn’t wind down ‘til 3am so we expect them to be sleeping in, 
+“If you take legal advice from some guy named oddball, yeah, tell the judge that…”
+Prison is bad and “Don’t set off grenades that are in your hand”
+Eventually a decent-sized crowd does actually show up
+Print Shoot Repeat has a song about the Glong
+The glock that is also a bong.  
+Because.  Of course.
+  
+
+
+
+operat0r’s Jamboree
+Seems like a pretty neat tool
+Mr. McCurdy is one of those remarkable polymaths
+Creates a sandbox for Android emulation and traffic inspection
+Simplifies a traditionally fiddly workflow
+Must be a bitch to maintain
+github
+
+
+Buy some tea from the gas station across the street
+cashier says “I know where you’re from - you’re with that ‘legalize hacking’ conference”
+Someone tried telling her “Oh, we don’t really call it that”
+“Well, I don’t really like what you wanna call it”
+I’m not even wearing my badge
+But I do have a “Hacker Inside” pin
+
+
+Sitting on a bench outside 
+A couple walking by in sports apparel
+He asks “Excuse me, what kind of event are they having in there?”
+I respond “It’s a hacker conference, computer security, technology, that kind of stuff”
+And to my delight she exclaims “Very cool!”
+
+
+J Church (not that one) on wireshark
+How do you list files in Linux?
+Yeah, that’s right: dir
+What’s another way?  ls
+Does anyone know what sl does?
+It’s a steam locomotive
+Brimstone: “Why are you steering!?”
+“It was such a wonderful time” back before HTTPS became ubiquitous
+So our examples are by necessity a little contrived.  I mean, we’re looking at telnet traffic
+And nginx.org is listed among top sites available unencypted
+Apparently an unfortunate side effect of being Russian
+But Teal is quick to defend their virtue.  
+The tool itself certainly supports it.
+We use it as a reverse proxy to ensure encryption
+And I later verify their site is also secure by default
+  
+
+
+
+Meade Kincke saunters onto stage to the tune of ‘sharp-dressed man’
+Is that his genuine accent or an affectation?  I mean, it all seems a bit much.
+But his talk is wildly entertaining.  Clips of Black Books and Hackers.  He’s won me over.
+He’s actually got some substance with his style.
+Like having control over DNS is vital.
+“What’s in that box?”
+“It’s not my box.  (Of course it’s his box, it’s garish and pink)”
+“My pedigree is everyone you’d want to drink with.”
+Germany.  And Bordeaux.  He slips into some French
+And speaking of accents…
+Guy sitting in the row behind me has a bit of a drawl
+He’s from southern Illinois, I grew up in the north part of the state
+He mentions Fox Lake and grunt fest.
+Me:  “My brothers are both marines”
+Him:  “I’m sorry…”
+He wants to move back out west.  Million dollar views, drinking beer, eating steak
+Ranger said “I thought you said you were homeless”
+“Well, yeah, but I’m not broke”
+
+
+Elonka begins her talk on codes
+“You guys are my peeps”
+
+
+[I worked in actual annealing around the same time I was learning about its simulation]
+
+
+NonInfringing game show, aka hacker jeopardy
+The teams start off with the highest value questions
+Board has impressive production value, but they’re chiding Ben for typos and lack of challenge
+The whole thing devolves rather quickly into everyone always immediately spamming their buzzer
+Assuming everyone will know every answer
+But some of them are actually hard
+Ben, incredulous: “How do my kids know what APT is?”
+
+
+“Is this the one with the cake that makes you cum?”
+“What!?  I don’t know this guy…”
+“Is that layer cake?”
+“Lay ‘er…”
+
+
+Moving on to lightning talks
+Dickie’s got buc’ees pyjama bottoms and a beaver shirt  (“Actually, it’s pronounced bussys”)
+Who put this guy in charge?  (“Your time starts when you open your gob”)
+Power has gone to his head  (“Your time starts when you supplex this guy”)
+“No heckling!  Not even me”
+  
+
+
+
+Teal sounds to me like Truman Capote on drugs.  He’s remarkably entertaining and somehow erudite.
+[I think I first met him at DEF CON 27]
+Tyler demonstrates JLCPCB.  
+Demo gods being unkind to Joe “If it’s Linux, reboot it with video plugged in”
+“If it’s Linux, rebuild the kernel”
+With markup Joe and Bob can collab on talks on github
+
+
+Back to the tank on the table
+Good progress is demonstrated
+But it goes beserk with the Right 90 directive
+It doesn’t like to be right.  It is “definitely not a lady”
+
+
+Discussing craft beers with Austin.  Exploring unusual flavors.
+I’m not a fan of sours, but I really do want to give this one a try
+  
+
+
+
+  
+
+Leslie has an animated LED mask.  The builtins are insanely cool
+And then she snaps Austin.  Me.  Ben The Meek.
+  
+  
+
+(Austin’s eyebrow/eyehole alignment is impeccable)
+  
+
+
+
+I hand Ben a DaveCon 2.1 badge.
+Really hope to see him at the next one.
+
+
+Sit at the table with Huntsville (and their diaspora)
+Reminiscing on classic web comics.  Book recommendations:  Legacy of Heorot and Blindsight
+We already talked about my work.  What do you do?  
+Gotta remember that what you do is more than just what you do for work.
+And so we’re solving the world’s problems.  Things actually get a bit sentimental.
+We’re moving to New Zealand next.  It’s like Australia with fewer things trying to kill you
+We’ve all got a lot of driving in the morning, so things are winding down now.
+
+
+Index

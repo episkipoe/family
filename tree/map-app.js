@@ -56,10 +56,10 @@
   function groupByLocation(members) {
     const grouped = new Map();
     members.forEach((member) => {
-      const location = String(member.location || "").trim();
-      if (!location) return;
-      if (!grouped.has(location)) grouped.set(location, []);
-      grouped.get(location).push(member);
+      locationList(member.location).forEach((location) => {
+        if (!grouped.has(location)) grouped.set(location, []);
+        grouped.get(location).push(member);
+      });
     });
 
     return [...grouped.entries()]
@@ -69,6 +69,22 @@
         residents: residents.sort((a, b) => a.name.localeCompare(b.name) || a.id - b.id)
       }))
       .sort((a, b) => a.location.localeCompare(b.location));
+  }
+
+  function locationList(value) {
+    const values = Array.isArray(value) ? value : [value];
+    const seen = new Set();
+    const locations = [];
+
+    values.forEach((entry) => {
+      const location = String(entry || "").trim();
+      const key = location.toLowerCase();
+      if (!location || seen.has(key)) return;
+      seen.add(key);
+      locations.push(location);
+    });
+
+    return locations;
   }
 
   function applySearch(value) {
