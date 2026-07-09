@@ -9,6 +9,9 @@ const overridesPath = path.join(process.cwd(), 'data', 'travel-overrides.json');
 const excludedDocIds = new Set([
   '1czXnp5EJXRv_DJrr9x6CFZnsm4vHog9LFzPPOTDOJ-c'
 ]);
+const treePersonAliases = {
+  17: ['Mnke', 'MNKE', 'Michael Bennett']
+};
 
 const locations = [
   { id: 'las-vegas', name: 'Las Vegas, Nevada', lat: 36.1716, lng: -115.1391, theme: 'cyberpunk', aliases: ['Las Vegas', 'Vegas', 'DEF CON', 'DaveCon'] },
@@ -52,6 +55,17 @@ function mentionCount(haystack, alias) {
   return (haystack.match(pattern) || []).length;
 }
 
+const searchStopWords = new Set([
+  'about', 'after', 'again', 'also', 'and', 'are', 'because', 'before', 'being',
+  'but', 'can', 'could', 'day', 'did', 'does', 'don', 'down', 'for', 'from',
+  'get', 'got', 'had', 'has', 'have', 'her', 'him', 'his', 'how', 'into',
+  'its', 'just', 'like', 'more', 'much', 'night', 'not', 'now', 'off', 'one',
+  'only', 'out', 'over', 'really', 'she', 'some', 'than', 'that', 'the',
+  'their', 'them', 'then', 'there', 'they', 'this', 'time', 'too', 'very',
+  'was', 'way', 'were', 'what', 'when', 'where', 'which', 'who', 'why',
+  'with', 'would', 'you', 'your'
+]);
+
 function loadManifest() {
   return JSON.parse(fs.readFileSync(manifestPath, 'utf8'));
 }
@@ -87,6 +101,48 @@ function snippetFor(body, aliases) {
   const index = lowerBody.indexOf(alias.toLowerCase());
   const start = Math.max(0, index - 90);
   return body.slice(start, index + alias.length + 140).replace(/\s+/g, ' ').trim();
+}
+
+function searchTerms(query) {
+  const terms = [];
+  const pattern = /"([^"]+)"|([a-z0-9']{2,})/gi;
+  for (const match of String(query || '').matchAll(pattern)) {
+    const rawValue = match[1] || match[2] || '';
+    const value = rawValue.toLowerCase().trim();
+    if (value.length < 2) continue;
+    terms.push({
+      value,
+      exact: Boolean(match[1])
+    });
+  }
+  return terms;
+}
+
+function searchSnippet(body, index, terms) {
+  const start = Math.max(0, index - 120);
+  const end = Math.min(body.length, index + 220);
+  const termPattern = new RegExp(`(${terms.map((term) => escapeRegExp(term.value)).join('|')})`, 'gi');
+  return body
+    .slice(start, end)
+    .replace(/\s+/g, ' ')
+    .trim()
+    .replace(termPattern, '<mark>$1</mark>');
+}
+
+function wordCloudFromSnippets(snippets, terms) {
+  const ignored = new Set([...searchStopWords, ...terms.map((term) => term.value)]);
+  const counts = new Map();
+  snippets.forEach((snippet) => {
+    const text = snippet.replace(/<[^>]+>/g, ' ');
+    (text.toLowerCase().match(/[a-z][a-z']{2,}/g) || []).forEach((word) => {
+      if (ignored.has(word) || word.length < 3) return;
+      counts.set(word, (counts.get(word) || 0) + 1);
+    });
+  });
+  return [...counts.entries()]
+    .sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))
+    .slice(0, 34)
+    .map(([word, count]) => ({ word, count }));
 }
 
 let cachedArchive;
@@ -248,6 +304,7 @@ function treeCandidates(treePeople) {
     const first = name.split(' ')[0];
     const aliases = [name];
     if (first && firstNameCounts.get(first.toLowerCase()) === 1) aliases.push(first);
+    aliases.push(...(treePersonAliases[person.id] || []));
     return {
       id: `tree-${person.id}`,
       name,
@@ -482,6 +539,51 @@ export function getDefconWriteups() {
       if (yearDiff) return yearDiff;
       return defconFromTitle(a.title) - defconFromTitle(b.title) || a.title.localeCompare(b.title);
     });
+}
+
+export function searchTravelDocuments(query) {
+  const terms = searchTerms(query)
+    .filter((term, index, allTerms) => allTerms.findIndex((candidate) => candidate.value === term.value && candidate.exact === term.exact) === index)
+    .slice(0, 8);
+  if (!terms.length) return { query: '', totalMatches: 0, results: [], cloud: [] };
+
+  const docs = loadDocs();
+  const allSnippets = [];
+  const results = docs
+    .map(({ body, ...doc }) => {
+      const lowerBody = body.toLowerCase();
+      const indexes = [];
+      terms.forEach((term) => {
+        const pattern = term.exact
+          ? new RegExp(`\\b${escapeRegExp(term.value)}\\b`, 'gi')
+          : new RegExp(escapeRegExp(term.value), 'gi');
+        for (const match of lowerBody.matchAll(pattern)) {
+          if (indexes.length >= 20) break;
+          indexes.push(match.index);
+        }
+      });
+      indexes.sort((a, b) => a - b);
+      if (!indexes.length) return null;
+
+      const dedupedIndexes = indexes.filter((index, position) => position === 0 || index - indexes[position - 1] > 80);
+      const snippets = dedupedIndexes.slice(0, 4).map((index) => searchSnippet(body, index, terms));
+      allSnippets.push(...snippets);
+      return {
+        ...doc,
+        matchCount: indexes.length,
+        snippets
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => b.matchCount - a.matchCount || a.title.localeCompare(b.title))
+    .slice(0, 50);
+
+  return {
+    query: terms.map((term) => term.exact ? `"${term.value}"` : term.value).join(' '),
+    totalMatches: results.reduce((total, result) => total + result.matchCount, 0),
+    results,
+    cloud: wordCloudFromSnippets(allSnippets, terms)
+  };
 }
 
 function yearFromTitle(title) {

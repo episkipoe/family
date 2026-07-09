@@ -1140,6 +1140,12 @@ h3 {
     url("https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1600&q=80") center / cover;
 }
 
+.travel-search-hero {
+  background:
+    linear-gradient(115deg, rgba(22, 140, 162, 0.72), rgba(44, 143, 107, 0.56)),
+    url("https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80") center / cover;
+}
+
 .travel-page .eyebrow a,
 .vegas-page .eyebrow a {
   color: inherit;
@@ -1450,6 +1456,96 @@ h3 {
   color: var(--coral);
 }
 
+.travel-search-shell {
+  display: grid;
+  grid-template-columns: minmax(280px, 340px) minmax(0, 1fr);
+  gap: 18px;
+  width: min(1280px, calc(100% - 40px));
+}
+
+.travel-search-tools {
+  display: grid;
+  align-content: start;
+  gap: 18px;
+  padding: 16px;
+}
+
+.travel-search-form {
+  display: grid;
+  gap: 12px;
+}
+
+.travel-word-cloud {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  min-height: 130px;
+  padding: 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: white;
+}
+
+.travel-word-cloud span {
+  color: var(--ocean-dark);
+  font-weight: 850;
+  line-height: 1;
+}
+
+.travel-search-results {
+  display: grid;
+  align-content: start;
+  gap: 14px;
+}
+
+.travel-result-list {
+  display: grid;
+  gap: 14px;
+}
+
+.travel-result-card {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: rgba(255, 253, 244, 0.96);
+  box-shadow: var(--shadow);
+}
+
+.travel-result-card h2 {
+  margin: 4px 0 0;
+  font-size: 1.25rem;
+}
+
+.travel-result-card a {
+  color: inherit;
+}
+
+.travel-snippets {
+  display: grid;
+  gap: 10px;
+}
+
+.travel-snippets p {
+  margin: 0;
+  padding: 11px 12px;
+  border-left: 4px solid var(--sun);
+  border-radius: 6px;
+  background: white;
+  color: var(--ink);
+  line-height: 1.5;
+}
+
+.travel-snippets mark {
+  padding: 0 3px;
+  border-radius: 4px;
+  background: #ffe08a;
+  color: var(--ink);
+  font-weight: 850;
+}
+
 .vegas-page {
   min-height: 100vh;
   background:
@@ -1551,7 +1647,8 @@ h3 {
   .reference-grid,
   .vegas-grid,
   .travel-people-shell,
-  .travel-admin-shell {
+  .travel-admin-shell,
+  .travel-search-shell {
     grid-template-columns: 1fr;
   }
 
@@ -1575,6 +1672,10 @@ h3 {
   }
 
   .travel-admin-shell {
+    width: min(100% - 28px, 1080px);
+  }
+
+  .travel-search-shell {
     width: min(100% - 28px, 1080px);
   }
 

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Travel Search</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+</head>
+<body class="travel-page">
+  <header class="hero travel-search-hero">
+    <div>
+      <p class="eyebrow"><a href="/travel.html">Travel map</a></p>
+      <h1>Travel search</h1>
+      <p class="lede">Search the archived travel documents and skim the matching context.</p>
+    </div>
+  </header>
+  <main class="travel-search-shell">
+    <section class="travel-search-tools panel">
+      <form id="travelSearchForm" class="travel-search-form">
+        <label>
+          Search documents
+          <input id="travelSearchInput" type="search" name="q" placeholder="Mnke, tacos, Istanbul..." autocomplete="off">
+        </label>
+        <button class="primary-action" type="submit">Search</button>
+      </form>
+      <div>
+        <p class="label-text">Word cloud</p>
+        <div id="travelWordCloud" class="travel-word-cloud" aria-live="polite"></div>
+      </div>
+    </section>
+    <section class="travel-search-results">
+      <div class="proposal-topline">
+        <div>
+          <p class="label-text">Matches</p>
+          <h2 id="travelSearchSummary">Enter a search term</h2>
+        </div>
+      </div>
+      <div id="travelSearchResults" class="travel-result-list" aria-live="polite"></div>
+    </section>
+  </main>
+  <script src="/travel-search.js" type="module"></script>
+</body>
+</html>

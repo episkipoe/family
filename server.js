@@ -16,7 +16,8 @@ import {
   hideTravelAdminEntity,
   migrateTravelAdminPerson,
   removeTravelAdminEntity,
-  saveTravelAdminEntity
+  saveTravelAdminEntity,
+  searchTravelDocuments
 } from './utils/travelArchive.js';
 
 const app = express();
@@ -335,6 +336,14 @@ app.get('/api/travel/people/:id', (req, res, next) => {
 app.get('/api/travel/defcon-writeups', (req, res, next) => {
   try {
     res.json({ writeups: getDefconWriteups() });
+  } catch (error) {
+    next(error);
+  }
+});
+
+app.get('/api/travel/search', (req, res, next) => {
+  try {
+    res.json(searchTravelDocuments(cleanString(req.query.q, 120)));
   } catch (error) {
     next(error);
   }
