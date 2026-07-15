@@ -15,8 +15,15 @@
 
   <main>
     <section class="panel controls">
-      <a class="button-link" href="/">Home</a>
-      <a class="button-link" href="/planning/">Planner</a>
+      <div class="identity-card">
+        <span class="label-text">Playing as</span>
+        <strong id="currentUserName">Not set</strong>
+        <button id="changeNameButton" type="button">Change name</button>
+      </div>
+      <div class="control-actions">
+        <a class="button-link" href="/">Home</a>
+        <a class="button-link" href="/planning/">Planner</a>
+      </div>
     </section>
 
     <section class="games-grid" aria-label="Available games">
@@ -95,5 +102,18 @@
  
     </section>
   </main>
+
+  <dialog id="nameDialog" class="name-dialog">
+    <form id="nameForm" method="dialog">
+      <h2>Who are you?</h2>
+      <label>
+        Your name
+        <input id="nameInput" name="name" autocomplete="name" required maxlength="80" placeholder="e.g. Dave" />
+      </label>
+      <button type="submit">Save name</button>
+    </form>
+  </dialog>
+
+  <script src="/games.js" defer></script>
 </body>
 </html>

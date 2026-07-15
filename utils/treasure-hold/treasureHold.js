@@ -36,6 +36,41 @@ function createPlayer(dave) {
 	};
 }
 
+function getPlayerOrder(game) {
+	const orderedIds = game.turnOrder ?? [];
+	const knownIds = new Set(Object.keys(game.players));
+	const ordered = orderedIds.filter(userId => knownIds.has(userId));
+	const missing = Object.keys(game.players).filter(userId => !ordered.includes(userId));
+	return [...ordered, ...missing];
+}
+
+function getCurrentPlayerId(game) {
+	const order = getPlayerOrder(game);
+	return order[game.currentTurnIndex ?? 0] ?? null;
+}
+
+function getCurrentPlayerName(game) {
+	const currentPlayerId = getCurrentPlayerId(game);
+	return currentPlayerId ? game.players[currentPlayerId]?.name ?? null : null;
+}
+
+function advanceTurn(game) {
+	if (Object.values(game.players).every(player => !player.active)) {
+		return;
+	}
+
+	const order = getPlayerOrder(game);
+	if (!order.length) return;
+	const startIndex = Math.max(0, game.currentTurnIndex ?? 0);
+	for (let offset = 1; offset <= order.length; offset += 1) {
+		const index = (startIndex + offset) % order.length;
+		if (game.players[order[index]]?.active) {
+			game.currentTurnIndex = index;
+			return;
+		}
+	}
+}
+
 function activeGameAtPlace(placeId) {
 	const gameId = gameIdsByPlace.get(placeId);
 	const game = gameId ? gamesById.get(gameId) : null;
@@ -50,7 +85,8 @@ function standings(game) {
 			score: player.score,
 			currentLoot: player.currentLoot,
 			active: player.active,
-			outcome: player.outcome
+			outcome: player.outcome,
+			isCurrentTurn: player.userId === getCurrentPlayerId(game)
 		}))
 		.sort((a, b) => b.score - a.score || a.name.localeCompare(b.name));
 }
@@ -63,6 +99,9 @@ function cloneGame(game) {
 			id,
 			{ ...player, dice: [...player.dice] }
 		])),
+		turnOrder: getPlayerOrder(game),
+		currentPlayerId: getCurrentPlayerId(game),
+		currentPlayerName: getCurrentPlayerName(game),
 		standings: standings(game),
 		log: game.log.slice(0, 12)
 	};
@@ -94,9 +133,12 @@ export function createTreasureHold(placeId, place, dave) {
 		createdAt: now(),
 		updatedAt: now(),
 		players: {},
+		turnOrder: [],
+		currentTurnIndex: 0,
 		log: []
 	};
 	game.players[dave.userId] = createPlayer(dave);
+	game.turnOrder.push(dave.userId);
 	game.log.unshift(`${dave.name || "Dave"} opened the Treasure Hold.`);
 	gamesById.set(game.id, game);
 	gameIdsByPlace.set(placeId, game.id);
@@ -120,6 +162,7 @@ export function joinTreasureHold(gameId, dave) {
 	}
 
 	game.players[dave.userId] = createPlayer(dave);
+	game.turnOrder = getPlayerOrder(game);
 	game.updatedAt = now();
 	game.log.unshift(`${dave.name || "Dave"} joined the crew.`);
 	return { ok: true, game };
@@ -146,6 +189,9 @@ function requireRoll(game, playerId, mustBeDecision = false) {
 	}
 	if (!player.active) {
 		return { ok: false, error: "Wait for the next voyage." };
+	}
+	if (getCurrentPlayerId(game) !== playerId) {
+		return { ok: false, error: `Waiting for ${getCurrentPlayerName(game) || "the current sailor"}.` };
 	}
 	if (mustBeDecision && !player.awaitingChoice) {
 		return { ok: false, error: "Roll before choosing to sail on." };
@@ -204,7 +250,9 @@ function finishPlayerBust(game, player) {
 	player.awaitingChoice = false;
 	player.outcome = "busted";
 	game.log.unshift(`${player.name} was lost at sea.`);
-	return advanceVoyageIfReady(game);
+	const transition = advanceVoyageIfReady(game);
+	if (!transition) advanceTurn(game);
+	return transition;
 }
 
 export function rollTreasureHold(game, playerId, random = Math.random) {
@@ -229,6 +277,9 @@ export function returnToPort(game, playerId) {
 	if (!game || game.state === "finished" || !player?.active) {
 		return { ok: false, error: "Treasure Hold is unavailable." };
 	}
+	if (getCurrentPlayerId(game) !== playerId) {
+		return { ok: false, error: `Waiting for ${getCurrentPlayerName(game) || "the current sailor"}.` };
+	}
 	if (!player.awaitingChoice) {
 		return { ok: false, error: "Roll before returning to port." };
 	}
@@ -241,7 +292,9 @@ export function returnToPort(game, playerId) {
 	player.outcome = "banked";
 	game.updatedAt = now();
 	game.log.unshift(`${player.name} returned to port with ${banked} booty.`);
-	return { ok: true, banked, transition: advanceVoyageIfReady(game) };
+	const transition = advanceVoyageIfReady(game);
+	if (!transition) advanceTurn(game);
+	return { ok: true, banked, transition };
 }
 
 function resetPlayerForVoyage(player) {
@@ -274,6 +327,7 @@ function advanceVoyageIfReady(game) {
 	for (const player of Object.values(game.players)) {
 		resetPlayerForVoyage(player);
 	}
+	game.currentTurnIndex = 0;
 	game.updatedAt = now();
 	game.log.unshift(`Voyage ${game.round} begins.`);
 	return { type: "voyageEnded", completedRound, results };

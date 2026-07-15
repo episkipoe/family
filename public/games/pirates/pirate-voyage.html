@@ -253,6 +253,52 @@
 			font-weight: 900;
 		}
 
+		.cargo-action {
+			position: relative;
+			overflow: hidden;
+			color: #1c1008;
+			background:
+				linear-gradient(180deg, rgba(255, 243, 216, 0.42), rgba(239, 182, 71, 0.08)),
+				var(--gold);
+			border-color: #ffd46e;
+			box-shadow:
+				inset 0 1px 0 rgba(255, 255, 255, 0.34),
+				0 10px 22px rgba(239, 182, 71, 0.22);
+			font-weight: 950;
+			text-transform: uppercase;
+		}
+
+		.cargo-action::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			background: linear-gradient(115deg, transparent 0 32%, rgba(255, 255, 255, 0.28) 46%, transparent 62%);
+			transform: translateX(-120%);
+			transition: transform 240ms ease;
+			pointer-events: none;
+		}
+
+		.cargo-action:hover:not(:disabled) {
+			color: #160d08;
+			background:
+				linear-gradient(180deg, rgba(255, 250, 224, 0.58), rgba(246, 194, 85, 0.14)),
+				#f6c255;
+			border-color: #ffe08b;
+			transform: translateY(-1px);
+		}
+
+		.cargo-action:hover:not(:disabled)::before {
+			transform: translateX(120%);
+		}
+
+		.cargo-action:disabled {
+			color: rgba(255, 243, 216, 0.42);
+			background: rgba(72, 42, 24, 0.62);
+			border-color: rgba(239, 182, 71, 0.18);
+			box-shadow: none;
+			text-transform: uppercase;
+		}
+
 		.standing-list,
 		.voyage-log {
 			display: grid;
@@ -427,7 +473,7 @@
 				<div id="roundSummary" class="round-summary"></div>
 				<div class="action-row">
 					<button id="rollButton" class="primary-voyage" type="button">Roll</button>
-					<button id="submitButton" type="button">Score Cargo</button>
+					<button id="submitButton" class="cargo-action" type="button">Score Cargo</button>
 				</div>
 			</section>
 
@@ -563,14 +609,27 @@
 			const title = modal.querySelector("#resultTitle");
 			const message = modal.querySelector("#resultMessage");
 			const isWinner = winners.some(player => player.userId === userId);
+			const isDraw = winners.length > 1;
 			const winnerNames = winners.map(player => player.name).join(" & ");
+			const otherWinnerNames = winners
+				.filter(player => player.userId !== userId)
+				.map(player => player.name)
+				.join(" & ");
 
 			card.classList.toggle("winner", isWinner);
 			face.innerHTML = isWinner ? "&#128515;" : "&#9785;";
-			title.textContent = isWinner ? "Round victory!" : "Round complete";
-			message.textContent = isWinner
-				? `Fireworks for you. You won with ${result.highScore} cargo.`
-				: `${winnerNames} won with ${result.highScore} cargo.`;
+			title.textContent = isDraw
+				? "Round draw"
+				: isWinner
+					? "Round victory!"
+					: "Round complete";
+			message.textContent = isDraw
+				? isWinner
+					? `You tied for first${otherWinnerNames ? ` with ${otherWinnerNames}` : ""} at ${result.highScore} cargo.`
+					: `${winnerNames} tied for first with ${result.highScore} cargo.`
+				: isWinner
+					? `Fireworks for you. You won with ${result.highScore} cargo.`
+					: `${winnerNames} won with ${result.highScore} cargo.`;
 			modal.hidden = false;
 		}
 
@@ -721,8 +780,10 @@
 			const submitted = !!you.turn?.submitted;
 			const rerollsRemaining = Number(you.turn?.rollsRemaining ?? 0);
 			const isYourTurn = voyage.currentPlayerId === userId;
+			const canRoll = isYourTurn && !submitted && (dice.length === 0 || rerollsRemaining > 0);
 			rollButton.textContent = dice.length === 0 ? "Roll Dice" : `Reroll (${rerollsRemaining})`;
-			rollButton.disabled = !isYourTurn || submitted || (dice.length > 0 && rerollsRemaining <= 0);
+			rollButton.disabled = !canRoll;
+			rollButton.setAttribute("aria-disabled", String(!canRoll));
 			submitButton.disabled = !isYourTurn || submitted || dice.length === 0;
 			if (!isYourTurn) {
 				setStatus(`Waiting for ${voyage.currentPlayerName || "the current player"}.`);
@@ -731,7 +792,7 @@
 			} else {
 				setStatus("Ship, Captain, and Crew lock automatically. Score when you want to stand pat.");
 			}
-			rollButton.onclick = rollDice;
+			rollButton.onclick = canRoll ? rollDice : null;
 		}
 
 		async function rollDice() {

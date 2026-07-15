@@ -152,6 +152,7 @@ function renderDice(player) {
 
 function playerState(player) {
 	if (game.state === "finished") return "Voyages complete";
+	if (player.isCurrentTurn) return "At the helm";
 	if (player.active && player.awaitingChoice) return `${player.currentLoot} loot at risk`;
 	if (player.active) return "Preparing to roll";
 	if (player.outcome === "busted") return "Lost at sea";
@@ -186,6 +187,10 @@ function renderActions(player) {
 	elements.rollButton.hidden = true;
 	elements.sailButton.hidden = true;
 	elements.portButton.hidden = true;
+	elements.rollButton.disabled = false;
+	elements.sailButton.disabled = false;
+	elements.portButton.disabled = false;
+	elements.rollButton.onclick = null;
 
 	if (!game) {
 		elements.rollButton.hidden = false;
@@ -194,14 +199,18 @@ function renderActions(player) {
 		return;
 	}
 	if (game.state === "finished" || !player || !player.active) return;
+	const isYourTurn = game.currentPlayerId === userId;
 	if (player.awaitingChoice) {
 		elements.sailButton.hidden = false;
 		elements.portButton.hidden = false;
+		elements.sailButton.disabled = !isYourTurn;
+		elements.portButton.disabled = !isYourTurn;
 		return;
 	}
 	elements.rollButton.hidden = false;
 	elements.rollButton.textContent = player.dice.length ? "Cast Again" : "Cast the Dice";
-	elements.rollButton.onclick = roll;
+	elements.rollButton.disabled = !isYourTurn;
+	elements.rollButton.onclick = isYourTurn ? roll : null;
 }
 
 function renderNotice(player) {
@@ -215,6 +224,7 @@ function renderNotice(player) {
 	if (Object.keys(game.players).length < 2) return setNotice("Waiting for at least one more sailor…");
 	if (player.outcome === "busted") return setNotice("YOU WERE LOST AT SEA — waiting for the next voyage.", true);
 	if (!player.active) return setNotice("Your loot is safe in port. Waiting for the fleet.");
+	if (game.currentPlayerId !== userId) return setNotice(`Waiting for ${game.currentPlayerName || "the current sailor"}.`);
 	if (player.awaitingChoice) return setNotice("The hold is still afloat. Bank your loot, or risk it all.");
 	setNotice("Cast all six dice to begin this voyage.");
 }
